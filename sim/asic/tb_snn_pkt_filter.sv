@@ -188,8 +188,9 @@ module tb_snn_pkt_filter;
         $display(" frames in=%0d  verdicts=%0d  egress=%0d (expected %0d)", frames.size(), n_verd, n_out, fwd_idx.size());
         $display(" HW counters: committed=%0d dropped_ingress=%0d mal=%0d forwarded=%0d blocked=%0d",
                  st[0], st[1], st[2], st[3], st[4]);
-        $display(" detection vs ground truth: TP=%0d FP=%0d TN=%0d FN=%0d  acc=%.4f",
-                 tp, fp, tn, fn, real'(tp + tn) / real'(tp + tn + fp + fn));
+        if (!STRESS)       // stress mode drops frames on purpose: no per-frame ground truth
+            $display(" detection vs ground truth: TP=%0d FP=%0d TN=%0d FN=%0d  acc=%.4f",
+                     tp, fp, tn, fn, real'(tp + tn) / real'(tp + tn + fp + fn));
         if (STRESS) begin
             if (st[0] + st[1] != frames.size()) begin errors++; $display("[ERR] committed+dropped != frames"); end
             if (st[3] + st[4] != st[0])         begin errors++; $display("[ERR] forwarded+blocked != committed"); end
@@ -199,7 +200,8 @@ module tb_snn_pkt_filter;
             if (st[1] != 0) begin errors++; $display("[ERR] unexpected ingress drops"); end
             if (st[2] != frames.size() - fwd_idx.size()) begin errors++; $display("[ERR] mal counter mismatch"); end
         end
-        if (errors == 0) $display(" RESULT: PASS (%s)", STRESS ? "stress/integrity" : "bit-exact with golden model");
+        if (errors == 0 && STRESS) $display(" RESULT: PASS (stress/integrity)");
+        else if (errors == 0)      $display(" RESULT: PASS (bit-exact with golden model)");
         else             $display(" RESULT: FAIL (%0d errors)", errors);
         $display("------------------------------------------------------------");
         $finish;

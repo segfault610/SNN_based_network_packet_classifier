@@ -54,7 +54,7 @@ asic/sky130/synth.sh snn_core                    # open ASIC synthesis (Yosys + 
 asic/scripts/run_flow.sh all                     # uni server: xrun -> Genus x3 -> LEC -> GLS -> Innovus -> LEC -> SDF sim
 ```
 
-How to test on both boards: **`docs/testing.md`**. Functional verification table (xrun): **`docs/functional_verification.md`**; what the simulation and its vectors mean: **`docs/simulation_explained.md`**. Cadence flow: **`asic/README.md`**. Chameleon96 bring-up and attack demo: **`docs/chameleon96_deploy.md`**.
+Documentation index: **`docs/README.md`**. Design, architecture and signals: **`docs/design.md`**. How to test in every workflow (vsim, Cadence, Tang Nano 9K, Chameleon96, sky130 CI): **`docs/verification_guide.md`**. Functional verification table (xrun): **`docs/functional_verification.md`**; what the simulation and its vectors mean: **`docs/simulation_explained.md`**. Cadence flow: **`asic/README.md`**. Chameleon96 bring-up and attack demo: **`docs/chameleon96_deploy.md`**.
 
 ### Training on real captures
 
@@ -114,7 +114,7 @@ fpga/    cv96_snn (Quartus project + Platform Designer component)  tang9k (open 
 sw/      tang9k/  tang_demo.py (PC demo)  fake_tang.py (software board)
          cv96/    kmod/snn_fw.c  tools/snn_fwctl.c  yocto/meta-snn  snn_regs.h
 asic/    scripts (setup, genus_{fast,optimal,slow}, lec_*, innovus_<stage>, xrun_*, run_flow.sh)  constraints  sky130 (Yosys)
-docs/    testing.md  functional_verification.md  simulation_explained.md  chameleon96_deploy.md  chameleon96_wifi.md
+docs/    README (index)  design  verification_guide  simulation_explained  functional_verification  chameleon96_*  img/
 snn_stdp/  original base design (fixed; original kept as src/snn_stdp_orig.v, tb/)
 third_party/verilog-ethernet (MIT)
 ```

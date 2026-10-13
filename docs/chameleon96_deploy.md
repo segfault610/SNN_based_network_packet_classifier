@@ -59,10 +59,10 @@ sudo hping3 --icmp --flood <board-ip>            # ICMP flood
 sudo hping3 -S -a <board-ip> -p 80 <board-ip>    # land attack
 ```
 
-Watch LED1 flash and `/proc/snn_fw` count up. Then `echo "drop 1" > /proc/snn_fw`
-and confirm, for example, that `tcpdump -i wlan0` no longer sees the scan packets.
-tcpdump taps in before rx_handler, so it still sees them. Use the counters, or
-`ss -s` / service logs, to show they never reach the stack.
+Watch LED1 flash and `/proc/snn_fw` count up. Then `echo "drop 1" > /proc/snn_fw`.
+`tcpdump -i wlan0` still shows the dropped packets, because packet taps run before
+`rx_handler`. To show that they never reach the stack, use the `dropped` counter, `ss -s`,
+`nstat`, or a service on the board that no longer answers (e.g. the SYN-flooded port).
 
 Notes
 * **Fail-open:** if the accelerator doesn't answer within `poll_max` reads, the
