@@ -53,6 +53,7 @@ fpga/tang9k/*.fs
 
 # ---------------------------------------------------------------- ASIC
 asic/out/
+asic/openlane/*/runs/
 asic/sky130/out/
 asic/sky130/out_*.txt
 *.enc

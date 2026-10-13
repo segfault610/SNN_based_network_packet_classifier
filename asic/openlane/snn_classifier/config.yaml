@@ -1,0 +1,12 @@
+# LibreLane (OpenLane 2) config: classification engine only (parser + encoder + SNN, config bus).
+# Runs on every push that touches rtl/ (see .github/workflows/sky130_gds.yml).
+DESIGN_NAME: snn_classifier
+VERILOG_FILES:
+  - dir::../../../rtl/sync_fifo.v
+  - dir::../../../rtl/pkt_parser.v
+  - dir::../../../rtl/spike_encoder.v
+  - dir::../../../rtl/snn_core.v
+  - dir::../../../rtl/snn_classifier.v
+CLOCK_PORT: clk
+CLOCK_PERIOD: 10          # ns (100 MHz). sky130 is slower than the 90 nm Cadence library (8 ns there)
+FP_CORE_UTIL: 40          # % of core area used by cells; low because W1 is 8 k flip-flops

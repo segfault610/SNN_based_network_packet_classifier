@@ -1,0 +1,136 @@
+# RTL -> GDS on SkyWater sky130 with LibreLane (Yosys, OpenROAD, Magic, KLayout, Netgen),
+# in the style of the Tiny Tapeout GDS action, but for this project's own blocks.
+#
+#  * every push to main that changes rtl/ or asic/openlane/: snn_classifier (parser + encoder + SNN)
+#  * Actions tab -> "sky130 GDS" -> Run workflow: choose snn_classifier or snn_pkt_filter_asic (full chip)
+#
+# Results: job summary + artifact, and the public release "gds-<design>" (report, metrics,
+# layout picture, logs, GDS), which is replaced by each run.
+name: sky130 GDS
+
+on:
+  push:
+    branches: [main]
+    paths: ["rtl/**", "asic/openlane/**", ".github/workflows/sky130_gds.yml"]
+  workflow_dispatch:
+    inputs:
+      design:
+        description: "Block to harden"
+        type: choice
+        options: [snn_classifier, snn_pkt_filter_asic]
+        default: snn_classifier
+
+permissions:
+  contents: write          # publish results to the gds-<design> release
+
+concurrency:
+  group: gds-${{ inputs.design || 'snn_classifier' }}
+  cancel-in-progress: true
+
+env:
+  DESIGN: ${{ inputs.design || 'snn_classifier' }}
+  LIBRELANE_VERSION: "3.0.14"
+  PDK_ROOT: /home/runner/.ciel
+  RUN_TAG: ci
+
+jobs:
+  gds:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Free disk space
+        run: |
+          df -h /
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL /usr/local/share/boost
+          docker image prune -af > /dev/null
+          df -h /
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install LibreLane ${{ env.LIBRELANE_VERSION }}
+        run: pip install "librelane==${LIBRELANE_VERSION}"
+
+      - name: Cache sky130 PDK
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.PDK_ROOT }}
+          key: ciel-sky130A-8afc8346a57fe1ab7934ba5a6056ea8b43078e71   # librelane/pdk_hashes.yaml
+
+      - name: Pull LibreLane container
+        run: docker pull "ghcr.io/librelane/librelane:${LIBRELANE_VERSION}"
+
+      - name: Run LibreLane (${{ env.DESIGN }})
+        id: flow
+        run: |
+          librelane --docker-no-tty --dockerized \
+            --pdk sky130A --run-tag "$RUN_TAG" --overwrite \
+            "asic/openlane/$DESIGN/config.yaml" 2>&1 | tee librelane_console.log
+          exit "${PIPESTATUS[0]}"
+
+      - name: Report
+        if: always()
+        run: |
+          RUN="asic/openlane/$DESIGN/runs/$RUN_TAG"
+          mkdir -p results
+          python3 asic/openlane/summarize.py "$RUN" "$DESIGN" results/report.md
+          cat results/report.md >> "$GITHUB_STEP_SUMMARY"
+          cp -f "$RUN/final/metrics.json" "$RUN/final/metrics.csv" results/ 2>/dev/null || true
+          cp -f "$RUN/flow.log" results/ 2>/dev/null || true
+          cp -f librelane_console.log results/ 2>/dev/null || true
+          # last step that ran + its logs: what to look at when the flow fails
+          last=$(ls -d "$RUN"/[0-9]*-* 2>/dev/null | sort -V | tail -1)
+          {
+            echo "flow step result: ${{ steps.flow.outcome }}"
+            echo "last step directory: $last"
+            grep -hE "\[ERROR|ERROR\]|Error:|error:" "$RUN/flow.log" librelane_console.log 2>/dev/null | tail -40
+            for f in "$last"/*.log; do [ -f "$f" ] && { echo "==== $f (tail)"; tail -60 "$f"; }; done
+          } > results/error_summary.txt 2>&1 || true
+          if [ "${{ steps.flow.outcome }}" != "success" ]; then
+            msg=$(tail -c 3000 results/error_summary.txt | sed ':a;N;$!ba;s/%/%25/g;s/\r/%0D/g;s/\n/%0A/g')
+            echo "::error title=LibreLane failed ($DESIGN)::$msg"
+          fi
+          gds=$(ls "$RUN"/final/gds/*.gds 2>/dev/null | head -1)
+          if [ -n "$gds" ]; then
+            gzip -c "$gds" > "results/$DESIGN.gds.gz"
+            cp -f "$RUN"/final/nl/*.nl.v results/ 2>/dev/null || true
+            lyp=$(find "$PDK_ROOT" -name "sky130A.lyp" 2>/dev/null | head -1)
+            docker run --rm -v "$HOME:$HOME" -v "$PDK_ROOT:$PDK_ROOT" -w "$PWD" \
+              "ghcr.io/librelane/librelane:${LIBRELANE_VERSION}" \
+              klayout -zz -rd gds="$gds" -rd out="$PWD/results/${DESIGN}_layout.png" -rd lyp="$lyp" \
+              -r asic/openlane/render_gds.py || true
+          fi
+          ls -la results
+
+      - name: Upload artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.DESIGN }}-sky130
+          path: |
+            results
+            asic/openlane/${{ env.DESIGN }}/runs/${{ env.RUN_TAG }}/final/def
+            asic/openlane/${{ env.DESIGN }}/runs/${{ env.RUN_TAG }}/final/sdf
+            asic/openlane/${{ env.DESIGN }}/runs/${{ env.RUN_TAG }}/*/*.rpt
+            asic/openlane/${{ env.DESIGN }}/runs/${{ env.RUN_TAG }}/*/*/*.rpt
+          retention-days: 30
+
+      - name: Publish to release gds-${{ env.DESIGN }}
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="gds-$DESIGN"
+          gh release view "$TAG" > /dev/null 2>&1 || \
+            gh release create "$TAG" --prerelease --target "$GITHUB_SHA" \
+              --title "sky130 GDS: $DESIGN" --notes "Latest LibreLane run of $DESIGN."
+          {
+            cat results/report.md
+            echo
+            echo "Commit: $GITHUB_SHA  |  run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID  |  flow: ${{ steps.flow.outcome }}"
+          } > results/notes.md
+          gh release edit "$TAG" --notes-file results/notes.md
+          gh release upload "$TAG" results/* --clobber

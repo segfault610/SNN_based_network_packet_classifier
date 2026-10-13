@@ -2,7 +2,7 @@
 
 **DUT:** `snn_pkt_filter_asic`, the ASIC top. It is the in-line firewall with a 2 KiB packet buffer and a 64→16→2 SNN.
 
-**Testbench:** `sim/asic/tb_snn_asic.sv`.
+**Testbench:** `sim/asic/tb_snn_asic.sv`. A plain-language walk-through of the vectors, tests and waveform is in `docs/simulation_explained.md`.
 - It is self-checking and uses only the top-level ports.
 - It drives inputs and samples outputs on the falling clock edge, so the same file runs unchanged on:
   - the RTL;
@@ -23,6 +23,12 @@ xrun -F scripts/xrun_rtl.f -input scripts/xrun_batch.tcl +VEC_DIR=$PWD/../sim/ve
 xrun -F scripts/xrun_rtl.f -input scripts/xrun_waves.tcl +VEC_DIR=$PWD/../sim/vectors -access +rwc ; simvision waves.shm
 ```
 Locally with Questa: `sim/asic/run.sh suite` for RTL, `sim/asic/run.sh suite-gl` for the Yosys → sky130 gate-level netlist.
+
+## Result on the uni server (xrun, RTL)
+
+![SimVision waveform of the passing xrun run](img/xrun_rtl_waveform.png)
+
+`RESULT: PASS (10 tests)`, ending at 3,200,784 ns. The timeline is explained in `docs/simulation_explained.md` §7.
 
 ## Expected xrun output
 

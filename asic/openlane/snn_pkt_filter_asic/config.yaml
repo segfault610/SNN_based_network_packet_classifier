@@ -1,0 +1,14 @@
+# LibreLane (OpenLane 2) config: full in-line firewall (2 KiB packet buffer + classifier).
+# Large (~70 k cells, flip-flop memories): run on demand from the Actions tab.
+DESIGN_NAME: snn_pkt_filter_asic
+VERILOG_FILES:
+  - dir::../../../rtl/sync_fifo.v
+  - dir::../../../rtl/pkt_parser.v
+  - dir::../../../rtl/spike_encoder.v
+  - dir::../../../rtl/snn_core.v
+  - dir::../../../rtl/snn_classifier.v
+  - dir::../../../rtl/snn_pkt_filter.v
+  - dir::../../../rtl/snn_pkt_filter_asic.v
+CLOCK_PORT: clk
+CLOCK_PERIOD: 10
+FP_CORE_UTIL: 40
