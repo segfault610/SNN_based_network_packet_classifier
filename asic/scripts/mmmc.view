@@ -1,0 +1,7 @@
+# Minimal MMMC (slow corner). Add a capacitance table / QRC tech file if available.
+create_library_set -name slow_ls -timing {/home/cadence/install/FOUNDRY/digital/90nm/dig/lib/slow.lib}
+create_rc_corner   -name rc_typ
+create_delay_corner -name slow_dc -library_set slow_ls -rc_corner rc_typ
+create_constraint_mode -name func -sdc_files [list $::env(SDC)]
+create_analysis_view -name slow_view -constraint_mode func -delay_corner slow_dc
+set_analysis_view -setup {slow_view} -hold {slow_view}
