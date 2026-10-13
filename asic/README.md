@@ -23,8 +23,26 @@ encoder, SNN). Use `DESIGN=snn_core` or `DESIGN=snn_classifier` to synthesise on
 | post-route sim with SDF | | `CELL_V=... scripts/run_flow.sh sim-sdf` |
 | everything | | `CELL_V=... scripts/run_flow.sh all` |
 
-To find the cell models: `find /home/cadence/install/FOUNDRY/digital/90nm/dig -name "*.v"`.
-If the PDK lives elsewhere, set `GPDK090=<.../dig>`.
+## Before the first run on the uni server
+
+1. **Cell models for gate-level sim.** `sim-gls`, `sim-sdf` and `all` need the gsclib090 Verilog models.
+   The path is a guess until you check it:
+   `find /home/cadence/install/FOUNDRY/digital/90nm/dig -name "*.v"`, then `export CELL_V=<that file>`.
+2. **PDK path variable is `GPDK090`, not `PDK`.** The default is `/home/cadence/install/FOUNDRY/digital/90nm/dig`.
+   If the server keeps it elsewhere, `export GPDK090=<.../dig>`. A generic `PDK` variable (on the laptop it points
+   at sky130) is deliberately ignored, so it can't silently load the wrong library.
+3. **Run from `asic/`.** Every script checks that `../rtl` exists and stops otherwise.
+4. **First run: watch each tool's log.** The scripts were dry-run with stubbed tool commands (Tcl syntax, paths, step
+   order) but never under real Genus/Conformal/Innovus. Option names that differ between tool releases show up
+   in the first lines of the log. The optional Genus commands (`write_sdf`, `write_do_lec`, `report_area -depth`)
+   are wrapped so they only warn.
+5. **Expect a large design.** About 29 k flip-flops: 18.4 k in the flop-based 2 KiB packet buffer, 8.2 k in the
+   64×128-bit W1 weight memory, about 2.5 k elsewhere. Genus/Innovus runtimes are therefore minutes to tens of
+   minutes, not seconds. `DESIGN=snn_core` is a much smaller first try.
+6. **Old script names still work.** `genus_syn.tcl`, `lec.tcl` and `innovus_pnr.tcl` now forward to
+   `genus_optimal.tcl`, `lec_optimal.tcl` and `innovus_all.tcl`.
+7. **Git push from the laptop.** The `origin` remote is HTTPS, which needs a token. SSH works with the existing key:
+   `git push git@github.com:segfault610/SNN_based_network_packet_classifier.git main`.
 
 ## Scripts
 
@@ -85,3 +103,12 @@ sim/xrun_<run>.log
   with SRAM macros is the main area win before tape-out.
 - **Untested:** the scripts have been dry-run with stubbed tools, so the Tcl, paths and order are checked, but they have
   not run under real Cadence tools here (none on this laptop). Check the first log of each tool for option errors.
+
+## Open-source flow (SkyWater sky130, on the laptop)
+
+| step | status |
+|---|---|
+| Yosys + ABC synthesis of the full top `snn_pkt_filter_asic` onto `sky130_fd_sc_hd` (`asic/sky130/synth.sh snn_pkt_filter_asic`) | **done**: 69,316 cells, 1.15 mm² cell area. 0.82 mm² of that is 27,366 enable flip-flops (packet buffer + W1) |
+| Gate-level simulation of that netlist with the sky130 cell models (`sim/run_asic.sh gl`) | **done**: T1–T10 pass |
+| Static timing (OpenSTA) | not done (not installed). The current numbers are area only |
+| Floorplan / place / CTS / route / DRC / LVS / GDS (OpenROAD via LibreLane, ex-OpenLane 2) | **not done yet**. The PDK here already has `libs.tech/librelane`, and Docker works, so it can run locally |
