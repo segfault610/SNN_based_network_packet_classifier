@@ -10,6 +10,9 @@ run "Avalon-MM in-line wrapper"              ./run_avmm.sh
 run "look-aside accelerator (Chameleon96)"   ./run_lookaside.sh
 run "Tang Nano 9K top (UART/SLIP)"           ./run_tang9k.sh
 run "pcap loader round trip"                 ../.venv/bin/python ../model/test_pcap_io.py
+run "Tang Nano 9K gate-level (post-synthesis)" ./run_tang9k_gl.sh
+run "ASIC top T1-T10 (RTL)"                  ./run_asic.sh
+run "ASIC top T1-T10 (sky130 gate-level)"    ./run_asic.sh gl
 run "snn_stdp saturation fix"                bash -c "iverilog -g2005 -o /tmp/stdp_\$\$.vvp -s tb_snn_stdp ../snn_stdp/tb/tb_snn_stdp.v ../snn_stdp/src/snn_stdp.v && vvp -n /tmp/stdp_\$\$.vvp"
 echo "=== $pass passed, $fail failed"
-rm -rf work work_mac work_avmm work_la work_tang
+rm -rf work work_mac work_avmm work_la work_tang work_asic

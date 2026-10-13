@@ -1,4 +1,4 @@
-# 125 MHz = 1 GbE GMII byte clock (8 ns). Tighten to 4 ns to explore 2.5G.
+# Clock + IO constraints. CLK_PERIOD is replaced per variant by genus_core.tcl (fast 5 / optimal 8 / slow 12 ns).
 set CLK_PERIOD 8.0
 create_clock -name clk -period $CLK_PERIOD [get_ports clk]
 set_clock_transition 0.1 [get_clocks clk]

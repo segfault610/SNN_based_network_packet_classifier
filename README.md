@@ -27,13 +27,13 @@ in three deployments:
 | Synthetic labelled traffic (14 attack families) | done (99.7 % test, **synthetic, optimistic**) |
 | Real-dataset loader (pcap/pcapng + UNSW-NB15 / CIC ground-truth CSV), `train.py --data` | done, round-trip verified. **Needs the pcaps** |
 | RTL: parser, encoder, event-driven SNN core, shared classifier, in-line filter, look-aside wrapper | done |
-| `sim/run_all.sh`: 7 regressions, all **PASS** (bit-exact vs golden model) | ✓ |
+| `sim/run_all.sh`: 10 regressions incl. ASIC-top functional suite T1–T10 (RTL + sky130 gate-level) and Tang Nano 9K post-synthesis sim, all **PASS** | ✓ |
 | verilog-ethernet MAC with firewall fused into RX path, GMII-level test | ✓ |
 | Chameleon96: Platform Designer integration, **RBF built** (6 % ALMs, timing met @100 MHz, HPS handoff unchanged) | ✓, hardware test pending |
 | Chameleon96: `snn_fw.ko` (built for 6.18.2-altera), `snn_fwctl` (static), firmware blob, Yocto layer | ✓ built, hardware test pending |
 | Tang Nano 9K: open-source build, **bitstream built** (80 % LUT, 6 BSRAM, Fmax 57.6 MHz vs 27 MHz), PC demo script | ✓, hardware test pending |
 | ASIC: Yosys + sky130 synthesis (snn_core 0.39 mm², 64 % of it the flop-based W1 memory) | ✓ area; timing needs OpenSTA/Cadence |
-| ASIC: Genus / Conformal / Innovus scripts | written, run on the uni server |
+| ASIC: Cadence flow, one Tcl per step (Genus fast/optimal/slow, Conformal, Innovus stages, xrun), `asic/scripts/run_flow.sh` | written + dry-run checked; run on the uni server (`asic/README.md`) |
 | `snn_stdp.v` bugs fixed (saturation wrap etc.) + regression | ✓ |
 | Chameleon96 on-board WiFi (SDIO via FPGA) | analysed, see `docs/chameleon96_wifi.md` |
 
@@ -50,9 +50,10 @@ python3 sw/host/tang_demo.py --port /dev/ttyUSB1 # replay vectors (or --pcap fil
 fpga/cv96_snn/build.sh                           # Chameleon96 RBF (Quartus 20.1 Lite)
 make -C sw/kmod && make -C sw/tools              # kernel module + tool (Yocto toolchain)
 asic/sky130/synth.sh snn_core                    # open ASIC synthesis (Yosys + sky130_fd_sc_hd)
+asic/scripts/run_flow.sh all                     # uni server: xrun -> Genus x3 -> LEC -> GLS -> Innovus -> LEC -> SDF sim
 ```
 
-Chameleon96 bring-up and attack demo: **`docs/chameleon96_deploy.md`**.
+How to test on both boards: **`docs/testing.md`**. Functional verification table (xrun): **`docs/functional_verification.md`**. Cadence flow: **`asic/README.md`**. Chameleon96 bring-up and attack demo: **`docs/chameleon96_deploy.md`**.
 
 ### Training on real captures
 
@@ -103,11 +104,11 @@ model/   pktfeat.py snn_int.py (golden)  gen_traffic.py  pcap_io.py  train.py  e
 rtl/     pkt_parser spike_encoder snn_core snn_classifier sync_fifo   (shared engine)
          snn_pkt_filter (in-line)  eth_mac_1g_snn_fifo (MAC fusion)  snn_pkt_filter_asic
          snn_lookaside_avmm (Chameleon96)  snn_fw_avmm (in-line over Avalon)  uart
-sim/     testbenches + run_*.sh, run_all.sh, vectors/
+sim/     testbenches (tb_snn_asic.sv = port-level ASIC suite) + run_*.sh, run_all.sh, vectors/
 fpga/    cv96_snn (Quartus project + Platform Designer component)  tang9k (open flow)  fit_check
 sw/      kmod/snn_fw.c  tools/snn_fwctl.c  host/tang_demo.py  yocto/meta-snn  snn_regs.h
-asic/    scripts (Genus, Conformal, Innovus, MMMC)  constraints  sky130 (Yosys)
-docs/    chameleon96_deploy.md  chameleon96_wifi.md
+asic/    scripts (setup, genus_{fast,optimal,slow}, lec_*, innovus_<stage>, xrun_*, run_flow.sh)  constraints  sky130 (Yosys)
+docs/    testing.md  functional_verification.md  chameleon96_deploy.md  chameleon96_wifi.md
 snn_stdp/  original base design (fixed; original kept as src/snn_stdp_orig.v, tb/)
 third_party/verilog-ethernet (MIT)
 ```

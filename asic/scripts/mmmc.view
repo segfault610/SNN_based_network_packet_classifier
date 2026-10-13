@@ -1,7 +1,15 @@
-# Minimal MMMC (slow corner). Add a capacitance table / QRC tech file if available.
-create_library_set -name slow_ls -timing {/home/cadence/install/FOUNDRY/digital/90nm/dig/lib/slow.lib}
-create_rc_corner   -name rc_typ
-create_delay_corner -name slow_dc -library_set slow_ls -rc_corner rc_typ
-create_constraint_mode -name func -sdc_files [list $::env(SDC)]
-create_analysis_view -name slow_view -constraint_mode func -delay_corner slow_dc
-set_analysis_view -setup {slow_view} -hold {slow_view}
+# MMMC for Innovus: setup at the slow corner, hold at the fast corner.
+# Paths come from innovus_init.tcl (env SNN_*), so this file needs no editing.
+create_library_set -name slow_ls -timing [list $::env(SNN_SLOW_LIB)]
+create_library_set -name fast_ls -timing [list $::env(SNN_FAST_LIB)]
+if {$::env(SNN_CAP_TABLE) ne ""} {
+    create_rc_corner -name rc_typ -cap_table $::env(SNN_CAP_TABLE)
+} else {
+    create_rc_corner -name rc_typ
+}
+create_delay_corner    -name slow_dc -library_set slow_ls -rc_corner rc_typ
+create_delay_corner    -name fast_dc -library_set fast_ls -rc_corner rc_typ
+create_constraint_mode -name func    -sdc_files [list $::env(SNN_SDC)]
+create_analysis_view   -name setup_view -constraint_mode func -delay_corner slow_dc
+create_analysis_view   -name hold_view  -constraint_mode func -delay_corner fast_dc
+set_analysis_view -setup {setup_view} -hold {hold_view}

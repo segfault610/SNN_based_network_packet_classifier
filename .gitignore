@@ -62,6 +62,15 @@ genus.cmd*
 innovus.log*
 innovus.cmd*
 lec.log*
+# Xcelium / SimVision
+xcelium.d/
+INCA_libs/
+*.shm/
+xrun.history
+xrun*.log
+xrun.key
+.simvision/
+waves.shm/
 
 # ---------------------------------------------------------------- Linux build products
 sw/kmod/.kbuild/
@@ -79,3 +88,4 @@ sw/tools/snn_fwctl
 *.swp
 *~
 .DS_Store
+*.vstf
