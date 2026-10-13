@@ -19,27 +19,27 @@ is freed there, so nothing above the driver ever processes it. The in-line
 
 Only the first 128 bytes (enough for VLAN+IPv4-with-options+TCP) plus the
 true frame length cross the bridge. Verdicts are bit-identical to the in-line
-filter (`sim/run_lookaside.sh`).
+filter (`sim/cv96/run.sh lookaside`).
 
 ## Files
 
 | file | what |
 |---|---|
 | `fpga/cv96_snn/output_files/cv96_snn.rbf` | FPGA image: your led_blink_linux system + `snn_0` at LW offset 0x10000 (phys **0xFF210000**), IRQ f2h #1. HPS handoff unchanged, so the existing preloader/U-Boot keep working |
-| `sw/kmod/snn_fw.ko` | kernel module, built against your Yocto kernel `6.18.2-altera` |
-| `sw/tools/snn_fwctl` | static ARM tool: `id`, `load`, `stats`, `selftest` |
+| `sw/cv96/kmod/snn_fw.ko` | kernel module, built against your Yocto kernel `6.18.2-altera` |
+| `sw/cv96/tools/snn_fwctl` | static ARM tool: `id`, `load`, `stats`, `selftest` |
 | `sim/vectors/snn_fw.bin` | weights for the module → `/lib/firmware/snn_fw.bin` |
 | `sim/vectors/{cfg,frames,expected}.txt` | weights (text) + golden vectors for the on-board self-test |
-| `sw/yocto/meta-snn` | optional layer to put all of the above into the image |
+| `sw/cv96/yocto/meta-snn` | optional layer to put all of the above into the image |
 
-Rebuild: `fpga/cv96_snn/build.sh` (≈6 min), `make -C sw/kmod`, `make -C sw/tools`.
+Rebuild: `fpga/cv96_snn/build.sh` (≈6 min), `make -C sw/cv96/kmod`, `make -C sw/cv96/tools`.
 
 ## Bring-up
 
 ```sh
 # host
 scp fpga/cv96_snn/output_files/cv96_snn.rbf  root@board:/boot/   # or wherever your U-Boot loads the rbf from
-scp sw/kmod/snn_fw.ko sw/tools/snn_fwctl sim/vectors/{cfg,frames,expected}.txt root@board:/root/
+scp sw/cv96/kmod/snn_fw.ko sw/cv96/tools/snn_fwctl sim/vectors/{cfg,frames,expected}.txt root@board:/root/
 scp sim/vectors/snn_fw.bin root@board:/lib/firmware/
 # board (after reboot with the new rbf; LW bridge must be enabled, as for the LED PIO)
 ./snn_fwctl id                                   # -> SNN accelerator ID 0x534e4e32

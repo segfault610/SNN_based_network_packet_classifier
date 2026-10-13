@@ -1,6 +1,6 @@
 // snn_lookaside_avmm
 // Look-aside SNN packet classifier for an SoC (Chameleon96: HPS + USB WiFi).
-// The NIC lives on the HPS side, so the kernel hook (sw/kmod/snn_fw.c) copies
+// The NIC lives on the HPS side, so the kernel hook (sw/cv96/kmod/snn_fw.c) copies
 // the first <=128 bytes of every received frame into the header window,
 // writes SUBMIT {tag, nbytes, real frame length} and reads the verdict back.
 // Only headers cross the bridge; the real length restores length features, so

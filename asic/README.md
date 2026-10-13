@@ -109,6 +109,6 @@ sim/xrun_<run>.log
 | step | status |
 |---|---|
 | Yosys + ABC synthesis of the full top `snn_pkt_filter_asic` onto `sky130_fd_sc_hd` (`asic/sky130/synth.sh snn_pkt_filter_asic`) | **done**: 69,316 cells, 1.15 mm² cell area. 0.82 mm² of that is 27,366 enable flip-flops (packet buffer + W1) |
-| Gate-level simulation of that netlist with the sky130 cell models (`sim/run_asic.sh gl`) | **done**: T1–T10 pass |
+| Gate-level simulation of that netlist with the sky130 cell models (`sim/asic/run.sh suite-gl`) | **done**: T1–T10 pass |
 | Static timing (OpenSTA) | not done (not installed). The current numbers are area only |
 | Floorplan / place / CTS / route / DRC / LVS / GDS (OpenROAD via LibreLane, ex-OpenLane 2) | **not done yet**. The PDK here already has `libs.tech/librelane`, and Docker works, so it can run locally |

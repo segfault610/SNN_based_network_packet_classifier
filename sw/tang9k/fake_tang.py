@@ -2,7 +2,7 @@
 """Software stand-in for the Tang Nano 9K bitstream on a pseudo-terminal, for
 testing tang_demo.py without hardware. Speaks the same SLIP protocol and
 classifies with the golden model, rebuilding weights from the config writes.
-  python3 sw/host/fake_tang.py      -> prints the /dev/pts/N to pass as --port"""
+  python3 sw/tang9k/fake_tang.py      -> prints the /dev/pts/N to pass as --port"""
 import os, pty, struct, sys, tty
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "model"))
 import pktfeat, snn_int

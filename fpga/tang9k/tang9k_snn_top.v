@@ -4,7 +4,7 @@
 //
 // The full in-line datapath (store-and-forward buffer, parser, encoder, SNN,
 // drop/forward) runs exactly as it would inside a NIC; the UART only replaces
-// the PHY/MAC. Host tool: sw/host/tang_demo.py
+// the PHY/MAC. Host tool: sw/tang9k/tang_demo.py
 //
 // SLIP-framed messages (END=C0, ESC=DB, ESC_END=DC, ESC_ESC=DD):
 //   host -> FPGA  'P' frame...         ingress Ethernet frame

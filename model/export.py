@@ -52,7 +52,7 @@ def main():
     with open(os.path.join(OUT, "cfg.txt"), "w") as f:
         for a, d in cfg_writes(P):
             f.write(f"{a:03x} {d:08x}\n")
-    # firmware blob for sw/kmod/snn_fw.ko (/lib/firmware/snn_fw.bin): LE u32 (addr, data) pairs
+    # firmware blob for sw/cv96/kmod/snn_fw.ko (/lib/firmware/snn_fw.bin): LE u32 (addr, data) pairs
     import struct
     with open(os.path.join(OUT, "snn_fw.bin"), "wb") as f:
         for a, d in cfg_writes(P):

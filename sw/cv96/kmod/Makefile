@@ -18,7 +18,7 @@ $(XTC)/arm-poky-linux-gnueabi-gcc:
 	mkdir -p $(XTC)
 	for f in $(YOCTO)/sysroots-components/x86_64/binutils-cross-arm/usr/bin/arm-poky-linux-gnueabi/* \
 	         $(YOCTO)/sysroots-components/x86_64/gcc-cross-arm/usr/bin/arm-poky-linux-gnueabi/*; do ln -sf $$f $(XTC)/; done
-	ln -sf $(XPFX)as $(XTC)/as; ln -sf $(XPFX)ld $(XTC)/ld
+	ln -sf arm-poky-linux-gnueabi-as $(XTC)/as; ln -sf arm-poky-linux-gnueabi-ld $(XTC)/ld   # relative: survives moves
 
 $(KBUILD)/scripts/mod/modpost: $(XTC)/arm-poky-linux-gnueabi-gcc
 	rm -rf $(KBUILD); cp -a $(KART) $(KBUILD)

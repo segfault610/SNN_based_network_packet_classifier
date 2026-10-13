@@ -3,11 +3,19 @@
 ## 0. Simulation (no hardware)
 
 ```bash
-sim/run_all.sh                 # 10 regressions: RTL vs golden model, MAC system, look-aside, Tang top (RTL + netlist),
-                               #   ASIC top T1-T10 (RTL + sky130 netlist), pcap, STDP
-sim/run_asic.sh [gl]           # ASIC functional suite only; table + xrun usage: docs/functional_verification.md
-python3 sw/host/fake_tang.py & # software stand-in board on a pty, prints /dev/pts/N
-python3 sw/host/tang_demo.py --port /dev/pts/N
+sim/tang9k/run.sh              # Tang Nano 9K: rtl | gl (post-synthesis netlist) | host (tang_demo.py vs fake board) | all
+sim/cv96/run.sh                # Chameleon96: lookaside (the accelerator in the RBF) | avmm | all
+sim/asic/run.sh                # ASIC / in-line datapath: filter | stress | mac | suite | suite-gl | all
+sim/run_all.sh                 # all 12 regressions
+```
+Add `gui` as the mode (e.g. `sim/tang9k/run.sh gui`) to open the vsim GUI with waves.
+Full logs land in `sim/<target>/out/*.log`. The ASIC functional test table and its xrun usage are in
+`docs/functional_verification.md`.
+
+To try the PC demo script by hand against the software stand-in board:
+```bash
+python3 sw/tang9k/fake_tang.py &   # prints /dev/pts/N
+python3 sw/tang9k/tang_demo.py --port /dev/pts/N
 ```
 
 ## 1. Tang Nano 9K: in-line firewall (the ASIC architecture on real silicon)
@@ -22,7 +30,7 @@ fpga/tang9k/build.sh           # yosys + nextpnr-himbaechel + apicula -> tang9k_
 openFPGALoader -b tangnano9k fpga/tang9k/tang9k_snn.fs        # SRAM (lost on power-off)
 openFPGALoader -b tangnano9k -f fpga/tang9k/tang9k_snn.fs     # or write to flash
 ls /dev/ttyUSB*                # the BL702 shows two ports; the UART is usually /dev/ttyUSB1
-python3 sw/host/tang_demo.py --port /dev/ttyUSB1               # golden vectors: expect RESULT: PASS
+python3 sw/tang9k/tang_demo.py --port /dev/ttyUSB1               # golden vectors: expect RESULT: PASS
 ```
 
 LEDs (left→right = led_n[0..5]): 0 malicious frame, 1 heartbeat (~1.2 s),
@@ -41,7 +49,7 @@ sudo tcpdump -i lo -w /tmp/attack.pcap &
 sudo nmap -sX -p 1-2000 127.0.0.1 ; sudo nmap -sN -p 1-2000 127.0.0.1
 sudo hping3 -S -c 3000 --faster -p 80 127.0.0.1 ; ping -c 50 127.0.0.1
 sudo pkill tcpdump
-python3 sw/host/tang_demo.py --port /dev/ttyUSB1 --pcap /tmp/attack.pcap
+python3 sw/tang9k/tang_demo.py --port /dev/ttyUSB1 --pcap /tmp/attack.pcap
 ```
 (Linux loopback pcaps use the Ethernet link type with zero MACs, so they replay as-is.)
 

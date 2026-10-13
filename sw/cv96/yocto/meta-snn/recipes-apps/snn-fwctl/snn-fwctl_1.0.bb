@@ -5,7 +5,7 @@ SNN_SRC ?= "/media/additional_space/ASIC_Design/SNN_based_network_packet_classif
 S = "${WORKDIR}/build"
 do_compile() {
     mkdir -p ${S}
-    ${CC} ${CFLAGS} ${LDFLAGS} -I${SNN_SRC}/sw -o ${S}/snn_fwctl ${SNN_SRC}/sw/tools/snn_fwctl.c
+    ${CC} ${CFLAGS} ${LDFLAGS} -I${SNN_SRC}/sw/cv96 -o ${S}/snn_fwctl ${SNN_SRC}/sw/cv96/tools/snn_fwctl.c
 }
 do_install() {
     install -d ${D}${bindir} ${D}${datadir}/snn

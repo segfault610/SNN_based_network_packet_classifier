@@ -2,9 +2,9 @@
 """
 Tang Nano 9K in-line SNN firewall demo (host side).
 
-  python3 sw/host/tang_demo.py --port /dev/ttyUSB1                 # golden vectors + check
-  python3 sw/host/tang_demo.py --port /dev/ttyUSB1 --pcap cap.pcap # replay any capture
-  python3 sw/host/tang_demo.py --port /dev/ttyUSB1 --monitor       # CTRL.drop_en = 0
+  python3 sw/tang9k/tang_demo.py --port /dev/ttyUSB1                 # golden vectors + check
+  python3 sw/tang9k/tang_demo.py --port /dev/ttyUSB1 --pcap cap.pcap # replay any capture
+  python3 sw/tang9k/tang_demo.py --port /dev/ttyUSB1 --monitor       # CTRL.drop_en = 0
 
 Protocol: see fpga/tang9k/tang9k_snn_top.v (SLIP, 1 Mbaud 8N1).
 """

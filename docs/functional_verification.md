@@ -2,7 +2,7 @@
 
 **DUT:** `snn_pkt_filter_asic`, the ASIC top. It is the in-line firewall with a 2 KiB packet buffer and a 64→16→2 SNN.
 
-**Testbench:** `sim/tb_snn_asic.sv`.
+**Testbench:** `sim/asic/tb_snn_asic.sv`.
 - It is self-checking and uses only the top-level ports.
 - It drives inputs and samples outputs on the falling clock edge, so the same file runs unchanged on:
   - the RTL;
@@ -22,7 +22,7 @@ CELL_V=<gsclib090 cells .v> scripts/run_flow.sh sim-sdf   # Innovus netlist + po
 xrun -F scripts/xrun_rtl.f -input scripts/xrun_batch.tcl +VEC_DIR=$PWD/../sim/vectors
 xrun -F scripts/xrun_rtl.f -input scripts/xrun_waves.tcl +VEC_DIR=$PWD/../sim/vectors -access +rwc ; simvision waves.shm
 ```
-Locally with Questa: `sim/run_asic.sh` for RTL, `sim/run_asic.sh gl` for the Yosys → sky130 gate-level netlist.
+Locally with Questa: `sim/asic/run.sh suite` for RTL, `sim/asic/run.sh suite-gl` for the Yosys → sky130 gate-level netlist.
 
 ## Expected xrun output
 
@@ -103,12 +103,12 @@ Logs are written to `asic/out/<DESIGN>/sim/xrun_*.log`. The numbers below are fo
 
 ## Other regressions (Questa, `sim/run_all.sh`)
 
-| testbench | what it adds |
+| testbench (script, mode) | what it adds |
 |---|---|
-| `tb_snn_pkt_filter.sv` | same filter with the FPGA buffer size; also checks every 64-bit **spike vector** against the golden model (needs hierarchical access, so RTL only); stress mode |
-| `tb_eth_mac_snn.sv` | filter fused into the verilog-ethernet `eth_mac_1g` RX path, driven at the **GMII** pins (preamble, FCS) |
-| `tb_snn_fw_avmm.sv`, `tb_snn_lookaside.sv` | Avalon-MM wrappers; the Chameleon96 look-aside accelerator (128-B header window, SUBMIT/VERDICT registers, IRQ) |
-| `tb_tang9k.sv` (+ gate-level) | Tang Nano 9K top through UART + SLIP, RTL and the Yosys/Gowin netlist |
+| `sim/asic/tb_snn_pkt_filter.sv` (`sim/asic/run.sh filter`, `stress`) | same filter with the FPGA buffer size; also checks every 64-bit **spike vector** against the golden model (needs hierarchical access, so RTL only); stress mode |
+| `sim/asic/tb_eth_mac_snn.sv` (`sim/asic/run.sh mac`) | filter fused into the verilog-ethernet `eth_mac_1g` RX path, driven at the **GMII** pins (preamble, FCS) |
+| `sim/cv96/tb_snn_lookaside.sv`, `tb_snn_fw_avmm.sv` (`sim/cv96/run.sh lookaside`, `avmm`) | Avalon-MM wrappers; the Chameleon96 look-aside accelerator (128-B header window, SUBMIT/VERDICT registers, IRQ) |
+| `sim/tang9k/tb_tang9k.sv` (`sim/tang9k/run.sh rtl`, `gl`) | Tang Nano 9K top through UART + SLIP, RTL and the Yosys/Gowin netlist |
 
 ## Not covered (known gaps)
 

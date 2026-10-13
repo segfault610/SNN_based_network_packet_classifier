@@ -1,4 +1,4 @@
-// Look-aside accelerator test: emulates the Linux kernel hook (sw/kmod/snn_fw.c):
+// Look-aside accelerator test: emulates the Linux kernel hook (sw/cv96/kmod/snn_fw.c):
 // poll STATUS.ready -> write <=128 header bytes -> SUBMIT{tag,n,len} -> poll VERDICT.
 // Every verdict (mal, spike counts, tag) is checked against the golden model.
 `timescale 1ns/1ps

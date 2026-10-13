@@ -14,6 +14,7 @@ Papers.zip
 *.pdf
 
 # ---------------------------------------------------------------- Questa / ModelSim / iverilog
+sim/*/out/
 sim/work*/
 transcript
 *.wlf
@@ -73,8 +74,8 @@ xrun.key
 waves.shm/
 
 # ---------------------------------------------------------------- Linux build products
-sw/kmod/.kbuild/
-sw/kmod/.xtc/
+sw/cv96/kmod/.kbuild/
+sw/cv96/kmod/.xtc/
 *.o
 *.ko
 *.mod
@@ -82,7 +83,7 @@ sw/kmod/.xtc/
 .*.cmd
 modules.order
 Module.symvers
-sw/tools/snn_fwctl
+sw/cv96/tools/snn_fwctl
 
 # ---------------------------------------------------------------- misc
 *.swp

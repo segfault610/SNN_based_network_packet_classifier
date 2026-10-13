@@ -13,4 +13,4 @@
 ../../rtl/snn_classifier.v
 ../../rtl/snn_pkt_filter.v
 ../../rtl/snn_pkt_filter_asic.v
-../../sim/tb_snn_asic.sv
+../../sim/asic/tb_snn_asic.sv

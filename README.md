@@ -9,7 +9,7 @@ in three deployments:
 |---|---|---|
 | **ASIC** (Cadence Genus/Conformal/Innovus at uni, Yosys + sky130 locally) | in-line, fused into the RX datapath of the open-source verilog-ethernet 1G MAC (`rtl/eth_mac_1g_snn_fifo.v`) | before the host FIFO/DMA, so the OS never sees it |
 | **Tang Nano 9K** | the same in-line filter; PC ↔ USB-UART stands in for the PHY (`fpga/tang9k`) | inside the "NIC" (FPGA) |
-| **Chameleon96** (USB WiFi on the HPS) | look-aside accelerator on the LW H2F bridge + kernel `rx_handler` hook (`rtl/snn_lookaside_avmm.v`, `sw/kmod`) | right after the WiFi driver, before the IP stack, sockets and apps |
+| **Chameleon96** (USB WiFi on the HPS) | look-aside accelerator on the LW H2F bridge + kernel `rx_handler` hook (`rtl/snn_lookaside_avmm.v`, `sw/cv96/kmod`) | right after the WiFi driver, before the IP stack, sockets and apps |
 
 ```
               ┌──────────────────────────── snn_classifier ────────────────────────────┐
@@ -27,7 +27,7 @@ in three deployments:
 | Synthetic labelled traffic (14 attack families) | done (99.7 % test, **synthetic, optimistic**) |
 | Real-dataset loader (pcap/pcapng + UNSW-NB15 / CIC ground-truth CSV), `train.py --data` | done, round-trip verified. **Needs the pcaps** |
 | RTL: parser, encoder, event-driven SNN core, shared classifier, in-line filter, look-aside wrapper | done |
-| `sim/run_all.sh`: 10 regressions incl. ASIC-top functional suite T1–T10 (RTL + sky130 gate-level) and Tang Nano 9K post-synthesis sim, all **PASS** | ✓ |
+| Simulation per target: `sim/tang9k/run.sh`, `sim/cv96/run.sh`, `sim/asic/run.sh`; `sim/run_all.sh` = 12 regressions (incl. Tang post-synthesis netlist, ASIC suite T1–T10 on RTL + sky130 netlist, Tang PC demo vs fake board), all **PASS** | ✓ |
 | verilog-ethernet MAC with firewall fused into RX path, GMII-level test | ✓ |
 | Chameleon96: Platform Designer integration, **RBF built** (6 % ALMs, timing met @100 MHz, HPS handoff unchanged) | ✓, hardware test pending |
 | Chameleon96: `snn_fw.ko` (built for 6.18.2-altera), `snn_fwctl` (static), firmware blob, Yocto layer | ✓ built, hardware test pending |
@@ -44,11 +44,12 @@ python3 -m venv .venv && .venv/bin/pip install numpy torch --index-url https://d
 .venv/bin/python model/train.py                 # synthetic data, ~20 s  -> model/params.json
 .venv/bin/python model/export.py                # -> sim/vectors/ (cfg.txt, snn_fw.bin, golden vectors)
 sim/run_all.sh                                  # all regressions (Questa + iverilog)
+sim/tang9k/run.sh ; sim/cv96/run.sh             # per board (modes: see each script header)
 
 fpga/tang9k/build.sh prog                        # Tang Nano 9K: build + load (openFPGALoader)
-python3 sw/host/tang_demo.py --port /dev/ttyUSB1 # replay vectors (or --pcap file.pcap), live verdicts
+python3 sw/tang9k/tang_demo.py --port /dev/ttyUSB1  # replay vectors (or --pcap file.pcap), live verdicts
 fpga/cv96_snn/build.sh                           # Chameleon96 RBF (Quartus 20.1 Lite)
-make -C sw/kmod && make -C sw/tools              # kernel module + tool (Yocto toolchain)
+make -C sw/cv96/kmod && make -C sw/cv96/tools    # kernel module + tool (Yocto toolchain)
 asic/sky130/synth.sh snn_core                    # open ASIC synthesis (Yosys + sky130_fd_sc_hd)
 asic/scripts/run_flow.sh all                     # uni server: xrun -> Genus x3 -> LEC -> GLS -> Innovus -> LEC -> SDF sim
 ```
@@ -104,9 +105,14 @@ model/   pktfeat.py snn_int.py (golden)  gen_traffic.py  pcap_io.py  train.py  e
 rtl/     pkt_parser spike_encoder snn_core snn_classifier sync_fifo   (shared engine)
          snn_pkt_filter (in-line)  eth_mac_1g_snn_fifo (MAC fusion)  snn_pkt_filter_asic
          snn_lookaside_avmm (Chameleon96)  snn_fw_avmm (in-line over Avalon)  uart
-sim/     testbenches (tb_snn_asic.sv = port-level ASIC suite) + run_*.sh, run_all.sh, vectors/
+sim/     vectors/ (golden, from model/export.py)  common.sh  run_all.sh
+         tang9k/  tb_tang9k  gowin_bsram_models          run.sh rtl|gl|host|gui
+         cv96/    tb_snn_lookaside  tb_snn_fw_avmm       run.sh lookaside|avmm|gui
+         asic/    tb_snn_pkt_filter  tb_eth_mac_snn  tb_snn_asic (port-level T1-T10)
+                                                          run.sh filter|stress|mac|suite|suite-gl|gui
 fpga/    cv96_snn (Quartus project + Platform Designer component)  tang9k (open flow)  fit_check
-sw/      kmod/snn_fw.c  tools/snn_fwctl.c  host/tang_demo.py  yocto/meta-snn  snn_regs.h
+sw/      tang9k/  tang_demo.py (PC demo)  fake_tang.py (software board)
+         cv96/    kmod/snn_fw.c  tools/snn_fwctl.c  yocto/meta-snn  snn_regs.h
 asic/    scripts (setup, genus_{fast,optimal,slow}, lec_*, innovus_<stage>, xrun_*, run_flow.sh)  constraints  sky130 (Yosys)
 docs/    testing.md  functional_verification.md  chameleon96_deploy.md  chameleon96_wifi.md
 snn_stdp/  original base design (fixed; original kept as src/snn_stdp_orig.v, tb/)

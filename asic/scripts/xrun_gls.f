@@ -6,4 +6,4 @@
 -timescale 1ns/1ps
 -access +r
 -top tb_snn_asic
-../../sim/tb_snn_asic.sv
+../../sim/asic/tb_snn_asic.sv
