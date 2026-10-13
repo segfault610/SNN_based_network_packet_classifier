@@ -56,11 +56,14 @@ soft { write_do_lec -golden_design rtl -revised_design [tm_netlist $VARIANT] \
           -logfile $SYN/${DESIGN}_genus_lec_${VARIANT}.log > $SYN/${DESIGN}_genus_lec_${VARIANT}.do }
 
 # ---- reports
-set_db timing_report_unconstrained true
 report_area                       > $RPT/area.rpt
 soft { report_area -depth 3          > $RPT/area_hier.rpt }
 report_gates                      > $RPT/gates.rpt
-report_timing -max_paths 10       > $RPT/timing.rpt
+report_timing -max_paths 10       > $RPT/timing.rpt        ;# worst constrained (clocked) paths
+# with this attribute report_timing lists only UNconstrained paths; expected: "No unconstrained paths found"
+set_db timing_report_unconstrained true
+report_timing                     > $RPT/timing_unconstrained.rpt
+set_db timing_report_unconstrained false
 report_power                      > $RPT/power.rpt
 report_qor                        > $RPT/qor.rpt
 soft { report_messages               > $RPT/messages.rpt }

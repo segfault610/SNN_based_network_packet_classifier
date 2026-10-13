@@ -7,6 +7,7 @@
 #   scripts/run_flow.sh syn           Genus fast + optimal + slow, then genus_summary
 #   scripts/run_flow.sh syn-optimal   Genus one variant (syn-fast / syn-slow likewise)
 #   scripts/run_flow.sh lec           Conformal RTL vs tm_netlist_{fast,optimal,slow}
+#   scripts/run_flow.sh lec-genus     Conformal with the Genus-written dofile (recommended first)
 #   scripts/run_flow.sh sim-gls       xrun: tm_netlist_optimal, zero delay
 #   scripts/run_flow.sh pnr           Innovus on tm_netlist_optimal (all stages)
 #   scripts/run_flow.sh lec-pnr       Conformal tm_netlist_optimal vs routed netlist
@@ -50,6 +51,9 @@ step() {
                  lec -xl -nogui -tclmode -dofile scripts/${1/-/_}.tcl
                  grep -iE "non-equivalent|equivalent|abort" $OUT/lec/${1/-/_}.log | tail -6 ;;
     lec)         step lec-fast; step lec-optimal; step lec-slow ;;
+    lec-genus)   # Genus-written composite dofile: RTL -> fv_map -> tm_netlist, with Genus's own mapping hints
+                 v=${PNR_VARIANT:-optimal}
+                 lec -xl -nogui -dofile $OUT/syn_$v/${DESIGN}_genus_lec_$v.do | tee $OUT/lec/lec_genus_$v.log | tail -30 ;;
     sim-gls)     cell_models
                  XRUN_F=xrun_gls.f xr gls_${PNR_VARIANT:-optimal} -v $CELL_V \
                    $OUT/syn_${PNR_VARIANT:-optimal}/${DESIGN}_tm_netlist_${PNR_VARIANT:-optimal}.v \
@@ -62,7 +66,7 @@ step() {
                  XRUN_F=xrun_gls.f xr sdf -v $CELL_V $OUT/pnr/${DESIGN}_pnr_netlist.v \
                    -define SDF_FILE=\"$PWD/$OUT/pnr/${DESIGN}_pnr.sdf\" -sdf_verbose ;;
     all)         for s in sim-rtl syn lec sim-gls pnr lec-pnr sim-sdf; do echo "######## $s"; step $s; done ;;
-    *)           sed -n '2,22p' "$0"; exit 1 ;;
+    *)           sed -n '2,23p' "$0"; exit 1 ;;
   esac
 }
 step "${1:-help}"

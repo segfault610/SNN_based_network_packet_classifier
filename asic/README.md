@@ -15,6 +15,7 @@ encoder, SNN). Use `DESIGN=snn_core` or `DESIGN=snn_classifier` to synthesise on
 | Genus optimal (8 ns) | `genus -files scripts/genus_optimal.tcl` | `scripts/run_flow.sh syn-optimal` |
 | Genus slow (12 ns) | `genus -files scripts/genus_slow.tcl` | `scripts/run_flow.sh syn-slow` |
 | compare variants, publish main netlist | `tclsh scripts/genus_summary.tcl` | (part of `run_flow.sh syn`) |
+| LEC with the Genus-written dofile (recommended first) | `lec -xl -nogui -dofile out/<D>/syn_optimal/<D>_genus_lec_optimal.do` | `scripts/run_flow.sh lec-genus` |
 | LEC RTL vs each netlist | `lec -xl -nogui -tclmode -dofile scripts/lec_optimal.tcl` (and `_fast`, `_slow`) | `scripts/run_flow.sh lec` |
 | gate-level sim, zero delay | see `run_flow.sh sim-gls` (needs `CELL_V`=gsclib090 Verilog models) | `CELL_V=... scripts/run_flow.sh sim-gls` |
 | Innovus, all stages | `innovus -files scripts/innovus_all.tcl` | `scripts/run_flow.sh pnr` |

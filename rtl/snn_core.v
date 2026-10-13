@@ -154,6 +154,8 @@ module snn_core #(
 
     assign in_ready = (state == S_IDLE);
 
+    integer ks, os;              // own loop variables: sharing k/o with the always @(*) blocks
+                                 // gives yosys a dff + constant driver on them (LibreLane check)
     always @(posedge clk) begin
         if (rst) begin
             state     <= S_IDLE;
@@ -171,13 +173,13 @@ module snn_core #(
             p_vld     <= 1'b0;
             t         <= 4'd0;
             tag       <= {TAG_W{1'b0}};
-            for (k = 0; k < N_HID; k = k + 1) begin
-                acc[k] <= {V_W{1'b0}};
-                v1[k]  <= {V_W{1'b0}};
+            for (ks = 0; ks < N_HID; ks = ks + 1) begin
+                acc[ks] <= {V_W{1'b0}};
+                v1[ks]  <= {V_W{1'b0}};
             end
-            for (o = 0; o < 2; o = o + 1) begin
-                v2[o]  <= {V_W{1'b0}};
-                cnt[o] <= 4'd0;
+            for (os = 0; os < 2; os = os + 1) begin
+                v2[os]  <= {V_W{1'b0}};
+                cnt[os] <= 4'd0;
             end
         end else begin
             rd_en <= 1'b0;
@@ -188,13 +190,13 @@ module snn_core #(
                         pend   <= in_spikes;
                         tag    <= in_tag;
                         rd_vld <= 1'b0;
-                        for (k = 0; k < N_HID; k = k + 1) begin
-                            acc[k] <= {V_W{1'b0}};
-                            v1[k]  <= {V_W{1'b0}};
+                        for (ks = 0; ks < N_HID; ks = ks + 1) begin
+                            acc[ks] <= {V_W{1'b0}};
+                            v1[ks]  <= {V_W{1'b0}};
                         end
-                        for (o = 0; o < 2; o = o + 1) begin
-                            v2[o]  <= {V_W{1'b0}};
-                            cnt[o] <= 4'd0;
+                        for (os = 0; os < 2; os = os + 1) begin
+                            v2[os]  <= {V_W{1'b0}};
+                            cnt[os] <= 4'd0;
                         end
                         state <= S_ACC;
                     end
@@ -207,12 +209,12 @@ module snn_core #(
                     if (pany) begin
                         rd_en  <= 1'b1;
                         rd_row <= pidx;
-                        pend[pidx] <= 1'b0;
+                        pend   <= pend & (pend - 1'b1);   // clear lowest set bit (= bit pidx)
                     end
                     rd_vld <= rd_en;
                     if (rd_vld)
-                        for (k = 0; k < N_HID; k = k + 1)
-                            acc[k] <= acc[k] + {{(V_W-8){w1_q[8*k+7]}}, w1_q[8*k +: 8]};
+                        for (ks = 0; ks < N_HID; ks = ks + 1)
+                            acc[ks] <= acc[ks] + {{(V_W-8){w1_q[8*ks+7]}}, w1_q[8*ks +: 8]};
                     if (!pany && !rd_en && !rd_vld) begin
                         state  <= S_LIF;
                         t      <= 4'd0;
@@ -224,8 +226,8 @@ module snn_core #(
                 S_LIF: begin
                     // hidden layer, step t
                     if (t < t_steps) begin
-                        for (k = 0; k < N_HID; k = k + 1)
-                            v1[k] <= s1_n[k] ? {V_W{1'b0}} : v1_n[k];
+                        for (ks = 0; ks < N_HID; ks = ks + 1)
+                            v1[ks] <= s1_n[ks] ? {V_W{1'b0}} : v1_n[ks];
                         s1_q   <= s1_n;
                         s1_vld <= 1'b1;
                         t      <= t + 4'd1;
@@ -234,14 +236,14 @@ module snn_core #(
                     end
                     // output layer P1: partial sums of step t-1
                     p_vld <= s1_vld;
-                    for (o = 0; o < 2; o = o + 1)
-                        for (k = 0; k < N_P; k = k + 1)
-                            p_q[o][k] <= {{(V_W-11){l3[o][k][10]}}, l3[o][k]};
+                    for (os = 0; os < 2; os = os + 1)
+                        for (ks = 0; ks < N_P; ks = ks + 1)
+                            p_q[os][ks] <= {{(V_W-11){l3[os][ks][10]}}, l3[os][ks]};
                     // output layer P2: LIF update for step t-2
                     if (p_vld) begin
-                        for (o = 0; o < 2; o = o + 1) begin
-                            v2[o] <= s2_n[o] ? {V_W{1'b0}} : v2_n[o];
-                            if (s2_n[o]) cnt[o] <= cnt[o] + 4'd1;
+                        for (os = 0; os < 2; os = os + 1) begin
+                            v2[os] <= s2_n[os] ? {V_W{1'b0}} : v2_n[os];
+                            if (s2_n[os]) cnt[os] <= cnt[os] + 4'd1;
                         end
                     end
                     if (t >= t_steps && !s1_vld && !p_vld)
