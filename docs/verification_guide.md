@@ -12,7 +12,7 @@ the two FPGA boards and the Cadence flow at the university.
 |---|---|---|---|---|---|
 | A | **simulation on the laptop** | RTL of every variant + gate-level netlists, bit-exact vs the golden model | Questa `vsim`, Yosys, iverilog | `sim/run_all.sh` | `12 passed, 0 failed` |
 | B | **Cadence on the uni server** | ASIC RTL, synthesis, equivalence, P&R, gate-level with delays | Xcelium `xrun`, Genus, Conformal, Innovus | `asic/scripts/run_flow.sh all` | `RESULT: PASS (10 tests)` on RTL / GLS / SDF; LEC equivalent; timing met; DRC/connectivity clean |
-| C | **Tang Nano 9K over UART** | the in-line NIC datapath on real silicon | Yosys + nextpnr + Apicula, openFPGALoader, Python | `python3 sw/tang9k/tang_demo.py --port /dev/ttyUSB1` | `RESULT: PASS` (verdicts and forwarded frames identical to the model) |
+| C | **Tang Nano 9K over UART** | the in-line NIC datapath on real silicon | Yosys + nextpnr + Apicula, openFPGALoader, Python | `python3 sw/tang9k/tang_demo.py --port /dev/ttyUSB0` | `RESULT: PASS` (verdicts and forwarded frames identical to the model) |
 | D | **Chameleon96 SoC + FPGA, Linux** | the look-aside accelerator + kernel hook on a live network | Quartus RBF, Yocto kernel module, `snn_fwctl` | `./snn_fwctl selftest frames.txt expected.txt` | `RESULT: PASS`, then live attack counters / LED1 |
 | E | **sky130 RTL → GDS** | that the design is physically implementable in an open PDK: timing, DRC, LVS | LibreLane on GitHub Actions | push to `main` (or Actions → Run workflow) | green run; release `gds-<design>` with 0 DRC / 0 LVS errors |
 
@@ -104,17 +104,23 @@ forwards, plus one verdict per frame. Protocol: `docs/design.md` §7.1.
 sim/tang9k/run.sh                                          # 1. rtl + gl + host simulations first
 fpga/tang9k/build.sh                                        # 2. yosys + nextpnr-himbaechel + apicula -> tang9k_snn.fs (~4 min)
 openFPGALoader -b tangnano9k fpga/tang9k/tang9k_snn.fs      # 3. load to SRAM (or -f to write flash)
-ls /dev/ttyUSB*                                             #    the BL702 shows two ports; the UART is usually ttyUSB1
-python3 sw/tang9k/tang_demo.py --port /dev/ttyUSB1         # 4. golden vectors -> expect RESULT: PASS
-python3 sw/tang9k/tang_demo.py --port /dev/ttyUSB1 --monitor   # classify only, forward everything
+ls /dev/ttyUSB*                                             #    the perfboard FTDI adapter (pins 31/32) is usually ttyUSB0;
+                                                            #    the board's own BL702 shows up as two more ports (JTAG only here)
+python3 sw/tang9k/tang_demo.py --port /dev/ttyUSB0         # 4. golden vectors -> expect RESULT: PASS
+python3 sw/tang9k/tang_demo.py --port /dev/ttyUSB0 --monitor   # classify only, forward everything
 ```
 
 **Checks:**
-1. The heartbeat LED (led 1) blinks: the bitstream loaded and the clock runs.
+1. The heartbeat LED (LED 1) blinks: the bitstream loaded and the clock runs.
 2. `link OK … TH1 readback = 256`: the UART and SLIP path work.
 3. `verdicts bit-exact vs golden model: True` and `forwarded frames identical: True`: the hardware equals the simulation.
 
-LEDs: 0 malicious frame, 1 heartbeat, 2 frame forwarded, 3 frame blocked, 4 UART RX activity, 5 config written. S1 resets.
+Perfboard LEDs (`leds_ext`, pins 75 74 73 72 71 70 51 53):
+- 0 malicious frame, 1 heartbeat, 2 frame forwarded, 3 frame blocked;
+- 4 UART RX activity, 5 config written, 6 UART TX activity;
+- 7 **under attack**: on while ≥ 4 of the last 8 verdicts are malicious; stays lit during a flood.
+
+S1 resets. Wiring: FTDI TX → pin 31, FTDI RX ← pin 32, GND to GND, FTDI set to 3.3 V.
 
 **Real attack traffic (replayed).** Capture attacks on loopback and push them through the FPGA:
 ```bash
@@ -122,7 +128,7 @@ sudo tcpdump -i lo -w /tmp/attack.pcap &
 sudo nmap -sX -p 1-2000 127.0.0.1 ; sudo nmap -sN -p 1-2000 127.0.0.1
 sudo hping3 -S -c 3000 --faster -p 80 127.0.0.1 ; ping -c 50 127.0.0.1
 sudo pkill tcpdump
-python3 sw/tang9k/tang_demo.py --port /dev/ttyUSB1 --pcap /tmp/attack.pcap
+python3 sw/tang9k/tang_demo.py --port /dev/ttyUSB0 --pcap /tmp/attack.pcap
 ```
 The script prints how many frames were flagged and forwarded. Loopback pcaps use the Ethernet link type, so they
 replay as they are.

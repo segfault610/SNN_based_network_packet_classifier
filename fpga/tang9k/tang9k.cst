@@ -1,21 +1,40 @@
-// Tang Nano 9K pin constraints
-IO_LOC "clk_27m" 52;
-IO_PORT "clk_27m" IO_TYPE=LVCMOS33 PULL_MODE=UP;
-IO_LOC "btn_rst_n" 3;
-IO_PORT "btn_rst_n" IO_TYPE=LVCMOS18 PULL_MODE=UP;
-IO_LOC "uart_tx" 17;
-IO_PORT "uart_tx" IO_TYPE=LVCMOS33 PULL_MODE=UP;
-IO_LOC "uart_rx" 18;
+// ============================================================
+// Tang Nano 9K on the custom perfboard (SNN firewall demo)
+// External FTDI USB-UART header + 8 external LEDs
+// ============================================================
+
+// Clock: 27 MHz crystal
+IO_LOC "clk" 52;
+IO_PORT "clk" IO_TYPE=LVCMOS33;
+
+// Reset, active low (on-board S1)
+IO_LOC "rst_n" 3;
+IO_PORT "rst_n" IO_TYPE=LVCMOS18 PULL_MODE=UP;
+
+// UART
+//   FTDI TX ---> FPGA pin 31 ---> uart_rx
+//   FTDI RX <--- FPGA pin 32 <--- uart_tx
+IO_LOC "uart_rx" 31;
 IO_PORT "uart_rx" IO_TYPE=LVCMOS33 PULL_MODE=UP;
-IO_LOC "led_n[0]" 10;
-IO_LOC "led_n[1]" 11;
-IO_LOC "led_n[2]" 13;
-IO_LOC "led_n[3]" 14;
-IO_LOC "led_n[4]" 15;
-IO_LOC "led_n[5]" 16;
-IO_PORT "led_n[0]" IO_TYPE=LVCMOS18;
-IO_PORT "led_n[1]" IO_TYPE=LVCMOS18;
-IO_PORT "led_n[2]" IO_TYPE=LVCMOS18;
-IO_PORT "led_n[3]" IO_TYPE=LVCMOS18;
-IO_PORT "led_n[4]" IO_TYPE=LVCMOS18;
-IO_PORT "led_n[5]" IO_TYPE=LVCMOS18;
+IO_LOC "uart_tx" 32;
+IO_PORT "uart_tx" IO_TYPE=LVCMOS33;
+
+// External LEDs
+//   0 malicious frame   1 heartbeat        2 frame forwarded   3 frame blocked
+//   4 UART RX activity  5 config written   6 UART TX activity  7 under attack
+IO_LOC "leds_ext[0]" 75;
+IO_PORT "leds_ext[0]" IO_TYPE=LVCMOS33;
+IO_LOC "leds_ext[1]" 74;
+IO_PORT "leds_ext[1]" IO_TYPE=LVCMOS33;
+IO_LOC "leds_ext[2]" 73;
+IO_PORT "leds_ext[2]" IO_TYPE=LVCMOS33;
+IO_LOC "leds_ext[3]" 72;
+IO_PORT "leds_ext[3]" IO_TYPE=LVCMOS33;
+IO_LOC "leds_ext[4]" 71;
+IO_PORT "leds_ext[4]" IO_TYPE=LVCMOS33;
+IO_LOC "leds_ext[5]" 70;
+IO_PORT "leds_ext[5]" IO_TYPE=LVCMOS33;
+IO_LOC "leds_ext[6]" 51;
+IO_PORT "leds_ext[6]" IO_TYPE=LVCMOS33;
+IO_LOC "leds_ext[7]" 53;
+IO_PORT "leds_ext[7]" IO_TYPE=LVCMOS33;

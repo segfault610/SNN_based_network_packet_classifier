@@ -43,7 +43,7 @@ flowchart LR
     FW -- "forwarded frames" --> ENC["SLIP encoder"]
     FW -- "verdict per frame" --> ENC
     ENC -- "'F' frames, 'V' verdicts, 'r' reads" --> PC
-    FW --> LED["6 LEDs"]
+    FW --> LED["8 external LEDs"]
 ```
 
 ### 1.3 Chameleon96: look-aside accelerator for Linux
@@ -105,7 +105,7 @@ Store-and-forward latency ≈ frame length + ~40 cycles. Minimum-size frames are
 ## 2. Signals
 
 Clocking for every block: a single clock `clk` with a synchronous, active-high reset `rst`. `reset` on the Avalon
-wrappers is the same; the Tang Nano 9K uses the active-low button `btn_rst_n`.
+wrappers is the same; the Tang Nano 9K uses the active-low button `rst_n`.
 
 ### 2.1 `snn_pkt_filter_asic` / `snn_pkt_filter`: the ASIC top
 
@@ -212,15 +212,15 @@ Used for the feature queue (64 spikes + tag), the verdict queue, and the look-as
 
 ### 2.7 Board tops and wrappers
 
-**`tang9k_snn_top`** (`fpga/tang9k/`)
+**`tang9k_snn_top`** (`fpga/tang9k/`; Tang Nano 9K on the custom perfboard with an FTDI UART header and 8 LEDs, constraints `tang9k.cst`)
 
 | signal | pin | meaning |
 |---|---|---|
-| `clk_27m` | 52 | 27 MHz crystal |
-| `btn_rst_n` | 3 | S1 button, reset (active low) |
-| `uart_rx` | 18 | from the BL702 USB-UART (PC → FPGA), 1 Mbaud 8N1 |
-| `uart_tx` | 17 | to the PC |
-| `led_n[5:0]` | 10, 11, 13, 14, 15, 16 | active low: 0 malicious flash, 1 heartbeat, 2 frame forwarded, 3 frame blocked, 4 UART RX activity, 5 config written |
+| `clk` | 52 | 27 MHz crystal |
+| `rst_n` | 3 | S1 button, reset (active low, 1.8 V bank) |
+| `uart_rx` | 31 | from the external FTDI header, FTDI TX → FPGA (PC → FPGA), 1 Mbaud 8N1 |
+| `uart_tx` | 32 | to the FTDI header, FPGA → FTDI RX |
+| `leds_ext[7:0]` | 75, 74, 73, 72, 71, 70, 51, 53 | external LEDs on the perfboard, active high (parameter `LED_ACTIVE_HIGH`): 0 malicious flash, 1 heartbeat, 2 frame forwarded, 3 frame blocked, 4 UART RX activity, 5 config written, 6 UART TX activity, 7 under attack (≥ 4 of the last 8 verdicts malicious) |
 
 Parameter `CLKS_PER_BIT` = 27 (27 MHz / 1 Mbaud). The testbench uses 4 to keep simulations short.
 

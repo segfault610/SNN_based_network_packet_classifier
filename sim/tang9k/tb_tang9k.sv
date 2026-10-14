@@ -7,9 +7,12 @@ module tb_tang9k;
     parameter int WINDOW = 8;
 
     logic clk = 0; always #18.5 clk = ~clk;      // 27 MHz
-    logic btn_n = 0, rx = 1; wire tx; wire [5:0] led_n;
+    logic btn_n = 0, rx = 1; wire tx; wire [7:0] leds;
 
-    tang9k_snn_top #(.CLKS_PER_BIT(CPB)) dut (.clk_27m(clk), .btn_rst_n(btn_n), .uart_rx(rx), .uart_tx(tx), .led_n(led_n));
+    tang9k_snn_top #(.CLKS_PER_BIT(CPB)) dut (.clk(clk), .rst_n(btn_n), .uart_rx(rx), .uart_tx(tx), .leds_ext(leds));
+    // every LED except the slow heartbeat (bit 1) must light at least once during the run
+    logic [7:0] led_seen = 0;
+    always @(posedge clk) if (btn_n) led_seen <= led_seen | leds;
 
     typedef byte unsigned frame_t[$];
     frame_t frames[$], got[$];
@@ -91,7 +94,11 @@ module tb_tang9k;
             if (k != got.size()) begin errors++; $display("[ERR] got %0d forwarded, expected %0d", got.size(), k); end
             if (verd.size() != frames.size()) begin errors++; $display("[ERR] %0d verdicts for %0d frames", verd.size(), frames.size()); end
             foreach (verd[i]) if (i < exp_mal.size() && verd[i] != exp_mal[i]) begin errors++; $display("[ERR] verdict %0d", i); end
+            if ((led_seen | 8'b0000_0010) != 8'hFF) begin
+                errors++; $display("[ERR] LEDs never lit (bit = 0): %08b (heartbeat bit 1 not checked)", led_seen | 8'b0000_0010);
+            end
             $display("------------------------------------------------------------");
+            $display(" Tang9K LEDs seen lit: %08b (7 attack 6 tx 5 cfg 4 rx 3 blocked 2 fwd 1 heartbeat 0 mal)", led_seen);
             $display(" Tang9K UART: frames=%0d verdicts=%0d forwarded=%0d (expected %0d)", frames.size(), verd.size(), got.size(), k);
             if (errors == 0) $display(" RESULT: PASS (Tang Nano 9K in-line firewall over UART/SLIP)");
             else $display(" RESULT: FAIL (%0d errors)", errors);

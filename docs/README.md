@@ -2,6 +2,8 @@
 
 | document | read it for |
 |---|---|
+| [explained_simply.md](explained_simply.md) | **start here if you're new**: the idea, a simple architecture picture, how the neural network decides, what the testbench and the 600 test frames are, the 10 test situations in plain words, how to read the waveform, glossary |
+| [ppa_and_novelty.md](ppa_and_novelty.md) | **area, power and timing** (sky130 layout, FPGAs, Cadence), sequential vs combinational breakdown, SNN vs MLP / CNN / trees / rules, novelty vs existing work |
 | [design.md](design.md) | **what the design is**: system architecture diagrams (ASIC / Tang Nano 9K / Chameleon96), the engine's block diagram, the life of a frame, **every signal** of every module and board top, register maps, the 64 input features, the network maths, sizes, the UART and kernel protocols |
 | [verification_guide.md](verification_guide.md) | **how to test it in every workflow**: laptop simulation (vsim), Cadence on the uni server (xrun, Genus, Conformal, Innovus), Tang Nano 9K over UART, Chameleon96 with Linux, sky130 on GitHub Actions; the stimuli and checks of every testbench; sign-off checklist |
 | [simulation_explained.md](simulation_explained.md) | **what the simulation means**: the golden model, every test-vector file, the 600 frames, the 10 ASIC tests in plain language, the detection numbers, how to read the SimVision waveform |

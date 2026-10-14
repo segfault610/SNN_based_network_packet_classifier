@@ -47,7 +47,7 @@ sim/run_all.sh                                  # all regressions (Questa + iver
 sim/tang9k/run.sh ; sim/cv96/run.sh             # per board (modes: see each script header)
 
 fpga/tang9k/build.sh prog                        # Tang Nano 9K: build + load (openFPGALoader)
-python3 sw/tang9k/tang_demo.py --port /dev/ttyUSB1  # replay vectors (or --pcap file.pcap), live verdicts
+python3 sw/tang9k/tang_demo.py --port /dev/ttyUSB0  # replay vectors (or --pcap file.pcap), live verdicts
 fpga/cv96_snn/build.sh                           # Chameleon96 RBF (Quartus 20.1 Lite)
 make -C sw/cv96/kmod && make -C sw/cv96/tools    # kernel module + tool (Yocto toolchain)
 asic/sky130/synth.sh snn_core                    # open ASIC synthesis (Yosys + sky130_fd_sc_hd)

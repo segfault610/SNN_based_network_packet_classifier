@@ -13,26 +13,32 @@
 //   FPGA -> host  'F' frame...         frame forwarded by the firewall
 //                 'V' v                verdict per frame: v[7]=malicious
 //                 'r' d3 d2 d1 d0      config read data
-// LEDs (active low): 0 malicious flash, 1 heartbeat, 2 frame forwarded, 3 frame blocked,
-//                    4 UART rx activity, 5 config written
+// Board: Tang Nano 9K on a custom perfboard with an external FTDI USB-UART header (pins 31/32)
+// and 8 external LEDs (tang9k.cst):
+//   leds_ext 0 malicious frame (flash)   4 UART RX activity
+//            1 heartbeat (~1.2 s)        5 config written
+//            2 frame forwarded           6 UART TX activity
+//            3 frame blocked             7 under attack: >= 4 of the last 8 verdicts malicious
+// LED_ACTIVE_HIGH = 1: pin -> resistor -> LED -> GND. Set 0 for LEDs wired to 3.3 V.
 module tang9k_snn_top #(
-    parameter CLKS_PER_BIT = 27          // 27 MHz / 1 Mbaud
+    parameter CLKS_PER_BIT    = 27,       // 27 MHz / 1 Mbaud
+    parameter LED_ACTIVE_HIGH = 1
 )(
-    input  wire       clk_27m,
-    input  wire       btn_rst_n,         // S1
-    input  wire       uart_rx,
-    output wire       uart_tx,
-    output wire [5:0] led_n
+    input  wire       clk,                // 27 MHz crystal, pin 52
+    input  wire       rst_n,              // reset button, pin 3 (active low)
+    input  wire       uart_rx,            // pin 31 <- FTDI TX
+    output wire       uart_tx,            // pin 32 -> FTDI RX
+    output wire [7:0] leds_ext            // external LEDs, pins 75 74 73 72 71 70 51 53
 );
     // ------------------------------------------------------------ reset
     reg [3:0] rst_sr = 4'hF;
-    always @(posedge clk_27m) rst_sr <= {rst_sr[2:0], !btn_rst_n};
+    always @(posedge clk) rst_sr <= {rst_sr[2:0], !rst_n};
     wire rst = |rst_sr;
 
     // ------------------------------------------------------------ UART RX + SLIP decode
     wire [7:0] rx_b;
     wire       rx_v;
-    uart_rx #(.CLKS_PER_BIT(CLKS_PER_BIT)) u_rx (.clk(clk_27m), .rst(rst), .rx(uart_rx), .data(rx_b), .valid(rx_v));
+    uart_rx #(.CLKS_PER_BIT(CLKS_PER_BIT)) u_rx (.clk(clk), .rst(rst), .rx(uart_rx), .data(rx_b), .valid(rx_v));
 
     reg        esc;
     reg [7:0]  mtype;
@@ -54,7 +60,7 @@ module tang9k_snn_top #(
     wire [7:0] dbyte  = !esc ? rx_b : (rx_b == 8'hDC) ? 8'hC0 : (rx_b == 8'hDD) ? 8'hDB : rx_b;
     wire       dvalid = rx_v && !is_end && !is_esc;
 
-    always @(posedge clk_27m) begin
+    always @(posedge clk) begin
         if (rst) begin
             esc <= 1'b0; mtype <= 8'd0; midx <= 4'd0; held_v <= 1'b0; held <= 8'd0; cmd <= 48'd0;
             s_tvalid <= 1'b0; s_tlast <= 1'b0; s_tdata <= 8'd0;
@@ -96,7 +102,7 @@ module tang9k_snn_top #(
     wire       v_valid, v_mal;
 
     snn_pkt_filter #(.BUF_AW(12)) u_fw (
-        .clk(clk_27m), .rst(rst),
+        .clk(clk), .rst(rst),
         .s_axis_tdata(s_tdata), .s_axis_tvalid(s_tvalid), .s_axis_tready(),
         .s_axis_tlast(s_tlast), .s_axis_tuser(1'b0),
         .m_axis_tdata(m_tdata), .m_axis_tvalid(m_tvalid), .m_axis_tready(m_tready),
@@ -111,12 +117,12 @@ module tang9k_snn_top #(
     wire [7:0] vq_d;
     wire       vq_empty;
     reg        vq_pop;
-    sync_fifo #(.W(8), .DEPTH(64)) u_vq (.clk(clk_27m), .rst(rst), .wr_en(v_valid), .wr_data({v_mal, 7'd0}),
+    sync_fifo #(.W(8), .DEPTH(64)) u_vq (.clk(clk), .rst(rst), .wr_en(v_valid), .wr_data({v_mal, 7'd0}),
         .rd_en(vq_pop), .rd_data(vq_d), .empty(vq_empty), .full(), .count());
     reg        rr_v;
     reg [31:0] rr_d;
     reg        rr_clr;
-    always @(posedge clk_27m) begin
+    always @(posedge clk) begin
         if (rst) rr_v <= 1'b0;
         else if (rd_pend) begin rr_v <= 1'b1; rr_d <= cfg_rdata; end
         else if (rr_clr) rr_v <= 1'b0;
@@ -134,7 +140,7 @@ module tang9k_snn_top #(
     reg  [7:0]  tx_d;
     reg         tx_v;
     wire        tx_rdy;
-    uart_tx #(.CLKS_PER_BIT(CLKS_PER_BIT)) u_tx (.clk(clk_27m), .rst(rst), .data(tx_d), .valid(tx_v), .ready(tx_rdy), .tx(uart_tx));
+    uart_tx #(.CLKS_PER_BIT(CLKS_PER_BIT)) u_tx (.clk(clk), .rst(rst), .data(tx_d), .valid(tx_v), .ready(tx_rdy), .tx(uart_tx));
 
     // payload byte source for the current message
     wire       f_has  = m_tvalid;
@@ -142,7 +148,7 @@ module tang9k_snn_top #(
     wire       body_v = (tmsg == "F") ? m_tvalid : (tcnt != 0);
     assign m_tready   = (ts == T_BODY) && (tmsg == "F") && !tlast_seen && tx_rdy && !tx_v && m_tvalid;
 
-    always @(posedge clk_27m) begin
+    always @(posedge clk) begin
         vq_pop <= 1'b0;
         rr_clr <= 1'b0;
         tx_v   <= 1'b0;
@@ -175,21 +181,27 @@ module tang9k_snn_top #(
         end
     end
 
-    // ------------------------------------------------------------ LEDs (active low)
-    reg [21:0] f_mal, f_pass, f_blk, f_rx, f_cfg;
+    // ------------------------------------------------------------ LEDs
+    reg [21:0] f_mal, f_pass, f_blk, f_rx, f_tx, f_cfg;
     reg [24:0] hb;
-    always @(posedge clk_27m) begin
+    reg [7:0]  hist;                      // last 8 verdicts, 1 = malicious
+    always @(posedge clk) begin
         if (rst) begin
-            f_mal <= 0; f_pass <= 0; f_blk <= 0; f_rx <= 0; f_cfg <= 0; hb <= 0;
+            f_mal <= 0; f_pass <= 0; f_blk <= 0; f_rx <= 0; f_tx <= 0; f_cfg <= 0; hb <= 0; hist <= 0;
         end else begin
             hb    <= hb + 1'b1;
             f_mal <= (v_valid && v_mal)          ? 22'h3FFFFF : (f_mal  != 0 ? f_mal  - 1'b1 : 0);
             f_blk <= (v_valid && v_mal)          ? 22'h3FFFFF : (f_blk  != 0 ? f_blk  - 1'b1 : 0);
             f_pass<= (m_tvalid && m_tready && m_tlast) ? 22'h3FFFFF : (f_pass != 0 ? f_pass - 1'b1 : 0);
             f_rx  <= rx_v                        ? 22'h0FFFFF : (f_rx   != 0 ? f_rx   - 1'b1 : 0);
+            f_tx  <= tx_v                        ? 22'h0FFFFF : (f_tx   != 0 ? f_tx   - 1'b1 : 0);
             f_cfg <= cfg_wr                      ? 22'h0FFFFF : (f_cfg  != 0 ? f_cfg  - 1'b1 : 0);
+            if (v_valid) hist <= {hist[6:0], v_mal};
         end
     end
-    assign led_n = ~{f_cfg != 0, f_rx != 0, f_blk != 0, f_pass != 0, hb[24], f_mal != 0};
+    wire [3:0] n_mal = hist[0] + hist[1] + hist[2] + hist[3] + hist[4] + hist[5] + hist[6] + hist[7];
+    wire [7:0] led_on = {n_mal >= 4'd4, f_tx != 0, f_cfg != 0, f_rx != 0,
+                         f_blk != 0, f_pass != 0, hb[24], f_mal != 0};
+    assign leds_ext = LED_ACTIVE_HIGH ? led_on : ~led_on;
 
 endmodule

@@ -22,7 +22,7 @@ mode() {
         sim rtl tb_tang9k rtl.log 'ERR|RESULT|Tang9K|Error' -voptargs=+acc -gVEC_DIR=$VEC
       fi ;;
     gl)
-      $OSS/bin/yosys -q -l synth_gowin.log -p "read_verilog $TOP_SRC; chparam -set CLKS_PER_BIT 4 tang9k_snn_top; \
+      $OSS/bin/yosys -q -l synth_gowin.log 2>/dev/null -p "read_verilog $TOP_SRC; chparam -set CLKS_PER_BIT 4 tang9k_snn_top; \
             synth_gowin -top tang9k_snn_top; write_verilog -noattr tang9k_gl.v"
       newlib gl
       vlog -quiet -timescale 1ns/1ps -work work_gl $OSS/share/yosys/gowin/cells_sim.v $TGT/gowin_bsram_models.v tang9k_gl.v

@@ -2,9 +2,9 @@
 """
 Tang Nano 9K in-line SNN firewall demo (host side).
 
-  python3 sw/tang9k/tang_demo.py --port /dev/ttyUSB1                 # golden vectors + check
-  python3 sw/tang9k/tang_demo.py --port /dev/ttyUSB1 --pcap cap.pcap # replay any capture
-  python3 sw/tang9k/tang_demo.py --port /dev/ttyUSB1 --monitor       # CTRL.drop_en = 0
+  python3 sw/tang9k/tang_demo.py --port /dev/ttyUSB0                 # golden vectors + check
+  python3 sw/tang9k/tang_demo.py --port /dev/ttyUSB0 --pcap cap.pcap # replay any capture
+  python3 sw/tang9k/tang_demo.py --port /dev/ttyUSB0 --monitor       # CTRL.drop_en = 0
 
 Protocol: see fpga/tang9k/tang9k_snn_top.v (SLIP, 1 Mbaud 8N1).
 """
@@ -75,7 +75,7 @@ def read_pcap(path):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--port", default="/dev/ttyUSB1")
+    ap.add_argument("--port", default="/dev/ttyUSB0")
     ap.add_argument("--baud", type=int, default=1_000_000)
     ap.add_argument("--cfg", default=os.path.join(VEC, "cfg.txt"))
     ap.add_argument("--frames", default=os.path.join(VEC, "frames.txt"))
