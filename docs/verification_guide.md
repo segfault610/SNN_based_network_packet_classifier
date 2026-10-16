@@ -144,7 +144,7 @@ suitable: it gives sockets, not raw frames.
 
 ## D. Chameleon96 SoC + FPGA with Linux (look-aside, live network)
 
-Full bring-up: `docs/chameleon96_deploy.md`.
+Full bring-up: `docs/chameleon96_deploy.md`. **Board test program and its 10 tests (start here): `docs/board_test_cv96.md`**, i.e. `./snn_test` (C1–C10, the look-aside equivalents of T1–T10) and `./snn_test demo` (LED1 during a SYN flood).
 
 ```bash
 # laptop

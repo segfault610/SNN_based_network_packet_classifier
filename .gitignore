@@ -85,6 +85,10 @@ sw/cv96/kmod/.xtc/
 modules.order
 Module.symvers
 sw/cv96/tools/snn_fwctl
+sw/cv96/tools/snn_test
+sw/cv96/tools/vectors.h
+sw/cv96/tools/cosim/obj_dir/
+sw/cv96/tools/cosim/build.log
 
 # ---------------------------------------------------------------- misc
 *.swp
