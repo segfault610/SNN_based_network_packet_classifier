@@ -56,6 +56,11 @@ Important properties:
 3. **2 output neurons**, "benign" and "malicious", collect spikes from the hidden neurons the same way.
 4. **Decision:** whichever output neuron fired more often in the 8 steps wins (tie: the one with more charge left).
 
+![A LIF neuron: leak, integrate, fire](img/lif_neuron.gif)
+
+*One of our hidden neurons (the trained weights, frame 47): it leaks, adds its input, and fires each time it crosses
+the threshold. More animations, including the whole network and the board demo: `demo_explained.md`.*
+
 Why spikes? Neurons only do work when something happens, the inputs are mostly "no" (79 % zeros), and the maths
 is only additions (no multiplications). That keeps the hardware small and simple.
 

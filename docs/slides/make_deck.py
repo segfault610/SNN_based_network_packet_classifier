@@ -136,6 +136,18 @@ card(s, 8.6, 1.75, 4.15, 4.9, "Each time step", [
     [("Result here: spikes at t%s and t%s." % tuple(str(i + 1) for i, sp in enumerate(spikes) if sp), {"bold": True, "color": "B5761A"})],
     "A stronger input fires more often; the number of spikes carries the information."], body_size=15)
 
+# ---- LIF animation
+s = d.slide(section=S1, notes="Animated (plays in slideshow mode): hidden neuron 4 of our trained network while frame 47 "
+            "is classified. Input current 225 is below the threshold 256, so it needs two steps to fire; then leak, "
+            "integrate, fire repeats. 4 spikes in 8 steps.")
+title(s, "LIF in motion: leak, integrate, fire", sub="Real neuron, real weights, real frame (plays in slideshow mode)")
+picture(s, os.path.join(IMG, "lif_neuron.gif"), 0.6, 1.55, w=8.6, descr="Animation of a leaky integrate-and-fire neuron filling, leaking and spiking")
+card(s, 9.5, 1.55, 3.25, 4.85, "LIF = Leaky Integrate-and-Fire", [
+    [("Leak: ", {"bold": True}), ("lose 1/4 of the charge", {})],
+    [("Integrate: ", {"bold": True}), ("add the input current", {})],
+    [("Fire: ", {"bold": True}), ("over the line → spike, reset to 0", {})],
+    "", "8 time steps per frame.", "More spikes = stronger evidence."], body_size=15)
+
 # ---- 8 software view
 s = d.slide(section=S1, notes="In software all three are trained the same broad way (gradient descent), but SNNs need a "
             "trick because a spike has no slope: surrogate gradients.")
@@ -250,6 +262,17 @@ text(s, 7.85, 4.25, 1.8, 0.6, "malicious", 16, RED, bold=True, anchor="m")
 card(s, 9.6, 1.6, 3.15, 5.0, "Rules", [
     "W1: 64×16 int8 weights", "W2: 16×2 int8 weights", "Thresholds 256 / 128", "Leak: lose 1/4 per step", "8 time steps",
     [("Decision: ", {"bold": True}), ("malicious if its neuron fired more often (tie: higher charge)", {})]], body_size=14)
+
+# ---- network animation
+s = d.slide(section=S2, notes="Animated: the whole network on frame 46 (a normal ACK) and frame 47 (the first SYN-flood "
+            "packet). Left: the 64 yes/no inputs. Middle: the 16 hidden neurons' charge at each time step. Right: the "
+            "two output neurons and their spike counts. Frame 46 ends 4:0 benign, frame 47 ends 0:7 malicious.")
+title(s, "Inside the network: a normal frame vs an attack", sub="Frame 46 (normal ACK), then frame 47 (first SYN-flood packet), plays in slideshow mode")
+picture(s, os.path.join(IMG, "snn_frame_46_vs_47.gif"), 0.6, 1.55, w=9.0, descr="Animation of the network classifying frame 46 and frame 47")
+card(s, 9.85, 1.55, 2.9, 5.05, "What differs", [
+    [("Frame 47 says yes to: ", {"bold": True}), ("SYN, TTL > 128, length ≤ 40, no TCP options", {})],
+    "A bare SYN like that is what flood tools send.",
+    [("Result: ", {"bold": True}), ("0 : 7 → malicious, erased", {"color": RED})]], body_size=14)
 
 # ---- 16 HDL architecture
 s = d.slide(section=S2, notes="snn_core.v. The input current is computed once per frame by visiting only the yes-inputs, "
@@ -452,6 +475,20 @@ bullets(s, 0.6, 4.7, 12.15, 2.0, [
     "Same 10 tests also pass on the synthesized gate-level netlist (sky130 cells), where real logic gates replace the RTL",
     "12 regressions in total: MAC + firewall at the GMII pins, Tang Nano 9K (RTL + netlist + PC demo), Chameleon96 accelerator",
     "On the real Chameleon96 FPGA: snn_test 10/10 PASS, all 600 verdicts bit-exact, 109,000 frames/s (docs/board_test_cv96.md)"], size=16)
+
+# ---- board demo
+s = d.slide(section=S3, notes="Your ./snn_test demo on the Chameleon96, replayed. Each line: frame number, the true label, the "
+            "FPGA verdict, and the spike counts of the two output neurons. Frame 47 is flagged at once; normal packets inside "
+            "the flood still pass; frame 128 is the single miss, also missed by the Python model.")
+title(s, "The board demo, explained", sub="./snn_test demo on the real Chameleon96 FPGA: frames 0–140 (plays in slideshow mode)")
+picture(s, os.path.join(IMG, "board_demo.gif"), 0.6, 1.5, w=8.2, descr="Replay of the board demo with verdict timeline and LED1")
+card(s, 9.1, 1.5, 3.65, 5.15, "How to read a line", [
+    [("frame 47  syn_flood → MALICIOUS (0, 7)", {"bold": True})],
+    "true label → FPGA verdict, then the spikes of the benign and malicious neurons (0–8 each)",
+    [("47: ", {"bold": True}), ("flagged at once", {})],
+    [("58, 59, 62: ", {"bold": True}), ("normal packets inside the flood still pass", {})],
+    [("128: ", {"bold": True}), ("the one miss (4 : 2), same as the model", {})],
+    [("0–140: ", {"bold": True}), ("70 of 71 attacks, 0 false alarms", {})]], body_size=14)
 
 # =================================================================== PART 4
 section(4, "Area, power, performance", "Measured numbers: sky130 layout (OpenROAD), FPGA fits (Quartus, nextpnr), and how an SNN compares.",
