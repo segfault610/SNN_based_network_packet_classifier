@@ -8,7 +8,12 @@ New to the idea of a neuron? Start with `docs/explained_simply.md` and `docs/dem
 
 ## 1. How a neuron activates (the one thing to get right)
 
-![How a neuron activates](img/neuron_activation.gif)
+![step 1](img/neuron_step1.png)
+![step 2](img/neuron_step2.png)
+![step 3](img/neuron_step3.png)
+![step 4](img/neuron_step4.png)
+![step 5](img/neuron_step5.png)
+![step 6](img/neuron_step6.png)
 
 A common misconception is that a neuron "leaks its charge to the next neuron". It doesn't. Here is what really
 happens, step by step (the animation shows it):
@@ -51,10 +56,6 @@ As hardware that is a register, a shift, two adders, a comparator and a reset mu
 The **green feedback path** is the key: the new charge is written back into the same register every clock, so one
 clock = one time step. There are **16 of these in parallel** (one per hidden neuron) plus 2 for the output layer,
 and **no multiplier anywhere** — that is the whole point of using spikes.
-
-This is the datapath carrying real numbers, step by step (input current I = 225, threshold 256):
-
-![LIF datapath animated](img/neuron_datapath.gif)
 
 ## 3. How the datapath is driven: the 4-state controller
 
@@ -148,4 +149,4 @@ is the style used by in-NIC binary-neural-network work such as N3IC.
 | Izhikevich | 2 registers | **yes** | many | rich dynamics (neuroscience) |
 | Binary MLP | none | no (XNOR) | 1 (one pass) | fast, no temporal memory |
 
-*Regenerate every diagram and GIF here:* `python3 docs/slides/make_neuron_diagrams.py` (SVGs need nothing; GIFs need Pillow).
+*Regenerate the diagrams:* `python3 docs/slides/make_neuron_diagrams.py` (SVGs) and `python3 docs/slides/make_neuron_steps.py` (the 6 step pictures, needs Pillow).
