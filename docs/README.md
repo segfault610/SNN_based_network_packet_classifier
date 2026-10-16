@@ -2,6 +2,7 @@
 
 | document | read it for |
 |---|---|
+| [SNN_Firewall_Explained.pptx](SNN_Firewall_Explained.pptx) | **slide deck (40 slides, speaker notes)**: what a neuron and an SNN are, SNN vs ANN/CNN in software and hardware, pros/cons for this project, the HDL of the neurons, testbench and vectors, the functional verification table, every xrun signal, area/power/performance, novelty, alternative neurons and architectures. Rebuild: `python3 docs/slides/make_deck.py` (needs python-pptx) |
 | [explained_simply.md](explained_simply.md) | **start here if you're new**: the idea, a simple architecture picture, how the neural network decides, what the testbench and the 600 test frames are, the 10 test situations in plain words, how to read the waveform, glossary |
 | [ppa_and_novelty.md](ppa_and_novelty.md) | **area, power and timing** (sky130 layout, FPGAs, Cadence), sequential vs combinational breakdown, SNN vs MLP / CNN / trees / rules, novelty vs existing work |
 | [design.md](design.md) | **what the design is**: system architecture diagrams (ASIC / Tang Nano 9K / Chameleon96), the engine's block diagram, the life of a frame, **every signal** of every module and board top, register maps, the 64 input features, the network maths, sizes, the UART and kernel protocols |
