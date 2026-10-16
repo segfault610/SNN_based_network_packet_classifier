@@ -78,6 +78,8 @@ Whole frames are tedious by hand, which is what `snn_test` is for.
 
 ## 3. Running the board test
 
+Short copy-paste version: **`docs/cv96_run_snn_test.md`**.
+
 **On the laptop** (the binary is already built; rebuild with `make -C sw/cv96/tools snn_test`):
 ```bash
 scp sw/cv96/tools/snn_test root@<board-ip>:/root/
