@@ -13,6 +13,11 @@ covers how to see what the network looked at and why it decided.
 | the frame's **true length** | MAC addresses |
 | **memory of the last 32 frames:** how many were pure SYNs, how many were ping requests | anything older than 32 frames; per-connection state |
 
+**It does not look at payload content or authentication.** A failed SSH password, an `scp`, a normal ping or a
+web request all have ordinary headers and are correctly judged benign. The detector reacts to how packets are
+*shaped on the wire* (scans, floods, malformed/spoofed headers), not to what they carry or whether a login
+succeeded. Catching brute-force logins or malware in a file is a different, application-level job.
+
 These are turned into 64 yes/no answers. Examples:
 - "TCP?", "SYN set?", "TTL above 128?", "IP length ≤ 40?", "destination port 0?", "TCP options present?";
 - "≥ 8 SYNs among the last 32 frames?", "source = destination?", "source is 127.x?".
@@ -118,6 +123,34 @@ tcpdump -i wlan0 -w /root/cap.pcap            # Ctrl-C after the attacks
 ```
 A pcap made on the laptop (`sudo tcpdump -i <iface> -w cap.pcap`) works too; copy it over. For pcapng files, convert
 with `editcap -F pcap in.pcapng out.pcap`.
+
+## 4b. Sending attacks from the laptop (no nmap/hping3 needed)
+
+`sw/host/snn_attack.py` builds the same preset packets and sends them to the board over the network, so you can
+test detection without installing anything. It needs root (raw sockets). **Use it only against your own board.**
+
+```bash
+# board:  ./snn_test sniff wlan0
+# laptop (project root):
+python3 sw/host/snn_attack.py <board-ip> list                 # presets + fields (no root, no send)
+python3 sw/host/snn_attack.py <board-ip> all --dry-run        # preview every verdict WITHOUT sending
+sudo python3 sw/host/snn_attack.py <board-ip> attacks         # send every attack preset
+sudo python3 sw/host/snn_attack.py <board-ip> synflood        # one attack
+sudo python3 sw/host/snn_attack.py <board-ip> syn ttl=200 opts=0   # a normal SYN edited to look like a flood
+```
+
+Each line prints the verdict the SNN should give; `--dry-run` computes it with the golden model and sends nothing.
+The board's `./snn_test sniff` prints the matching `MALICIOUS`/`benign` line and flashes LED1 on each attack. The
+presets and fields are identical to `snn_test craft`, verified equal in `sim/run_all.sh`.
+
+Notes:
+- **Normal presets** (`syn`, `ping`, `dns`, ...) are real packets to the board, so its stack answers them.
+- **Spoofed-source presets** (`bogon`, `synflood`, scans) set a fake source address; some Wi-Fi access points drop
+  those before they reach the board. If an attack never shows up in `snn_test sniff`, add `src=<your-laptop-ip>` to
+  keep a routable source, e.g. `sudo python3 sw/host/snn_attack.py <board-ip> xmas src=192.168.1.50`.
+- Why not just `ping`? A normal ping, an SSH login (even a wrong password) and an `scp` all have ordinary headers,
+  so they are correctly benign. The detector reacts to packet **shape** (scans, floods, malformed or spoofed
+  headers), not to content or a failed login. See §5.
 
 ## 5. Why it decided, and its limits (on the laptop)
 

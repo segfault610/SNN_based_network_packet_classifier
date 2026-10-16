@@ -27,7 +27,7 @@ in three deployments:
 | Synthetic labelled traffic (14 attack families) | done (99.7 % test, **synthetic, optimistic**) |
 | Real-dataset loader (pcap/pcapng + UNSW-NB15 / CIC ground-truth CSV), `train.py --data` | done, round-trip verified. **Needs the pcaps** |
 | RTL: parser, encoder, event-driven SNN core, shared classifier, in-line filter, look-aside wrapper | done |
-| Simulation per target: `sim/tang9k/run.sh`, `sim/cv96/run.sh`, `sim/asic/run.sh`; `sim/run_all.sh` = 14 regressions (incl. Tang post-synthesis netlist, ASIC suite T1–T10 on RTL + sky130 netlist, Tang PC demo vs fake board), all **PASS** | ✓ |
+| Simulation per target: `sim/tang9k/run.sh`, `sim/cv96/run.sh`, `sim/asic/run.sh`; `sim/run_all.sh` = 15 regressions (incl. Tang post-synthesis netlist, ASIC suite T1–T10 on RTL + sky130 netlist, Tang PC demo vs fake board), all **PASS** | ✓ |
 | verilog-ethernet MAC with firewall fused into RX path, GMII-level test | ✓ |
 | Chameleon96: Platform Designer integration, **RBF built** (6 % ALMs, timing met @100 MHz, HPS handoff unchanged) | ✓ **on the board: `snn_test` 10/10 PASS, 600/600 verdicts bit-exact** (2026-10-16) |
 | Chameleon96: `snn_fw.ko` (built for 6.18.2-altera), `snn_fwctl`, `snn_test` (static), firmware blob, Yocto layer | ✓ built; `snn_test` passed on the board, live WiFi test with `snn_fw.ko` pending |

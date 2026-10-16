@@ -10,7 +10,7 @@ the two FPGA boards and the Cadence flow at the university.
 
 | # | workflow | verifies | tools | one command | pass criterion |
 |---|---|---|---|---|---|
-| A | **simulation on the laptop** | RTL of every variant + gate-level netlists, bit-exact vs the golden model | Questa `vsim`, Yosys, iverilog | `sim/run_all.sh` | `14 passed, 0 failed` |
+| A | **simulation on the laptop** | RTL of every variant + gate-level netlists, bit-exact vs the golden model | Questa `vsim`, Yosys, iverilog | `sim/run_all.sh` | `15 passed, 0 failed` |
 | B | **Cadence on the uni server** | ASIC RTL, synthesis, equivalence, P&R, gate-level with delays | Xcelium `xrun`, Genus, Conformal, Innovus | `asic/scripts/run_flow.sh all` | `RESULT: PASS (10 tests)` on RTL / GLS / SDF; LEC equivalent; timing met; DRC/connectivity clean |
 | C | **Tang Nano 9K over UART** | the in-line NIC datapath on real silicon | Yosys + nextpnr + Apicula, openFPGALoader, Python | `python3 sw/tang9k/tang_demo.py --port /dev/ttyUSB0` | `RESULT: PASS` (verdicts and forwarded frames identical to the model) |
 | D | **Chameleon96 SoC + FPGA, Linux** | the look-aside accelerator + kernel hook on a live network | Quartus RBF, Yocto kernel module, `snn_fwctl` | `./snn_fwctl selftest frames.txt expected.txt` | `RESULT: PASS`, then live attack counters / LED1 |
@@ -50,7 +50,7 @@ Details in `docs/simulation_explained.md` §3.
 
 ```bash
 .venv/bin/python model/export.py   # only after retraining: regenerates sim/vectors/
-sim/run_all.sh                     # everything, ~2.5 min, ends with "=== 14 passed, 0 failed"
+sim/run_all.sh                     # everything, ~2.5 min, ends with "=== 15 passed, 0 failed"
 ```
 
 Per target (each takes a mode; `gui` opens vsim with waves):
