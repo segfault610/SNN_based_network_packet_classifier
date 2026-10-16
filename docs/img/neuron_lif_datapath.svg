@@ -3,9 +3,9 @@
 <defs><marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#45606B"/></marker></defs>
 <text x="24" y="34" font-size="26" font-weight="bold" fill="#0F2A33">LIF neuron datapath (one of 16, inside snn_core.v)</text>
 <circle cx="30" cy="250" r="4" fill="#0F2A33"/>
-<text x='44' y='250' font-size='14' fill='#0F2A33' text-anchor='start' dominant-baseline='middle' font-family='DejaVu Sans Mono,monospace'>acc = I</text>
+<text x='42' y='235' font-size='14' fill='#0F2A33' text-anchor='start' dominant-baseline='middle' font-family='DejaVu Sans Mono,monospace'>acc = I</text>
 <circle cx="30" cy="150" r="4" fill="#0F2A33"/>
-<text x='44' y='150' font-size='14' fill='#0F2A33' text-anchor='start' dominant-baseline='middle' font-family='DejaVu Sans Mono,monospace'>th1</text>
+<text x='42' y='135' font-size='14' fill='#0F2A33' text-anchor='start' dominant-baseline='middle' font-family='DejaVu Sans Mono,monospace'>th1 (threshold)</text>
 <rect x="150" y="220" width="110" height="60" rx="7" fill="#D6E8F5" stroke="#0F2A33" stroke-width="2"/>
 <path d="M152,272 l10,-8 l0,16 z" fill="#0F2A33"/>
 <text x='205' y='243' font-size='16' fill='#0F2A33' text-anchor='middle' dominant-baseline='middle' font-weight='bold' >v</text>
@@ -27,12 +27,12 @@
 <text x='684' y='358' font-size='14' fill='#0F2A33' text-anchor='middle' dominant-baseline='middle' font-weight='bold' >mux</text>
 <text x='684' y='376' font-size='11' fill='#5F6F78' text-anchor='middle' dominant-baseline='middle' >spike?0:v</text>
 <circle cx="1090" cy="250" r="4" fill="#0F2A33"/>
-<text x='1076' y='250' font-size='14' fill='#0F2A33' text-anchor='end' dominant-baseline='middle' font-family='DejaVu Sans Mono,monospace'>to layer 2</text>
+<text x='1078' y='235' font-size='14' fill='#0F2A33' text-anchor='end' dominant-baseline='middle' font-family='DejaVu Sans Mono,monospace'>layer 2</text>
 <path d="M260,250 L300,250" fill="none" stroke="#45606B" stroke-width="2.2" marker-end="url(#a)"/>
 <path d="M300,250 L300,142 L330,142" fill="none" stroke="#45606B" stroke-width="2.2" marker-end="url(#a)"/>
 <path d="M430,142 L478,142 L478,178" fill="none" stroke="#45606B" stroke-width="2.2" marker-end="url(#a)"/>
 <path d="M300,250 L300,202 L478,202" fill="none" stroke="#45606B" stroke-width="2.2" marker-end="url(#a)"/>
-<text x='305' y='238' font-size='12' fill='#5F6F78' text-anchor='middle' dominant-baseline='middle' font-family='DejaVu Sans Mono,monospace'>v</text>
+<text x='288' y='236' font-size='12' fill='#5F6F78' text-anchor='middle' dominant-baseline='middle' font-family='DejaVu Sans Mono,monospace'>v</text>
 <path d="M522,190 L560,190 L560,240 L598,240" fill="none" stroke="#45606B" stroke-width="2.2" marker-end="url(#a)"/>
 <path d="M60,250 L90,250 L90,300 L585,300 L585,262 L598,262" fill="none" stroke="#45606B" stroke-width="2.2" marker-end="url(#a)"/>
 <text x='120' y='294' font-size='12' fill='#5F6F78' text-anchor='middle' dominant-baseline='middle' font-family='DejaVu Sans Mono,monospace'>I = sum of weights of active inputs</text>
@@ -47,7 +47,6 @@
 <path d="M620,365 L215,365 L215,280" fill="none" stroke="#1B998B" stroke-width="2.2" marker-end="url(#a)"/>
 <text x='300' y='352' font-size='12' fill='#1B998B' text-anchor='middle' dominant-baseline='middle' font-family='DejaVu Sans Mono,monospace'>new charge written back every clock (one LIF step)</text>
 <path d="M70,150 L665,150 L665,232" fill="none" stroke="#5F6F78" stroke-width="1.8" marker-end="url(#a)"/>
-<text x='80' y='142' font-size='12' fill='#5F6F78' text-anchor='middle' dominant-baseline='middle' font-family='DejaVu Sans Mono,monospace'>threshold</text>
 <path d="M1020,250 L1090,250" fill="none" stroke="#45606B" stroke-width="2.2" marker-end="url(#a)"/>
 <text x='24' y='446' font-size='13' fill='#5F6F78' text-anchor='start' dominant-baseline='middle' >register (holds state)  ⬤ operator (add / subtract)  ▭ shift = wiring  ▭ compare  ⬢ mux  — green = feedback path</text>
 </svg>

@@ -3,7 +3,7 @@
 <defs><marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#45606B"/></marker></defs>
 <text x="24" y="34" font-size="26" font-weight="bold" fill="#0F2A33">Adaptive LIF (ALIF): threshold that rises after firing</text>
 <circle cx="30" cy="175" r="4" fill="#0F2A33"/>
-<text x='44' y='175' font-size='14' fill='#0F2A33' text-anchor='start' dominant-baseline='middle' font-family='DejaVu Sans Mono,monospace'>inputs I</text>
+<text x='42' y='160' font-size='14' fill='#0F2A33' text-anchor='start' dominant-baseline='middle' font-family='DejaVu Sans Mono,monospace'>inputs I</text>
 <rect x="130" y="145" width="120" height="60" rx="7" fill="#D6E8F5" stroke="#0F2A33" stroke-width="2"/>
 <path d="M132,197 l10,-8 l0,16 z" fill="#0F2A33"/>
 <text x='190' y='168' font-size='16' fill='#0F2A33' text-anchor='middle' dominant-baseline='middle' font-weight='bold' >v</text>
@@ -25,7 +25,7 @@
 <text x='843' y='186' font-size='12' fill='#5F6F78' text-anchor='middle' dominant-baseline='middle' >adaptive</text>
 <path d="M728,175 L788,175" fill="none" stroke="#45606B" stroke-width="2.2" marker-end="url(#a)"/>
 <circle cx="1090" cy="175" r="4" fill="#0F2A33"/>
-<text x='1076' y='175' font-size='14' fill='#0F2A33' text-anchor='end' dominant-baseline='middle' font-family='DejaVu Sans Mono,monospace'>spike</text>
+<text x='1078' y='160' font-size='14' fill='#0F2A33' text-anchor='end' dominant-baseline='middle' font-family='DejaVu Sans Mono,monospace'>spike</text>
 <path d="M898,175 L1090,175" fill="none" stroke="#45606B" stroke-width="2.2" marker-end="url(#a)"/>
 <rect x="790" y="60" width="300" height="40" rx="8" fill="#7A5C99"/>
 <text x='940' y='80' font-size='15' fill='white' text-anchor='middle' dominant-baseline='middle' font-weight='bold' >+1 register, +1 adder vs LIF</text>

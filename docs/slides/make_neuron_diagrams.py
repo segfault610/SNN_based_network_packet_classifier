@@ -41,12 +41,12 @@ class SVG:
         self.text(cx, cy, sym, 18, bold=True)
         return (cx, cy, r)
 
-    def box(self, x, y, w, h, label, sub="", fill=OP):
+    def box(self, x, y, w, h, label, sub="", fill=OP, fg=None, subfg=None):
         self.e.append('<rect x="%d" y="%d" width="%d" height="%d" rx="4" fill="%s" stroke="%s" stroke-width="2"/>'
                       % (x, y, w, h, fill, INK))
-        self.text(x + w / 2, y + h / 2 - (7 if sub else 0), label, 15, bold=True)
+        self.text(x + w / 2, y + h / 2 - (7 if sub else 0), label, 15, bold=True, fill=fg or INK)
         if sub:
-            self.text(x + w / 2, y + h / 2 + 11, sub, 11, fill=GREY)
+            self.text(x + w / 2, y + h / 2 + 11, sub, 11, fill=subfg or GREY)
         return (x, y, w, h)
 
     def mux(self, x, y, w, h, label="mux", sub=""):
@@ -68,7 +68,7 @@ class SVG:
 
     def port(self, x, y, label, side="l"):
         self.e.append('<circle cx="%d" cy="%d" r="4" fill="%s"/>' % (x, y, INK))
-        self.text(x + (14 if side == "l" else -14), y, label, 14, fill=INK,
+        self.text(x + (12 if side == "l" else -12), y - 15, label, 14, fill=INK,
                   anchor="start" if side == "l" else "end", mono=True)
 
     def wire(self, pts, arrow=True, color=WIRE, w=2.2, dash=False):
@@ -100,7 +100,7 @@ def lif_datapath():
     s = SVG(1120, 470, "LIF neuron datapath (one of 16, inside snn_core.v)")
     yc = 250
     s.port(30, yc, "acc = I", "l")          # input current
-    s.port(30, 150, "th1", "l")             # threshold
+    s.port(30, 150, "th1 (threshold)", "l")
     vx = 150
     s.reg(vx, yc - 30, 110, 60, "v", "20-bit charge", fill=PURPLE if False else REG)
     # shift tap
@@ -110,13 +110,13 @@ def lif_datapath():
     cmpb = s.cmp(720, yc - 28, 110, 56, "≥ th1")
     spike = s.reg(900, yc - 30, 120, 60, "spike", "1 bit, registered", fill=AMBER)
     muxb = s.mux(620, 330, 120, 70, "mux", "spike?0:v")
-    s.port(1090, yc, "to layer 2", "r")
+    s.port(1090, yc, "layer 2", "r")
     # wires
     s.wire([(260, yc), (300, yc)])                              # v out
     s.wire([(300, yc), (300, 142), (330, 142)])                # v -> shift
     s.wire([(430, 142), (478, 142), (478, 178)])               # shift -> sub (b)
     s.wire([(300, yc), (300, 202), (478, 202)])                # v -> sub (a)
-    s.wlabel(305, yc - 12, "v")
+    s.wlabel(288, yc - 14, "v")
     s.wire([(522, 190), (560, 190), (560, yc - 10), (598, yc - 10)])  # sub -> add
     s.wire([(60, yc), (90, yc), (90, 300), (585, 300), (585, yc + 12), (598, yc + 12)])   # I -> add via bottom
     s.wlabel(120, 294, "I = sum of weights of active inputs")
@@ -132,7 +132,6 @@ def lif_datapath():
     s.wire([(620, 365), (215, 365), (215, yc + 30)], color=GREEN)             # mux -> v (feedback)
     s.wlabel(300, 352, "new charge written back every clock (one LIF step)", fill=GREEN)
     s.wire([(70, 150), (665, 150), (665, 232)], color=GREY, w=1.8)            # th1 -> cmp
-    s.wlabel(80, 142, "threshold")
     s.wire([(1020, yc), (1090, yc)])
     s.note(24, 452 - 6, ["register (holds state)  ⬤ operator (add / subtract)  ▭ shift = wiring  "
                          "▭ compare  ⬢ mux  — green = feedback path"])
@@ -148,10 +147,11 @@ def fsm():
              ("LIF", "8 time steps\n(leak, add, fire)"), ("OUT", "compare counts,\nreport verdict")]
     for i, (x, (nm, sub)) in enumerate(zip(xs, names)):
         fill = AMBER if nm == "LIF" else (GREEN if nm == "OUT" else REG)
+        dark = nm == "OUT"
         s.e.append('<circle cx="%d" cy="%d" r="62" fill="%s" stroke="%s" stroke-width="2.5"/>' % (x, ys, fill, INK))
-        s.text(x, ys - 8, nm, 20, bold=True)
+        s.text(x, ys - 8, nm, 20, bold=True, fill="white" if dark else INK)
         for j, ln in enumerate(sub.split("\n")):
-            s.text(x, ys + 12 + j * 15, ln, 12, fill=GREY)
+            s.text(x, ys + 12 + j * 15, ln, 12, fill="#E8F3F0" if dark else GREY)
         if i < 3:
             s.wire([(x + 62, ys), (xs[i + 1] - 62, ys)])
     # LIF self loop x8
@@ -223,7 +223,7 @@ def alternatives():
     yc = 180
     s.port(30, yc, "inputs I", "l")
     s.reg(150, yc - 30, 110, 60, "v", "membrane")
-    mul = s.box(330, 120, 120, 56, "v x v", "MULTIPLIER", fill=RED)
+    mul = s.box(330, 120, 120, 56, "v x v", "MULTIPLIER", fill=RED, fg="white", subfg="#FBD9DE")
     s.text(390, 100, "the expensive part", 13, fill=RED, bold=True)
     s.box(330, 220, 120, 56, "0.04v²+5v+140", "poly", fill=OP)
     s.op(560, yc, "+")
@@ -240,7 +240,7 @@ def alternatives():
     s.wire([(680, 100), (584, 100)])
     s.wire([(820, yc), (900, yc)])
     s.wire([(955, yc + 30), (955, 320), (205, 320), (205, yc + 30)], color=GREEN, dash=True)
-    s.text(560, 338, "v and u fed back each step", 13, fill=GREEN)
+    s.text(360, 338, "v and u fed back each step", 13, fill=GREEN)
     s.e.append('<rect x="620" y="300" width="470" height="40" rx="8" fill="%s"/>' % RED)
     s.text(855, 320, "2 registers + a multiplier: several x the area of LIF", 15, bold=True, fill="white")
     s.save("neuron_izhikevich.svg")
