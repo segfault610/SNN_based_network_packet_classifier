@@ -29,8 +29,8 @@ in three deployments:
 | RTL: parser, encoder, event-driven SNN core, shared classifier, in-line filter, look-aside wrapper | done |
 | Simulation per target: `sim/tang9k/run.sh`, `sim/cv96/run.sh`, `sim/asic/run.sh`; `sim/run_all.sh` = 12 regressions (incl. Tang post-synthesis netlist, ASIC suite T1–T10 on RTL + sky130 netlist, Tang PC demo vs fake board), all **PASS** | ✓ |
 | verilog-ethernet MAC with firewall fused into RX path, GMII-level test | ✓ |
-| Chameleon96: Platform Designer integration, **RBF built** (6 % ALMs, timing met @100 MHz, HPS handoff unchanged) | ✓, hardware test pending |
-| Chameleon96: `snn_fw.ko` (built for 6.18.2-altera), `snn_fwctl` (static), firmware blob, Yocto layer | ✓ built, hardware test pending |
+| Chameleon96: Platform Designer integration, **RBF built** (6 % ALMs, timing met @100 MHz, HPS handoff unchanged) | ✓ **on the board: `snn_test` 10/10 PASS, 600/600 verdicts bit-exact** (2026-10-16) |
+| Chameleon96: `snn_fw.ko` (built for 6.18.2-altera), `snn_fwctl`, `snn_test` (static), firmware blob, Yocto layer | ✓ built; `snn_test` passed on the board, live WiFi test with `snn_fw.ko` pending |
 | Tang Nano 9K: open-source build, **bitstream built** (80 % LUT, 6 BSRAM, Fmax 57.6 MHz vs 27 MHz), PC demo script | ✓, hardware test pending |
 | ASIC: Yosys + sky130 synthesis (snn_core 0.39 mm², 64 % of it the flop-based W1 memory) | ✓ area; timing needs OpenSTA/Cadence |
 | ASIC: Cadence flow, one Tcl per step (Genus fast/optimal/slow, Conformal, Innovus stages, xrun), `asic/scripts/run_flow.sh` | written + dry-run checked; run on the uni server (`asic/README.md`) |

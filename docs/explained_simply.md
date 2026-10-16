@@ -183,7 +183,7 @@ Rough timeline (total 3.2 ms of simulated time):
 |---|---|---|
 | **ASIC** (a custom chip) | straight from the network cable, inside the network card | simulated; synthesized with Cadence (90 nm) and laid out in open-source sky130 |
 | **Tang Nano 9K** FPGA | a PC sends recorded frames over a USB-serial cable; the FPGA sends back only the good ones; 8 LEDs show what's happening | simulated; bitstream to rebuild for the perfboard pins |
-| **Chameleon96** FPGA + Linux | the Linux WiFi driver hands each frame to the FPGA, which answers "keep" or "drop" | image built; board tests in progress |
+| **Chameleon96** FPGA + Linux | the Linux WiFi driver hands each frame to the FPGA, which answers "keep" or "drop" | board test passed: all 600 frames give identical answers on the real FPGA; live WiFi test next |
 
 ## 9. Mini glossary
 

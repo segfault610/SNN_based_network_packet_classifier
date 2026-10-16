@@ -203,6 +203,7 @@ errors. Details: `asic/openlane/README.md`.
 - [x] B1: xrun RTL on the server: PASS (screenshot above)
 - [ ] B2–B7: Genus slack/area, LEC, GLS, Innovus, post-route LEC and SDF simulation
 - [ ] C: Tang Nano 9K `tang_demo.py` on hardware: PASS, plus pcap replay
-- [ ] D: Chameleon96 `snn_fwctl selftest` PASS, plus live attack demo
+- [x] D1: Chameleon96 `snn_test` on the real FPGA: 10/10 PASS, 600/600 verdicts bit-exact, 109 k frames/s (2026-10-16)
+- [ ] D2: Chameleon96 `snn_test demo` (LED1) and live WiFi attack demo with `snn_fw.ko`
 - [ ] E: sky130 `snn_classifier` green; full chip on demand
 - [ ] Real-traffic accuracy (UNSW-NB15 / CIC-IDS2017) after retraining

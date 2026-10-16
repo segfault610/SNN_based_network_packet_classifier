@@ -127,7 +127,7 @@ pipeline stage in the neuron update.
 - The smallest Ethernet frame occupies 84 byte-times on the wire. At one byte per clock, the classifier has 3× the
   time it needs, so **1 GbE line rate is sustained**. Test T8 confirms it: 250 back-to-back minimum-gap frames,
   0 drops.
-- Look-aside on the Chameleon96: ≈ 1.6 µs per frame including the bus transfer (simulation), i.e. ≈ 0.63 M frames/s.
+- Look-aside on the Chameleon96, **measured on the board**: **9.2 µs per frame, 109,000 frames/s**, including the ARM's register writes over the lightweight bridge (`snn_test`, C3). The FPGA work itself is ≈ 0.3 µs per frame; the rest is the CPU writing up to 32 header words and polling. Faster paths: DMA, or the full HPS-to-FPGA bridge instead of the lightweight one.
 
 ---
 

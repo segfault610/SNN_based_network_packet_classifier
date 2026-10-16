@@ -451,7 +451,7 @@ for i, (big, small, c) in enumerate(stats):
 bullets(s, 0.6, 4.7, 12.15, 2.0, [
     "Same 10 tests also pass on the synthesized gate-level netlist (sky130 cells), where real logic gates replace the RTL",
     "12 regressions in total: MAC + firewall at the GMII pins, Tang Nano 9K (RTL + netlist + PC demo), Chameleon96 accelerator",
-    "On the Chameleon96 board: snn_test runs the same vectors through the real FPGA (C1–C10, docs/board_test_cv96.md)"], size=16)
+    "On the real Chameleon96 FPGA: snn_test 10/10 PASS, all 600 verdicts bit-exact, 109,000 frames/s (docs/board_test_cv96.md)"], size=16)
 
 # =================================================================== PART 4
 section(4, "Area, power, performance", "Measured numbers: sky130 layout (OpenROAD), FPGA fits (Quartus, nextpnr), and how an SNN compares.",
@@ -509,7 +509,7 @@ table(s, 0.6, 1.5, 12.15, [2.6, 2.3, 3.3, 2.2, 1.75], [
     ["target", "block", "area / resources", "clock", "power"],
     ["sky130, placed & routed", "snn_classifier", "1.28 mm² die, 72,032 cells", "≈ 99 MHz (tt)", "125 mW"],
     ["sky130, synthesis", "full chip", "1.16 mm², 71,120 cells", "n/a", "n/a"],
-    ["Cyclone V (Chameleon96)", "look-aside + HPS", "2,378 ALMs (6 %), 3,080 regs, 0 DSP", "110.8 MHz", "not measured"],
+    ["Cyclone V (Chameleon96)", "look-aside + HPS", "2,378 ALMs (6 %), 3,080 regs, 0 DSP; board: 109 k frames/s", "110.8 MHz", "not measured"],
     ["Cyclone V (stand-alone)", "in-line, 4 KiB buffer", "5,871 ALMs (14 %), 10,336 regs, 0 DSP", "111.6 MHz", "not measured"],
     ["Tang Nano 9K", "in-line + UART", "6,966 LUT4 (80 %), 2,627 DFF, 0 DSP", "57.6 MHz", "not measured"],
     ["Cadence 90 nm (Genus)", "full chip, 8 ns", "synthesis done; numbers from qor.rpt to add", "", ""]],
@@ -589,8 +589,8 @@ s = d.slide(dark=True, notes="Summary: the hardware is proven correct in simulat
             "tests, real traffic, SRAM and clock gating, and the Cadence numbers.")
 text(s, 0.6, 0.5, 12, 0.9, "Where we are, and what comes next", 36, WHITE, bold=True, font=HEAD)
 done = ["SNN design, three hardware targets, all bit-exact", "10/10 functional tests in xrun, Questa, gate level",
-        "sky130 layout: 1.28 mm², 0 DRC / 0 LVS", "Chameleon96 RBF built and running (heartbeat LED)"]
-todo = ["Board tests: snn_test on the Chameleon96, demo on the Tang Nano 9K", "Train and test on real traffic (UNSW-NB15, CIC-IDS2017)",
+        "sky130 layout: 1.28 mm², 0 DRC / 0 LVS", "Chameleon96 FPGA: 10/10 board tests PASS, bit-exact"]
+todo = ["Live WiFi demo on the Chameleon96; Tang Nano 9K on the perfboard", "Train and test on real traffic (UNSW-NB15, CIC-IDS2017)",
         "SRAM + clock gating; timing at the slow corner", "Cadence 90 nm area / timing / power into the report"]
 for col, (hd, items, c) in enumerate([("Done", done, GREEN), ("Next", todo, AMBER)]):
     x = 0.6 + col * 6.25

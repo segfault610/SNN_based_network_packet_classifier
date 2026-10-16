@@ -151,6 +151,31 @@ throughput (C3): ... frames/s, ... us per frame incl. bus transfers
 
 ---
 
+## Result on the real board (2026-10-16): PASS
+
+Run on the Chameleon96 with `cv96_snn.rbf`, as root:
+
+```
+[C3] 600 golden frames, bit-exact (T3)
+    600 frames: malicious 197, benign 403 | vs ground truth TP=197 FP=0 TN=402 FN=1
+  PASS C3
+[C9] overload: submit without waiting (T9)
+    40 SUBMITs without waiting: 22 accepted, 18 rejected (counted), 22 verdicts back in order
+  PASS C9
+throughput (C3): 108989 frames/s, 9.2 us per frame incl. bus transfers
+ RESULT: PASS (10 of 10 tests passed)
+```
+
+- **Every test passes.** The FPGA silicon gives the same answer as the Python model and the RTL simulations for all
+  600 frames, including both neurons' spike counts.
+- **C9:** 22 accepted / 18 rejected on the board, vs 16 / 24 in co-simulation. The ARM writes more slowly than the
+  simulated bus, so the accelerator finishes a few frames while the 40 requests are still arriving. Only the rules are
+  checked (accepted + rejected = 40, every accepted frame answered, in order).
+- **Throughput:** 109,000 frames/s (9.2 µs per frame), limited by the CPU's register writes over the lightweight
+  bridge. The FPGA work itself is ≈ 0.3 µs.
+- **Counters before the run** (`submitted 1536, rejected 36, malicious 445`) come from earlier runs since boot. Each
+  test checks only the change it caused.
+
 ## 4. The ten tests and how they match the simulation testbench
 
 The simulation suite T1–T10 (`sim/asic/tb_snn_asic.sv`, `docs/functional_verification.md`) tests the **in-line**
