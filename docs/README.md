@@ -11,6 +11,7 @@
 | [simulation_explained.md](simulation_explained.md) | **what the simulation means**: the golden model, every test-vector file, the 600 frames, the 10 ASIC tests in plain language, the detection numbers, how to read the SimVision waveform |
 | [functional_verification.md](functional_verification.md) | the compact ASIC test table (T1–T10) with expected xrun output |
 | [cv96_run_snn_test.md](cv96_run_snn_test.md) | **quick start for the Chameleon96 test**: which files to copy to the board (just `snn_test`), three ways to copy them, the exact commands from the project root and on the board, what to expect, troubleshooting |
+| [custom_traffic_cv96.md](custom_traffic_cv96.md) | **your own packets on the Chameleon96**: what the hardware inspects, `snn_test craft / frame / pcap / sniff`, experiments with expected results, why it decided (`model/explain_frame.py`), known blind spots, proof the board answers are computed |
 | [board_test_cv96.md](board_test_cv96.md) | **testing on the Chameleon96**: what the LEDs and terminal show, the FPGA register addresses, classifying a frame step by step, the `snn_test` program and its 10 tests (matched to the testbench T1–T10), demo mode, troubleshooting |
 | [chameleon96_deploy.md](chameleon96_deploy.md) | Chameleon96 bring-up in detail |
 | [chameleon96_wifi.md](chameleon96_wifi.md) | analysis of the on-board WiFi (SDIO through the FPGA) |

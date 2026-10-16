@@ -17,6 +17,8 @@ run "Tang Nano 9K: post-synthesis gate-level"    tang9k/run.sh gl
 run "Tang Nano 9K: host demo vs fake board"      tang9k/run.sh host
 run "Chameleon96: look-aside accelerator"        cv96/run.sh lookaside
 run "Chameleon96: Avalon-MM in-line wrapper"     cv96/run.sh avmm
+run "Chameleon96: snn_test on the RTL (Verilator)" ../sw/cv96/tools/cosim/run_cosim.sh
+run "Chameleon96: custom traffic vs golden model"  ../.venv/bin/python ../sw/cv96/tools/cosim/check_custom.py
 run "pcap loader round trip"                     ../.venv/bin/python ../model/test_pcap_io.py
 run "snn_stdp saturation fix"                    bash -c "iverilog -g2005 -o /tmp/stdp_\$\$.vvp -s tb_snn_stdp ../snn_stdp/tb/tb_snn_stdp.v ../snn_stdp/src/snn_stdp.v && vvp -n /tmp/stdp_\$\$.vvp; rm -f /tmp/stdp_\$\$.vvp"
 echo "=== $pass passed, $fail failed"

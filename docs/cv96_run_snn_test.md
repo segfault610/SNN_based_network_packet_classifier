@@ -10,7 +10,7 @@ Step by step, starting in the **project root on the laptop**. The board must alr
 
 | laptop file (from the project root) | copy to on the board | md5 |
 |---|---|---|
-| `sw/cv96/tools/snn_test` | `/root/snn_test` | `3f75f06fa17929ce78364e716637ce92` |
+| `sw/cv96/tools/snn_test` | `/root/snn_test` | `607769e7804f0dd491374c82145cbb50` |
 
 The 600 test frames, the weights and the expected answers are built into it. Nothing else is needed: no
 vectors, no Python, no libraries (it's a static ARM binary).
@@ -78,7 +78,7 @@ lsmod | grep snn_fw && rmmod snn_fw
 
 # 3) the file arrived intact
 cd /root
-md5sum snn_test                                   # 3f75f06fa17929ce78364e716637ce92
+md5sum snn_test                                   # 607769e7804f0dd491374c82145cbb50
 chmod +x snn_test
 
 # 4) run
@@ -119,7 +119,16 @@ On a failure, the `[ERR]` lines say exactly which frame or register differed.
 | `snn_fw.ko is loaded ...` | `rmmod snn_fw` |
 | tests fail with `[ERR]` | send me the whole output |
 
-## 7. After it passes: live WiFi traffic (optional)
+## 7. Your own packets
+
+`snn_test` also takes custom traffic:
+- `./snn_test craft list`, `./snn_test craft syn ttl=200`, `./snn_test craft synflood`;
+- `./snn_test frame <hex>`, `./snn_test pcap cap.pcap`;
+- `./snn_test sniff wlan0`.
+
+See **`docs/custom_traffic_cv96.md`**.
+
+## 8. After it passes: live WiFi traffic (optional)
 
 With the optional files from §1 copied:
 ```sh

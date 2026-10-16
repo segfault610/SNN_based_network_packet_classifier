@@ -11,6 +11,12 @@
  *   snn_test demo [ms]     replay normal traffic + the SYN flood slowly, one line per frame (watch LED1)
  *   snn_test stats         print ID, status and counters
  *
+ * Your own traffic (snn_custom.c):
+ *   snn_test craft list | craft <preset> [field=value ...]   build packets and classify them
+ *   snn_test frame <hex bytes>                               classify one raw frame
+ *   snn_test pcap <file.pcap> [max]                          classify a capture
+ *   snn_test sniff [iface] [count]                           classify live received frames
+ *
  * Feedback: text on the terminal, plus LED1 lighting for ~0.17 s per malicious verdict.
  * LED2 blinking every ~0.67 s = the design is alive. See docs/board_test_cv96.md.
  * Do not run while snn_fw.ko is loaded (both would use the accelerator).
@@ -23,6 +29,7 @@
 #include <unistd.h>
 #include "hw.h"
 #include "vectors.h"
+#include "snn_custom.h"
 
 /* ---------------------------------------------------------------- register map (word addresses) */
 enum {
@@ -34,11 +41,6 @@ enum {
 #define ST_READY    (1u << 0)
 #define ST_VAVAIL   (1u << 1)
 #define ST_COUNT(s) (((s) >> 8) & 0x1F)
-#define V_VALID     (1u << 31)
-#define V_MAL(v)    (((v) >> 30) & 1)
-#define V_C1(v)     (((v) >> 24) & 0xF)
-#define V_C0(v)     (((v) >> 20) & 0xF)
-#define V_TAG(v)    ((v) & 0xFF)
 #define POLL_MAX    200000
 
 static int t_err;                    /* errors in the current test */
@@ -100,12 +102,20 @@ static uint32_t classify(const uint8_t *fr, unsigned len, unsigned tag)
 	return wait_verdict();
 }
 
-static void drain(void)
+uint32_t classify_len(const uint8_t *f, unsigned avail, unsigned len, unsigned tag)
+{
+	unsigned n = avail > 128 ? 128 : avail;
+	if (!wait_ready()) return 0;
+	submit(f, len, n, tag);
+	return wait_verdict();
+}
+
+void drain(void)
 {
 	for (int i = 0; i < 64 && (hw_rd(R_STATUS) & ST_VAVAIL); i++) (void)hw_rd(R_VERDICT);
 }
 
-static void load_weights(void)
+void load_weights(void)
 {
 	for (int i = 0; i < CFG_N; i++) hw_wr(cfg_addr[i], cfg_data[i]);
 }
@@ -113,7 +123,7 @@ static void load_weights(void)
 /* A 60-byte ARP request: neither a TCP SYN nor an ICMP echo. 32 of them empty the
  * accelerator's 32-frame SYN/ping rate window, so a replay starts from the same state as
  * the golden model (the window keeps its contents between runs; only a reboot clears it). */
-static void flush_rate_window(void)
+void flush_rate_window(void)
 {
 	static const uint8_t arp[60] = {
 		0xff,0xff,0xff,0xff,0xff,0xff, 0x02,0x00,0x00,0x00,0x00,0x01, 0x08,0x06,
@@ -387,6 +397,8 @@ int main(int argc, char **argv)
 
 	if (only && !strcmp(only, "stats")) { stats(); return 0; }
 	if (only && !strcmp(only, "demo"))  { demo(argc > 2 ? atoi(argv[2]) : 150); return 0; }
+	if (only && (!strcmp(only, "craft") || !strcmp(only, "frame") || !strcmp(only, "pcap") || !strcmp(only, "sniff")))
+		return custom_main(argc - 1, argv + 1);
 
 	for (unsigned i = 0; i < sizeof tests / sizeof tests[0]; i++) {
 		if (only && strcasecmp(only, tests[i].id)) continue;
@@ -396,7 +408,11 @@ int main(int argc, char **argv)
 		printf("  %s %s\n", t_err ? "FAIL" : "PASS", tests[i].id);
 		failed += t_err != 0; ran++;
 	}
-	if (!ran) { fprintf(stderr, "usage: %s [C1..C10 | demo [ms] | stats]\n", argv[0]); return 2; }
+	if (!ran) {
+		fprintf(stderr, "usage: %s [C1..C10 | demo [ms] | stats | craft list | craft <preset> [field=value ...] |\n"
+		        "        frame <hex> | pcap <file> [max] | sniff [iface] [count]]   (see docs/custom_traffic_cv96.md)\n", argv[0]);
+		return 2;
+	}
 	if (!only || !strcasecmp(only, "C3"))
 		printf("\nthroughput (C3): %.0f frames/s, %.1f us per frame incl. bus transfers\n",
 		       VEC_N / g_secs, 1e6 * g_secs / VEC_N);

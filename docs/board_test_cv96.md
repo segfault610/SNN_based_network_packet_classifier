@@ -84,8 +84,8 @@ Short copy-paste version: **`docs/cv96_run_snn_test.md`**.
 ```bash
 scp sw/cv96/tools/snn_test root@<board-ip>:/root/
 ```
-No WiFi yet? Copy it to the SD card's root filesystem instead, or use any USB stick. It's one 2.9 MB static file.
-md5 `3f75f06fa17929ce78364e716637ce92`.
+No WiFi yet? Copy it to the SD card's root filesystem instead, or use any USB stick. It's one 3.3 MB static file.
+md5 `607769e7804f0dd491374c82145cbb50`.
 
 **On the board**, as root:
 ```sh
@@ -252,7 +252,12 @@ sw/cv96/tools/cosim/run_cosim.sh demo 0   # demo output without delays
 | C3 mismatches on a few early frames only | something else submitted frames between the window flush and the replay; make sure nothing else uses the accelerator |
 | LED1 never lights in `demo` | check `snn_test stats` (MALICIOUS must rise); if it rises, LED1 is being overridden by the Linux LED PIO (`led_pio[0]` is OR-ed in: make sure it is 0) |
 
-## 7. After this: live traffic
+## 7. Your own packets
+
+The ten tests use a fixed recording. To send any packet you like (presets, edited fields, raw hex, pcap files, or
+live WiFi traffic) and to see why each was judged as it was, see **`docs/custom_traffic_cv96.md`**.
+
+## 8. After this: live traffic
 
 When `snn_test` passes:
 1. `insmod snn_fw.ko iface=wlan0 drop=0` to classify every received WiFi frame in the kernel.
