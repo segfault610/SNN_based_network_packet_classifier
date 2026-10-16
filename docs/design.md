@@ -343,6 +343,8 @@ Bits 57–60 are the only **stateful** features. A single SYN looks harmless; a 
 | decision | malicious if `cnt1 > cnt0`, or `cnt1 == cnt0` and `v_o1 > v_o0` |
 | training | `model/train.py`: surrogate-gradient back-propagation with quantisation-aware int8 weights, so the integer hardware matches the trained float model; bit-exact with `model/snn_int.py` |
 
+**How the weights are trained** (data, method, accuracy, limitations): `docs/training.md`.
+
 ---
 
 ## 6. Sizes and implementation results

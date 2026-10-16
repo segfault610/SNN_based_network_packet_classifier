@@ -73,6 +73,41 @@ small state machine in `snn_core.v` does that:
 
 Latency per frame ≈ (number of active inputs) + 8 + 6 cycles ≈ 28 clocks. Details in `docs/design.md` §2.5.
 
+## 3b. The two fundamental blocks in the real RTL Viewer
+
+These are the actual Quartus RTL Viewer schematics of the two core blocks (under
+`snn_0 -> snn_classifier:u_cls`). Together they are the whole classifier: the encoder decides *what to look at*,
+the core decides *benign or malicious*.
+
+**`spike_encoder` -- the senses.** Many header fields in, 64 yes/no spikes out.
+
+![spike_encoder in the RTL Viewer](img/rtlviewer_spike_encoder.png)
+
+The long list of inputs on the left are the parsed header fields (`ethertype`, `ttl`, `proto`, `sport`, `dport`,
+`tflags`, `ihl`, `tot_len`, `df`/`mf`/`foff`, `win`, `has_l4`, `vlan`, ...). The only outputs are `spikes[63:0]`
+(the 64 binary features) and `spk_valid`. Inside it is just comparisons and bucket tests ("is dport 0?",
+"TTL > 128?", "8th SYN in the last 32 frames?") -- no multiplies. This is the input layer's feature extractor.
+
+**`snn_core` -- the brain.** 64 spikes + the trained weights in, a verdict out.
+
+![snn_core in the RTL Viewer](img/rtlviewer_snn_core.png)
+
+Inputs: `in_spikes[63:0]` (straight from the encoder), the thresholds `th1`/`th2`, `leak`, `t_steps`, and the
+weights `w1_*`, `w2[255:0]`, `b2`. Outputs: `out_cnt0[3:0]`/`out_cnt1[3:0]` (benign/malicious spike counts),
+`out_mal` (the verdict), `out_tag`, `out_valid`. The teal flip-flop labelled `out_mal~reg0` (with `D / CLK / Q /
+SCLR`) is literally the single register that holds the final verdict. The `State Machines -> state` node in the
+tree is the IDLE/ACC/LIF/OUT controller from section 3; inside are the 16 hidden + 2 output LIF neurons.
+
+Data flow between them:
+
+```
+pkt_parser --[header fields]--> spike_encoder --[spikes[63:0]]--> sync_fifo --> snn_core --> out_mal (verdict)
+             ethertype, ttl,                    64 binary                      16 hidden +
+             ports, flags...                    features                       2 output LIF neurons
+```
+
+How the weights inside `snn_core` are chosen is the subject of **`docs/training.md`**.
+
 ## 4. Where to see this in Quartus (RTL Viewer)
 
 The real, tool-drawn version of these schematics is in Quartus:

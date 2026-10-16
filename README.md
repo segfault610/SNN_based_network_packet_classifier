@@ -23,7 +23,7 @@ in three deployments:
 
 | item | state |
 |---|---|
-| Python golden model (parser, encoder, integer LIF SNN), QAT surrogate-gradient training | done |
+| Python golden model (parser, encoder, integer LIF SNN), QAT surrogate-gradient training (`docs/training.md`) | done |
 | Synthetic labelled traffic (14 attack families) | done (99.7 % test, **synthetic, optimistic**) |
 | Real-dataset loader (pcap/pcapng + UNSW-NB15 / CIC ground-truth CSV), `train.py --data` | done, round-trip verified. **Needs the pcaps** |
 | RTL: parser, encoder, event-driven SNN core, shared classifier, in-line filter, look-aside wrapper | done |
