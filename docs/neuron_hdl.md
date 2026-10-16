@@ -77,7 +77,10 @@ Latency per frame ≈ (number of active inputs) + 8 + 6 cycles ≈ 28 clocks. De
 The real, tool-drawn version of these schematics is in Quartus:
 
 1. Open the project **`fpga/cv96_snn/led_blink_linux.qpf`** in Quartus (File → Open Project).
-2. Process → Start → **Start Analysis & Elaboration** (needed before the viewer has a netlist).
+2. Process → Start → **Start Analysis & Elaboration** (needed before the viewer has a netlist). This writes
+   `db/led_blink_linux.rtlv.hdb`; command-line equivalent: `quartus_map --analysis_and_elaboration led_blink_linux`
+   (it prints "Analysis & Elaboration was successful" but exits non-zero when there are only connectivity warnings,
+   which is harmless here).
 3. Tools → Netlist Viewers → **RTL Viewer**.
 4. In the hierarchy on the left, drill into `snn_0` → the classifier → `snn_core`. Double-click a block to go
    inside; the `v1`/`acc` registers, the adders and the comparator appear just like the diagram above.
