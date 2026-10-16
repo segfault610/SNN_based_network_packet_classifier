@@ -16,7 +16,7 @@ New to the idea of a neuron? Start with `docs/explained_simply.md` and `docs/dem
 ![step 6](img/neuron_step6.png)
 
 A common misconception is that a neuron "leaks its charge to the next neuron". It doesn't. Here is what really
-happens, step by step (the animation shows it):
+happens, step by step (the six pictures above show it):
 
 1. **Integrate.** Input spikes arrive from the previous layer. Each one adds its *weight* to this neuron's charge
    (a number called the membrane potential, `v`).
