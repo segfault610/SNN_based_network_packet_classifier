@@ -24,6 +24,8 @@ frame  47  syn_flood   -> MALICIOUS  (benign neuron  0 spikes, malicious neuron 
 
 ## 2. What LIF is: the neuron in our chip
 
+*The neuron datapath, animations and alternative neuron models: `docs/neuron_hdl.md`.*
+
 **LIF = Leaky Integrate-and-Fire.** It is the simplest realistic model of a biological neuron, and it's what each of
 our 18 neurons (16 hidden + 2 output) computes. Think of a bucket with a small hole:
 

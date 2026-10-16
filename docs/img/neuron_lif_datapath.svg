@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 470" font-family='DejaVu Sans,Arial,sans-serif'>
+<rect width="1120" height="470" fill="white"/>
+<defs><marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#45606B"/></marker></defs>
+<text x="24" y="34" font-size="26" font-weight="bold" fill="#0F2A33">LIF neuron datapath (one of 16, inside snn_core.v)</text>
+<circle cx="30" cy="250" r="4" fill="#0F2A33"/>
+<text x='44' y='250' font-size='14' fill='#0F2A33' text-anchor='start' dominant-baseline='middle' font-family='DejaVu Sans Mono,monospace'>acc = I</text>
+<circle cx="30" cy="150" r="4" fill="#0F2A33"/>
+<text x='44' y='150' font-size='14' fill='#0F2A33' text-anchor='start' dominant-baseline='middle' font-family='DejaVu Sans Mono,monospace'>th1</text>
+<rect x="150" y="220" width="110" height="60" rx="7" fill="#D6E8F5" stroke="#0F2A33" stroke-width="2"/>
+<path d="M152,272 l10,-8 l0,16 z" fill="#0F2A33"/>
+<text x='205' y='243' font-size='16' fill='#0F2A33' text-anchor='middle' dominant-baseline='middle' font-weight='bold' >v</text>
+<text x='205' y='261' font-size='12' fill='#5F6F78' text-anchor='middle' dominant-baseline='middle' >20-bit charge</text>
+<rect x="330" y="120" width="100" height="44" rx="4" fill="#EAF2F3" stroke="#0F2A33" stroke-width="2"/>
+<text x='380' y='135' font-size='15' fill='#0F2A33' text-anchor='middle' dominant-baseline='middle' font-weight='bold' >>> 2</text>
+<text x='380' y='153' font-size='11' fill='#5F6F78' text-anchor='middle' dominant-baseline='middle' >(wires only)</text>
+<circle cx="500" cy="190" r="22" fill="#FCE6C8" stroke="#0F2A33" stroke-width="2"/>
+<text x='500' y='190' font-size='18' fill='#0F2A33' text-anchor='middle' dominant-baseline='middle' font-weight='bold' >−</text>
+<circle cx="620" cy="250" r="22" fill="#FCE6C8" stroke="#0F2A33" stroke-width="2"/>
+<text x='620' y='250' font-size='18' fill='#0F2A33' text-anchor='middle' dominant-baseline='middle' font-weight='bold' >+</text>
+<rect x="720" y="222" width="110" height="56" rx="4" fill="#FBD9DE" stroke="#0F2A33" stroke-width="2"/>
+<text x='775' y='250' font-size='16' fill='#0F2A33' text-anchor='middle' dominant-baseline='middle' font-weight='bold' >≥ th1</text>
+<rect x="900" y="220" width="120" height="60" rx="7" fill="#F2A541" stroke="#0F2A33" stroke-width="2"/>
+<path d="M902,272 l10,-8 l0,16 z" fill="#0F2A33"/>
+<text x='960' y='243' font-size='16' fill='#0F2A33' text-anchor='middle' dominant-baseline='middle' font-weight='bold' >spike</text>
+<text x='960' y='261' font-size='12' fill='#5F6F78' text-anchor='middle' dominant-baseline='middle' >1 bit, registered</text>
+<path d="M620,330 L740,344 L740,386 L620,400 z" fill="#E7DBF0" stroke="#0F2A33" stroke-width="2"/>
+<text x='684' y='358' font-size='14' fill='#0F2A33' text-anchor='middle' dominant-baseline='middle' font-weight='bold' >mux</text>
+<text x='684' y='376' font-size='11' fill='#5F6F78' text-anchor='middle' dominant-baseline='middle' >spike?0:v</text>
+<circle cx="1090" cy="250" r="4" fill="#0F2A33"/>
+<text x='1076' y='250' font-size='14' fill='#0F2A33' text-anchor='end' dominant-baseline='middle' font-family='DejaVu Sans Mono,monospace'>to layer 2</text>
+<path d="M260,250 L300,250" fill="none" stroke="#45606B" stroke-width="2.2" marker-end="url(#a)"/>
+<path d="M300,250 L300,142 L330,142" fill="none" stroke="#45606B" stroke-width="2.2" marker-end="url(#a)"/>
+<path d="M430,142 L478,142 L478,178" fill="none" stroke="#45606B" stroke-width="2.2" marker-end="url(#a)"/>
+<path d="M300,250 L300,202 L478,202" fill="none" stroke="#45606B" stroke-width="2.2" marker-end="url(#a)"/>
+<text x='305' y='238' font-size='12' fill='#5F6F78' text-anchor='middle' dominant-baseline='middle' font-family='DejaVu Sans Mono,monospace'>v</text>
+<path d="M522,190 L560,190 L560,240 L598,240" fill="none" stroke="#45606B" stroke-width="2.2" marker-end="url(#a)"/>
+<path d="M60,250 L90,250 L90,300 L585,300 L585,262 L598,262" fill="none" stroke="#45606B" stroke-width="2.2" marker-end="url(#a)"/>
+<text x='120' y='294' font-size='12' fill='#5F6F78' text-anchor='middle' dominant-baseline='middle' font-family='DejaVu Sans Mono,monospace'>I = sum of weights of active inputs</text>
+<path d="M642,250 L720,250" fill="none" stroke="#45606B" stroke-width="2.2" marker-end="url(#a)"/>
+<text x='650' y='238' font-size='12' fill='#5F6F78' text-anchor='middle' dominant-baseline='middle' font-family='DejaVu Sans Mono,monospace'>v_next</text>
+<path d="M830,250 L900,250" fill="none" stroke="#45606B" stroke-width="2.2" marker-end="url(#a)"/>
+<path d="M960,280 L960,430 L240,430 L240,280" fill="none" stroke="#1B998B" stroke-width="2.2" stroke-dasharray="6,4" marker-end="url(#a)"/>
+<path d="M642,262 L670,262 L670,330" fill="none" stroke="#5F6F78" stroke-width="2.2" marker-end="url(#a)"/>
+<path d="M776,258 L900,258" fill="none" stroke="#45606B" stroke-width="2.2"/>
+<path d="M900,300 L760,300 L760,358" fill="none" stroke="#F2A541" stroke-width="2.2" marker-end="url(#a)"/>
+<text x='766' y='345' font-size='12' fill='#B5761A' text-anchor='middle' dominant-baseline='middle' font-family='DejaVu Sans Mono,monospace'>select</text>
+<path d="M620,365 L215,365 L215,280" fill="none" stroke="#1B998B" stroke-width="2.2" marker-end="url(#a)"/>
+<text x='300' y='352' font-size='12' fill='#1B998B' text-anchor='middle' dominant-baseline='middle' font-family='DejaVu Sans Mono,monospace'>new charge written back every clock (one LIF step)</text>
+<path d="M70,150 L665,150 L665,232" fill="none" stroke="#5F6F78" stroke-width="1.8" marker-end="url(#a)"/>
+<text x='80' y='142' font-size='12' fill='#5F6F78' text-anchor='middle' dominant-baseline='middle' font-family='DejaVu Sans Mono,monospace'>threshold</text>
+<path d="M1020,250 L1090,250" fill="none" stroke="#45606B" stroke-width="2.2" marker-end="url(#a)"/>
+<text x='24' y='446' font-size='13' fill='#5F6F78' text-anchor='start' dominant-baseline='middle' >register (holds state)  ⬤ operator (add / subtract)  ▭ shift = wiring  ▭ compare  ⬢ mux  — green = feedback path</text>
+</svg>

@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 330" font-family='DejaVu Sans,Arial,sans-serif'>
+<rect width="1120" height="330" fill="white"/>
+<defs><marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#45606B"/></marker></defs>
+<text x="24" y="34" font-size="26" font-weight="bold" fill="#0F2A33">Time-to-first-spike (TTFS): fire once, encode WHEN</text>
+<circle cx="30" cy="175" r="4" fill="#0F2A33"/>
+<text x='44' y='175' font-size='14' fill='#0F2A33' text-anchor='start' dominant-baseline='middle' font-family='DejaVu Sans Mono,monospace'>inputs I</text>
+<rect x="130" y="145" width="120" height="60" rx="7" fill="#D6E8F5" stroke="#0F2A33" stroke-width="2"/>
+<path d="M132,197 l10,-8 l0,16 z" fill="#0F2A33"/>
+<text x='190' y='168' font-size='16' fill='#0F2A33' text-anchor='middle' dominant-baseline='middle' font-weight='bold' >v</text>
+<text x='190' y='186' font-size='12' fill='#5F6F78' text-anchor='middle' dominant-baseline='middle' >charge</text>
+<path d="M60,175 L130,175" fill="none" stroke="#45606B" stroke-width="2.2" marker-end="url(#a)"/>
+<rect x="310" y="147" width="90" height="56" rx="4" fill="#EAF2F3" stroke="#0F2A33" stroke-width="2"/>
+<text x='355' y='175' font-size='15' fill='#0F2A33' text-anchor='middle' dominant-baseline='middle' font-weight='bold' >leak</text>
+<path d="M250,175 L310,175" fill="none" stroke="#45606B" stroke-width="2.2" marker-end="url(#a)"/>
+<circle cx="484" cy="175" r="22" fill="#FCE6C8" stroke="#0F2A33" stroke-width="2"/>
+<text x='484' y='175' font-size='18' fill='#0F2A33' text-anchor='middle' dominant-baseline='middle' font-weight='bold' >+</text>
+<path d="M400,175 L460,175" fill="none" stroke="#45606B" stroke-width="2.2" marker-end="url(#a)"/>
+<rect x="568" y="147" width="120" height="56" rx="4" fill="#FBD9DE" stroke="#0F2A33" stroke-width="2"/>
+<text x='628' y='175' font-size='16' fill='#0F2A33' text-anchor='middle' dominant-baseline='middle' font-weight='bold' >≥ th</text>
+<path d="M508,175 L568,175" fill="none" stroke="#45606B" stroke-width="2.2" marker-end="url(#a)"/>
+<rect x="748" y="145" width="110" height="60" rx="7" fill="#FDE7B8" stroke="#0F2A33" stroke-width="2"/>
+<path d="M750,197 l10,-8 l0,16 z" fill="#0F2A33"/>
+<text x='803' y='168' font-size='16' fill='#0F2A33' text-anchor='middle' dominant-baseline='middle' font-weight='bold' >timer</text>
+<text x='803' y='186' font-size='12' fill='#5F6F78' text-anchor='middle' dominant-baseline='middle' >latch t</text>
+<path d="M688,175 L748,175" fill="none" stroke="#45606B" stroke-width="2.2" marker-end="url(#a)"/>
+<circle cx="1090" cy="175" r="4" fill="#0F2A33"/>
+<text x='1076' y='175' font-size='14' fill='#0F2A33' text-anchor='end' dominant-baseline='middle' font-family='DejaVu Sans Mono,monospace'>spike</text>
+<path d="M858,175 L1090,175" fill="none" stroke="#45606B" stroke-width="2.2" marker-end="url(#a)"/>
+<rect x="790" y="60" width="300" height="40" rx="8" fill="#1B998B"/>
+<text x='940' y='80' font-size='15' fill='white' text-anchor='middle' dominant-baseline='middle' font-weight='bold' >fires at most ONCE per frame</text>
+<text x='30' y='290' font-size='13' fill='#5F6F78' text-anchor='start' dominant-baseline='middle' >LIF plus a small timer and a 'fired' latch: the neuron spikes at most once and the time carries the value.</text>
+<text x='30' y='308' font-size='13' fill='#5F6F78' text-anchor='start' dominant-baseline='middle' >Far fewer spike events -> lower switching power, at the cost of a timer per neuron (Zhou &amp; Li 2020).</text>
+</svg>

@@ -189,6 +189,8 @@ Outputs: `spk_valid` (one-cycle pulse) and `spikes[63:0]`. Parameters: `RATE_WIN
 
 ### 2.5 `snn_core`: the spiking network
 
+*The neuron datapath, animations and alternative neuron models: `docs/neuron_hdl.md`.*
+
 | signal | dir | width | meaning |
 |---|---|---|---|
 | `th1`, `th2` | in | 16, 16 | firing thresholds of the hidden and output layers |
