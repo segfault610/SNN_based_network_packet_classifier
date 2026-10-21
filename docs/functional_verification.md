@@ -1,5 +1,7 @@
 # Functional verification (xrun / Xcelium)
 
+> This page is the **top-level** module `snn_pkt_filter_asic` (T1–T10). For the per-level tables (single neuron, SNN core, encoder, parser, wrappers) see **`docs/verification_tables.md`**.
+
 **DUT:** `snn_pkt_filter_asic`, the ASIC top. It is the in-line firewall with a 2 KiB packet buffer and a 64→16→2 SNN.
 
 **Testbench:** `sim/asic/tb_snn_asic.sv`. A plain-language walk-through of the vectors, tests and waveform is in `docs/simulation_explained.md`.
