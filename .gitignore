@@ -54,15 +54,13 @@ fpga/tang9k/*.json
 fpga/tang9k/*.fs
 
 # ---------------------------------------------------------------- ASIC
-# keep synthesis/P&R reports; ignore only the heavy netlists / databases / layout
-asic/out/**/*_netlist.v
-asic/out/**/*.vgenus
+# keep synthesis/P&R reports AND synthesized netlists (*.v / *.vgenus);
+# ignore only non-netlist heavy derived data, databases and layout binaries
 asic/out/**/*.def
 asic/out/**/*.gds
 asic/out/**/*.sdf
 asic/out/**/*.spef
 asic/openlane/*/runs/
-asic/sky130/out/*_netlist.v
 *.enc
 *.enc.dat/
 fv/
