@@ -98,8 +98,8 @@ s = d.slide(section=S1, notes="LIF = Leaky Integrate-and-Fire. The leaky bucket:
             "fired spike is what goes to the next neuron, not the leaked charge.")
 title(s, "LIF = Leak, Integrate, Fire", sub="The neuron model our chip uses, shown as a leaky bucket")
 for i, n in enumerate([2, 3, 5, 6]):
-    x, y = 0.75 + (i % 2) * 6.25, 1.6 + (i // 2) * 2.52
-    picture(s, os.path.join(IMG, "neuron_step%d.png" % n), x, y, w=6.0,
+    x, y = 0.85 + (i % 2) * 6.25, 1.55 + (i // 2) * 2.68
+    picture(s, os.path.join(IMG, "neuron_step%d.png" % n), x, y, w=5.3,
             descr="LIF step %d" % n)
 
 # ===================================================== 6 LIF behaviour
@@ -248,6 +248,27 @@ table(s, 0.6, 1.55, 12.15, [4.0, 2.2, 2.0, 3.8], [
     [[("Ours", {"bold": True, "color": "B5761A"})], "ASIC/FPGA NIC", [("0", {"bold": True})], "SNN fused in the NIC datapath, line rate, 0 DSP"]],
     size=13, row_h=0.62)
 text(s, 0.6, 6.45, 12.15, 0.4, "Energy-efficient neuromorphic design: Na & Kim [Electronics 2025]; algorithm–hardware co-design: Nature Mach. Intell. 2026.", 12.5, GREY, italic=True)
+
+# ===================================================== 14b how it learns + honesty
+s = d.slide(notes="A reviewer will ask how the weights are found and how good it really is. The weights are learned "
+            "offline in PyTorch with surrogate gradients, quantisation-aware so the int8 weights run bit-exactly on "
+            "the chip. The honest caveat: results so far are on synthetic traffic, which is realistic per packet but "
+            "too cleanly separable, so the headline accuracy is an upper bound; real datasets come next.")
+title(s, "How it learns, and how good it really is")
+box(s, 0.6, 1.7, 6.0, 5.0, fill=PALE)
+text(s, 0.9, 1.9, 5.4, 0.5, "Training (offline, in PyTorch)", 19, BLUE, bold=True, font=HEAD)
+bullets(s, 0.9, 2.6, 5.4, 4.0, [
+    [("Only the weights are learned ", {"bold": True}), ("(int8: W1 64×16, W2 16×2, B2) — ~1.1 KB", {})],
+    [("Surrogate-gradient ", {"bold": True}), ("back-prop (spikes have no gradient) [Neftci, IEEE SPM 2019]", {})],
+    [("Quantisation-aware: ", {"bold": True}), ("the training math IS the integer hardware, so weights run bit-exactly on the chip — no accuracy lost", {})],
+    [("Load at run time ", {"bold": True}), ("(276 register writes); retrain without a new chip", {})]], size=14)
+box(s, 6.85, 1.7, 5.9, 5.0, fill=WHITE, line=AMBER, line_w=2)
+text(s, 7.15, 1.9, 5.4, 0.5, "Accuracy — the honest picture", 19, "B5761A", bold=True, font=HEAD)
+bullets(s, 7.15, 2.6, 5.4, 4.0, [
+    [("99.7% ", {"bold": True, "color": GREEN}), ("on SYNTHETIC traffic (0.19% false alarms)", {})],
+    [("But that is an upper bound: ", {"bold": True}), ("synthetic data is realistic per packet yet too cleanly separable (one header field alone classifies ~89%)", {})],
+    [("Real datasets (UNSW-NB15, CIC-IDS2017) next; ", {"bold": True}), ("published SNN-IDS on real data ≈ 90% [Alom & Taha, IJCNN 2017]", {})],
+    "Expect lower accuracy and more false positives on real traffic — stated honestly for review"], size=14)
 
 # ===================================================== 15 references
 s = d.slide(dark=True, notes="References: four journal papers and four conference papers, plus the two datasets.")
