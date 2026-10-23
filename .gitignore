@@ -95,3 +95,6 @@ sw/cv96/tools/cosim/build.log
 *~
 .DS_Store
 *.vstf
+
+# generated review deliverables (not the copyrighted Papers)
+!docs/*.pdf
