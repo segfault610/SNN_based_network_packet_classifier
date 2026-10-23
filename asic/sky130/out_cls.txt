@@ -1,0 +1,13 @@
+Warning: Replacing memory \p_q with list of registers. See ../../rtl/snn_core.v:239
+Warning: Replacing memory \cnt with list of registers. See ../../rtl/snn_core.v:180
+Warning: Replacing memory \v2 with list of registers. See ../../rtl/snn_core.v:179
+Warning: Replacing memory \v1 with list of registers. See ../../rtl/snn_core.v:176
+Warning: Replacing memory \acc with list of registers. See ../../rtl/snn_core.v:175
+Warning: Replacing memory \v2_n with list of registers. See ../../rtl/snn_core.v:151, ../../rtl/snn_core.v:150
+Warning: Replacing memory \i2 with list of registers. See ../../rtl/snn_core.v:149, ../../rtl/snn_core.v:147
+Warning: Replacing memory \l3 with list of registers. See ../../rtl/snn_core.v:146
+Warning: Replacing memory \l2 with list of registers. See ../../rtl/snn_core.v:146, ../../rtl/snn_core.v:144
+Warning: Replacing memory \l1 with list of registers. See ../../rtl/snn_core.v:144, ../../rtl/snn_core.v:142
+Warning: Replacing memory \m with list of registers. See ../../rtl/snn_core.v:142, ../../rtl/snn_core.v:140
+Warning: Replacing memory \v1_n with list of registers. See ../../rtl/snn_core.v:118, ../../rtl/snn_core.v:117
+ERROR: Module `sky130_fd_sc_hd__clkinv_1' is used with parameters but is not parametric!

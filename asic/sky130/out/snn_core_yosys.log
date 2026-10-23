@@ -1,0 +1,2666 @@
+
+ /----------------------------------------------------------------------------\
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |  Copyright (C) 2012 - 2026  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |  Distributed under an ISC-like license, type "license" to see terms        |
+ \----------------------------------------------------------------------------/
+ Yosys 0.64+68 (git sha1 413169663, clang++ 18.1.8 -fPIC -O3)
+
+-- Running command `
+  read_verilog ../../rtl/sync_fifo.v ../../rtl/pkt_parser.v ../../rtl/spike_encoder.v ../../rtl/snn_core.v ../../rtl/snn_classifier.v                ../../rtl/snn_pkt_filter.v ../../rtl/snn_pkt_filter_asic.v
+  synth -top snn_core -flatten
+  dfflibmap -liberty /usr/local/share/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+  abc -D 8000 -liberty /usr/local/share/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib -dont_use sky130_fd_sc_hd__lpflow_*
+  opt_clean -purge
+  tee -o out/snn_core_area.rpt stat -liberty /usr/local/share/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+  write_verilog -noattr out/snn_core_sky130_netlist.v' --
+
+1. Executing Verilog-2005 frontend: ../../rtl/sync_fifo.v
+Parsing Verilog input from `../../rtl/sync_fifo.v' to AST representation.
+Generating RTLIL representation for module `\sync_fifo'.
+Successfully finished Verilog frontend.
+
+2. Executing Verilog-2005 frontend: ../../rtl/pkt_parser.v
+Parsing Verilog input from `../../rtl/pkt_parser.v' to AST representation.
+Generating RTLIL representation for module `\pkt_parser'.
+Successfully finished Verilog frontend.
+
+3. Executing Verilog-2005 frontend: ../../rtl/spike_encoder.v
+Parsing Verilog input from `../../rtl/spike_encoder.v' to AST representation.
+Generating RTLIL representation for module `\spike_encoder'.
+Successfully finished Verilog frontend.
+
+4. Executing Verilog-2005 frontend: ../../rtl/snn_core.v
+Parsing Verilog input from `../../rtl/snn_core.v' to AST representation.
+Generating RTLIL representation for module `\snn_core'.
+Warning: Replacing memory \p_q with list of registers. See ../../rtl/snn_core.v:239
+Warning: Replacing memory \cnt with list of registers. See ../../rtl/snn_core.v:180
+Warning: Replacing memory \v2 with list of registers. See ../../rtl/snn_core.v:179
+Warning: Replacing memory \v1 with list of registers. See ../../rtl/snn_core.v:176
+Warning: Replacing memory \acc with list of registers. See ../../rtl/snn_core.v:175
+Warning: Replacing memory \v2_n with list of registers. See ../../rtl/snn_core.v:151, ../../rtl/snn_core.v:150
+Warning: Replacing memory \i2 with list of registers. See ../../rtl/snn_core.v:149, ../../rtl/snn_core.v:147
+Warning: Replacing memory \l3 with list of registers. See ../../rtl/snn_core.v:146
+Warning: Replacing memory \l2 with list of registers. See ../../rtl/snn_core.v:146, ../../rtl/snn_core.v:144
+Warning: Replacing memory \l1 with list of registers. See ../../rtl/snn_core.v:144, ../../rtl/snn_core.v:142
+Warning: Replacing memory \m with list of registers. See ../../rtl/snn_core.v:142, ../../rtl/snn_core.v:140
+Warning: Replacing memory \v1_n with list of registers. See ../../rtl/snn_core.v:118, ../../rtl/snn_core.v:117
+Successfully finished Verilog frontend.
+
+5. Executing Verilog-2005 frontend: ../../rtl/snn_classifier.v
+Parsing Verilog input from `../../rtl/snn_classifier.v' to AST representation.
+Generating RTLIL representation for module `\snn_classifier'.
+Successfully finished Verilog frontend.
+
+6. Executing Verilog-2005 frontend: ../../rtl/snn_pkt_filter.v
+Parsing Verilog input from `../../rtl/snn_pkt_filter.v' to AST representation.
+Generating RTLIL representation for module `\snn_pkt_filter'.
+Successfully finished Verilog frontend.
+
+7. Executing Verilog-2005 frontend: ../../rtl/snn_pkt_filter_asic.v
+Parsing Verilog input from `../../rtl/snn_pkt_filter_asic.v' to AST representation.
+Generating RTLIL representation for module `\snn_pkt_filter_asic'.
+Successfully finished Verilog frontend.
+
+8. Executing SYNTH pass.
+
+8.1. Executing HIERARCHY pass (managing design hierarchy).
+
+8.1.1. Analyzing design hierarchy..
+Top module:  \snn_core
+
+8.1.2. Analyzing design hierarchy..
+Top module:  \snn_core
+Removing unused module `\snn_pkt_filter_asic'.
+Removing unused module `\snn_pkt_filter'.
+Removing unused module `\snn_classifier'.
+Removing unused module `\spike_encoder'.
+Removing unused module `\pkt_parser'.
+Removing unused module `\sync_fifo'.
+Removed 6 unused modules.
+
+8.2. Executing PROC pass (convert processes to netlists).
+
+8.2.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+8.2.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 1 switch rules as full_case in process $proc$../../rtl/snn_core.v:74$449 in module snn_core.
+Marked 1 switch rules as full_case in process $proc$../../rtl/snn_core.v:74$439 in module snn_core.
+Marked 1 switch rules as full_case in process $proc$../../rtl/snn_core.v:74$429 in module snn_core.
+Marked 1 switch rules as full_case in process $proc$../../rtl/snn_core.v:74$419 in module snn_core.
+Removed 1 dead cases from process $proc$../../rtl/snn_core.v:157$347 in module snn_core.
+Marked 7 switch rules as full_case in process $proc$../../rtl/snn_core.v:157$347 in module snn_core.
+Marked 64 switch rules as full_case in process $proc$../../rtl/snn_core.v:88$206 in module snn_core.
+Removed a total of 1 dead cases.
+
+8.2.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 1 redundant assignment.
+Promoted 121 assignments to connections.
+
+8.2.4. Executing PROC_INIT pass (extract init attributes).
+
+8.2.5. Executing PROC_ARST pass (detect async resets in processes).
+
+8.2.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~85 debug messages>
+
+8.2.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\snn_core.$proc$../../rtl/snn_core.v:74$449'.
+     1/4: $1$memwr$\g_w1[3].bank$../../rtl/snn_core.v:76$205_EN[31:0]$457
+     2/4: $1$memwr$\g_w1[3].bank$../../rtl/snn_core.v:76$205_DATA[31:0]$456
+     3/4: $1$memwr$\g_w1[3].bank$../../rtl/snn_core.v:76$205_ADDR[5:0]$455
+     4/4: $0\g_w1[3].q[31:0]
+Creating decoders for process `\snn_core.$proc$../../rtl/snn_core.v:74$439'.
+     1/4: $1$memwr$\g_w1[2].bank$../../rtl/snn_core.v:76$204_EN[31:0]$447
+     2/4: $1$memwr$\g_w1[2].bank$../../rtl/snn_core.v:76$204_DATA[31:0]$446
+     3/4: $1$memwr$\g_w1[2].bank$../../rtl/snn_core.v:76$204_ADDR[5:0]$445
+     4/4: $0\g_w1[2].q[31:0]
+Creating decoders for process `\snn_core.$proc$../../rtl/snn_core.v:74$429'.
+     1/4: $1$memwr$\g_w1[1].bank$../../rtl/snn_core.v:76$203_EN[31:0]$437
+     2/4: $1$memwr$\g_w1[1].bank$../../rtl/snn_core.v:76$203_DATA[31:0]$436
+     3/4: $1$memwr$\g_w1[1].bank$../../rtl/snn_core.v:76$203_ADDR[5:0]$435
+     4/4: $0\g_w1[1].q[31:0]
+Creating decoders for process `\snn_core.$proc$../../rtl/snn_core.v:74$419'.
+     1/4: $1$memwr$\g_w1[0].bank$../../rtl/snn_core.v:76$202_EN[31:0]$427
+     2/4: $1$memwr$\g_w1[0].bank$../../rtl/snn_core.v:76$202_DATA[31:0]$426
+     3/4: $1$memwr$\g_w1[0].bank$../../rtl/snn_core.v:76$202_ADDR[5:0]$425
+     4/4: $0\g_w1[0].q[31:0]
+Creating decoders for process `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+     1/70: $5\o[31:0]
+     2/70: $8\k[31:0]
+     3/70: $7\k[31:0]
+     4/70: $4$lookahead\pend$346[63:0]$356
+     5/70: $3$bitselwrite$pos$../../rtl/snn_core.v:210$201[5:0]$355
+     6/70: $4\o[31:0]
+     7/70: $6\k[31:0]
+     8/70: $3$lookahead\pend$346[63:0]$354
+     9/70: $2$lookahead\pend$346[63:0]$353
+    10/70: $5\k[31:0]
+    11/70: $3\o[31:0]
+    12/70: $2$bitselwrite$pos$../../rtl/snn_core.v:210$201[5:0]$352
+    13/70: $2\o[31:0]
+    14/70: $4\k[31:0]
+    15/70: $1$lookahead\pend$346[63:0]$351
+    16/70: $0\rd_en[0:0]
+    17/70: $1$bitselwrite$pos$../../rtl/snn_core.v:210$201[5:0]$350
+    18/70: $0\p_q[3][19:0]
+    19/70: $0\p_q[2][19:0]
+    20/70: $0\p_q[1][19:0]
+    21/70: $0\p_q[0][19:0]
+    22/70: $0\cnt[1][3:0]
+    23/70: $0\cnt[0][3:0]
+    24/70: $0\v2[1][19:0]
+    25/70: $0\v2[0][19:0]
+    26/70: $0\v1[15][19:0]
+    27/70: $0\v1[14][19:0]
+    28/70: $0\v1[13][19:0]
+    29/70: $0\v1[12][19:0]
+    30/70: $0\v1[11][19:0]
+    31/70: $0\v1[10][19:0]
+    32/70: $0\v1[9][19:0]
+    33/70: $0\v1[8][19:0]
+    34/70: $0\v1[7][19:0]
+    35/70: $0\v1[6][19:0]
+    36/70: $0\v1[5][19:0]
+    37/70: $0\v1[4][19:0]
+    38/70: $0\v1[3][19:0]
+    39/70: $0\v1[2][19:0]
+    40/70: $0\v1[1][19:0]
+    41/70: $0\v1[0][19:0]
+    42/70: $0\acc[15][19:0]
+    43/70: $0\acc[14][19:0]
+    44/70: $0\acc[13][19:0]
+    45/70: $0\acc[12][19:0]
+    46/70: $0\acc[11][19:0]
+    47/70: $0\acc[10][19:0]
+    48/70: $0\acc[9][19:0]
+    49/70: $0\acc[8][19:0]
+    50/70: $0\acc[7][19:0]
+    51/70: $0\acc[6][19:0]
+    52/70: $0\acc[5][19:0]
+    53/70: $0\acc[4][19:0]
+    54/70: $0\acc[3][19:0]
+    55/70: $0\acc[2][19:0]
+    56/70: $0\acc[1][19:0]
+    57/70: $0\acc[0][19:0]
+    58/70: $0\p_vld[0:0]
+    59/70: $0\tag[15:0]
+    60/70: $0\t[3:0]
+    61/70: $0\rd_vld[0:0]
+    62/70: $0\s1_vld[0:0]
+    63/70: $0\s1_q[15:0]
+    64/70: $0\rd_row[5:0]
+    65/70: $0\state[1:0]
+    66/70: $0\out_tag[15:0]
+    67/70: $0\out_cnt1[3:0]
+    68/70: $0\out_cnt0[3:0]
+    69/70: $0\out_mal[0:0]
+    70/70: $0\out_valid[0:0]
+Creating decoders for process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+Creating decoders for process `\snn_core.$proc$../../rtl/snn_core.v:115$207'.
+Creating decoders for process `\snn_core.$proc$../../rtl/snn_core.v:88$206'.
+     1/128: $64\pany[0:0]
+     2/128: $64\pidx[5:0]
+     3/128: $63\pany[0:0]
+     4/128: $63\pidx[5:0]
+     5/128: $62\pany[0:0]
+     6/128: $62\pidx[5:0]
+     7/128: $61\pany[0:0]
+     8/128: $61\pidx[5:0]
+     9/128: $60\pany[0:0]
+    10/128: $60\pidx[5:0]
+    11/128: $59\pany[0:0]
+    12/128: $59\pidx[5:0]
+    13/128: $58\pany[0:0]
+    14/128: $58\pidx[5:0]
+    15/128: $57\pany[0:0]
+    16/128: $57\pidx[5:0]
+    17/128: $56\pany[0:0]
+    18/128: $56\pidx[5:0]
+    19/128: $55\pany[0:0]
+    20/128: $55\pidx[5:0]
+    21/128: $54\pany[0:0]
+    22/128: $54\pidx[5:0]
+    23/128: $53\pany[0:0]
+    24/128: $53\pidx[5:0]
+    25/128: $52\pany[0:0]
+    26/128: $52\pidx[5:0]
+    27/128: $51\pany[0:0]
+    28/128: $51\pidx[5:0]
+    29/128: $50\pany[0:0]
+    30/128: $50\pidx[5:0]
+    31/128: $49\pany[0:0]
+    32/128: $49\pidx[5:0]
+    33/128: $48\pany[0:0]
+    34/128: $48\pidx[5:0]
+    35/128: $47\pany[0:0]
+    36/128: $47\pidx[5:0]
+    37/128: $46\pany[0:0]
+    38/128: $46\pidx[5:0]
+    39/128: $45\pany[0:0]
+    40/128: $45\pidx[5:0]
+    41/128: $44\pany[0:0]
+    42/128: $44\pidx[5:0]
+    43/128: $43\pany[0:0]
+    44/128: $43\pidx[5:0]
+    45/128: $42\pany[0:0]
+    46/128: $42\pidx[5:0]
+    47/128: $41\pany[0:0]
+    48/128: $41\pidx[5:0]
+    49/128: $40\pany[0:0]
+    50/128: $40\pidx[5:0]
+    51/128: $39\pany[0:0]
+    52/128: $39\pidx[5:0]
+    53/128: $38\pany[0:0]
+    54/128: $38\pidx[5:0]
+    55/128: $37\pany[0:0]
+    56/128: $37\pidx[5:0]
+    57/128: $36\pany[0:0]
+    58/128: $36\pidx[5:0]
+    59/128: $35\pany[0:0]
+    60/128: $35\pidx[5:0]
+    61/128: $34\pany[0:0]
+    62/128: $34\pidx[5:0]
+    63/128: $33\pany[0:0]
+    64/128: $33\pidx[5:0]
+    65/128: $32\pany[0:0]
+    66/128: $32\pidx[5:0]
+    67/128: $31\pany[0:0]
+    68/128: $31\pidx[5:0]
+    69/128: $30\pany[0:0]
+    70/128: $30\pidx[5:0]
+    71/128: $29\pany[0:0]
+    72/128: $29\pidx[5:0]
+    73/128: $28\pany[0:0]
+    74/128: $28\pidx[5:0]
+    75/128: $27\pany[0:0]
+    76/128: $27\pidx[5:0]
+    77/128: $26\pany[0:0]
+    78/128: $26\pidx[5:0]
+    79/128: $25\pany[0:0]
+    80/128: $25\pidx[5:0]
+    81/128: $24\pany[0:0]
+    82/128: $24\pidx[5:0]
+    83/128: $23\pany[0:0]
+    84/128: $23\pidx[5:0]
+    85/128: $22\pany[0:0]
+    86/128: $22\pidx[5:0]
+    87/128: $21\pany[0:0]
+    88/128: $21\pidx[5:0]
+    89/128: $20\pany[0:0]
+    90/128: $20\pidx[5:0]
+    91/128: $19\pany[0:0]
+    92/128: $19\pidx[5:0]
+    93/128: $18\pany[0:0]
+    94/128: $18\pidx[5:0]
+    95/128: $17\pany[0:0]
+    96/128: $17\pidx[5:0]
+    97/128: $16\pany[0:0]
+    98/128: $16\pidx[5:0]
+    99/128: $15\pany[0:0]
+   100/128: $15\pidx[5:0]
+   101/128: $14\pany[0:0]
+   102/128: $14\pidx[5:0]
+   103/128: $13\pany[0:0]
+   104/128: $13\pidx[5:0]
+   105/128: $12\pany[0:0]
+   106/128: $12\pidx[5:0]
+   107/128: $11\pany[0:0]
+   108/128: $11\pidx[5:0]
+   109/128: $10\pany[0:0]
+   110/128: $10\pidx[5:0]
+   111/128: $9\pany[0:0]
+   112/128: $9\pidx[5:0]
+   113/128: $8\pany[0:0]
+   114/128: $8\pidx[5:0]
+   115/128: $7\pany[0:0]
+   116/128: $7\pidx[5:0]
+   117/128: $6\pany[0:0]
+   118/128: $6\pidx[5:0]
+   119/128: $5\pany[0:0]
+   120/128: $5\pidx[5:0]
+   121/128: $4\pany[0:0]
+   122/128: $4\pidx[5:0]
+   123/128: $3\pany[0:0]
+   124/128: $3\pidx[5:0]
+   125/128: $2\pany[0:0]
+   126/128: $2\pidx[5:0]
+   127/128: $1\pany[0:0]
+   128/128: $1\pidx[5:0]
+
+8.2.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `\snn_core.\o' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\k' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\s2_n' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\m[0]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\m[1]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\m[2]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\m[3]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\m[4]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\m[5]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\m[6]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\m[7]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\m[8]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\m[9]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\m[10]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\m[11]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\m[12]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\m[13]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\m[14]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\m[15]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\m[16]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\m[17]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\m[18]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\m[19]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\m[20]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\m[21]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\m[22]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\m[23]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\m[24]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\m[25]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\m[26]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\m[27]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\m[28]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\m[29]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\m[30]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\m[31]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\l1[0]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\l1[1]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\l1[2]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\l1[3]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\l1[4]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\l1[5]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\l1[6]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\l1[7]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\l1[8]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\l1[9]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\l1[10]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\l1[11]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\l1[12]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\l1[13]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\l1[14]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\l1[15]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\l2[0]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\l2[1]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\l2[2]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\l2[3]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\l2[4]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\l2[5]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\l2[6]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\l2[7]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\l3[0]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\l3[1]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\l3[2]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\l3[3]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\i2[0]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\i2[1]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\v2_n[0]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\v2_n[1]' from process `\snn_core.$proc$../../rtl/snn_core.v:137$272'.
+No latch inferred for signal `\snn_core.\k' from process `\snn_core.$proc$../../rtl/snn_core.v:115$207'.
+No latch inferred for signal `\snn_core.\s1_n' from process `\snn_core.$proc$../../rtl/snn_core.v:115$207'.
+No latch inferred for signal `\snn_core.\v1_n[0]' from process `\snn_core.$proc$../../rtl/snn_core.v:115$207'.
+No latch inferred for signal `\snn_core.\v1_n[1]' from process `\snn_core.$proc$../../rtl/snn_core.v:115$207'.
+No latch inferred for signal `\snn_core.\v1_n[2]' from process `\snn_core.$proc$../../rtl/snn_core.v:115$207'.
+No latch inferred for signal `\snn_core.\v1_n[3]' from process `\snn_core.$proc$../../rtl/snn_core.v:115$207'.
+No latch inferred for signal `\snn_core.\v1_n[4]' from process `\snn_core.$proc$../../rtl/snn_core.v:115$207'.
+No latch inferred for signal `\snn_core.\v1_n[5]' from process `\snn_core.$proc$../../rtl/snn_core.v:115$207'.
+No latch inferred for signal `\snn_core.\v1_n[6]' from process `\snn_core.$proc$../../rtl/snn_core.v:115$207'.
+No latch inferred for signal `\snn_core.\v1_n[7]' from process `\snn_core.$proc$../../rtl/snn_core.v:115$207'.
+No latch inferred for signal `\snn_core.\v1_n[8]' from process `\snn_core.$proc$../../rtl/snn_core.v:115$207'.
+No latch inferred for signal `\snn_core.\v1_n[9]' from process `\snn_core.$proc$../../rtl/snn_core.v:115$207'.
+No latch inferred for signal `\snn_core.\v1_n[10]' from process `\snn_core.$proc$../../rtl/snn_core.v:115$207'.
+No latch inferred for signal `\snn_core.\v1_n[11]' from process `\snn_core.$proc$../../rtl/snn_core.v:115$207'.
+No latch inferred for signal `\snn_core.\v1_n[12]' from process `\snn_core.$proc$../../rtl/snn_core.v:115$207'.
+No latch inferred for signal `\snn_core.\v1_n[13]' from process `\snn_core.$proc$../../rtl/snn_core.v:115$207'.
+No latch inferred for signal `\snn_core.\v1_n[14]' from process `\snn_core.$proc$../../rtl/snn_core.v:115$207'.
+No latch inferred for signal `\snn_core.\v1_n[15]' from process `\snn_core.$proc$../../rtl/snn_core.v:115$207'.
+No latch inferred for signal `\snn_core.\k' from process `\snn_core.$proc$../../rtl/snn_core.v:88$206'.
+No latch inferred for signal `\snn_core.\pidx' from process `\snn_core.$proc$../../rtl/snn_core.v:88$206'.
+No latch inferred for signal `\snn_core.\pany' from process `\snn_core.$proc$../../rtl/snn_core.v:88$206'.
+
+8.2.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\snn_core.\g_w1[3].q' using process `\snn_core.$proc$../../rtl/snn_core.v:74$449'.
+  created $dff cell `$procdff$1774' with positive edge clock.
+Creating register for signal `\snn_core.$memwr$\g_w1[3].bank$../../rtl/snn_core.v:76$205_ADDR' using process `\snn_core.$proc$../../rtl/snn_core.v:74$449'.
+  created $dff cell `$procdff$1775' with positive edge clock.
+Creating register for signal `\snn_core.$memwr$\g_w1[3].bank$../../rtl/snn_core.v:76$205_DATA' using process `\snn_core.$proc$../../rtl/snn_core.v:74$449'.
+  created $dff cell `$procdff$1776' with positive edge clock.
+Creating register for signal `\snn_core.$memwr$\g_w1[3].bank$../../rtl/snn_core.v:76$205_EN' using process `\snn_core.$proc$../../rtl/snn_core.v:74$449'.
+  created $dff cell `$procdff$1777' with positive edge clock.
+Creating register for signal `\snn_core.\g_w1[2].q' using process `\snn_core.$proc$../../rtl/snn_core.v:74$439'.
+  created $dff cell `$procdff$1778' with positive edge clock.
+Creating register for signal `\snn_core.$memwr$\g_w1[2].bank$../../rtl/snn_core.v:76$204_ADDR' using process `\snn_core.$proc$../../rtl/snn_core.v:74$439'.
+  created $dff cell `$procdff$1779' with positive edge clock.
+Creating register for signal `\snn_core.$memwr$\g_w1[2].bank$../../rtl/snn_core.v:76$204_DATA' using process `\snn_core.$proc$../../rtl/snn_core.v:74$439'.
+  created $dff cell `$procdff$1780' with positive edge clock.
+Creating register for signal `\snn_core.$memwr$\g_w1[2].bank$../../rtl/snn_core.v:76$204_EN' using process `\snn_core.$proc$../../rtl/snn_core.v:74$439'.
+  created $dff cell `$procdff$1781' with positive edge clock.
+Creating register for signal `\snn_core.\g_w1[1].q' using process `\snn_core.$proc$../../rtl/snn_core.v:74$429'.
+  created $dff cell `$procdff$1782' with positive edge clock.
+Creating register for signal `\snn_core.$memwr$\g_w1[1].bank$../../rtl/snn_core.v:76$203_ADDR' using process `\snn_core.$proc$../../rtl/snn_core.v:74$429'.
+  created $dff cell `$procdff$1783' with positive edge clock.
+Creating register for signal `\snn_core.$memwr$\g_w1[1].bank$../../rtl/snn_core.v:76$203_DATA' using process `\snn_core.$proc$../../rtl/snn_core.v:74$429'.
+  created $dff cell `$procdff$1784' with positive edge clock.
+Creating register for signal `\snn_core.$memwr$\g_w1[1].bank$../../rtl/snn_core.v:76$203_EN' using process `\snn_core.$proc$../../rtl/snn_core.v:74$429'.
+  created $dff cell `$procdff$1785' with positive edge clock.
+Creating register for signal `\snn_core.\g_w1[0].q' using process `\snn_core.$proc$../../rtl/snn_core.v:74$419'.
+  created $dff cell `$procdff$1786' with positive edge clock.
+Creating register for signal `\snn_core.$memwr$\g_w1[0].bank$../../rtl/snn_core.v:76$202_ADDR' using process `\snn_core.$proc$../../rtl/snn_core.v:74$419'.
+  created $dff cell `$procdff$1787' with positive edge clock.
+Creating register for signal `\snn_core.$memwr$\g_w1[0].bank$../../rtl/snn_core.v:76$202_DATA' using process `\snn_core.$proc$../../rtl/snn_core.v:74$419'.
+  created $dff cell `$procdff$1788' with positive edge clock.
+Creating register for signal `\snn_core.$memwr$\g_w1[0].bank$../../rtl/snn_core.v:76$202_EN' using process `\snn_core.$proc$../../rtl/snn_core.v:74$419'.
+  created $dff cell `$procdff$1789' with positive edge clock.
+Creating register for signal `\snn_core.\o' using process `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+  created $dff cell `$procdff$1790' with positive edge clock.
+Creating register for signal `\snn_core.\rd_en' using process `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+  created $dff cell `$procdff$1791' with positive edge clock.
+Creating register for signal `\snn_core.\out_valid' using process `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+  created $dff cell `$procdff$1792' with positive edge clock.
+Creating register for signal `\snn_core.\out_mal' using process `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+  created $dff cell `$procdff$1793' with positive edge clock.
+Creating register for signal `\snn_core.\out_cnt0' using process `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+  created $dff cell `$procdff$1794' with positive edge clock.
+Creating register for signal `\snn_core.\out_cnt1' using process `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+  created $dff cell `$procdff$1795' with positive edge clock.
+Creating register for signal `\snn_core.\out_tag' using process `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+  created $dff cell `$procdff$1796' with positive edge clock.
+Creating register for signal `\snn_core.\state' using process `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+  created $dff cell `$procdff$1797' with positive edge clock.
+Creating register for signal `\snn_core.\rd_row' using process `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+  created $dff cell `$procdff$1798' with positive edge clock.
+Creating register for signal `\snn_core.\k' using process `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+  created $dff cell `$procdff$1799' with positive edge clock.
+Creating register for signal `\snn_core.\pend' using process `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+  created $dff cell `$procdff$1800' with positive edge clock.
+Creating register for signal `\snn_core.\s1_q' using process `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+  created $dff cell `$procdff$1801' with positive edge clock.
+Creating register for signal `\snn_core.\s1_vld' using process `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+  created $dff cell `$procdff$1802' with positive edge clock.
+Creating register for signal `\snn_core.\rd_vld' using process `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+  created $dff cell `$procdff$1803' with positive edge clock.
+Creating register for signal `\snn_core.\t' using process `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+  created $dff cell `$procdff$1804' with positive edge clock.
+Creating register for signal `\snn_core.\tag' using process `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+  created $dff cell `$procdff$1805' with positive edge clock.
+Creating register for signal `\snn_core.\p_vld' using process `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+  created $dff cell `$procdff$1806' with positive edge clock.
+Creating register for signal `\snn_core.\acc[0]' using process `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+  created $dff cell `$procdff$1807' with positive edge clock.
+Creating register for signal `\snn_core.\acc[1]' using process `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+  created $dff cell `$procdff$1808' with positive edge clock.
+Creating register for signal `\snn_core.\acc[2]' using process `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+  created $dff cell `$procdff$1809' with positive edge clock.
+Creating register for signal `\snn_core.\acc[3]' using process `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+  created $dff cell `$procdff$1810' with positive edge clock.
+Creating register for signal `\snn_core.\acc[4]' using process `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+  created $dff cell `$procdff$1811' with positive edge clock.
+Creating register for signal `\snn_core.\acc[5]' using process `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+  created $dff cell `$procdff$1812' with positive edge clock.
+Creating register for signal `\snn_core.\acc[6]' using process `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+  created $dff cell `$procdff$1813' with positive edge clock.
+Creating register for signal `\snn_core.\acc[7]' using process `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+  created $dff cell `$procdff$1814' with positive edge clock.
+Creating register for signal `\snn_core.\acc[8]' using process `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+  created $dff cell `$procdff$1815' with positive edge clock.
+Creating register for signal `\snn_core.\acc[9]' using process `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+  created $dff cell `$procdff$1816' with positive edge clock.
+Creating register for signal `\snn_core.\acc[10]' using process `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+  created $dff cell `$procdff$1817' with positive edge clock.
+Creating register for signal `\snn_core.\acc[11]' using process `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+  created $dff cell `$procdff$1818' with positive edge clock.
+Creating register for signal `\snn_core.\acc[12]' using process `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+  created $dff cell `$procdff$1819' with positive edge clock.
+Creating register for signal `\snn_core.\acc[13]' using process `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+  created $dff cell `$procdff$1820' with positive edge clock.
+Creating register for signal `\snn_core.\acc[14]' using process `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+  created $dff cell `$procdff$1821' with positive edge clock.
+Creating register for signal `\snn_core.\acc[15]' using process `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+  created $dff cell `$procdff$1822' with positive edge clock.
+Creating register for signal `\snn_core.\v1[0]' using process `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+  created $dff cell `$procdff$1823' with positive edge clock.
+Creating register for signal `\snn_core.\v1[1]' using process `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+  created $dff cell `$procdff$1824' with positive edge clock.
+Creating register for signal `\snn_core.\v1[2]' using process `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+  created $dff cell `$procdff$1825' with positive edge clock.
+Creating register for signal `\snn_core.\v1[3]' using process `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+  created $dff cell `$procdff$1826' with positive edge clock.
+Creating register for signal `\snn_core.\v1[4]' using process `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+  created $dff cell `$procdff$1827' with positive edge clock.
+Creating register for signal `\snn_core.\v1[5]' using process `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+  created $dff cell `$procdff$1828' with positive edge clock.
+Creating register for signal `\snn_core.\v1[6]' using process `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+  created $dff cell `$procdff$1829' with positive edge clock.
+Creating register for signal `\snn_core.\v1[7]' using process `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+  created $dff cell `$procdff$1830' with positive edge clock.
+Creating register for signal `\snn_core.\v1[8]' using process `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+  created $dff cell `$procdff$1831' with positive edge clock.
+Creating register for signal `\snn_core.\v1[9]' using process `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+  created $dff cell `$procdff$1832' with positive edge clock.
+Creating register for signal `\snn_core.\v1[10]' using process `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+  created $dff cell `$procdff$1833' with positive edge clock.
+Creating register for signal `\snn_core.\v1[11]' using process `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+  created $dff cell `$procdff$1834' with positive edge clock.
+Creating register for signal `\snn_core.\v1[12]' using process `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+  created $dff cell `$procdff$1835' with positive edge clock.
+Creating register for signal `\snn_core.\v1[13]' using process `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+  created $dff cell `$procdff$1836' with positive edge clock.
+Creating register for signal `\snn_core.\v1[14]' using process `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+  created $dff cell `$procdff$1837' with positive edge clock.
+Creating register for signal `\snn_core.\v1[15]' using process `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+  created $dff cell `$procdff$1838' with positive edge clock.
+Creating register for signal `\snn_core.\v2[0]' using process `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+  created $dff cell `$procdff$1839' with positive edge clock.
+Creating register for signal `\snn_core.\v2[1]' using process `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+  created $dff cell `$procdff$1840' with positive edge clock.
+Creating register for signal `\snn_core.\cnt[0]' using process `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+  created $dff cell `$procdff$1841' with positive edge clock.
+Creating register for signal `\snn_core.\cnt[1]' using process `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+  created $dff cell `$procdff$1842' with positive edge clock.
+Creating register for signal `\snn_core.\p_q[0]' using process `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+  created $dff cell `$procdff$1843' with positive edge clock.
+Creating register for signal `\snn_core.\p_q[1]' using process `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+  created $dff cell `$procdff$1844' with positive edge clock.
+Creating register for signal `\snn_core.\p_q[2]' using process `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+  created $dff cell `$procdff$1845' with positive edge clock.
+Creating register for signal `\snn_core.\p_q[3]' using process `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+  created $dff cell `$procdff$1846' with positive edge clock.
+
+8.2.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+8.2.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 2 empty switches in `\snn_core.$proc$../../rtl/snn_core.v:74$449'.
+Removing empty process `snn_core.$proc$../../rtl/snn_core.v:74$449'.
+Found and cleaned up 2 empty switches in `\snn_core.$proc$../../rtl/snn_core.v:74$439'.
+Removing empty process `snn_core.$proc$../../rtl/snn_core.v:74$439'.
+Found and cleaned up 2 empty switches in `\snn_core.$proc$../../rtl/snn_core.v:74$429'.
+Removing empty process `snn_core.$proc$../../rtl/snn_core.v:74$429'.
+Found and cleaned up 2 empty switches in `\snn_core.$proc$../../rtl/snn_core.v:74$419'.
+Removing empty process `snn_core.$proc$../../rtl/snn_core.v:74$419'.
+Found and cleaned up 13 empty switches in `\snn_core.$proc$../../rtl/snn_core.v:157$347'.
+Removing empty process `snn_core.$proc$../../rtl/snn_core.v:157$347'.
+Removing empty process `snn_core.$proc$../../rtl/snn_core.v:137$272'.
+Removing empty process `snn_core.$proc$../../rtl/snn_core.v:115$207'.
+Found and cleaned up 64 empty switches in `\snn_core.$proc$../../rtl/snn_core.v:88$206'.
+Removing empty process `snn_core.$proc$../../rtl/snn_core.v:88$206'.
+Cleaned up 85 empty switches.
+
+8.2.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module snn_core.
+<suppressed ~55 debug messages>
+
+8.3. Executing FLATTEN pass (flatten design).
+
+8.4. Executing OPT_EXPR pass (perform const folding).
+Optimizing module snn_core.
+
+8.5. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \snn_core..
+Removed 58 unused cells and 794 unused wires.
+<suppressed ~59 debug messages>
+
+8.6. Executing CHECK pass (checking for obvious problems).
+Checking module snn_core...
+Found and reported 0 problems.
+
+8.7. Executing OPT pass (performing simple optimizations).
+
+8.7.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module snn_core.
+
+8.7.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\snn_core'.
+Computing hashes of 731 cells of `\snn_core'.
+Finding duplicate cells in `\snn_core'.
+Computing hashes of 630 cells of `\snn_core'.
+Finding duplicate cells in `\snn_core'.
+<suppressed ~303 debug messages>
+Removed a total of 101 cells.
+
+8.7.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \snn_core..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+      Replacing known input bits on port B of cell $procmux$1381: \out_valid -> 1'1
+  Analyzing evaluation results.
+    dead port 1/2 on $mux $procmux$702.
+    dead port 1/2 on $mux $procmux$694.
+    dead port 2/2 on $mux $procmux$691.
+    dead port 1/2 on $mux $procmux$651.
+    dead port 2/2 on $mux $procmux$648.
+Removed 5 multiplexer ports.
+<suppressed ~510 debug messages>
+
+8.7.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \snn_core.
+    New ctrl vector for $pmux cell $procmux$696: { $procmux$1349_CMP $procmux$1345_CMP $auto$opt_reduce.cc:137:opt_pmux$1852 }
+    Consolidated identical input bits for $mux cell $procmux$606:
+      Old ports: A=0, B=32'11111111111111111111111111111111, Y=$0$memwr$\g_w1[0].bank$../../rtl/snn_core.v:76$202_EN[31:0]$422
+      New ports: A=1'0, B=1'1, Y=$0$memwr$\g_w1[0].bank$../../rtl/snn_core.v:76$202_EN[31:0]$422 [0]
+      New connections: $0$memwr$\g_w1[0].bank$../../rtl/snn_core.v:76$202_EN[31:0]$422 [31:1] = { $0$memwr$\g_w1[0].bank$../../rtl/snn_core.v:76$202_EN[31:0]$422 [0] $0$memwr$\g_w1[0].bank$../../rtl/snn_core.v:76$202_EN[31:0]$422 [0] $0$memwr$\g_w1[0].bank$../../rtl/snn_core.v:76$202_EN[31:0]$422 [0] $0$memwr$\g_w1[0].bank$../../rtl/snn_core.v:76$202_EN[31:0]$422 [0] $0$memwr$\g_w1[0].bank$../../rtl/snn_core.v:76$202_EN[31:0]$422 [0] $0$memwr$\g_w1[0].bank$../../rtl/snn_core.v:76$202_EN[31:0]$422 [0] $0$memwr$\g_w1[0].bank$../../rtl/snn_core.v:76$202_EN[31:0]$422 [0] $0$memwr$\g_w1[0].bank$../../rtl/snn_core.v:76$202_EN[31:0]$422 [0] $0$memwr$\g_w1[0].bank$../../rtl/snn_core.v:76$202_EN[31:0]$422 [0] $0$memwr$\g_w1[0].bank$../../rtl/snn_core.v:76$202_EN[31:0]$422 [0] $0$memwr$\g_w1[0].bank$../../rtl/snn_core.v:76$202_EN[31:0]$422 [0] $0$memwr$\g_w1[0].bank$../../rtl/snn_core.v:76$202_EN[31:0]$422 [0] $0$memwr$\g_w1[0].bank$../../rtl/snn_core.v:76$202_EN[31:0]$422 [0] $0$memwr$\g_w1[0].bank$../../rtl/snn_core.v:76$202_EN[31:0]$422 [0] $0$memwr$\g_w1[0].bank$../../rtl/snn_core.v:76$202_EN[31:0]$422 [0] $0$memwr$\g_w1[0].bank$../../rtl/snn_core.v:76$202_EN[31:0]$422 [0] $0$memwr$\g_w1[0].bank$../../rtl/snn_core.v:76$202_EN[31:0]$422 [0] $0$memwr$\g_w1[0].bank$../../rtl/snn_core.v:76$202_EN[31:0]$422 [0] $0$memwr$\g_w1[0].bank$../../rtl/snn_core.v:76$202_EN[31:0]$422 [0] $0$memwr$\g_w1[0].bank$../../rtl/snn_core.v:76$202_EN[31:0]$422 [0] $0$memwr$\g_w1[0].bank$../../rtl/snn_core.v:76$202_EN[31:0]$422 [0] $0$memwr$\g_w1[0].bank$../../rtl/snn_core.v:76$202_EN[31:0]$422 [0] $0$memwr$\g_w1[0].bank$../../rtl/snn_core.v:76$202_EN[31:0]$422 [0] $0$memwr$\g_w1[0].bank$../../rtl/snn_core.v:76$202_EN[31:0]$422 [0] $0$memwr$\g_w1[0].bank$../../rtl/snn_core.v:76$202_EN[31:0]$422 [0] $0$memwr$\g_w1[0].bank$../../rtl/snn_core.v:76$202_EN[31:0]$422 [0] $0$memwr$\g_w1[0].bank$../../rtl/snn_core.v:76$202_EN[31:0]$422 [0] $0$memwr$\g_w1[0].bank$../../rtl/snn_core.v:76$202_EN[31:0]$422 [0] $0$memwr$\g_w1[0].bank$../../rtl/snn_core.v:76$202_EN[31:0]$422 [0] $0$memwr$\g_w1[0].bank$../../rtl/snn_core.v:76$202_EN[31:0]$422 [0] $0$memwr$\g_w1[0].bank$../../rtl/snn_core.v:76$202_EN[31:0]$422 [0] }
+    Consolidated identical input bits for $mux cell $procmux$595:
+      Old ports: A=0, B=32'11111111111111111111111111111111, Y=$0$memwr$\g_w1[1].bank$../../rtl/snn_core.v:76$203_EN[31:0]$432
+      New ports: A=1'0, B=1'1, Y=$0$memwr$\g_w1[1].bank$../../rtl/snn_core.v:76$203_EN[31:0]$432 [0]
+      New connections: $0$memwr$\g_w1[1].bank$../../rtl/snn_core.v:76$203_EN[31:0]$432 [31:1] = { $0$memwr$\g_w1[1].bank$../../rtl/snn_core.v:76$203_EN[31:0]$432 [0] $0$memwr$\g_w1[1].bank$../../rtl/snn_core.v:76$203_EN[31:0]$432 [0] $0$memwr$\g_w1[1].bank$../../rtl/snn_core.v:76$203_EN[31:0]$432 [0] $0$memwr$\g_w1[1].bank$../../rtl/snn_core.v:76$203_EN[31:0]$432 [0] $0$memwr$\g_w1[1].bank$../../rtl/snn_core.v:76$203_EN[31:0]$432 [0] $0$memwr$\g_w1[1].bank$../../rtl/snn_core.v:76$203_EN[31:0]$432 [0] $0$memwr$\g_w1[1].bank$../../rtl/snn_core.v:76$203_EN[31:0]$432 [0] $0$memwr$\g_w1[1].bank$../../rtl/snn_core.v:76$203_EN[31:0]$432 [0] $0$memwr$\g_w1[1].bank$../../rtl/snn_core.v:76$203_EN[31:0]$432 [0] $0$memwr$\g_w1[1].bank$../../rtl/snn_core.v:76$203_EN[31:0]$432 [0] $0$memwr$\g_w1[1].bank$../../rtl/snn_core.v:76$203_EN[31:0]$432 [0] $0$memwr$\g_w1[1].bank$../../rtl/snn_core.v:76$203_EN[31:0]$432 [0] $0$memwr$\g_w1[1].bank$../../rtl/snn_core.v:76$203_EN[31:0]$432 [0] $0$memwr$\g_w1[1].bank$../../rtl/snn_core.v:76$203_EN[31:0]$432 [0] $0$memwr$\g_w1[1].bank$../../rtl/snn_core.v:76$203_EN[31:0]$432 [0] $0$memwr$\g_w1[1].bank$../../rtl/snn_core.v:76$203_EN[31:0]$432 [0] $0$memwr$\g_w1[1].bank$../../rtl/snn_core.v:76$203_EN[31:0]$432 [0] $0$memwr$\g_w1[1].bank$../../rtl/snn_core.v:76$203_EN[31:0]$432 [0] $0$memwr$\g_w1[1].bank$../../rtl/snn_core.v:76$203_EN[31:0]$432 [0] $0$memwr$\g_w1[1].bank$../../rtl/snn_core.v:76$203_EN[31:0]$432 [0] $0$memwr$\g_w1[1].bank$../../rtl/snn_core.v:76$203_EN[31:0]$432 [0] $0$memwr$\g_w1[1].bank$../../rtl/snn_core.v:76$203_EN[31:0]$432 [0] $0$memwr$\g_w1[1].bank$../../rtl/snn_core.v:76$203_EN[31:0]$432 [0] $0$memwr$\g_w1[1].bank$../../rtl/snn_core.v:76$203_EN[31:0]$432 [0] $0$memwr$\g_w1[1].bank$../../rtl/snn_core.v:76$203_EN[31:0]$432 [0] $0$memwr$\g_w1[1].bank$../../rtl/snn_core.v:76$203_EN[31:0]$432 [0] $0$memwr$\g_w1[1].bank$../../rtl/snn_core.v:76$203_EN[31:0]$432 [0] $0$memwr$\g_w1[1].bank$../../rtl/snn_core.v:76$203_EN[31:0]$432 [0] $0$memwr$\g_w1[1].bank$../../rtl/snn_core.v:76$203_EN[31:0]$432 [0] $0$memwr$\g_w1[1].bank$../../rtl/snn_core.v:76$203_EN[31:0]$432 [0] $0$memwr$\g_w1[1].bank$../../rtl/snn_core.v:76$203_EN[31:0]$432 [0] }
+    Consolidated identical input bits for $mux cell $procmux$584:
+      Old ports: A=0, B=32'11111111111111111111111111111111, Y=$0$memwr$\g_w1[2].bank$../../rtl/snn_core.v:76$204_EN[31:0]$442
+      New ports: A=1'0, B=1'1, Y=$0$memwr$\g_w1[2].bank$../../rtl/snn_core.v:76$204_EN[31:0]$442 [0]
+      New connections: $0$memwr$\g_w1[2].bank$../../rtl/snn_core.v:76$204_EN[31:0]$442 [31:1] = { $0$memwr$\g_w1[2].bank$../../rtl/snn_core.v:76$204_EN[31:0]$442 [0] $0$memwr$\g_w1[2].bank$../../rtl/snn_core.v:76$204_EN[31:0]$442 [0] $0$memwr$\g_w1[2].bank$../../rtl/snn_core.v:76$204_EN[31:0]$442 [0] $0$memwr$\g_w1[2].bank$../../rtl/snn_core.v:76$204_EN[31:0]$442 [0] $0$memwr$\g_w1[2].bank$../../rtl/snn_core.v:76$204_EN[31:0]$442 [0] $0$memwr$\g_w1[2].bank$../../rtl/snn_core.v:76$204_EN[31:0]$442 [0] $0$memwr$\g_w1[2].bank$../../rtl/snn_core.v:76$204_EN[31:0]$442 [0] $0$memwr$\g_w1[2].bank$../../rtl/snn_core.v:76$204_EN[31:0]$442 [0] $0$memwr$\g_w1[2].bank$../../rtl/snn_core.v:76$204_EN[31:0]$442 [0] $0$memwr$\g_w1[2].bank$../../rtl/snn_core.v:76$204_EN[31:0]$442 [0] $0$memwr$\g_w1[2].bank$../../rtl/snn_core.v:76$204_EN[31:0]$442 [0] $0$memwr$\g_w1[2].bank$../../rtl/snn_core.v:76$204_EN[31:0]$442 [0] $0$memwr$\g_w1[2].bank$../../rtl/snn_core.v:76$204_EN[31:0]$442 [0] $0$memwr$\g_w1[2].bank$../../rtl/snn_core.v:76$204_EN[31:0]$442 [0] $0$memwr$\g_w1[2].bank$../../rtl/snn_core.v:76$204_EN[31:0]$442 [0] $0$memwr$\g_w1[2].bank$../../rtl/snn_core.v:76$204_EN[31:0]$442 [0] $0$memwr$\g_w1[2].bank$../../rtl/snn_core.v:76$204_EN[31:0]$442 [0] $0$memwr$\g_w1[2].bank$../../rtl/snn_core.v:76$204_EN[31:0]$442 [0] $0$memwr$\g_w1[2].bank$../../rtl/snn_core.v:76$204_EN[31:0]$442 [0] $0$memwr$\g_w1[2].bank$../../rtl/snn_core.v:76$204_EN[31:0]$442 [0] $0$memwr$\g_w1[2].bank$../../rtl/snn_core.v:76$204_EN[31:0]$442 [0] $0$memwr$\g_w1[2].bank$../../rtl/snn_core.v:76$204_EN[31:0]$442 [0] $0$memwr$\g_w1[2].bank$../../rtl/snn_core.v:76$204_EN[31:0]$442 [0] $0$memwr$\g_w1[2].bank$../../rtl/snn_core.v:76$204_EN[31:0]$442 [0] $0$memwr$\g_w1[2].bank$../../rtl/snn_core.v:76$204_EN[31:0]$442 [0] $0$memwr$\g_w1[2].bank$../../rtl/snn_core.v:76$204_EN[31:0]$442 [0] $0$memwr$\g_w1[2].bank$../../rtl/snn_core.v:76$204_EN[31:0]$442 [0] $0$memwr$\g_w1[2].bank$../../rtl/snn_core.v:76$204_EN[31:0]$442 [0] $0$memwr$\g_w1[2].bank$../../rtl/snn_core.v:76$204_EN[31:0]$442 [0] $0$memwr$\g_w1[2].bank$../../rtl/snn_core.v:76$204_EN[31:0]$442 [0] $0$memwr$\g_w1[2].bank$../../rtl/snn_core.v:76$204_EN[31:0]$442 [0] }
+    Consolidated identical input bits for $mux cell $procmux$573:
+      Old ports: A=0, B=32'11111111111111111111111111111111, Y=$0$memwr$\g_w1[3].bank$../../rtl/snn_core.v:76$205_EN[31:0]$452
+      New ports: A=1'0, B=1'1, Y=$0$memwr$\g_w1[3].bank$../../rtl/snn_core.v:76$205_EN[31:0]$452 [0]
+      New connections: $0$memwr$\g_w1[3].bank$../../rtl/snn_core.v:76$205_EN[31:0]$452 [31:1] = { $0$memwr$\g_w1[3].bank$../../rtl/snn_core.v:76$205_EN[31:0]$452 [0] $0$memwr$\g_w1[3].bank$../../rtl/snn_core.v:76$205_EN[31:0]$452 [0] $0$memwr$\g_w1[3].bank$../../rtl/snn_core.v:76$205_EN[31:0]$452 [0] $0$memwr$\g_w1[3].bank$../../rtl/snn_core.v:76$205_EN[31:0]$452 [0] $0$memwr$\g_w1[3].bank$../../rtl/snn_core.v:76$205_EN[31:0]$452 [0] $0$memwr$\g_w1[3].bank$../../rtl/snn_core.v:76$205_EN[31:0]$452 [0] $0$memwr$\g_w1[3].bank$../../rtl/snn_core.v:76$205_EN[31:0]$452 [0] $0$memwr$\g_w1[3].bank$../../rtl/snn_core.v:76$205_EN[31:0]$452 [0] $0$memwr$\g_w1[3].bank$../../rtl/snn_core.v:76$205_EN[31:0]$452 [0] $0$memwr$\g_w1[3].bank$../../rtl/snn_core.v:76$205_EN[31:0]$452 [0] $0$memwr$\g_w1[3].bank$../../rtl/snn_core.v:76$205_EN[31:0]$452 [0] $0$memwr$\g_w1[3].bank$../../rtl/snn_core.v:76$205_EN[31:0]$452 [0] $0$memwr$\g_w1[3].bank$../../rtl/snn_core.v:76$205_EN[31:0]$452 [0] $0$memwr$\g_w1[3].bank$../../rtl/snn_core.v:76$205_EN[31:0]$452 [0] $0$memwr$\g_w1[3].bank$../../rtl/snn_core.v:76$205_EN[31:0]$452 [0] $0$memwr$\g_w1[3].bank$../../rtl/snn_core.v:76$205_EN[31:0]$452 [0] $0$memwr$\g_w1[3].bank$../../rtl/snn_core.v:76$205_EN[31:0]$452 [0] $0$memwr$\g_w1[3].bank$../../rtl/snn_core.v:76$205_EN[31:0]$452 [0] $0$memwr$\g_w1[3].bank$../../rtl/snn_core.v:76$205_EN[31:0]$452 [0] $0$memwr$\g_w1[3].bank$../../rtl/snn_core.v:76$205_EN[31:0]$452 [0] $0$memwr$\g_w1[3].bank$../../rtl/snn_core.v:76$205_EN[31:0]$452 [0] $0$memwr$\g_w1[3].bank$../../rtl/snn_core.v:76$205_EN[31:0]$452 [0] $0$memwr$\g_w1[3].bank$../../rtl/snn_core.v:76$205_EN[31:0]$452 [0] $0$memwr$\g_w1[3].bank$../../rtl/snn_core.v:76$205_EN[31:0]$452 [0] $0$memwr$\g_w1[3].bank$../../rtl/snn_core.v:76$205_EN[31:0]$452 [0] $0$memwr$\g_w1[3].bank$../../rtl/snn_core.v:76$205_EN[31:0]$452 [0] $0$memwr$\g_w1[3].bank$../../rtl/snn_core.v:76$205_EN[31:0]$452 [0] $0$memwr$\g_w1[3].bank$../../rtl/snn_core.v:76$205_EN[31:0]$452 [0] $0$memwr$\g_w1[3].bank$../../rtl/snn_core.v:76$205_EN[31:0]$452 [0] $0$memwr$\g_w1[3].bank$../../rtl/snn_core.v:76$205_EN[31:0]$452 [0] $0$memwr$\g_w1[3].bank$../../rtl/snn_core.v:76$205_EN[31:0]$452 [0] }
+  Optimizing cells in module \snn_core.
+Performed a total of 6 changes.
+
+8.7.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\snn_core'.
+Computing hashes of 625 cells of `\snn_core'.
+Finding duplicate cells in `\snn_core'.
+Removed a total of 0 cells.
+
+8.7.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+8.7.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \snn_core..
+Removed 0 unused cells and 107 unused wires.
+<suppressed ~1 debug messages>
+
+8.7.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module snn_core.
+
+8.7.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+8.7.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \snn_core..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~504 debug messages>
+
+8.7.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \snn_core.
+Performed a total of 0 changes.
+
+8.7.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\snn_core'.
+Computing hashes of 625 cells of `\snn_core'.
+Finding duplicate cells in `\snn_core'.
+Removed a total of 0 cells.
+
+8.7.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+8.7.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \snn_core..
+
+8.7.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module snn_core.
+
+8.7.16. Finished fast OPT passes. (There is nothing left to do.)
+
+8.8. Executing FSM pass (extract and optimize FSM).
+
+8.8.1. Executing FSM_DETECT pass (finding FSMs in design).
+Not marking snn_core.rd_row as FSM state register:
+    Users of register don't seem to benefit from recoding.
+Found FSM state register snn_core.state.
+
+8.8.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+Extracting FSM `\state' from module `\snn_core'.
+  found $dff cell for state register: $procdff$1797
+  root of input selection tree: $0\state[1:0]
+  found reset state: 2'00 (guessed from mux tree)
+  found ctrl input: \rst
+  found ctrl input: $procmux$1339_CMP
+  found ctrl input: $procmux$1004_CMP
+  found ctrl input: $procmux$1044_CMP
+  found ctrl input: \in_ready
+  found ctrl input: \out_valid
+  found state code: 2'00
+  found ctrl input: $logic_and$../../rtl/snn_core.v:247$411_Y
+  found state code: 2'11
+  found ctrl input: $logic_and$../../rtl/snn_core.v:216$384_Y
+  found state code: 2'10
+  found ctrl input: \in_valid
+  found state code: 2'01
+  found ctrl output: $procmux$1004_CMP
+  found ctrl output: $procmux$1044_CMP
+  found ctrl output: \in_ready
+  found ctrl output: $procmux$1339_CMP
+  ctrl inputs: { $logic_and$../../rtl/snn_core.v:247$411_Y $logic_and$../../rtl/snn_core.v:216$384_Y \out_valid \in_valid \rst }
+  ctrl outputs: { $procmux$1339_CMP $procmux$1044_CMP $procmux$1004_CMP $0\state[1:0] \in_ready }
+  transition:       2'00 5'---00 ->       2'00 6'000001
+  transition:       2'00 5'---10 ->       2'01 6'000011
+  transition:       2'00 5'----1 ->       2'00 6'000001
+  transition:       2'10 5'0---0 ->       2'10 6'001100
+  transition:       2'10 5'1---0 ->       2'11 6'001110
+  transition:       2'10 5'----1 ->       2'00 6'001000
+  transition:       2'01 5'-0--0 ->       2'01 6'010010
+  transition:       2'01 5'-1--0 ->       2'10 6'010100
+  transition:       2'01 5'----1 ->       2'00 6'010000
+  transition:       2'11 5'--0-0 ->       2'00 6'100000
+  transition:       2'11 5'--1-0 ->       2'11 6'100110
+  transition:       2'11 5'----1 ->       2'00 6'100000
+
+8.8.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+Optimizing FSM `$fsm$\state$1853' from module `\snn_core'.
+
+8.8.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \snn_core..
+Removed 11 unused cells and 11 unused wires.
+<suppressed ~12 debug messages>
+
+8.8.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+Optimizing FSM `$fsm$\state$1853' from module `\snn_core'.
+  Removing unused output signal $0\state[1:0] [0].
+  Removing unused output signal $0\state[1:0] [1].
+
+8.8.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+Recoding FSM `$fsm$\state$1853' from module `\snn_core' using `auto' encoding:
+  mapping auto encoding to `one-hot` for this FSM.
+  00 -> ---1
+  10 -> --1-
+  01 -> -1--
+  11 -> 1---
+
+8.8.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+
+FSM `$fsm$\state$1853' from module `snn_core':
+-------------------------------------
+
+  Information on FSM $fsm$\state$1853 (\state):
+
+  Number of input signals:    5
+  Number of output signals:   4
+  Number of state bits:       4
+
+  Input signals:
+    0: \rst
+    1: \in_valid
+    2: \out_valid
+    3: $logic_and$../../rtl/snn_core.v:216$384_Y
+    4: $logic_and$../../rtl/snn_core.v:247$411_Y
+
+  Output signals:
+    0: \in_ready
+    1: $procmux$1004_CMP
+    2: $procmux$1044_CMP
+    3: $procmux$1339_CMP
+
+  State encoding:
+    0:     4'---1  <RESET STATE>
+    1:     4'--1-
+    2:     4'-1--
+    3:     4'1---
+
+  Transition Table (state_in, ctrl_in, state_out, ctrl_out):
+      0:     0 5'---00   ->     0 4'0001
+      1:     0 5'----1   ->     0 4'0001
+      2:     0 5'---10   ->     2 4'0001
+      3:     1 5'----1   ->     0 4'0010
+      4:     1 5'0---0   ->     1 4'0010
+      5:     1 5'1---0   ->     3 4'0010
+      6:     2 5'----1   ->     0 4'0100
+      7:     2 5'-1--0   ->     1 4'0100
+      8:     2 5'-0--0   ->     2 4'0100
+      9:     3 5'--0-0   ->     0 4'1000
+     10:     3 5'----1   ->     0 4'1000
+     11:     3 5'--1-0   ->     3 4'1000
+
+-------------------------------------
+
+8.8.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+Mapping FSM `$fsm$\state$1853' from module `\snn_core'.
+
+8.9. Executing OPT pass (performing simple optimizations).
+
+8.9.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module snn_core.
+<suppressed ~5 debug messages>
+
+8.9.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\snn_core'.
+Computing hashes of 635 cells of `\snn_core'.
+Finding duplicate cells in `\snn_core'.
+Removed a total of 0 cells.
+
+8.9.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \snn_core..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~497 debug messages>
+
+8.9.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \snn_core.
+Performed a total of 0 changes.
+
+8.9.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\snn_core'.
+Computing hashes of 635 cells of `\snn_core'.
+Finding duplicate cells in `\snn_core'.
+Removed a total of 0 cells.
+
+8.9.6. Executing OPT_DFF pass (perform DFF optimizations).
+Adding EN signal on $procdff$1846 ($dff) from module snn_core (D = { \l3[3] [10] \l3[3] [10] \l3[3] [10] \l3[3] [10] \l3[3] [10] \l3[3] [10] \l3[3] [10] \l3[3] [10] \l3[3] [10] \l3[3] }, Q = \p_q[3]).
+Adding EN signal on $procdff$1845 ($dff) from module snn_core (D = { \l3[2] [10] \l3[2] [10] \l3[2] [10] \l3[2] [10] \l3[2] [10] \l3[2] [10] \l3[2] [10] \l3[2] [10] \l3[2] [10] \l3[2] }, Q = \p_q[2]).
+Adding EN signal on $procdff$1844 ($dff) from module snn_core (D = { \l3[1] [10] \l3[1] [10] \l3[1] [10] \l3[1] [10] \l3[1] [10] \l3[1] [10] \l3[1] [10] \l3[1] [10] \l3[1] [10] \l3[1] }, Q = \p_q[1]).
+Adding EN signal on $procdff$1843 ($dff) from module snn_core (D = { \l3[0] [10] \l3[0] [10] \l3[0] [10] \l3[0] [10] \l3[0] [10] \l3[0] [10] \l3[0] [10] \l3[0] [10] \l3[0] [10] \l3[0] }, Q = \p_q[0]).
+Adding SRST signal on $procdff$1842 ($dff) from module snn_core (D = $procmux$780_Y, Q = \cnt[1], rval = 4'0000).
+Adding EN signal on $auto$ff.cc:337:slice$1921 ($sdff) from module snn_core (D = $procmux$780_Y, Q = \cnt[1]).
+Adding SRST signal on $procdff$1841 ($dff) from module snn_core (D = $procmux$795_Y, Q = \cnt[0], rval = 4'0000).
+Adding EN signal on $auto$ff.cc:337:slice$1933 ($sdff) from module snn_core (D = $procmux$795_Y, Q = \cnt[0]).
+Adding SRST signal on $procdff$1840 ($dff) from module snn_core (D = $procmux$808_Y, Q = \v2[1], rval = 20'00000000000000000000).
+Adding EN signal on $auto$ff.cc:337:slice$1945 ($sdff) from module snn_core (D = $procmux$808_Y, Q = \v2[1]).
+Adding SRST signal on $procdff$1839 ($dff) from module snn_core (D = $procmux$821_Y, Q = \v2[0], rval = 20'00000000000000000000).
+Adding EN signal on $auto$ff.cc:337:slice$1955 ($sdff) from module snn_core (D = $procmux$821_Y, Q = \v2[0]).
+Adding SRST signal on $procdff$1838 ($dff) from module snn_core (D = $procmux$834_Y, Q = \v1[15], rval = 20'00000000000000000000).
+Adding EN signal on $auto$ff.cc:337:slice$1965 ($sdff) from module snn_core (D = $procmux$834_Y, Q = \v1[15]).
+Adding SRST signal on $procdff$1837 ($dff) from module snn_core (D = $procmux$847_Y, Q = \v1[14], rval = 20'00000000000000000000).
+Adding EN signal on $auto$ff.cc:337:slice$1975 ($sdff) from module snn_core (D = $procmux$847_Y, Q = \v1[14]).
+Adding SRST signal on $procdff$1836 ($dff) from module snn_core (D = $procmux$860_Y, Q = \v1[13], rval = 20'00000000000000000000).
+Adding EN signal on $auto$ff.cc:337:slice$1985 ($sdff) from module snn_core (D = $procmux$860_Y, Q = \v1[13]).
+Adding SRST signal on $procdff$1835 ($dff) from module snn_core (D = $procmux$873_Y, Q = \v1[12], rval = 20'00000000000000000000).
+Adding EN signal on $auto$ff.cc:337:slice$1995 ($sdff) from module snn_core (D = $procmux$873_Y, Q = \v1[12]).
+Adding SRST signal on $procdff$1834 ($dff) from module snn_core (D = $procmux$886_Y, Q = \v1[11], rval = 20'00000000000000000000).
+Adding EN signal on $auto$ff.cc:337:slice$2005 ($sdff) from module snn_core (D = $procmux$886_Y, Q = \v1[11]).
+Adding SRST signal on $procdff$1833 ($dff) from module snn_core (D = $procmux$899_Y, Q = \v1[10], rval = 20'00000000000000000000).
+Adding EN signal on $auto$ff.cc:337:slice$2015 ($sdff) from module snn_core (D = $procmux$899_Y, Q = \v1[10]).
+Adding SRST signal on $procdff$1832 ($dff) from module snn_core (D = $procmux$912_Y, Q = \v1[9], rval = 20'00000000000000000000).
+Adding EN signal on $auto$ff.cc:337:slice$2025 ($sdff) from module snn_core (D = $procmux$912_Y, Q = \v1[9]).
+Adding SRST signal on $procdff$1831 ($dff) from module snn_core (D = $procmux$925_Y, Q = \v1[8], rval = 20'00000000000000000000).
+Adding EN signal on $auto$ff.cc:337:slice$2035 ($sdff) from module snn_core (D = $procmux$925_Y, Q = \v1[8]).
+Adding SRST signal on $procdff$1830 ($dff) from module snn_core (D = $procmux$938_Y, Q = \v1[7], rval = 20'00000000000000000000).
+Adding EN signal on $auto$ff.cc:337:slice$2045 ($sdff) from module snn_core (D = $procmux$938_Y, Q = \v1[7]).
+Adding SRST signal on $procdff$1829 ($dff) from module snn_core (D = $procmux$951_Y, Q = \v1[6], rval = 20'00000000000000000000).
+Adding EN signal on $auto$ff.cc:337:slice$2055 ($sdff) from module snn_core (D = $procmux$951_Y, Q = \v1[6]).
+Adding SRST signal on $procdff$1828 ($dff) from module snn_core (D = $procmux$964_Y, Q = \v1[5], rval = 20'00000000000000000000).
+Adding EN signal on $auto$ff.cc:337:slice$2065 ($sdff) from module snn_core (D = $procmux$964_Y, Q = \v1[5]).
+Adding SRST signal on $procdff$1827 ($dff) from module snn_core (D = $procmux$977_Y, Q = \v1[4], rval = 20'00000000000000000000).
+Adding EN signal on $auto$ff.cc:337:slice$2075 ($sdff) from module snn_core (D = $procmux$977_Y, Q = \v1[4]).
+Adding SRST signal on $procdff$1826 ($dff) from module snn_core (D = $procmux$990_Y, Q = \v1[3], rval = 20'00000000000000000000).
+Adding EN signal on $auto$ff.cc:337:slice$2085 ($sdff) from module snn_core (D = $procmux$990_Y, Q = \v1[3]).
+Adding SRST signal on $procdff$1825 ($dff) from module snn_core (D = $procmux$1003_Y, Q = \v1[2], rval = 20'00000000000000000000).
+Adding EN signal on $auto$ff.cc:337:slice$2095 ($sdff) from module snn_core (D = $procmux$1003_Y, Q = \v1[2]).
+Adding SRST signal on $procdff$1824 ($dff) from module snn_core (D = $procmux$1016_Y, Q = \v1[1], rval = 20'00000000000000000000).
+Adding EN signal on $auto$ff.cc:337:slice$2105 ($sdff) from module snn_core (D = $procmux$1016_Y, Q = \v1[1]).
+Adding SRST signal on $procdff$1823 ($dff) from module snn_core (D = $procmux$1029_Y, Q = \v1[0], rval = 20'00000000000000000000).
+Adding EN signal on $auto$ff.cc:337:slice$2115 ($sdff) from module snn_core (D = $procmux$1029_Y, Q = \v1[0]).
+Adding SRST signal on $procdff$1822 ($dff) from module snn_core (D = $procmux$1043_Y, Q = \acc[15], rval = 20'00000000000000000000).
+Adding EN signal on $auto$ff.cc:337:slice$2125 ($sdff) from module snn_core (D = $procmux$1043_Y, Q = \acc[15]).
+Adding SRST signal on $procdff$1821 ($dff) from module snn_core (D = $procmux$1057_Y, Q = \acc[14], rval = 20'00000000000000000000).
+Adding EN signal on $auto$ff.cc:337:slice$2135 ($sdff) from module snn_core (D = $procmux$1057_Y, Q = \acc[14]).
+Adding SRST signal on $procdff$1820 ($dff) from module snn_core (D = $procmux$1071_Y, Q = \acc[13], rval = 20'00000000000000000000).
+Adding EN signal on $auto$ff.cc:337:slice$2145 ($sdff) from module snn_core (D = $procmux$1071_Y, Q = \acc[13]).
+Adding SRST signal on $procdff$1819 ($dff) from module snn_core (D = $procmux$1085_Y, Q = \acc[12], rval = 20'00000000000000000000).
+Adding EN signal on $auto$ff.cc:337:slice$2155 ($sdff) from module snn_core (D = $procmux$1085_Y, Q = \acc[12]).
+Adding SRST signal on $procdff$1818 ($dff) from module snn_core (D = $procmux$1099_Y, Q = \acc[11], rval = 20'00000000000000000000).
+Adding EN signal on $auto$ff.cc:337:slice$2165 ($sdff) from module snn_core (D = $procmux$1099_Y, Q = \acc[11]).
+Adding SRST signal on $procdff$1817 ($dff) from module snn_core (D = $procmux$1113_Y, Q = \acc[10], rval = 20'00000000000000000000).
+Adding EN signal on $auto$ff.cc:337:slice$2175 ($sdff) from module snn_core (D = $procmux$1113_Y, Q = \acc[10]).
+Adding SRST signal on $procdff$1816 ($dff) from module snn_core (D = $procmux$1127_Y, Q = \acc[9], rval = 20'00000000000000000000).
+Adding EN signal on $auto$ff.cc:337:slice$2185 ($sdff) from module snn_core (D = $procmux$1127_Y, Q = \acc[9]).
+Adding SRST signal on $procdff$1815 ($dff) from module snn_core (D = $procmux$1141_Y, Q = \acc[8], rval = 20'00000000000000000000).
+Adding EN signal on $auto$ff.cc:337:slice$2195 ($sdff) from module snn_core (D = $procmux$1141_Y, Q = \acc[8]).
+Adding SRST signal on $procdff$1814 ($dff) from module snn_core (D = $procmux$1155_Y, Q = \acc[7], rval = 20'00000000000000000000).
+Adding EN signal on $auto$ff.cc:337:slice$2205 ($sdff) from module snn_core (D = $procmux$1155_Y, Q = \acc[7]).
+Adding SRST signal on $procdff$1813 ($dff) from module snn_core (D = $procmux$1169_Y, Q = \acc[6], rval = 20'00000000000000000000).
+Adding EN signal on $auto$ff.cc:337:slice$2215 ($sdff) from module snn_core (D = $procmux$1169_Y, Q = \acc[6]).
+Adding SRST signal on $procdff$1812 ($dff) from module snn_core (D = $procmux$1183_Y, Q = \acc[5], rval = 20'00000000000000000000).
+Adding EN signal on $auto$ff.cc:337:slice$2225 ($sdff) from module snn_core (D = $procmux$1183_Y, Q = \acc[5]).
+Adding SRST signal on $procdff$1811 ($dff) from module snn_core (D = $procmux$1197_Y, Q = \acc[4], rval = 20'00000000000000000000).
+Adding EN signal on $auto$ff.cc:337:slice$2235 ($sdff) from module snn_core (D = $procmux$1197_Y, Q = \acc[4]).
+Adding SRST signal on $procdff$1810 ($dff) from module snn_core (D = $procmux$1211_Y, Q = \acc[3], rval = 20'00000000000000000000).
+Adding EN signal on $auto$ff.cc:337:slice$2245 ($sdff) from module snn_core (D = $procmux$1211_Y, Q = \acc[3]).
+Adding SRST signal on $procdff$1809 ($dff) from module snn_core (D = $procmux$1225_Y, Q = \acc[2], rval = 20'00000000000000000000).
+Adding EN signal on $auto$ff.cc:337:slice$2255 ($sdff) from module snn_core (D = $procmux$1225_Y, Q = \acc[2]).
+Adding SRST signal on $procdff$1808 ($dff) from module snn_core (D = $procmux$1239_Y, Q = \acc[1], rval = 20'00000000000000000000).
+Adding EN signal on $auto$ff.cc:337:slice$2265 ($sdff) from module snn_core (D = $procmux$1239_Y, Q = \acc[1]).
+Adding SRST signal on $procdff$1807 ($dff) from module snn_core (D = $procmux$1253_Y, Q = \acc[0], rval = 20'00000000000000000000).
+Adding EN signal on $auto$ff.cc:337:slice$2275 ($sdff) from module snn_core (D = $procmux$1253_Y, Q = \acc[0]).
+Adding SRST signal on $procdff$1806 ($dff) from module snn_core (D = $procmux$1263_Y, Q = \p_vld, rval = 1'0).
+Adding EN signal on $auto$ff.cc:337:slice$2285 ($sdff) from module snn_core (D = $procmux$1263_Y, Q = \p_vld).
+Adding EN signal on $procdff$1774 ($dff) from module snn_core (D = $memrd$\g_w1[3].bank$../../rtl/snn_core.v:78$458_DATA, Q = \g_w1[3].q).
+Adding SRST signal on $procdff$1805 ($dff) from module snn_core (D = $procmux$1277_Y, Q = \tag, rval = 16'0000000000000000).
+Adding EN signal on $auto$ff.cc:337:slice$2294 ($sdff) from module snn_core (D = \in_tag, Q = \tag).
+Adding SRST signal on $procdff$1804 ($dff) from module snn_core (D = $procmux$1286_Y, Q = \t, rval = 4'0000).
+Adding EN signal on $auto$ff.cc:337:slice$2298 ($sdff) from module snn_core (D = $procmux$1286_Y, Q = \t).
+Adding SRST signal on $procdff$1803 ($dff) from module snn_core (D = $procmux$1296_Y, Q = \rd_vld, rval = 1'0).
+Adding EN signal on $auto$ff.cc:337:slice$2308 ($sdff) from module snn_core (D = $procmux$1296_Y, Q = \rd_vld).
+Adding EN signal on $procdff$1778 ($dff) from module snn_core (D = $memrd$\g_w1[2].bank$../../rtl/snn_core.v:78$448_DATA, Q = \g_w1[2].q).
+Adding SRST signal on $procdff$1802 ($dff) from module snn_core (D = $procmux$1309_Y, Q = \s1_vld, rval = 1'0).
+Adding EN signal on $auto$ff.cc:337:slice$2317 ($sdff) from module snn_core (D = $procmux$1309_Y, Q = \s1_vld).
+Adding SRST signal on $procdff$1801 ($dff) from module snn_core (D = $procmux$1321_Y, Q = \s1_q, rval = 16'0000000000000000).
+Adding EN signal on $auto$ff.cc:337:slice$2325 ($sdff) from module snn_core (D = \s1_n, Q = \s1_q).
+Adding SRST signal on $procdff$1800 ($dff) from module snn_core (D = $2$lookahead\pend$346[63:0]$353, Q = \pend, rval = 64'0000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:337:slice$2329 ($sdff) from module snn_core (D = $2$lookahead\pend$346[63:0]$353, Q = \pend).
+Adding EN signal on $procdff$1782 ($dff) from module snn_core (D = $memrd$\g_w1[1].bank$../../rtl/snn_core.v:78$438_DATA, Q = \g_w1[1].q).
+Adding SRST signal on $procdff$1792 ($dff) from module snn_core (D = $procmux$1383_Y, Q = \out_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:337:slice$2340 ($sdff) from module snn_core (D = 1'1, Q = \out_valid).
+Adding SRST signal on $procdff$1798 ($dff) from module snn_core (D = $procmux$1331_Y, Q = \rd_row, rval = 6'000000).
+Adding EN signal on $auto$ff.cc:337:slice$2344 ($sdff) from module snn_core (D = \pidx, Q = \rd_row).
+Adding EN signal on $procdff$1786 ($dff) from module snn_core (D = $memrd$\g_w1[0].bank$../../rtl/snn_core.v:78$428_DATA, Q = \g_w1[0].q).
+Adding SRST signal on $procdff$1796 ($dff) from module snn_core (D = $procmux$1355_Y, Q = \out_tag, rval = 16'0000000000000000).
+Adding EN signal on $auto$ff.cc:337:slice$2349 ($sdff) from module snn_core (D = \tag, Q = \out_tag).
+Adding SRST signal on $procdff$1795 ($dff) from module snn_core (D = $procmux$1362_Y, Q = \out_cnt1, rval = 4'0000).
+Adding EN signal on $auto$ff.cc:337:slice$2355 ($sdff) from module snn_core (D = \cnt[1], Q = \out_cnt1).
+Adding SRST signal on $procdff$1794 ($dff) from module snn_core (D = $procmux$1369_Y, Q = \out_cnt0, rval = 4'0000).
+Adding EN signal on $auto$ff.cc:337:slice$2361 ($sdff) from module snn_core (D = \cnt[0], Q = \out_cnt0).
+Adding SRST signal on $procdff$1793 ($dff) from module snn_core (D = $procmux$1376_Y, Q = \out_mal, rval = 1'0).
+Adding EN signal on $auto$ff.cc:337:slice$2367 ($sdff) from module snn_core (D = $logic_or$../../rtl/snn_core.v:254$417_Y, Q = \out_mal).
+Adding SRST signal on $procdff$1791 ($dff) from module snn_core (D = $procmux$740_Y, Q = \rd_en, rval = 1'0).
+
+8.9.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \snn_core..
+Removed 79 unused cells and 86 unused wires.
+<suppressed ~80 debug messages>
+
+8.9.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module snn_core.
+<suppressed ~41 debug messages>
+
+8.9.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+8.9.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \snn_core..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~402 debug messages>
+
+8.9.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \snn_core.
+    New ctrl vector for $pmux cell $procmux$696: { \state [0] \state [2] }
+  Optimizing cells in module \snn_core.
+Performed a total of 1 changes.
+
+8.9.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\snn_core'.
+Computing hashes of 741 cells of `\snn_core'.
+Finding duplicate cells in `\snn_core'.
+Computing hashes of 590 cells of `\snn_core'.
+Finding duplicate cells in `\snn_core'.
+Computing hashes of 552 cells of `\snn_core'.
+Finding duplicate cells in `\snn_core'.
+<suppressed ~567 debug messages>
+Removed a total of 189 cells.
+
+8.9.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+8.9.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \snn_core..
+Removed 0 unused cells and 189 unused wires.
+<suppressed ~1 debug messages>
+
+8.9.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module snn_core.
+
+8.9.16. Rerunning OPT passes. (Maybe there is more to do..)
+
+8.9.17. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \snn_core..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~408 debug messages>
+
+8.9.18. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \snn_core.
+Performed a total of 0 changes.
+
+8.9.19. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\snn_core'.
+Computing hashes of 552 cells of `\snn_core'.
+Finding duplicate cells in `\snn_core'.
+Removed a total of 0 cells.
+
+8.9.20. Executing OPT_DFF pass (perform DFF optimizations).
+
+8.9.21. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \snn_core..
+
+8.9.22. Executing OPT_EXPR pass (perform const folding).
+Optimizing module snn_core.
+
+8.9.23. Finished fast OPT passes. (There is nothing left to do.)
+
+8.10. Executing WREDUCE pass (reducing word size of cells).
+Removed top 1 bits (of 2) from port B of cell snn_core.$auto$opt_dff.cc:235:make_patterns_logic$2336 ($ne).
+Removed top 1 bits (of 2) from port B of cell snn_core.$auto$opt_dff.cc:235:make_patterns_logic$2290 ($ne).
+Removed top 1 bits (of 2) from port B of cell snn_core.$auto$opt_dff.cc:235:make_patterns_logic$2162 ($ne).
+Removed top 1 bits (of 2) from port B of cell snn_core.$auto$opt_dff.cc:235:make_patterns_logic$2122 ($ne).
+Removed top 1 bits (of 2) from port B of cell snn_core.$auto$opt_dff.cc:235:make_patterns_logic$1962 ($ne).
+Removed top 1 bits (of 2) from port B of cell snn_core.$auto$opt_dff.cc:235:make_patterns_logic$1942 ($ne).
+Removed top 1 bits (of 2) from port B of cell snn_core.$auto$opt_dff.cc:235:make_patterns_logic$1930 ($ne).
+Removed top 9 bits (of 20) from FF cell snn_core.$auto$ff.cc:337:slice$1916 ($dffe).
+Removed top 9 bits (of 20) from FF cell snn_core.$auto$ff.cc:337:slice$1911 ($dffe).
+Removed top 9 bits (of 20) from FF cell snn_core.$auto$ff.cc:337:slice$1906 ($dffe).
+Removed top 9 bits (of 20) from FF cell snn_core.$auto$ff.cc:337:slice$1901 ($dffe).
+Removed top 3 bits (of 20) from port B of cell snn_core.$ge$../../rtl/snn_core.v:118$211 ($ge).
+Removed top 3 bits (of 20) from port B of cell snn_core.$ge$../../rtl/snn_core.v:118$215 ($ge).
+Removed top 3 bits (of 20) from port B of cell snn_core.$ge$../../rtl/snn_core.v:118$219 ($ge).
+Removed top 3 bits (of 20) from port B of cell snn_core.$ge$../../rtl/snn_core.v:118$223 ($ge).
+Removed top 3 bits (of 20) from port B of cell snn_core.$ge$../../rtl/snn_core.v:118$227 ($ge).
+Removed top 3 bits (of 20) from port B of cell snn_core.$ge$../../rtl/snn_core.v:118$231 ($ge).
+Removed top 3 bits (of 20) from port B of cell snn_core.$ge$../../rtl/snn_core.v:118$235 ($ge).
+Removed top 3 bits (of 20) from port B of cell snn_core.$ge$../../rtl/snn_core.v:118$239 ($ge).
+Removed top 3 bits (of 20) from port B of cell snn_core.$ge$../../rtl/snn_core.v:118$243 ($ge).
+Removed top 3 bits (of 20) from port B of cell snn_core.$ge$../../rtl/snn_core.v:118$247 ($ge).
+Removed top 3 bits (of 20) from port B of cell snn_core.$ge$../../rtl/snn_core.v:118$251 ($ge).
+Removed top 3 bits (of 20) from port B of cell snn_core.$ge$../../rtl/snn_core.v:118$255 ($ge).
+Removed top 3 bits (of 20) from port B of cell snn_core.$ge$../../rtl/snn_core.v:118$259 ($ge).
+Removed top 3 bits (of 20) from port B of cell snn_core.$ge$../../rtl/snn_core.v:118$263 ($ge).
+Removed top 3 bits (of 20) from port B of cell snn_core.$ge$../../rtl/snn_core.v:118$267 ($ge).
+Removed top 3 bits (of 20) from port B of cell snn_core.$ge$../../rtl/snn_core.v:118$271 ($ge).
+Converting cell snn_core.$add$../../rtl/snn_core.v:149$303 ($add) from unsigned to signed.
+Removed top 12 bits (of 20) from port A of cell snn_core.$add$../../rtl/snn_core.v:149$303 ($add).
+Removed top 9 bits (of 20) from port B of cell snn_core.$add$../../rtl/snn_core.v:149$303 ($add).
+Removed top 8 bits (of 20) from port Y of cell snn_core.$add$../../rtl/snn_core.v:149$303 ($add).
+Converting cell snn_core.$add$../../rtl/snn_core.v:149$304 ($add) from unsigned to signed.
+Removed top 8 bits (of 20) from port A of cell snn_core.$add$../../rtl/snn_core.v:149$304 ($add).
+Removed top 9 bits (of 20) from port B of cell snn_core.$add$../../rtl/snn_core.v:149$304 ($add).
+Removed top 7 bits (of 20) from port Y of cell snn_core.$add$../../rtl/snn_core.v:149$304 ($add).
+Removed top 7 bits (of 20) from port B of cell snn_core.$add$../../rtl/snn_core.v:150$307 ($add).
+Removed top 3 bits (of 20) from port B of cell snn_core.$ge$../../rtl/snn_core.v:151$308 ($ge).
+Converting cell snn_core.$add$../../rtl/snn_core.v:149$339 ($add) from unsigned to signed.
+Removed top 12 bits (of 20) from port A of cell snn_core.$add$../../rtl/snn_core.v:149$339 ($add).
+Removed top 9 bits (of 20) from port B of cell snn_core.$add$../../rtl/snn_core.v:149$339 ($add).
+Removed top 8 bits (of 20) from port Y of cell snn_core.$add$../../rtl/snn_core.v:149$339 ($add).
+Converting cell snn_core.$add$../../rtl/snn_core.v:149$340 ($add) from unsigned to signed.
+Removed top 8 bits (of 20) from port A of cell snn_core.$add$../../rtl/snn_core.v:149$340 ($add).
+Removed top 9 bits (of 20) from port B of cell snn_core.$add$../../rtl/snn_core.v:149$340 ($add).
+Removed top 7 bits (of 20) from port Y of cell snn_core.$add$../../rtl/snn_core.v:149$340 ($add).
+Removed top 7 bits (of 20) from port B of cell snn_core.$add$../../rtl/snn_core.v:150$343 ($add).
+Removed top 3 bits (of 20) from port B of cell snn_core.$ge$../../rtl/snn_core.v:151$344 ($ge).
+Converting cell snn_core.$neg$../../rtl/snn_core.v:210$361 ($neg) from signed to unsigned.
+Removed top 1 bits (of 7) from port A of cell snn_core.$neg$../../rtl/snn_core.v:210$361 ($neg).
+Removed top 3 bits (of 4) from port B of cell snn_core.$add$../../rtl/snn_core.v:231$402 ($add).
+Removed top 3 bits (of 4) from port B of cell snn_core.$add$../../rtl/snn_core.v:244$404 ($add).
+Removed top 3 bits (of 4) from port B of cell snn_core.$add$../../rtl/snn_core.v:244$406 ($add).
+Removed top 1 bits (of 2) from port B of cell snn_core.$eq$../../rtl/snn_core.v:75$433 ($eq).
+
+8.11. Executing PEEPOPT pass (run peephole optimizers).
+
+8.12. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \snn_core..
+
+8.13. Executing ALUMACC pass (create $alu and $macc cells).
+Extracting $alu and $macc cells in module snn_core:
+  creating $macc model for $add$../../rtl/snn_core.v:244$406 ($add).
+  creating $macc model for $add$../../rtl/snn_core.v:244$404 ($add).
+  creating $macc model for $add$../../rtl/snn_core.v:231$402 ($add).
+  creating $macc model for $add$../../rtl/snn_core.v:215$379 ($add).
+  creating $macc model for $add$../../rtl/snn_core.v:215$378 ($add).
+  creating $macc model for $add$../../rtl/snn_core.v:215$377 ($add).
+  creating $macc model for $add$../../rtl/snn_core.v:215$376 ($add).
+  creating $macc model for $add$../../rtl/snn_core.v:215$375 ($add).
+  creating $macc model for $add$../../rtl/snn_core.v:215$374 ($add).
+  creating $macc model for $add$../../rtl/snn_core.v:215$373 ($add).
+  creating $macc model for $add$../../rtl/snn_core.v:215$372 ($add).
+  creating $macc model for $add$../../rtl/snn_core.v:215$371 ($add).
+  creating $macc model for $add$../../rtl/snn_core.v:215$370 ($add).
+  creating $macc model for $add$../../rtl/snn_core.v:215$369 ($add).
+  creating $macc model for $add$../../rtl/snn_core.v:215$368 ($add).
+  creating $macc model for $add$../../rtl/snn_core.v:215$367 ($add).
+  creating $macc model for $add$../../rtl/snn_core.v:215$366 ($add).
+  creating $macc model for $add$../../rtl/snn_core.v:215$365 ($add).
+  creating $macc model for $add$../../rtl/snn_core.v:215$364 ($add).
+  creating $macc model for $neg$../../rtl/snn_core.v:210$361 ($neg).
+  creating $macc model for $add$../../rtl/snn_core.v:150$343 ($add).
+  creating $macc model for $sub$../../rtl/snn_core.v:150$342 ($sub).
+  creating $macc model for $add$../../rtl/snn_core.v:149$340 ($add).
+  creating $macc model for $add$../../rtl/snn_core.v:149$339 ($add).
+  creating $macc model for $add$../../rtl/snn_core.v:146$338 ($add).
+  creating $macc model for $add$../../rtl/snn_core.v:146$337 ($add).
+  creating $macc model for $add$../../rtl/snn_core.v:144$336 ($add).
+  creating $macc model for $add$../../rtl/snn_core.v:144$335 ($add).
+  creating $macc model for $add$../../rtl/snn_core.v:144$334 ($add).
+  creating $macc model for $add$../../rtl/snn_core.v:144$333 ($add).
+  creating $macc model for $add$../../rtl/snn_core.v:142$332 ($add).
+  creating $macc model for $add$../../rtl/snn_core.v:142$331 ($add).
+  creating $macc model for $add$../../rtl/snn_core.v:142$330 ($add).
+  creating $macc model for $add$../../rtl/snn_core.v:142$329 ($add).
+  creating $macc model for $add$../../rtl/snn_core.v:142$328 ($add).
+  creating $macc model for $add$../../rtl/snn_core.v:142$327 ($add).
+  creating $macc model for $add$../../rtl/snn_core.v:142$326 ($add).
+  creating $macc model for $add$../../rtl/snn_core.v:142$325 ($add).
+  creating $macc model for $add$../../rtl/snn_core.v:150$307 ($add).
+  creating $macc model for $sub$../../rtl/snn_core.v:150$306 ($sub).
+  creating $macc model for $add$../../rtl/snn_core.v:149$304 ($add).
+  creating $macc model for $add$../../rtl/snn_core.v:149$303 ($add).
+  creating $macc model for $add$../../rtl/snn_core.v:146$302 ($add).
+  creating $macc model for $add$../../rtl/snn_core.v:146$301 ($add).
+  creating $macc model for $add$../../rtl/snn_core.v:144$300 ($add).
+  creating $macc model for $add$../../rtl/snn_core.v:144$299 ($add).
+  creating $macc model for $add$../../rtl/snn_core.v:144$298 ($add).
+  creating $macc model for $add$../../rtl/snn_core.v:144$297 ($add).
+  creating $macc model for $add$../../rtl/snn_core.v:142$296 ($add).
+  creating $macc model for $add$../../rtl/snn_core.v:142$295 ($add).
+  creating $macc model for $add$../../rtl/snn_core.v:142$294 ($add).
+  creating $macc model for $add$../../rtl/snn_core.v:142$293 ($add).
+  creating $macc model for $add$../../rtl/snn_core.v:142$292 ($add).
+  creating $macc model for $add$../../rtl/snn_core.v:142$291 ($add).
+  creating $macc model for $add$../../rtl/snn_core.v:142$290 ($add).
+  creating $macc model for $add$../../rtl/snn_core.v:142$289 ($add).
+  creating $macc model for $add$../../rtl/snn_core.v:117$270 ($add).
+  creating $macc model for $sub$../../rtl/snn_core.v:117$269 ($sub).
+  creating $macc model for $add$../../rtl/snn_core.v:117$266 ($add).
+  creating $macc model for $sub$../../rtl/snn_core.v:117$265 ($sub).
+  creating $macc model for $add$../../rtl/snn_core.v:117$262 ($add).
+  creating $macc model for $sub$../../rtl/snn_core.v:117$261 ($sub).
+  creating $macc model for $add$../../rtl/snn_core.v:117$258 ($add).
+  creating $macc model for $sub$../../rtl/snn_core.v:117$257 ($sub).
+  creating $macc model for $add$../../rtl/snn_core.v:117$254 ($add).
+  creating $macc model for $sub$../../rtl/snn_core.v:117$253 ($sub).
+  creating $macc model for $add$../../rtl/snn_core.v:117$250 ($add).
+  creating $macc model for $sub$../../rtl/snn_core.v:117$249 ($sub).
+  creating $macc model for $add$../../rtl/snn_core.v:117$246 ($add).
+  creating $macc model for $sub$../../rtl/snn_core.v:117$245 ($sub).
+  creating $macc model for $add$../../rtl/snn_core.v:117$242 ($add).
+  creating $macc model for $sub$../../rtl/snn_core.v:117$241 ($sub).
+  creating $macc model for $add$../../rtl/snn_core.v:117$238 ($add).
+  creating $macc model for $sub$../../rtl/snn_core.v:117$237 ($sub).
+  creating $macc model for $add$../../rtl/snn_core.v:117$234 ($add).
+  creating $macc model for $sub$../../rtl/snn_core.v:117$233 ($sub).
+  creating $macc model for $add$../../rtl/snn_core.v:117$230 ($add).
+  creating $macc model for $sub$../../rtl/snn_core.v:117$229 ($sub).
+  creating $macc model for $add$../../rtl/snn_core.v:117$226 ($add).
+  creating $macc model for $sub$../../rtl/snn_core.v:117$225 ($sub).
+  creating $macc model for $add$../../rtl/snn_core.v:117$222 ($add).
+  creating $macc model for $sub$../../rtl/snn_core.v:117$221 ($sub).
+  creating $macc model for $add$../../rtl/snn_core.v:117$218 ($add).
+  creating $macc model for $sub$../../rtl/snn_core.v:117$217 ($sub).
+  creating $macc model for $add$../../rtl/snn_core.v:117$214 ($add).
+  creating $macc model for $sub$../../rtl/snn_core.v:117$213 ($sub).
+  creating $macc model for $add$../../rtl/snn_core.v:117$210 ($add).
+  creating $macc model for $sub$../../rtl/snn_core.v:117$209 ($sub).
+  merging $macc model for $sub$../../rtl/snn_core.v:117$209 into $add$../../rtl/snn_core.v:117$210.
+  merging $macc model for $sub$../../rtl/snn_core.v:117$213 into $add$../../rtl/snn_core.v:117$214.
+  merging $macc model for $sub$../../rtl/snn_core.v:117$217 into $add$../../rtl/snn_core.v:117$218.
+  merging $macc model for $sub$../../rtl/snn_core.v:117$221 into $add$../../rtl/snn_core.v:117$222.
+  merging $macc model for $sub$../../rtl/snn_core.v:117$225 into $add$../../rtl/snn_core.v:117$226.
+  merging $macc model for $sub$../../rtl/snn_core.v:117$229 into $add$../../rtl/snn_core.v:117$230.
+  merging $macc model for $sub$../../rtl/snn_core.v:117$233 into $add$../../rtl/snn_core.v:117$234.
+  merging $macc model for $sub$../../rtl/snn_core.v:117$237 into $add$../../rtl/snn_core.v:117$238.
+  merging $macc model for $sub$../../rtl/snn_core.v:117$241 into $add$../../rtl/snn_core.v:117$242.
+  merging $macc model for $sub$../../rtl/snn_core.v:117$245 into $add$../../rtl/snn_core.v:117$246.
+  merging $macc model for $sub$../../rtl/snn_core.v:117$249 into $add$../../rtl/snn_core.v:117$250.
+  merging $macc model for $sub$../../rtl/snn_core.v:117$253 into $add$../../rtl/snn_core.v:117$254.
+  merging $macc model for $sub$../../rtl/snn_core.v:117$257 into $add$../../rtl/snn_core.v:117$258.
+  merging $macc model for $sub$../../rtl/snn_core.v:117$261 into $add$../../rtl/snn_core.v:117$262.
+  merging $macc model for $sub$../../rtl/snn_core.v:117$265 into $add$../../rtl/snn_core.v:117$266.
+  merging $macc model for $sub$../../rtl/snn_core.v:117$269 into $add$../../rtl/snn_core.v:117$270.
+  merging $macc model for $add$../../rtl/snn_core.v:142$289 into $add$../../rtl/snn_core.v:144$297.
+  merging $macc model for $add$../../rtl/snn_core.v:142$290 into $add$../../rtl/snn_core.v:144$297.
+  merging $macc model for $add$../../rtl/snn_core.v:142$291 into $add$../../rtl/snn_core.v:144$298.
+  merging $macc model for $add$../../rtl/snn_core.v:142$292 into $add$../../rtl/snn_core.v:144$298.
+  merging $macc model for $add$../../rtl/snn_core.v:142$293 into $add$../../rtl/snn_core.v:144$299.
+  merging $macc model for $add$../../rtl/snn_core.v:142$294 into $add$../../rtl/snn_core.v:144$299.
+  merging $macc model for $add$../../rtl/snn_core.v:142$295 into $add$../../rtl/snn_core.v:144$300.
+  merging $macc model for $add$../../rtl/snn_core.v:142$296 into $add$../../rtl/snn_core.v:144$300.
+  merging $macc model for $add$../../rtl/snn_core.v:144$297 into $add$../../rtl/snn_core.v:146$301.
+  merging $macc model for $add$../../rtl/snn_core.v:144$298 into $add$../../rtl/snn_core.v:146$301.
+  merging $macc model for $add$../../rtl/snn_core.v:144$299 into $add$../../rtl/snn_core.v:146$302.
+  merging $macc model for $add$../../rtl/snn_core.v:144$300 into $add$../../rtl/snn_core.v:146$302.
+  merging $macc model for $add$../../rtl/snn_core.v:149$303 into $add$../../rtl/snn_core.v:149$304.
+  merging $macc model for $sub$../../rtl/snn_core.v:150$306 into $add$../../rtl/snn_core.v:150$307.
+  merging $macc model for $add$../../rtl/snn_core.v:149$304 into $add$../../rtl/snn_core.v:150$307.
+  merging $macc model for $add$../../rtl/snn_core.v:142$325 into $add$../../rtl/snn_core.v:144$333.
+  merging $macc model for $add$../../rtl/snn_core.v:142$326 into $add$../../rtl/snn_core.v:144$333.
+  merging $macc model for $add$../../rtl/snn_core.v:142$327 into $add$../../rtl/snn_core.v:144$334.
+  merging $macc model for $add$../../rtl/snn_core.v:142$328 into $add$../../rtl/snn_core.v:144$334.
+  merging $macc model for $add$../../rtl/snn_core.v:142$329 into $add$../../rtl/snn_core.v:144$335.
+  merging $macc model for $add$../../rtl/snn_core.v:142$330 into $add$../../rtl/snn_core.v:144$335.
+  merging $macc model for $add$../../rtl/snn_core.v:142$331 into $add$../../rtl/snn_core.v:144$336.
+  merging $macc model for $add$../../rtl/snn_core.v:142$332 into $add$../../rtl/snn_core.v:144$336.
+  merging $macc model for $add$../../rtl/snn_core.v:144$333 into $add$../../rtl/snn_core.v:146$337.
+  merging $macc model for $add$../../rtl/snn_core.v:144$334 into $add$../../rtl/snn_core.v:146$337.
+  merging $macc model for $add$../../rtl/snn_core.v:144$335 into $add$../../rtl/snn_core.v:146$338.
+  merging $macc model for $add$../../rtl/snn_core.v:144$336 into $add$../../rtl/snn_core.v:146$338.
+  merging $macc model for $add$../../rtl/snn_core.v:149$339 into $add$../../rtl/snn_core.v:149$340.
+  merging $macc model for $sub$../../rtl/snn_core.v:150$342 into $add$../../rtl/snn_core.v:150$343.
+  merging $macc model for $add$../../rtl/snn_core.v:149$340 into $add$../../rtl/snn_core.v:150$343.
+  creating $alu model for $macc $neg$../../rtl/snn_core.v:210$361.
+  creating $alu model for $macc $add$../../rtl/snn_core.v:215$364.
+  creating $alu model for $macc $add$../../rtl/snn_core.v:215$365.
+  creating $alu model for $macc $add$../../rtl/snn_core.v:215$366.
+  creating $alu model for $macc $add$../../rtl/snn_core.v:215$367.
+  creating $alu model for $macc $add$../../rtl/snn_core.v:215$368.
+  creating $alu model for $macc $add$../../rtl/snn_core.v:215$369.
+  creating $alu model for $macc $add$../../rtl/snn_core.v:215$370.
+  creating $alu model for $macc $add$../../rtl/snn_core.v:215$371.
+  creating $alu model for $macc $add$../../rtl/snn_core.v:215$372.
+  creating $alu model for $macc $add$../../rtl/snn_core.v:215$373.
+  creating $alu model for $macc $add$../../rtl/snn_core.v:215$374.
+  creating $alu model for $macc $add$../../rtl/snn_core.v:215$375.
+  creating $alu model for $macc $add$../../rtl/snn_core.v:215$376.
+  creating $alu model for $macc $add$../../rtl/snn_core.v:215$377.
+  creating $alu model for $macc $add$../../rtl/snn_core.v:215$378.
+  creating $alu model for $macc $add$../../rtl/snn_core.v:215$379.
+  creating $alu model for $macc $add$../../rtl/snn_core.v:231$402.
+  creating $alu model for $macc $add$../../rtl/snn_core.v:244$404.
+  creating $alu model for $macc $add$../../rtl/snn_core.v:244$406.
+  creating $macc cell for $add$../../rtl/snn_core.v:117$210: $auto$alumacc.cc:382:replace_macc$2378
+  creating $macc cell for $add$../../rtl/snn_core.v:150$343: $auto$alumacc.cc:382:replace_macc$2379
+  creating $macc cell for $add$../../rtl/snn_core.v:146$302: $auto$alumacc.cc:382:replace_macc$2380
+  creating $macc cell for $add$../../rtl/snn_core.v:146$301: $auto$alumacc.cc:382:replace_macc$2381
+  creating $macc cell for $add$../../rtl/snn_core.v:146$338: $auto$alumacc.cc:382:replace_macc$2382
+  creating $macc cell for $add$../../rtl/snn_core.v:146$337: $auto$alumacc.cc:382:replace_macc$2383
+  creating $macc cell for $add$../../rtl/snn_core.v:117$214: $auto$alumacc.cc:382:replace_macc$2384
+  creating $macc cell for $add$../../rtl/snn_core.v:117$258: $auto$alumacc.cc:382:replace_macc$2385
+  creating $macc cell for $add$../../rtl/snn_core.v:117$218: $auto$alumacc.cc:382:replace_macc$2386
+  creating $macc cell for $add$../../rtl/snn_core.v:117$246: $auto$alumacc.cc:382:replace_macc$2387
+  creating $macc cell for $add$../../rtl/snn_core.v:117$222: $auto$alumacc.cc:382:replace_macc$2388
+  creating $macc cell for $add$../../rtl/snn_core.v:117$266: $auto$alumacc.cc:382:replace_macc$2389
+  creating $macc cell for $add$../../rtl/snn_core.v:117$226: $auto$alumacc.cc:382:replace_macc$2390
+  creating $macc cell for $add$../../rtl/snn_core.v:117$250: $auto$alumacc.cc:382:replace_macc$2391
+  creating $macc cell for $add$../../rtl/snn_core.v:117$230: $auto$alumacc.cc:382:replace_macc$2392
+  creating $macc cell for $add$../../rtl/snn_core.v:117$262: $auto$alumacc.cc:382:replace_macc$2393
+  creating $macc cell for $add$../../rtl/snn_core.v:117$234: $auto$alumacc.cc:382:replace_macc$2394
+  creating $macc cell for $add$../../rtl/snn_core.v:117$254: $auto$alumacc.cc:382:replace_macc$2395
+  creating $macc cell for $add$../../rtl/snn_core.v:150$307: $auto$alumacc.cc:382:replace_macc$2396
+  creating $macc cell for $add$../../rtl/snn_core.v:117$270: $auto$alumacc.cc:382:replace_macc$2397
+  creating $macc cell for $add$../../rtl/snn_core.v:117$238: $auto$alumacc.cc:382:replace_macc$2398
+  creating $macc cell for $add$../../rtl/snn_core.v:117$242: $auto$alumacc.cc:382:replace_macc$2399
+  creating $alu model for $gt$../../rtl/snn_core.v:254$415 ($gt): new $alu
+  creating $alu model for $gt$../../rtl/snn_core.v:254$413 ($gt): new $alu
+  creating $alu model for $ge$../../rtl/snn_core.v:247$407 ($ge): new $alu
+  creating $alu model for $lt$../../rtl/snn_core.v:226$385 ($lt): merged with $ge$../../rtl/snn_core.v:247$407.
+  creating $alu model for $ge$../../rtl/snn_core.v:151$344 ($ge): new $alu
+  creating $alu model for $ge$../../rtl/snn_core.v:151$308 ($ge): new $alu
+  creating $alu model for $ge$../../rtl/snn_core.v:118$271 ($ge): new $alu
+  creating $alu model for $ge$../../rtl/snn_core.v:118$267 ($ge): new $alu
+  creating $alu model for $ge$../../rtl/snn_core.v:118$263 ($ge): new $alu
+  creating $alu model for $ge$../../rtl/snn_core.v:118$259 ($ge): new $alu
+  creating $alu model for $ge$../../rtl/snn_core.v:118$255 ($ge): new $alu
+  creating $alu model for $ge$../../rtl/snn_core.v:118$251 ($ge): new $alu
+  creating $alu model for $ge$../../rtl/snn_core.v:118$247 ($ge): new $alu
+  creating $alu model for $ge$../../rtl/snn_core.v:118$243 ($ge): new $alu
+  creating $alu model for $ge$../../rtl/snn_core.v:118$239 ($ge): new $alu
+  creating $alu model for $ge$../../rtl/snn_core.v:118$235 ($ge): new $alu
+  creating $alu model for $ge$../../rtl/snn_core.v:118$231 ($ge): new $alu
+  creating $alu model for $ge$../../rtl/snn_core.v:118$227 ($ge): new $alu
+  creating $alu model for $ge$../../rtl/snn_core.v:118$223 ($ge): new $alu
+  creating $alu model for $ge$../../rtl/snn_core.v:118$219 ($ge): new $alu
+  creating $alu model for $ge$../../rtl/snn_core.v:118$215 ($ge): new $alu
+  creating $alu model for $ge$../../rtl/snn_core.v:118$211 ($ge): new $alu
+  creating $alu model for $eq$../../rtl/snn_core.v:254$414 ($eq): merged with $gt$../../rtl/snn_core.v:254$413.
+  creating $alu cell for $ge$../../rtl/snn_core.v:118$211: $auto$alumacc.cc:512:replace_alu$2421
+  creating $alu cell for $ge$../../rtl/snn_core.v:118$215: $auto$alumacc.cc:512:replace_alu$2436
+  creating $alu cell for $ge$../../rtl/snn_core.v:118$219: $auto$alumacc.cc:512:replace_alu$2451
+  creating $alu cell for $ge$../../rtl/snn_core.v:118$223: $auto$alumacc.cc:512:replace_alu$2466
+  creating $alu cell for $ge$../../rtl/snn_core.v:118$227: $auto$alumacc.cc:512:replace_alu$2481
+  creating $alu cell for $ge$../../rtl/snn_core.v:118$231: $auto$alumacc.cc:512:replace_alu$2496
+  creating $alu cell for $ge$../../rtl/snn_core.v:118$235: $auto$alumacc.cc:512:replace_alu$2511
+  creating $alu cell for $ge$../../rtl/snn_core.v:118$239: $auto$alumacc.cc:512:replace_alu$2526
+  creating $alu cell for $ge$../../rtl/snn_core.v:118$243: $auto$alumacc.cc:512:replace_alu$2541
+  creating $alu cell for $ge$../../rtl/snn_core.v:118$247: $auto$alumacc.cc:512:replace_alu$2556
+  creating $alu cell for $ge$../../rtl/snn_core.v:118$251: $auto$alumacc.cc:512:replace_alu$2571
+  creating $alu cell for $ge$../../rtl/snn_core.v:118$255: $auto$alumacc.cc:512:replace_alu$2586
+  creating $alu cell for $ge$../../rtl/snn_core.v:118$259: $auto$alumacc.cc:512:replace_alu$2601
+  creating $alu cell for $ge$../../rtl/snn_core.v:118$263: $auto$alumacc.cc:512:replace_alu$2616
+  creating $alu cell for $ge$../../rtl/snn_core.v:118$267: $auto$alumacc.cc:512:replace_alu$2631
+  creating $alu cell for $ge$../../rtl/snn_core.v:118$271: $auto$alumacc.cc:512:replace_alu$2646
+  creating $alu cell for $ge$../../rtl/snn_core.v:151$308: $auto$alumacc.cc:512:replace_alu$2661
+  creating $alu cell for $ge$../../rtl/snn_core.v:151$344: $auto$alumacc.cc:512:replace_alu$2676
+  creating $alu cell for $ge$../../rtl/snn_core.v:247$407, $lt$../../rtl/snn_core.v:226$385: $auto$alumacc.cc:512:replace_alu$2691
+  creating $alu cell for $gt$../../rtl/snn_core.v:254$413, $eq$../../rtl/snn_core.v:254$414: $auto$alumacc.cc:512:replace_alu$2704
+  creating $alu cell for $gt$../../rtl/snn_core.v:254$415: $auto$alumacc.cc:512:replace_alu$2715
+  creating $alu cell for $add$../../rtl/snn_core.v:244$406: $auto$alumacc.cc:512:replace_alu$2728
+  creating $alu cell for $add$../../rtl/snn_core.v:244$404: $auto$alumacc.cc:512:replace_alu$2731
+  creating $alu cell for $add$../../rtl/snn_core.v:231$402: $auto$alumacc.cc:512:replace_alu$2734
+  creating $alu cell for $add$../../rtl/snn_core.v:215$379: $auto$alumacc.cc:512:replace_alu$2737
+  creating $alu cell for $add$../../rtl/snn_core.v:215$378: $auto$alumacc.cc:512:replace_alu$2740
+  creating $alu cell for $add$../../rtl/snn_core.v:215$377: $auto$alumacc.cc:512:replace_alu$2743
+  creating $alu cell for $add$../../rtl/snn_core.v:215$376: $auto$alumacc.cc:512:replace_alu$2746
+  creating $alu cell for $add$../../rtl/snn_core.v:215$375: $auto$alumacc.cc:512:replace_alu$2749
+  creating $alu cell for $add$../../rtl/snn_core.v:215$374: $auto$alumacc.cc:512:replace_alu$2752
+  creating $alu cell for $add$../../rtl/snn_core.v:215$373: $auto$alumacc.cc:512:replace_alu$2755
+  creating $alu cell for $add$../../rtl/snn_core.v:215$372: $auto$alumacc.cc:512:replace_alu$2758
+  creating $alu cell for $add$../../rtl/snn_core.v:215$371: $auto$alumacc.cc:512:replace_alu$2761
+  creating $alu cell for $add$../../rtl/snn_core.v:215$370: $auto$alumacc.cc:512:replace_alu$2764
+  creating $alu cell for $add$../../rtl/snn_core.v:215$369: $auto$alumacc.cc:512:replace_alu$2767
+  creating $alu cell for $add$../../rtl/snn_core.v:215$368: $auto$alumacc.cc:512:replace_alu$2770
+  creating $alu cell for $add$../../rtl/snn_core.v:215$367: $auto$alumacc.cc:512:replace_alu$2773
+  creating $alu cell for $add$../../rtl/snn_core.v:215$366: $auto$alumacc.cc:512:replace_alu$2776
+  creating $alu cell for $add$../../rtl/snn_core.v:215$365: $auto$alumacc.cc:512:replace_alu$2779
+  creating $alu cell for $add$../../rtl/snn_core.v:215$364: $auto$alumacc.cc:512:replace_alu$2782
+  creating $alu cell for $neg$../../rtl/snn_core.v:210$361: $auto$alumacc.cc:512:replace_alu$2785
+  created 41 $alu and 22 $macc cells.
+
+8.14. Executing SHARE pass (SAT-based resource sharing).
+
+8.15. Executing OPT pass (performing simple optimizations).
+
+8.15.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module snn_core.
+<suppressed ~18 debug messages>
+
+8.15.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\snn_core'.
+Computing hashes of 672 cells of `\snn_core'.
+Finding duplicate cells in `\snn_core'.
+Removed a total of 0 cells.
+
+8.15.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \snn_core..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~408 debug messages>
+
+8.15.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \snn_core.
+Performed a total of 0 changes.
+
+8.15.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\snn_core'.
+Computing hashes of 672 cells of `\snn_core'.
+Finding duplicate cells in `\snn_core'.
+Removed a total of 0 cells.
+
+8.15.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+8.15.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \snn_core..
+Removed 46 unused cells and 67 unused wires.
+<suppressed ~71 debug messages>
+
+8.15.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module snn_core.
+
+8.15.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+8.15.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \snn_core..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~408 debug messages>
+
+8.15.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \snn_core.
+Performed a total of 0 changes.
+
+8.15.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\snn_core'.
+Computing hashes of 626 cells of `\snn_core'.
+Finding duplicate cells in `\snn_core'.
+Removed a total of 0 cells.
+
+8.15.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+8.15.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \snn_core..
+
+8.15.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module snn_core.
+
+8.15.16. Finished fast OPT passes. (There is nothing left to do.)
+
+8.16. Executing MEMORY pass.
+
+8.16.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+8.16.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+8.16.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+  Analyzing snn_core.g_w1[3].bank write port 0.
+  Analyzing snn_core.g_w1[2].bank write port 0.
+  Analyzing snn_core.g_w1[1].bank write port 0.
+  Analyzing snn_core.g_w1[0].bank write port 0.
+
+8.16.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+8.16.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+Checking read port `\g_w1[3].bank'[0] in module `\snn_core': merging output FF to cell.
+    Write port 0: non-transparent.
+Checking read port `\g_w1[2].bank'[0] in module `\snn_core': merging output FF to cell.
+    Write port 0: non-transparent.
+Checking read port `\g_w1[1].bank'[0] in module `\snn_core': merging output FF to cell.
+    Write port 0: non-transparent.
+Checking read port `\g_w1[0].bank'[0] in module `\snn_core': merging output FF to cell.
+    Write port 0: non-transparent.
+
+8.16.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \snn_core..
+Removed 4 unused cells and 132 unused wires.
+<suppressed ~5 debug messages>
+
+8.16.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+8.16.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+8.16.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \snn_core..
+
+8.16.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+8.17. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \snn_core..
+
+8.18. Executing OPT pass (performing simple optimizations).
+
+8.18.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module snn_core.
+<suppressed ~188 debug messages>
+
+8.18.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\snn_core'.
+Computing hashes of 558 cells of `\snn_core'.
+Finding duplicate cells in `\snn_core'.
+Computing hashes of 557 cells of `\snn_core'.
+Finding duplicate cells in `\snn_core'.
+<suppressed ~3 debug messages>
+Removed a total of 1 cells.
+
+8.18.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+8.18.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \snn_core..
+Removed 0 unused cells and 61 unused wires.
+<suppressed ~1 debug messages>
+
+8.18.5. Finished fast OPT passes.
+
+8.19. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+Mapping memory \g_w1[3].bank in module \snn_core:
+  created 64 $dff cells and 0 static cells of width 32.
+Extracted data FF from read port 0 of snn_core.g_w1[3].bank: $\g_w1[3].bank$rdreg[0]
+  read interface: 1 $dff and 63 $mux cells.
+  write interface: 64 write mux blocks.
+Mapping memory \g_w1[2].bank in module \snn_core:
+  created 64 $dff cells and 0 static cells of width 32.
+Extracted data FF from read port 0 of snn_core.g_w1[2].bank: $\g_w1[2].bank$rdreg[0]
+  read interface: 1 $dff and 63 $mux cells.
+  write interface: 64 write mux blocks.
+Mapping memory \g_w1[1].bank in module \snn_core:
+  created 64 $dff cells and 0 static cells of width 32.
+Extracted data FF from read port 0 of snn_core.g_w1[1].bank: $\g_w1[1].bank$rdreg[0]
+  read interface: 1 $dff and 63 $mux cells.
+  write interface: 64 write mux blocks.
+Mapping memory \g_w1[0].bank in module \snn_core:
+  created 64 $dff cells and 0 static cells of width 32.
+Extracted data FF from read port 0 of snn_core.g_w1[0].bank: $\g_w1[0].bank$rdreg[0]
+  read interface: 1 $dff and 63 $mux cells.
+  write interface: 64 write mux blocks.
+
+8.20. Executing OPT pass (performing simple optimizations).
+
+8.20.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module snn_core.
+<suppressed ~15 debug messages>
+
+8.20.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\snn_core'.
+Computing hashes of 1671 cells of `\snn_core'.
+Finding duplicate cells in `\snn_core'.
+Removed a total of 0 cells.
+
+8.20.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \snn_core..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~991 debug messages>
+
+8.20.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \snn_core.
+    Consolidated identical input bits for $mux cell $procmux$1772:
+      Old ports: A=6'000000, B=6'111111, Y=$1\pidx[5:0]
+      New ports: A=1'0, B=1'1, Y=$1\pidx[5:0] [0]
+      New connections: $1\pidx[5:0] [5:1] = { $1\pidx[5:0] [0] $1\pidx[5:0] [0] $1\pidx[5:0] [0] $1\pidx[5:0] [0] $1\pidx[5:0] [0] }
+  Optimizing cells in module \snn_core.
+    Consolidated identical input bits for $mux cell $procmux$1766:
+      Old ports: A=$1\pidx[5:0], B=6'111110, Y=$2\pidx[5:0]
+      New ports: A={ $1\pidx[5:0] [0] $1\pidx[5:0] [0] }, B=2'10, Y=$2\pidx[5:0] [1:0]
+      New connections: $2\pidx[5:0] [5:2] = { $2\pidx[5:0] [1] $2\pidx[5:0] [1] $2\pidx[5:0] [1] $2\pidx[5:0] [1] }
+  Optimizing cells in module \snn_core.
+    Consolidated identical input bits for $mux cell $procmux$1760:
+      Old ports: A=$2\pidx[5:0], B=6'111101, Y=$3\pidx[5:0]
+      New ports: A={ $2\pidx[5:0] [1] $2\pidx[5:0] [1:0] }, B=3'101, Y=$3\pidx[5:0] [2:0]
+      New connections: $3\pidx[5:0] [5:3] = { $3\pidx[5:0] [2] $3\pidx[5:0] [2] $3\pidx[5:0] [2] }
+  Optimizing cells in module \snn_core.
+    Consolidated identical input bits for $mux cell $procmux$1754:
+      Old ports: A=$3\pidx[5:0], B=6'111100, Y=$4\pidx[5:0]
+      New ports: A=$3\pidx[5:0] [2:0], B=3'100, Y=$4\pidx[5:0] [2:0]
+      New connections: $4\pidx[5:0] [5:3] = { $4\pidx[5:0] [2] $4\pidx[5:0] [2] $4\pidx[5:0] [2] }
+  Optimizing cells in module \snn_core.
+    Consolidated identical input bits for $mux cell $procmux$1748:
+      Old ports: A=$4\pidx[5:0], B=6'111011, Y=$5\pidx[5:0]
+      New ports: A={ $4\pidx[5:0] [2] $4\pidx[5:0] [2:0] }, B=4'1011, Y=$5\pidx[5:0] [3:0]
+      New connections: $5\pidx[5:0] [5:4] = { $5\pidx[5:0] [3] $5\pidx[5:0] [3] }
+  Optimizing cells in module \snn_core.
+    Consolidated identical input bits for $mux cell $procmux$1742:
+      Old ports: A=$5\pidx[5:0], B=6'111010, Y=$6\pidx[5:0]
+      New ports: A=$5\pidx[5:0] [3:0], B=4'1010, Y=$6\pidx[5:0] [3:0]
+      New connections: $6\pidx[5:0] [5:4] = { $6\pidx[5:0] [3] $6\pidx[5:0] [3] }
+  Optimizing cells in module \snn_core.
+    Consolidated identical input bits for $mux cell $procmux$1736:
+      Old ports: A=$6\pidx[5:0], B=6'111001, Y=$7\pidx[5:0]
+      New ports: A=$6\pidx[5:0] [3:0], B=4'1001, Y=$7\pidx[5:0] [3:0]
+      New connections: $7\pidx[5:0] [5:4] = { $7\pidx[5:0] [3] $7\pidx[5:0] [3] }
+  Optimizing cells in module \snn_core.
+    Consolidated identical input bits for $mux cell $procmux$1730:
+      Old ports: A=$7\pidx[5:0], B=6'111000, Y=$8\pidx[5:0]
+      New ports: A=$7\pidx[5:0] [3:0], B=4'1000, Y=$8\pidx[5:0] [3:0]
+      New connections: $8\pidx[5:0] [5:4] = { $8\pidx[5:0] [3] $8\pidx[5:0] [3] }
+  Optimizing cells in module \snn_core.
+    Consolidated identical input bits for $mux cell $procmux$1724:
+      Old ports: A=$8\pidx[5:0], B=6'110111, Y=$9\pidx[5:0]
+      New ports: A={ $8\pidx[5:0] [3] $8\pidx[5:0] [3:0] }, B=5'10111, Y=$9\pidx[5:0] [4:0]
+      New connections: $9\pidx[5:0] [5] = $9\pidx[5:0] [4]
+  Optimizing cells in module \snn_core.
+    Consolidated identical input bits for $mux cell $procmux$1718:
+      Old ports: A=$9\pidx[5:0], B=6'110110, Y=$10\pidx[5:0]
+      New ports: A=$9\pidx[5:0] [4:0], B=5'10110, Y=$10\pidx[5:0] [4:0]
+      New connections: $10\pidx[5:0] [5] = $10\pidx[5:0] [4]
+  Optimizing cells in module \snn_core.
+    Consolidated identical input bits for $mux cell $procmux$1712:
+      Old ports: A=$10\pidx[5:0], B=6'110101, Y=$11\pidx[5:0]
+      New ports: A=$10\pidx[5:0] [4:0], B=5'10101, Y=$11\pidx[5:0] [4:0]
+      New connections: $11\pidx[5:0] [5] = $11\pidx[5:0] [4]
+  Optimizing cells in module \snn_core.
+    Consolidated identical input bits for $mux cell $procmux$1706:
+      Old ports: A=$11\pidx[5:0], B=6'110100, Y=$12\pidx[5:0]
+      New ports: A=$11\pidx[5:0] [4:0], B=5'10100, Y=$12\pidx[5:0] [4:0]
+      New connections: $12\pidx[5:0] [5] = $12\pidx[5:0] [4]
+  Optimizing cells in module \snn_core.
+    Consolidated identical input bits for $mux cell $procmux$1700:
+      Old ports: A=$12\pidx[5:0], B=6'110011, Y=$13\pidx[5:0]
+      New ports: A=$12\pidx[5:0] [4:0], B=5'10011, Y=$13\pidx[5:0] [4:0]
+      New connections: $13\pidx[5:0] [5] = $13\pidx[5:0] [4]
+  Optimizing cells in module \snn_core.
+    Consolidated identical input bits for $mux cell $procmux$1694:
+      Old ports: A=$13\pidx[5:0], B=6'110010, Y=$14\pidx[5:0]
+      New ports: A=$13\pidx[5:0] [4:0], B=5'10010, Y=$14\pidx[5:0] [4:0]
+      New connections: $14\pidx[5:0] [5] = $14\pidx[5:0] [4]
+  Optimizing cells in module \snn_core.
+    Consolidated identical input bits for $mux cell $procmux$1688:
+      Old ports: A=$14\pidx[5:0], B=6'110001, Y=$15\pidx[5:0]
+      New ports: A=$14\pidx[5:0] [4:0], B=5'10001, Y=$15\pidx[5:0] [4:0]
+      New connections: $15\pidx[5:0] [5] = $15\pidx[5:0] [4]
+  Optimizing cells in module \snn_core.
+    Consolidated identical input bits for $mux cell $procmux$1682:
+      Old ports: A=$15\pidx[5:0], B=6'110000, Y=$16\pidx[5:0]
+      New ports: A=$15\pidx[5:0] [4:0], B=5'10000, Y=$16\pidx[5:0] [4:0]
+      New connections: $16\pidx[5:0] [5] = $16\pidx[5:0] [4]
+  Optimizing cells in module \snn_core.
+Performed a total of 16 changes.
+
+8.20.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\snn_core'.
+Computing hashes of 1671 cells of `\snn_core'.
+Finding duplicate cells in `\snn_core'.
+Removed a total of 0 cells.
+
+8.20.6. Executing OPT_SHARE pass.
+
+8.20.7. Executing OPT_DFF pass (perform DFF optimizations).
+
+8.20.8. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \snn_core..
+Removed 0 unused cells and 518 unused wires.
+<suppressed ~1 debug messages>
+
+8.20.9. Executing OPT_EXPR pass (perform const folding).
+Optimizing module snn_core.
+<suppressed ~1 debug messages>
+
+8.20.10. Rerunning OPT passes. (Maybe there is more to do..)
+
+8.20.11. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \snn_core..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~990 debug messages>
+
+8.20.12. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \snn_core.
+Performed a total of 0 changes.
+
+8.20.13. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\snn_core'.
+Computing hashes of 1670 cells of `\snn_core'.
+Finding duplicate cells in `\snn_core'.
+Removed a total of 0 cells.
+
+8.20.14. Executing OPT_SHARE pass.
+
+8.20.15. Executing OPT_DFF pass (perform DFF optimizations).
+Adding EN signal on $memory\g_w1[3].bank[0]$2920 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[0]).
+Adding EN signal on $memory\g_w1[3].bank[1]$2922 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[1]).
+Adding EN signal on $memory\g_w1[3].bank[2]$2924 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[2]).
+Adding EN signal on $memory\g_w1[3].bank[3]$2926 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[3]).
+Adding EN signal on $memory\g_w1[3].bank[4]$2928 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[4]).
+Adding EN signal on $memory\g_w1[3].bank[5]$2930 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[5]).
+Adding EN signal on $memory\g_w1[3].bank[6]$2932 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[6]).
+Adding EN signal on $memory\g_w1[3].bank[7]$2934 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[7]).
+Adding EN signal on $memory\g_w1[3].bank[8]$2936 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[8]).
+Adding EN signal on $memory\g_w1[3].bank[9]$2938 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[9]).
+Adding EN signal on $memory\g_w1[3].bank[10]$2940 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[10]).
+Adding EN signal on $memory\g_w1[3].bank[11]$2942 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[11]).
+Adding EN signal on $memory\g_w1[3].bank[12]$2944 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[12]).
+Adding EN signal on $memory\g_w1[3].bank[13]$2946 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[13]).
+Adding EN signal on $memory\g_w1[3].bank[14]$2948 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[14]).
+Adding EN signal on $memory\g_w1[3].bank[15]$2950 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[15]).
+Adding EN signal on $memory\g_w1[3].bank[16]$2952 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[16]).
+Adding EN signal on $memory\g_w1[3].bank[17]$2954 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[17]).
+Adding EN signal on $memory\g_w1[3].bank[18]$2956 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[18]).
+Adding EN signal on $memory\g_w1[3].bank[19]$2958 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[19]).
+Adding EN signal on $memory\g_w1[3].bank[20]$2960 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[20]).
+Adding EN signal on $memory\g_w1[3].bank[21]$2962 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[21]).
+Adding EN signal on $memory\g_w1[3].bank[22]$2964 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[22]).
+Adding EN signal on $memory\g_w1[3].bank[23]$2966 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[23]).
+Adding EN signal on $memory\g_w1[3].bank[24]$2968 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[24]).
+Adding EN signal on $memory\g_w1[3].bank[25]$2970 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[25]).
+Adding EN signal on $memory\g_w1[3].bank[26]$2972 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[26]).
+Adding EN signal on $memory\g_w1[3].bank[27]$2974 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[27]).
+Adding EN signal on $memory\g_w1[3].bank[28]$2976 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[28]).
+Adding EN signal on $memory\g_w1[3].bank[29]$2978 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[29]).
+Adding EN signal on $memory\g_w1[3].bank[30]$2980 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[30]).
+Adding EN signal on $memory\g_w1[3].bank[31]$2982 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[31]).
+Adding EN signal on $memory\g_w1[3].bank[32]$2984 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[32]).
+Adding EN signal on $memory\g_w1[3].bank[33]$2986 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[33]).
+Adding EN signal on $memory\g_w1[3].bank[34]$2988 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[34]).
+Adding EN signal on $memory\g_w1[3].bank[35]$2990 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[35]).
+Adding EN signal on $memory\g_w1[3].bank[36]$2992 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[36]).
+Adding EN signal on $memory\g_w1[3].bank[37]$2994 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[37]).
+Adding EN signal on $memory\g_w1[3].bank[38]$2996 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[38]).
+Adding EN signal on $memory\g_w1[3].bank[39]$2998 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[39]).
+Adding EN signal on $memory\g_w1[3].bank[40]$3000 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[40]).
+Adding EN signal on $memory\g_w1[3].bank[41]$3002 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[41]).
+Adding EN signal on $memory\g_w1[3].bank[42]$3004 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[42]).
+Adding EN signal on $memory\g_w1[3].bank[43]$3006 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[43]).
+Adding EN signal on $memory\g_w1[3].bank[44]$3008 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[44]).
+Adding EN signal on $memory\g_w1[3].bank[45]$3010 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[45]).
+Adding EN signal on $memory\g_w1[3].bank[46]$3012 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[46]).
+Adding EN signal on $memory\g_w1[3].bank[47]$3014 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[47]).
+Adding EN signal on $memory\g_w1[3].bank[48]$3016 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[48]).
+Adding EN signal on $memory\g_w1[3].bank[49]$3018 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[49]).
+Adding EN signal on $memory\g_w1[3].bank[50]$3020 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[50]).
+Adding EN signal on $memory\g_w1[3].bank[51]$3022 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[51]).
+Adding EN signal on $memory\g_w1[3].bank[52]$3024 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[52]).
+Adding EN signal on $memory\g_w1[3].bank[53]$3026 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[53]).
+Adding EN signal on $memory\g_w1[3].bank[54]$3028 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[54]).
+Adding EN signal on $memory\g_w1[3].bank[55]$3030 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[55]).
+Adding EN signal on $memory\g_w1[3].bank[56]$3032 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[56]).
+Adding EN signal on $memory\g_w1[3].bank[57]$3034 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[57]).
+Adding EN signal on $memory\g_w1[3].bank[58]$3036 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[58]).
+Adding EN signal on $memory\g_w1[3].bank[59]$3038 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[59]).
+Adding EN signal on $memory\g_w1[3].bank[60]$3040 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[60]).
+Adding EN signal on $memory\g_w1[3].bank[61]$3042 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[61]).
+Adding EN signal on $memory\g_w1[3].bank[62]$3044 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[62]).
+Adding EN signal on $memory\g_w1[3].bank[63]$3046 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[3].bank[63]).
+Adding EN signal on $memory\g_w1[2].bank[0]$3693 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[0]).
+Adding EN signal on $memory\g_w1[2].bank[1]$3695 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[1]).
+Adding EN signal on $memory\g_w1[2].bank[2]$3697 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[2]).
+Adding EN signal on $memory\g_w1[2].bank[3]$3699 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[3]).
+Adding EN signal on $memory\g_w1[2].bank[4]$3701 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[4]).
+Adding EN signal on $memory\g_w1[2].bank[5]$3703 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[5]).
+Adding EN signal on $memory\g_w1[2].bank[6]$3705 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[6]).
+Adding EN signal on $memory\g_w1[2].bank[7]$3707 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[7]).
+Adding EN signal on $memory\g_w1[2].bank[8]$3709 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[8]).
+Adding EN signal on $memory\g_w1[2].bank[9]$3711 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[9]).
+Adding EN signal on $memory\g_w1[2].bank[10]$3713 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[10]).
+Adding EN signal on $memory\g_w1[2].bank[11]$3715 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[11]).
+Adding EN signal on $memory\g_w1[2].bank[12]$3717 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[12]).
+Adding EN signal on $memory\g_w1[2].bank[13]$3719 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[13]).
+Adding EN signal on $memory\g_w1[2].bank[14]$3721 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[14]).
+Adding EN signal on $memory\g_w1[2].bank[15]$3723 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[15]).
+Adding EN signal on $memory\g_w1[2].bank[16]$3725 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[16]).
+Adding EN signal on $memory\g_w1[2].bank[17]$3727 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[17]).
+Adding EN signal on $memory\g_w1[2].bank[18]$3729 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[18]).
+Adding EN signal on $memory\g_w1[2].bank[19]$3731 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[19]).
+Adding EN signal on $memory\g_w1[2].bank[20]$3733 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[20]).
+Adding EN signal on $memory\g_w1[2].bank[21]$3735 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[21]).
+Adding EN signal on $memory\g_w1[2].bank[22]$3737 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[22]).
+Adding EN signal on $memory\g_w1[2].bank[23]$3739 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[23]).
+Adding EN signal on $memory\g_w1[2].bank[24]$3741 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[24]).
+Adding EN signal on $memory\g_w1[2].bank[25]$3743 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[25]).
+Adding EN signal on $memory\g_w1[2].bank[26]$3745 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[26]).
+Adding EN signal on $memory\g_w1[2].bank[27]$3747 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[27]).
+Adding EN signal on $memory\g_w1[2].bank[28]$3749 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[28]).
+Adding EN signal on $memory\g_w1[2].bank[29]$3751 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[29]).
+Adding EN signal on $memory\g_w1[2].bank[30]$3753 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[30]).
+Adding EN signal on $memory\g_w1[2].bank[31]$3755 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[31]).
+Adding EN signal on $memory\g_w1[2].bank[32]$3757 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[32]).
+Adding EN signal on $memory\g_w1[2].bank[33]$3759 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[33]).
+Adding EN signal on $memory\g_w1[2].bank[34]$3761 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[34]).
+Adding EN signal on $memory\g_w1[2].bank[35]$3763 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[35]).
+Adding EN signal on $memory\g_w1[2].bank[36]$3765 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[36]).
+Adding EN signal on $memory\g_w1[2].bank[37]$3767 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[37]).
+Adding EN signal on $memory\g_w1[2].bank[38]$3769 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[38]).
+Adding EN signal on $memory\g_w1[2].bank[39]$3771 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[39]).
+Adding EN signal on $memory\g_w1[2].bank[40]$3773 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[40]).
+Adding EN signal on $memory\g_w1[2].bank[41]$3775 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[41]).
+Adding EN signal on $memory\g_w1[2].bank[42]$3777 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[42]).
+Adding EN signal on $memory\g_w1[2].bank[43]$3779 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[43]).
+Adding EN signal on $memory\g_w1[2].bank[44]$3781 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[44]).
+Adding EN signal on $memory\g_w1[2].bank[45]$3783 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[45]).
+Adding EN signal on $memory\g_w1[2].bank[46]$3785 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[46]).
+Adding EN signal on $memory\g_w1[2].bank[47]$3787 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[47]).
+Adding EN signal on $memory\g_w1[2].bank[48]$3789 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[48]).
+Adding EN signal on $memory\g_w1[2].bank[49]$3791 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[49]).
+Adding EN signal on $memory\g_w1[2].bank[50]$3793 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[50]).
+Adding EN signal on $memory\g_w1[2].bank[51]$3795 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[51]).
+Adding EN signal on $memory\g_w1[2].bank[52]$3797 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[52]).
+Adding EN signal on $memory\g_w1[2].bank[53]$3799 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[53]).
+Adding EN signal on $memory\g_w1[2].bank[54]$3801 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[54]).
+Adding EN signal on $memory\g_w1[2].bank[55]$3803 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[55]).
+Adding EN signal on $memory\g_w1[2].bank[56]$3805 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[56]).
+Adding EN signal on $memory\g_w1[2].bank[57]$3807 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[57]).
+Adding EN signal on $memory\g_w1[2].bank[58]$3809 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[58]).
+Adding EN signal on $memory\g_w1[2].bank[59]$3811 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[59]).
+Adding EN signal on $memory\g_w1[2].bank[60]$3813 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[60]).
+Adding EN signal on $memory\g_w1[2].bank[61]$3815 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[61]).
+Adding EN signal on $memory\g_w1[2].bank[62]$3817 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[62]).
+Adding EN signal on $memory\g_w1[2].bank[63]$3819 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[2].bank[63]).
+Adding EN signal on $memory\g_w1[1].bank[0]$4266 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[0]).
+Adding EN signal on $memory\g_w1[1].bank[1]$4268 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[1]).
+Adding EN signal on $memory\g_w1[1].bank[2]$4270 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[2]).
+Adding EN signal on $memory\g_w1[1].bank[3]$4272 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[3]).
+Adding EN signal on $memory\g_w1[1].bank[4]$4274 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[4]).
+Adding EN signal on $memory\g_w1[1].bank[5]$4276 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[5]).
+Adding EN signal on $memory\g_w1[1].bank[6]$4278 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[6]).
+Adding EN signal on $memory\g_w1[1].bank[7]$4280 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[7]).
+Adding EN signal on $memory\g_w1[1].bank[8]$4282 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[8]).
+Adding EN signal on $memory\g_w1[1].bank[9]$4284 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[9]).
+Adding EN signal on $memory\g_w1[1].bank[10]$4286 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[10]).
+Adding EN signal on $memory\g_w1[1].bank[11]$4288 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[11]).
+Adding EN signal on $memory\g_w1[1].bank[12]$4290 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[12]).
+Adding EN signal on $memory\g_w1[1].bank[13]$4292 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[13]).
+Adding EN signal on $memory\g_w1[1].bank[14]$4294 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[14]).
+Adding EN signal on $memory\g_w1[1].bank[15]$4296 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[15]).
+Adding EN signal on $memory\g_w1[1].bank[16]$4298 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[16]).
+Adding EN signal on $memory\g_w1[1].bank[17]$4300 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[17]).
+Adding EN signal on $memory\g_w1[1].bank[18]$4302 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[18]).
+Adding EN signal on $memory\g_w1[1].bank[19]$4304 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[19]).
+Adding EN signal on $memory\g_w1[1].bank[20]$4306 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[20]).
+Adding EN signal on $memory\g_w1[1].bank[21]$4308 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[21]).
+Adding EN signal on $memory\g_w1[1].bank[22]$4310 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[22]).
+Adding EN signal on $memory\g_w1[1].bank[23]$4312 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[23]).
+Adding EN signal on $memory\g_w1[1].bank[24]$4314 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[24]).
+Adding EN signal on $memory\g_w1[1].bank[25]$4316 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[25]).
+Adding EN signal on $memory\g_w1[1].bank[26]$4318 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[26]).
+Adding EN signal on $memory\g_w1[1].bank[27]$4320 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[27]).
+Adding EN signal on $memory\g_w1[1].bank[28]$4322 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[28]).
+Adding EN signal on $memory\g_w1[1].bank[29]$4324 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[29]).
+Adding EN signal on $memory\g_w1[1].bank[30]$4326 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[30]).
+Adding EN signal on $memory\g_w1[1].bank[31]$4328 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[31]).
+Adding EN signal on $memory\g_w1[1].bank[32]$4330 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[32]).
+Adding EN signal on $memory\g_w1[1].bank[33]$4332 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[33]).
+Adding EN signal on $memory\g_w1[1].bank[34]$4334 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[34]).
+Adding EN signal on $memory\g_w1[1].bank[35]$4336 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[35]).
+Adding EN signal on $memory\g_w1[1].bank[36]$4338 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[36]).
+Adding EN signal on $memory\g_w1[1].bank[37]$4340 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[37]).
+Adding EN signal on $memory\g_w1[1].bank[38]$4342 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[38]).
+Adding EN signal on $memory\g_w1[1].bank[39]$4344 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[39]).
+Adding EN signal on $memory\g_w1[1].bank[40]$4346 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[40]).
+Adding EN signal on $memory\g_w1[1].bank[41]$4348 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[41]).
+Adding EN signal on $memory\g_w1[1].bank[42]$4350 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[42]).
+Adding EN signal on $memory\g_w1[1].bank[43]$4352 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[43]).
+Adding EN signal on $memory\g_w1[1].bank[44]$4354 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[44]).
+Adding EN signal on $memory\g_w1[1].bank[45]$4356 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[45]).
+Adding EN signal on $memory\g_w1[1].bank[46]$4358 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[46]).
+Adding EN signal on $memory\g_w1[1].bank[47]$4360 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[47]).
+Adding EN signal on $memory\g_w1[1].bank[48]$4362 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[48]).
+Adding EN signal on $memory\g_w1[1].bank[49]$4364 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[49]).
+Adding EN signal on $memory\g_w1[1].bank[50]$4366 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[50]).
+Adding EN signal on $memory\g_w1[1].bank[51]$4368 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[51]).
+Adding EN signal on $memory\g_w1[1].bank[52]$4370 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[52]).
+Adding EN signal on $memory\g_w1[1].bank[53]$4372 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[53]).
+Adding EN signal on $memory\g_w1[1].bank[54]$4374 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[54]).
+Adding EN signal on $memory\g_w1[1].bank[55]$4376 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[55]).
+Adding EN signal on $memory\g_w1[1].bank[56]$4378 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[56]).
+Adding EN signal on $memory\g_w1[1].bank[57]$4380 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[57]).
+Adding EN signal on $memory\g_w1[1].bank[58]$4382 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[58]).
+Adding EN signal on $memory\g_w1[1].bank[59]$4384 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[59]).
+Adding EN signal on $memory\g_w1[1].bank[60]$4386 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[60]).
+Adding EN signal on $memory\g_w1[1].bank[61]$4388 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[61]).
+Adding EN signal on $memory\g_w1[1].bank[62]$4390 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[62]).
+Adding EN signal on $memory\g_w1[1].bank[63]$4392 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[1].bank[63]).
+Adding EN signal on $memory\g_w1[0].bank[0]$4839 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[0]).
+Adding EN signal on $memory\g_w1[0].bank[1]$4841 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[1]).
+Adding EN signal on $memory\g_w1[0].bank[2]$4843 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[2]).
+Adding EN signal on $memory\g_w1[0].bank[3]$4845 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[3]).
+Adding EN signal on $memory\g_w1[0].bank[4]$4847 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[4]).
+Adding EN signal on $memory\g_w1[0].bank[5]$4849 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[5]).
+Adding EN signal on $memory\g_w1[0].bank[6]$4851 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[6]).
+Adding EN signal on $memory\g_w1[0].bank[7]$4853 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[7]).
+Adding EN signal on $memory\g_w1[0].bank[8]$4855 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[8]).
+Adding EN signal on $memory\g_w1[0].bank[9]$4857 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[9]).
+Adding EN signal on $memory\g_w1[0].bank[10]$4859 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[10]).
+Adding EN signal on $memory\g_w1[0].bank[11]$4861 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[11]).
+Adding EN signal on $memory\g_w1[0].bank[12]$4863 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[12]).
+Adding EN signal on $memory\g_w1[0].bank[13]$4865 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[13]).
+Adding EN signal on $memory\g_w1[0].bank[14]$4867 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[14]).
+Adding EN signal on $memory\g_w1[0].bank[15]$4869 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[15]).
+Adding EN signal on $memory\g_w1[0].bank[16]$4871 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[16]).
+Adding EN signal on $memory\g_w1[0].bank[17]$4873 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[17]).
+Adding EN signal on $memory\g_w1[0].bank[18]$4875 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[18]).
+Adding EN signal on $memory\g_w1[0].bank[19]$4877 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[19]).
+Adding EN signal on $memory\g_w1[0].bank[20]$4879 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[20]).
+Adding EN signal on $memory\g_w1[0].bank[21]$4881 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[21]).
+Adding EN signal on $memory\g_w1[0].bank[22]$4883 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[22]).
+Adding EN signal on $memory\g_w1[0].bank[23]$4885 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[23]).
+Adding EN signal on $memory\g_w1[0].bank[24]$4887 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[24]).
+Adding EN signal on $memory\g_w1[0].bank[25]$4889 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[25]).
+Adding EN signal on $memory\g_w1[0].bank[26]$4891 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[26]).
+Adding EN signal on $memory\g_w1[0].bank[27]$4893 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[27]).
+Adding EN signal on $memory\g_w1[0].bank[28]$4895 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[28]).
+Adding EN signal on $memory\g_w1[0].bank[29]$4897 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[29]).
+Adding EN signal on $memory\g_w1[0].bank[30]$4899 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[30]).
+Adding EN signal on $memory\g_w1[0].bank[31]$4901 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[31]).
+Adding EN signal on $memory\g_w1[0].bank[32]$4903 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[32]).
+Adding EN signal on $memory\g_w1[0].bank[33]$4905 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[33]).
+Adding EN signal on $memory\g_w1[0].bank[34]$4907 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[34]).
+Adding EN signal on $memory\g_w1[0].bank[35]$4909 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[35]).
+Adding EN signal on $memory\g_w1[0].bank[36]$4911 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[36]).
+Adding EN signal on $memory\g_w1[0].bank[37]$4913 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[37]).
+Adding EN signal on $memory\g_w1[0].bank[38]$4915 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[38]).
+Adding EN signal on $memory\g_w1[0].bank[39]$4917 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[39]).
+Adding EN signal on $memory\g_w1[0].bank[40]$4919 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[40]).
+Adding EN signal on $memory\g_w1[0].bank[41]$4921 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[41]).
+Adding EN signal on $memory\g_w1[0].bank[42]$4923 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[42]).
+Adding EN signal on $memory\g_w1[0].bank[43]$4925 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[43]).
+Adding EN signal on $memory\g_w1[0].bank[44]$4927 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[44]).
+Adding EN signal on $memory\g_w1[0].bank[45]$4929 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[45]).
+Adding EN signal on $memory\g_w1[0].bank[46]$4931 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[46]).
+Adding EN signal on $memory\g_w1[0].bank[47]$4933 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[47]).
+Adding EN signal on $memory\g_w1[0].bank[48]$4935 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[48]).
+Adding EN signal on $memory\g_w1[0].bank[49]$4937 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[49]).
+Adding EN signal on $memory\g_w1[0].bank[50]$4939 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[50]).
+Adding EN signal on $memory\g_w1[0].bank[51]$4941 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[51]).
+Adding EN signal on $memory\g_w1[0].bank[52]$4943 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[52]).
+Adding EN signal on $memory\g_w1[0].bank[53]$4945 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[53]).
+Adding EN signal on $memory\g_w1[0].bank[54]$4947 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[54]).
+Adding EN signal on $memory\g_w1[0].bank[55]$4949 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[55]).
+Adding EN signal on $memory\g_w1[0].bank[56]$4951 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[56]).
+Adding EN signal on $memory\g_w1[0].bank[57]$4953 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[57]).
+Adding EN signal on $memory\g_w1[0].bank[58]$4955 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[58]).
+Adding EN signal on $memory\g_w1[0].bank[59]$4957 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[59]).
+Adding EN signal on $memory\g_w1[0].bank[60]$4959 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[60]).
+Adding EN signal on $memory\g_w1[0].bank[61]$4961 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[61]).
+Adding EN signal on $memory\g_w1[0].bank[62]$4963 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[62]).
+Adding EN signal on $memory\g_w1[0].bank[63]$4965 ($dff) from module snn_core (D = \w1_wdata, Q = \g_w1[0].bank[63]).
+
+8.20.16. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \snn_core..
+Removed 256 unused cells and 257 unused wires.
+<suppressed ~257 debug messages>
+
+8.20.17. Executing OPT_EXPR pass (perform const folding).
+Optimizing module snn_core.
+
+8.20.18. Rerunning OPT passes. (Maybe there is more to do..)
+
+8.20.19. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \snn_core..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~478 debug messages>
+
+8.20.20. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \snn_core.
+Performed a total of 0 changes.
+
+8.20.21. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\snn_core'.
+Computing hashes of 1414 cells of `\snn_core'.
+Finding duplicate cells in `\snn_core'.
+Removed a total of 0 cells.
+
+8.20.22. Executing OPT_SHARE pass.
+
+8.20.23. Executing OPT_DFF pass (perform DFF optimizations).
+
+8.20.24. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \snn_core..
+
+8.20.25. Executing OPT_EXPR pass (perform const folding).
+Optimizing module snn_core.
+
+8.20.26. Finished fast OPT passes. (There is nothing left to do.)
+
+8.21. Executing TECHMAP pass (map to technology primitives).
+
+8.21.1. Executing Verilog-2005 frontend: /opt/oss-cad-suite/lib/../share/yosys/techmap.v
+Parsing Verilog input from `/opt/oss-cad-suite/lib/../share/yosys/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu_brent_kung'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `$__div_mod_u'.
+Generating RTLIL representation for module `$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_pmux'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Generating RTLIL representation for module `$connect'.
+Generating RTLIL representation for module `$input_port'.
+Successfully finished Verilog frontend.
+
+8.21.2. Continuing TECHMAP pass.
+Using extmapper simplemap for cells of type $dffe.
+Using extmapper simplemap for cells of type $and.
+Using extmapper simplemap for cells of type $not.
+Using template $paramod$25417eb1ceb444220a2cc387484bf7cf31b9177f\_90_alu for cells of type $alu.
+Using template $paramod$6fc37af1c109ae54e8aed83fcd995c12d378ce93\_90_alu for cells of type $alu.
+Using template $paramod$32a7b7b86c07519b7537abc18e96f0331f97914d\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $or.
+Using extmapper simplemap for cells of type $reduce_and.
+Using extmapper simplemap for cells of type $xor.
+Using template $paramod$c5b9a035a8d3d1a42a45840811b1f11f19722d80\_90_alu for cells of type $alu.
+Using template $paramod$740b056ede97228d3eae64ea2fdc81f0a33e0fe7\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $reduce_or.
+Using template $paramod$7d97e0da3fbb091f9d035da25b59838ee968a8e0\_90_alu for cells of type $alu.
+Using extmapper maccmap for cells of type $macc_v2.
+  add \v1[8] (20 bits, signed)
+  add \acc[8] (20 bits, signed)
+  sub $sshr$../../rtl/snn_core.v:117$240_Y (20 bits, signed)
+  packed 1 (1) bits / 1 words into adder tree
+  add \v1[7] (20 bits, signed)
+  add \acc[7] (20 bits, signed)
+  sub $sshr$../../rtl/snn_core.v:117$236_Y (20 bits, signed)
+  packed 1 (1) bits / 1 words into adder tree
+  add \v1[15] (20 bits, signed)
+  add \acc[15] (20 bits, signed)
+  sub $sshr$../../rtl/snn_core.v:117$268_Y (20 bits, signed)
+  packed 1 (1) bits / 1 words into adder tree
+  add \v2[0] (20 bits, signed)
+  add \b2 [7:0] (8 bits, signed)
+  sub $sshr$../../rtl/snn_core.v:150$305_Y (20 bits, signed)
+  add \p_q[1] [10:0] (11 bits, signed)
+  add \p_q[0] [10:0] (11 bits, signed)
+  packed 1 (1) bits / 1 words into adder tree
+  add \v1[11] (20 bits, signed)
+  add \acc[11] (20 bits, signed)
+  sub $sshr$../../rtl/snn_core.v:117$252_Y (20 bits, signed)
+  packed 1 (1) bits / 1 words into adder tree
+  add \v1[6] (20 bits, signed)
+  add \acc[6] (20 bits, signed)
+  sub $sshr$../../rtl/snn_core.v:117$232_Y (20 bits, signed)
+  packed 1 (1) bits / 1 words into adder tree
+  add \v1[13] (20 bits, signed)
+  add \acc[13] (20 bits, signed)
+  sub $sshr$../../rtl/snn_core.v:117$260_Y (20 bits, signed)
+  packed 1 (1) bits / 1 words into adder tree
+  add \v1[5] (20 bits, signed)
+  add \acc[5] (20 bits, signed)
+  sub $sshr$../../rtl/snn_core.v:117$228_Y (20 bits, signed)
+  packed 1 (1) bits / 1 words into adder tree
+  add \v1[10] (20 bits, signed)
+  add \acc[10] (20 bits, signed)
+  sub $sshr$../../rtl/snn_core.v:117$248_Y (20 bits, signed)
+  packed 1 (1) bits / 1 words into adder tree
+  add \v1[4] (20 bits, signed)
+  add \acc[4] (20 bits, signed)
+  sub $sshr$../../rtl/snn_core.v:117$224_Y (20 bits, signed)
+  packed 1 (1) bits / 1 words into adder tree
+  add \v1[14] (20 bits, signed)
+  add \acc[14] (20 bits, signed)
+  sub $sshr$../../rtl/snn_core.v:117$264_Y (20 bits, signed)
+  packed 1 (1) bits / 1 words into adder tree
+  add \v1[3] (20 bits, signed)
+  add \acc[3] (20 bits, signed)
+  sub $sshr$../../rtl/snn_core.v:117$220_Y (20 bits, signed)
+  packed 1 (1) bits / 1 words into adder tree
+  add \v1[9] (20 bits, signed)
+  add \acc[9] (20 bits, signed)
+  sub $sshr$../../rtl/snn_core.v:117$244_Y (20 bits, signed)
+  packed 1 (1) bits / 1 words into adder tree
+  add \v1[2] (20 bits, signed)
+  add \acc[2] (20 bits, signed)
+  sub $sshr$../../rtl/snn_core.v:117$216_Y (20 bits, signed)
+  packed 1 (1) bits / 1 words into adder tree
+  add \v1[12] (20 bits, signed)
+  add \acc[12] (20 bits, signed)
+  sub $sshr$../../rtl/snn_core.v:117$256_Y (20 bits, signed)
+  packed 1 (1) bits / 1 words into adder tree
+  add \v1[1] (20 bits, signed)
+  add \acc[1] (20 bits, signed)
+  sub $sshr$../../rtl/snn_core.v:117$212_Y (20 bits, signed)
+  packed 1 (1) bits / 1 words into adder tree
+  add \m[16] (8 bits, signed)
+  add \m[20] (8 bits, signed)
+  add \m[18] (8 bits, signed)
+  add \m[17] (8 bits, signed)
+  add \m[19] (8 bits, signed)
+  add \m[22] (8 bits, signed)
+  add \m[21] (8 bits, signed)
+  add \m[23] (8 bits, signed)
+  add \m[24] (8 bits, signed)
+  add \m[28] (8 bits, signed)
+  add \m[26] (8 bits, signed)
+  add \m[25] (8 bits, signed)
+  add \m[27] (8 bits, signed)
+  add \m[30] (8 bits, signed)
+  add \m[29] (8 bits, signed)
+  add \m[31] (8 bits, signed)
+  add \m[0] (8 bits, signed)
+  add \m[4] (8 bits, signed)
+  add \m[2] (8 bits, signed)
+  add \m[1] (8 bits, signed)
+  add \m[3] (8 bits, signed)
+  add \m[6] (8 bits, signed)
+  add \m[5] (8 bits, signed)
+  add \m[7] (8 bits, signed)
+  add \m[8] (8 bits, signed)
+  add \m[12] (8 bits, signed)
+  add \m[10] (8 bits, signed)
+  add \m[9] (8 bits, signed)
+  add \m[11] (8 bits, signed)
+  add \m[14] (8 bits, signed)
+  add \m[13] (8 bits, signed)
+  add \m[15] (8 bits, signed)
+  add \v2[1] (20 bits, signed)
+  add \b2 [15:8] (8 bits, signed)
+  sub $sshr$../../rtl/snn_core.v:150$341_Y (20 bits, signed)
+  add \p_q[3] [10:0] (11 bits, signed)
+  add \p_q[2] [10:0] (11 bits, signed)
+  packed 1 (1) bits / 1 words into adder tree
+  add \v1[0] (20 bits, signed)
+  add \acc[0] (20 bits, signed)
+  sub $sshr$../../rtl/snn_core.v:117$208_Y (20 bits, signed)
+  packed 1 (1) bits / 1 words into adder tree
+Using extmapper simplemap for cells of type $sdff.
+Using extmapper simplemap for cells of type $sdffe.
+Using extmapper simplemap for cells of type $ne.
+Using extmapper simplemap for cells of type $reduce_bool.
+Using extmapper simplemap for cells of type $eq.
+Using extmapper simplemap for cells of type $logic_not.
+Using extmapper simplemap for cells of type $dff.
+Using extmapper simplemap for cells of type $mux.
+Using template $paramod$constmap:b6f82330a3da960f559a35d55ed4fc3029e0529d$paramod$971db9d42b537bf92676b60dd418177c106820cd\_90_shift_ops_shr_shl_sshl_sshr for cells of type $sshr.
+Using template $paramod$constmap:c741d8d15ca6ce9584b08ae063f00a8f71c9280d$paramod$26de505cffdea93ae4a65cab40d30691657b5725\_90_shift_shiftx for cells of type $shift.
+Analyzing pattern of constant bits for this cell:
+  Constant input on bit 0 of port A: 1'0
+Creating constmapped module `$paramod$constmap:f1a7c76c720d7b47219fb42b2f14cba5ebc71c24$paramod$26de505cffdea93ae4a65cab40d30691657b5725\_90_shift_shiftx'.
+
+8.21.25. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module $paramod$constmap:f1a7c76c720d7b47219fb42b2f14cba5ebc71c24$paramod$26de505cffdea93ae4a65cab40d30691657b5725\_90_shift_shiftx..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 2/2 on $mux $procmux$19546.
+    dead port 2/2 on $mux $procmux$19552.
+    dead port 2/2 on $mux $procmux$19558.
+    dead port 2/2 on $mux $procmux$19564.
+    dead port 2/2 on $mux $procmux$19570.
+    dead port 2/2 on $mux $procmux$19576.
+Removed 6 multiplexer ports.
+<suppressed ~1562 debug messages>
+
+8.21.26. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$constmap:f1a7c76c720d7b47219fb42b2f14cba5ebc71c24$paramod$26de505cffdea93ae4a65cab40d30691657b5725\_90_shift_shiftx.
+<suppressed ~9 debug messages>
+Removed 0 unused cells and 19 unused wires.
+Using template $paramod$constmap:f1a7c76c720d7b47219fb42b2f14cba5ebc71c24$paramod$26de505cffdea93ae4a65cab40d30691657b5725\_90_shift_shiftx for cells of type $shift.
+Using extmapper simplemap for cells of type $logic_and.
+Using extmapper simplemap for cells of type $logic_or.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000010100 for cells of type $fa.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000001011 for cells of type $fa.
+Using template $paramod$ec32b97001540459632a2df9accd677d3703ea0f\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $pos.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000010100 for cells of type $lcu.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000000100 for cells of type $fa.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000000100 for cells of type $lcu.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000000111 for cells of type $fa.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000000111 for cells of type $lcu.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000001011 for cells of type $lcu.
+No more expansions possible.
+<suppressed ~6714 debug messages>
+
+8.22. Executing OPT pass (performing simple optimizations).
+
+8.22.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module snn_core.
+<suppressed ~6081 debug messages>
+
+8.22.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\snn_core'.
+Computing hashes of 33372 cells of `\snn_core'.
+Finding duplicate cells in `\snn_core'.
+Computing hashes of 32859 cells of `\snn_core'.
+Finding duplicate cells in `\snn_core'.
+Computing hashes of 32735 cells of `\snn_core'.
+Finding duplicate cells in `\snn_core'.
+Computing hashes of 32692 cells of `\snn_core'.
+Finding duplicate cells in `\snn_core'.
+Computing hashes of 32660 cells of `\snn_core'.
+Finding duplicate cells in `\snn_core'.
+Computing hashes of 32628 cells of `\snn_core'.
+Finding duplicate cells in `\snn_core'.
+Computing hashes of 32612 cells of `\snn_core'.
+Finding duplicate cells in `\snn_core'.
+Computing hashes of 32604 cells of `\snn_core'.
+Finding duplicate cells in `\snn_core'.
+Computing hashes of 32596 cells of `\snn_core'.
+Finding duplicate cells in `\snn_core'.
+Computing hashes of 32592 cells of `\snn_core'.
+Finding duplicate cells in `\snn_core'.
+<suppressed ~2340 debug messages>
+Removed a total of 780 cells.
+
+8.22.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+8.22.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \snn_core..
+Removed 1940 unused cells and 4039 unused wires.
+<suppressed ~1941 debug messages>
+
+8.22.5. Finished fast OPT passes.
+
+8.23. Executing ABC pass (technology mapping using ABC).
+
+8.23.1. Extracting gate netlist of module `\snn_core' to `<abc-temp-dir>/input.blif'..
+
+8.23.1.1. Executed ABC.
+Extracted 21460 gates and 30999 wires to a netlist network with 9537 inputs and 1230 outputs.
+Running ABC script: <abc-temp-dir>/abc.script
+ABC: UC Berkeley, ABC 1.01 (compiled Apr 14 2026 04:06:06)
+ABC: abc 01> empty
+ABC: abc 01> source <abc-temp-dir>/abc.script
+ABC: + read_blif <abc-temp-dir>/input.blif 
+ABC: + read_library <abc-temp-dir>/stdcells.genlib 
+ABC: + strash 
+ABC: + &get -n 
+ABC: + &fraig -x 
+ABC: + &put 
+ABC: + scorr 
+ABC: Warning: The network is combinational (run "fraig" or "fraig_sweep").
+ABC: + dc2 
+ABC: + dretime 
+ABC: + strash 
+ABC: + &get -n 
+ABC: + &dch -f 
+ABC: + &nf 
+ABC: + &put 
+ABC: + write_blif <abc-temp-dir>/output.blif 
+ABC: 
+ABC: YOSYS_ABC_DONE 
+
+8.23.1.2. Re-integrating ABC results.
+ABC RESULTS:               AND cells:     4893
+ABC RESULTS:            ANDNOT cells:      917
+ABC RESULTS:               MUX cells:     5033
+ABC RESULTS:              NAND cells:     6462
+ABC RESULTS:               NOR cells:     1356
+ABC RESULTS:               NOT cells:       38
+ABC RESULTS:                OR cells:     2912
+ABC RESULTS:             ORNOT cells:     2808
+ABC RESULTS:              XNOR cells:     1149
+ABC RESULTS:               XOR cells:     1031
+ABC RESULTS:        internal signals:    20232
+ABC RESULTS:           input signals:     9537
+ABC RESULTS:          output signals:     1230
+Removing temp directory.
+Removing global temp directory.
+
+8.24. Executing OPT pass (performing simple optimizations).
+
+8.24.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module snn_core.
+
+8.24.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\snn_core'.
+Computing hashes of 35791 cells of `\snn_core'.
+Finding duplicate cells in `\snn_core'.
+Removed a total of 0 cells.
+
+8.24.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+8.24.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \snn_core..
+Removed 0 unused cells and 14027 unused wires.
+<suppressed ~52 debug messages>
+
+8.24.5. Finished fast OPT passes.
+
+8.25. Executing HIERARCHY pass (managing design hierarchy).
+Attribute `top' found on module `snn_core'. Setting top module to snn_core.
+
+8.25.1. Analyzing design hierarchy..
+Top module:  \snn_core
+
+8.25.2. Analyzing design hierarchy..
+Top module:  \snn_core
+Removed 0 unused modules.
+
+8.26. Printing statistics.
+
+=== snn_core ===
+
+        +----------Local Count, excluding submodules.
+        | 
+    26691 wires
+    36535 wire bits
+      346 public wires
+    10003 public wire bits
+       22 ports
+      462 port bits
+    35791 cells
+      917   $_ANDNOT_
+     4893   $_AND_
+     8364   $_DFFE_PP_
+        4   $_DFF_P_
+     5033   $_MUX_
+     6462   $_NAND_
+     1356   $_NOR_
+       38   $_NOT_
+     2808   $_ORNOT_
+     2912   $_OR_
+      823   $_SDFFE_PP0P_
+        1   $_SDFF_PP0_
+     1149   $_XNOR_
+     1031   $_XOR_
+
+8.27. Executing CHECK pass (checking for obvious problems).
+Checking module snn_core...
+Found and reported 0 problems.
+
+9. Executing DFFLIBMAP pass (mapping DFF cells to sequential cells from liberty file).
+  cell sky130_fd_sc_hd__dfxtp_1 (noninv, pins=3, area=20.02) is a direct match for cell type $_DFF_P_.
+  cell sky130_fd_sc_hd__dfrtn_1 (noninv, pins=4, area=25.02) is a direct match for cell type $_DFF_NN0_.
+  cell sky130_fd_sc_hd__dfrtp_1 (noninv, pins=4, area=25.02) is a direct match for cell type $_DFF_PN0_.
+  cell sky130_fd_sc_hd__dfstp_2 (noninv, pins=4, area=26.28) is a direct match for cell type $_DFF_PN1_.
+  cell sky130_fd_sc_hd__edfxtp_1 (noninv, pins=4, area=30.03) is a direct match for cell type $_DFFE_PP_.
+  cell sky130_fd_sc_hd__dfbbn_1 (noninv, pins=6, area=32.53) is a direct match for cell type $_DFFSR_NNN_.
+  cell sky130_fd_sc_hd__dfbbp_1 (noninv, pins=6, area=32.53) is a direct match for cell type $_DFFSR_PNN_.
+  final dff cell mappings:
+    unmapped dff cell: $_DFF_N_
+    \sky130_fd_sc_hd__dfxtp_1 _DFF_P_ (.CLK( C), .D( D), .Q( Q));
+    \sky130_fd_sc_hd__dfrtn_1 _DFF_NN0_ (.CLK_N( C), .D( D), .Q( Q), .RESET_B( R));
+    unmapped dff cell: $_DFF_NN1_
+    unmapped dff cell: $_DFF_NP0_
+    unmapped dff cell: $_DFF_NP1_
+    \sky130_fd_sc_hd__dfrtp_1 _DFF_PN0_ (.CLK( C), .D( D), .Q( Q), .RESET_B( R));
+    \sky130_fd_sc_hd__dfstp_2 _DFF_PN1_ (.CLK( C), .D( D), .Q( Q), .SET_B( R));
+    unmapped dff cell: $_DFF_PP0_
+    unmapped dff cell: $_DFF_PP1_
+    unmapped dff cell: $_DFFE_NN_
+    unmapped dff cell: $_DFFE_NP_
+    unmapped dff cell: $_DFFE_PN_
+    \sky130_fd_sc_hd__edfxtp_1 _DFFE_PP_ (.CLK( C), .D( D), .DE( E), .Q( Q));
+    \sky130_fd_sc_hd__dfbbn_1 _DFFSR_NNN_ (.CLK_N( C), .D( D), .Q( Q), .Q_N(~Q), .RESET_B( R), .SET_B( S));
+    unmapped dff cell: $_DFFSR_NNP_
+    unmapped dff cell: $_DFFSR_NPN_
+    unmapped dff cell: $_DFFSR_NPP_
+    \sky130_fd_sc_hd__dfbbp_1 _DFFSR_PNN_ (.CLK( C), .D( D), .Q( Q), .Q_N(~Q), .RESET_B( R), .SET_B( S));
+    unmapped dff cell: $_DFFSR_PNP_
+    unmapped dff cell: $_DFFSR_PPN_
+    unmapped dff cell: $_DFFSR_PPP_
+
+9.1. Executing DFFLEGALIZE pass (convert FFs to types supported by the target).
+<suppressed ~24 debug messages>
+Mapping DFF cells in module `\snn_core':
+  mapped 8364 $_DFFE_PP_ cells to \sky130_fd_sc_hd__edfxtp_1 cells.
+  mapped 828 $_DFF_P_ cells to \sky130_fd_sc_hd__dfxtp_1 cells.
+
+10. Executing ABC pass (technology mapping using ABC).
+
+10.1. Extracting gate netlist of module `\snn_core' to `<abc-temp-dir>/input.blif'..
+
+10.1.1. Executed ABC.
+Extracted 28246 gates and 37842 wires to a netlist network with 9594 inputs and 1257 outputs.
+Running ABC script: <abc-temp-dir>/abc.script
+ABC: UC Berkeley, ABC 1.01 (compiled Apr 14 2026 04:06:06)
+ABC: abc 01> empty
+ABC: abc 01> source <abc-temp-dir>/abc.script
+ABC: + read_blif <abc-temp-dir>/input.blif 
+ABC: + read_lib -X sky130_fd_sc_hd__lpflow_* -w /usr/local/share/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+ABC: Parsing finished successfully.  Parsing time =     0.04 sec
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__decap_12" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__decap_3" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__decap_4" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__decap_6" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__decap_8" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfbbn_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfbbn_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfbbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfrbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfrbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfrtn_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfrtp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfrtp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfrtp_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfsbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfsbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfstp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfstp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfstp_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfxbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfxbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfxtp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfxtp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfxtp_4".
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__diode_2" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__dlclkp_1" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__dlclkp_2" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__dlclkp_4" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrbn_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrbn_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrtn_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrtn_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrtn_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrtp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrtp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrtp_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxbn_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxbn_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxtn_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxtn_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxtn_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxtp_1".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__ebufn_1".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__ebufn_2".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__ebufn_4".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__ebufn_8".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__edfxbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__edfxtp_1".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__einvn_0".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__einvn_1".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__einvn_2".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__einvn_4".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__einvn_8".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__einvp_1".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__einvp_2".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__einvp_4".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__einvp_8".
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_bleeder_1" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_clkbufkapwr_1" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_clkbufkapwr_16" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_clkbufkapwr_2" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_clkbufkapwr_4" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_clkbufkapwr_8" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_clkinvkapwr_1" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_clkinvkapwr_16" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_clkinvkapwr_2" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_clkinvkapwr_4" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_clkinvkapwr_8" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_decapkapwr_12" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_decapkapwr_3" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_decapkapwr_4" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_decapkapwr_6" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_decapkapwr_8" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_inputiso0n_1" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_inputiso0p_1" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_inputiso1n_1" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_inputiso1p_1" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__lpflow_inputisolatch_1".
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_isobufsrc_1" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_isobufsrc_16" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_isobufsrc_2" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_isobufsrc_4" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_isobufsrc_8" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_isobufsrckapwr_16" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_lsbuf_lh_hl_isowell_tap_1" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_lsbuf_lh_hl_isowell_tap_2" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_lsbuf_lh_hl_isowell_tap_4" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_lsbuf_lh_isowell_4" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_lsbuf_lh_isowell_tap_1" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_lsbuf_lh_isowell_tap_2" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_lsbuf_lh_isowell_tap_4" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfbbn_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfbbn_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfbbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfrbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfrbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfrtn_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfrtp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfrtp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfrtp_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfsbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfsbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfstp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfstp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfstp_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfxbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfxbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfxtp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfxtp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfxtp_4".
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__sdlclkp_1" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__sdlclkp_2" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__sdlclkp_4" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sedfxbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sedfxbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sedfxtp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sedfxtp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sedfxtp_4".
+ABC: Library "sky130_fd_sc_hd__tt_025C_1v80" from "/usr/local/share/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib" has 307 cells (121 skipped: 63 seq; 13 tri-state; 12 no func; 33 dont_use; 0 with 2 outputs; 0 with 3+ outputs).  Time =     0.06 sec
+ABC: Memory =   19.85 MB. Time =     0.06 sec
+ABC: Warning: Detected 9 multi-output cells (for example, "sky130_fd_sc_hd__fa_1").
+ABC: + strash 
+ABC: + &get -n 
+ABC: + &fraig -x 
+ABC: + &put 
+ABC: + scorr 
+ABC: Warning: The network is combinational (run "fraig" or "fraig_sweep").
+ABC: + dc2 
+ABC: + dretime 
+ABC: + retime -o -D 8000 
+ABC: + strash 
+ABC: + &get -n 
+ABC: + &dch -f 
+ABC: + &nf -D 8000 
+ABC: + &put 
+ABC: + write_blif <abc-temp-dir>/output.blif 
+ABC: 
+ABC: YOSYS_ABC_DONE 
+
+10.1.2. Re-integrating ABC results.
+ABC RESULTS:   sky130_fd_sc_hd__a2111oi_0 cells:        5
+ABC RESULTS:   sky130_fd_sc_hd__a211o_1 cells:       13
+ABC RESULTS:   sky130_fd_sc_hd__a211oi_1 cells:       56
+ABC RESULTS:   sky130_fd_sc_hd__a21boi_0 cells:       12
+ABC RESULTS:   sky130_fd_sc_hd__a21o_1 cells:       27
+ABC RESULTS:   sky130_fd_sc_hd__a21oi_1 cells:     1477
+ABC RESULTS:   sky130_fd_sc_hd__a221o_1 cells:       89
+ABC RESULTS:   sky130_fd_sc_hd__a221oi_1 cells:       97
+ABC RESULTS:   sky130_fd_sc_hd__a22o_1 cells:       50
+ABC RESULTS:   sky130_fd_sc_hd__a22oi_1 cells:      339
+ABC RESULTS:   sky130_fd_sc_hd__a2bb2oi_1 cells:       57
+ABC RESULTS:   sky130_fd_sc_hd__a311o_1 cells:        9
+ABC RESULTS:   sky130_fd_sc_hd__a311oi_1 cells:       65
+ABC RESULTS:   sky130_fd_sc_hd__a31o_1 cells:        3
+ABC RESULTS:   sky130_fd_sc_hd__a31oi_1 cells:       93
+ABC RESULTS:   sky130_fd_sc_hd__a32o_1 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__a32oi_1 cells:       83
+ABC RESULTS:   sky130_fd_sc_hd__a41o_1 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__a41oi_1 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__and2_0 cells:       80
+ABC RESULTS:   sky130_fd_sc_hd__and3_1 cells:       55
+ABC RESULTS:   sky130_fd_sc_hd__and3b_1 cells:        5
+ABC RESULTS:   sky130_fd_sc_hd__and4_1 cells:       44
+ABC RESULTS:   sky130_fd_sc_hd__clkinv_1 cells:      380
+ABC RESULTS:   sky130_fd_sc_hd__maj3_1 cells:      930
+ABC RESULTS:   sky130_fd_sc_hd__mux2_1 cells:      283
+ABC RESULTS:   sky130_fd_sc_hd__mux2i_1 cells:      647
+ABC RESULTS:   sky130_fd_sc_hd__mux4_2 cells:     1785
+ABC RESULTS:   sky130_fd_sc_hd__nand2_1 cells:     1549
+ABC RESULTS:   sky130_fd_sc_hd__nand2b_1 cells:      236
+ABC RESULTS:   sky130_fd_sc_hd__nand3_1 cells:      103
+ABC RESULTS:   sky130_fd_sc_hd__nand3b_1 cells:        4
+ABC RESULTS:   sky130_fd_sc_hd__nand4_1 cells:       55
+ABC RESULTS:   sky130_fd_sc_hd__nand4b_1 cells:       11
+ABC RESULTS:   sky130_fd_sc_hd__nor2_1 cells:     2032
+ABC RESULTS:   sky130_fd_sc_hd__nor2b_1 cells:      187
+ABC RESULTS:   sky130_fd_sc_hd__nor3_1 cells:      214
+ABC RESULTS:   sky130_fd_sc_hd__nor3b_1 cells:       20
+ABC RESULTS:   sky130_fd_sc_hd__nor4_1 cells:       18
+ABC RESULTS:   sky130_fd_sc_hd__nor4b_1 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__o2111ai_1 cells:        3
+ABC RESULTS:   sky130_fd_sc_hd__o211a_1 cells:        3
+ABC RESULTS:   sky130_fd_sc_hd__o211ai_1 cells:       55
+ABC RESULTS:   sky130_fd_sc_hd__o21a_1 cells:       33
+ABC RESULTS:   sky130_fd_sc_hd__o21ai_0 cells:     1132
+ABC RESULTS:   sky130_fd_sc_hd__o21ba_1 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__o21bai_1 cells:       32
+ABC RESULTS:   sky130_fd_sc_hd__o221a_1 cells:       15
+ABC RESULTS:   sky130_fd_sc_hd__o221ai_1 cells:      148
+ABC RESULTS:   sky130_fd_sc_hd__o22a_1 cells:        3
+ABC RESULTS:   sky130_fd_sc_hd__o22ai_1 cells:      111
+ABC RESULTS:   sky130_fd_sc_hd__o2bb2ai_1 cells:        3
+ABC RESULTS:   sky130_fd_sc_hd__o311a_1 cells:        5
+ABC RESULTS:   sky130_fd_sc_hd__o311ai_0 cells:       39
+ABC RESULTS:   sky130_fd_sc_hd__o31a_1 cells:       17
+ABC RESULTS:   sky130_fd_sc_hd__o31ai_1 cells:       15
+ABC RESULTS:   sky130_fd_sc_hd__o32a_1 cells:        7
+ABC RESULTS:   sky130_fd_sc_hd__o32ai_1 cells:        9
+ABC RESULTS:   sky130_fd_sc_hd__o41a_1 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__o41ai_1 cells:       12
+ABC RESULTS:   sky130_fd_sc_hd__or2_0 cells:       71
+ABC RESULTS:   sky130_fd_sc_hd__or3_1 cells:       53
+ABC RESULTS:   sky130_fd_sc_hd__or3b_1 cells:        4
+ABC RESULTS:   sky130_fd_sc_hd__or4_1 cells:        3
+ABC RESULTS:   sky130_fd_sc_hd__or4b_1 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__xnor2_1 cells:     1360
+ABC RESULTS:   sky130_fd_sc_hd__xnor3_1 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__xor2_1 cells:      804
+ABC RESULTS:   sky130_fd_sc_hd__xor3_1 cells:        2
+ABC RESULTS:        internal signals:    26991
+ABC RESULTS:           input signals:     9594
+ABC RESULTS:          output signals:     1257
+Removing temp directory.
+Removing global temp directory.
+
+11. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \snn_core..
+Removed 0 unused cells and 37764 unused wires.
+<suppressed ~11 debug messages>
+
+12. Printing statistics.
+
+=== snn_core ===
+
+        +----------Local Count, excluding submodules.
+        |        +-Local Area, excluding submodules.
+        |        | 
+    15231        - wires
+    24727        - wire bits
+      336        - public wires
+     9708        - public wire bits
+       22        - ports
+      462        - port bits
+    24255 3.93E+05 cells
+        5   43.792   sky130_fd_sc_hd__a2111oi_0
+       13  113.859   sky130_fd_sc_hd__a211o_1
+       56  420.403   sky130_fd_sc_hd__a211oi_1
+       12   90.086   sky130_fd_sc_hd__a21boi_0
+       27  202.694   sky130_fd_sc_hd__a21o_1
+     1477  7392.09   sky130_fd_sc_hd__a21oi_1
+       89  890.854   sky130_fd_sc_hd__a221o_1
+       97  849.565   sky130_fd_sc_hd__a221oi_1
+       50   437.92   sky130_fd_sc_hd__a22o_1
+      339 2.54E+03   sky130_fd_sc_hd__a22oi_1
+       57  499.229   sky130_fd_sc_hd__a2bb2oi_1
+        9   90.086   sky130_fd_sc_hd__a311o_1
+       65  569.296   sky130_fd_sc_hd__a311oi_1
+        3   26.275   sky130_fd_sc_hd__a31o_1
+       93  581.808   sky130_fd_sc_hd__a31oi_1
+        2   20.019   sky130_fd_sc_hd__a32o_1
+       83  726.947   sky130_fd_sc_hd__a32oi_1
+        1    10.01   sky130_fd_sc_hd__a41o_1
+        1    8.758   sky130_fd_sc_hd__a41oi_1
+       80   500.48   sky130_fd_sc_hd__and2_0
+       55   344.08   sky130_fd_sc_hd__and3_1
+        5   43.792   sky130_fd_sc_hd__and3b_1
+       44   385.37   sky130_fd_sc_hd__and4_1
+      380 1.43E+03   sky130_fd_sc_hd__clkinv_1
+      828 1.66E+04   sky130_fd_sc_hd__dfxtp_1
+     8364 2.51E+05   sky130_fd_sc_hd__edfxtp_1
+      930 9.31E+03   sky130_fd_sc_hd__maj3_1
+      283 3.19E+03   sky130_fd_sc_hd__mux2_1
+      647 6.48E+03   sky130_fd_sc_hd__mux2i_1
+     1785 4.02E+04   sky130_fd_sc_hd__mux4_2
+     1549 5.81E+03   sky130_fd_sc_hd__nand2_1
+      236 1.48E+03   sky130_fd_sc_hd__nand2b_1
+      103  515.494   sky130_fd_sc_hd__nand3_1
+        4   30.029   sky130_fd_sc_hd__nand3b_1
+       55   344.08   sky130_fd_sc_hd__nand4_1
+       11   96.342   sky130_fd_sc_hd__nand4b_1
+     2032 7.63E+03   sky130_fd_sc_hd__nor2_1
+      187 1.17E+03   sky130_fd_sc_hd__nor2b_1
+      214 1.07E+03   sky130_fd_sc_hd__nor3_1
+       20  150.144   sky130_fd_sc_hd__nor3b_1
+       18  112.608   sky130_fd_sc_hd__nor4_1
+        2   17.517   sky130_fd_sc_hd__nor4b_1
+        3   26.275   sky130_fd_sc_hd__o2111ai_1
+        3   30.029   sky130_fd_sc_hd__o211a_1
+       55  412.896   sky130_fd_sc_hd__o211ai_1
+       33  247.738   sky130_fd_sc_hd__o21a_1
+     1132 5.67E+03   sky130_fd_sc_hd__o21ai_0
+        1    10.01   sky130_fd_sc_hd__o21ba_1
+       32   240.23   sky130_fd_sc_hd__o21bai_1
+       15  168.912   sky130_fd_sc_hd__o221a_1
+      148  1.3E+03   sky130_fd_sc_hd__o221ai_1
+        3   26.275   sky130_fd_sc_hd__o22a_1
+      111  694.416   sky130_fd_sc_hd__o22ai_1
+        3   26.275   sky130_fd_sc_hd__o2bb2ai_1
+        5   50.048   sky130_fd_sc_hd__o311a_1
+       39  341.578   sky130_fd_sc_hd__o311ai_0
+       17  148.893   sky130_fd_sc_hd__o31a_1
+       15  112.608   sky130_fd_sc_hd__o31ai_1
+        7   70.067   sky130_fd_sc_hd__o32a_1
+        9   78.826   sky130_fd_sc_hd__o32ai_1
+        2   22.522   sky130_fd_sc_hd__o41a_1
+       12  105.101   sky130_fd_sc_hd__o41ai_1
+       71  444.176   sky130_fd_sc_hd__or2_0
+       53  331.568   sky130_fd_sc_hd__or3_1
+        4   35.034   sky130_fd_sc_hd__or3b_1
+        3   22.522   sky130_fd_sc_hd__or4_1
+        1    10.01   sky130_fd_sc_hd__or4b_1
+     1360 1.19E+04   sky130_fd_sc_hd__xnor2_1
+        1   22.522   sky130_fd_sc_hd__xnor3_1
+      804 7.04E+03   sky130_fd_sc_hd__xor2_1
+        2   47.546   sky130_fd_sc_hd__xor3_1
+
+   Chip area for module '\snn_core': 393194.604800
+     of which used for sequential elements: 267736.780800 (68.09%)
+
+13. Executing Verilog backend.
+
+13.1. Executing BMUXMAP pass.
+
+13.2. Executing DEMUXMAP pass.
+Dumping module `\snn_core'.
+
+Warnings: 12 unique messages, 12 total
+End of script. Logfile hash: 1bc32068b0, time: 6.16s, user: 3.35s, system: 0.09s, MEM: 143.32 MB peak
+Yosys 0.64+68 (git sha1 413169663, clang++ 18.1.8 -fPIC -O3)
+Time spent: 55% 2x abc (3 sec), 8% 24x opt_clean (0 sec), ...
