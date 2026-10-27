@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 730" font-family="DejaVu Sans,Arial,sans-serif">
+<rect width="1180" height="730" fill="white"/>
+<defs><marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0F2A33"/></marker></defs>
+<text x="24" y="38" font-size="24" font-weight="bold" fill="#0F2A33">Functional verification coverage: which testbench checks which block</text>
+<rect x="40" y="90" width="150" height="66" rx="8" fill="#EAF2F3" stroke="#0F2A33" stroke-width="2"/>
+<text x="115" y="112" font-size="15" font-weight="bold" fill="#0F2A33" text-anchor="middle">pkt_parser</text>
+<text x="115" y="130" font-size="11.5" fill="#0F2A33" text-anchor="middle">header fields</text>
+<text x="115" y="145" font-size="11.5" fill="#0F2A33" text-anchor="middle">(via spikes)</text>
+<rect x="250" y="90" width="170" height="66" rx="8" fill="#F2A541" stroke="#0F2A33" stroke-width="2"/>
+<text x="335" y="112" font-size="15" font-weight="bold" fill="#0F2A33" text-anchor="middle">spike_encoder</text>
+<text x="335" y="130" font-size="11.5" fill="#0F2A33" text-anchor="middle">64 spikes</text>
+<text x="335" y="145" font-size="11.5" fill="#0F2A33" text-anchor="middle">CHECKED bit-exact</text>
+<rect x="480" y="90" width="150" height="66" rx="8" fill="#EAF2F3" stroke="#0F2A33" stroke-width="2"/>
+<text x="555" y="112" font-size="15" font-weight="bold" fill="#0F2A33" text-anchor="middle">sync_fifo</text>
+<text x="555" y="130" font-size="11.5" fill="#0F2A33" text-anchor="middle">feature queue</text>
+<text x="555" y="145" font-size="11.5" fill="#0F2A33" text-anchor="middle">(integrity)</text>
+<rect x="690" y="90" width="170" height="66" rx="8" fill="#1B998B" stroke="#0F2A33" stroke-width="2"/>
+<text x="775" y="112" font-size="15" font-weight="bold" fill="white" text-anchor="middle">snn_core</text>
+<text x="775" y="130" font-size="11.5" fill="white" text-anchor="middle">16+2 LIF neurons</text>
+<text x="775" y="145" font-size="11.5" fill="white" text-anchor="middle">verdict+counts CHECKED</text>
+<rect x="920" y="90" width="160" height="66" rx="8" fill="#7A5C99" stroke="#0F2A33" stroke-width="2"/>
+<text x="1000" y="112" font-size="15" font-weight="bold" fill="white" text-anchor="middle">one neuron</text>
+<text x="1000" y="130" font-size="11.5" fill="white" text-anchor="middle">LIF datapath</text>
+<text x="1000" y="145" font-size="11.5" fill="white" text-anchor="middle">(golden model)</text>
+<path d="M190,123 L248,123" stroke="#0F2A33" stroke-width="2.5" marker-end="url(#a)"/>
+<path d="M420,123 L478,123" stroke="#0F2A33" stroke-width="2.5" marker-end="url(#a)"/>
+<path d="M630,123 L688,123" stroke="#0F2A33" stroke-width="2.5" marker-end="url(#a)"/>
+<path d="M860,123 L918,123" stroke="#0F2A33" stroke-width="2.5" marker-end="url(#a)"/>
+<text x="40" y="182" font-size="13" fill="#5F6F78">bytes in  &#8594;  header fields  &#8594;  64 yes/no spikes  &#8594;  queue  &#8594;  spiking network  &#8594;  verdict</text>
+<text x="24" y="218" font-size="16" font-weight="bold" fill="#0F2A33">The same engine, wrapped for each deployment (each has its own system testbench):</text>
+<rect x="40" y="230" width="205" height="70" rx="8" fill="#1B998B" stroke="#0F2A33" stroke-width="2"/>
+<text x="142" y="252" font-size="15" font-weight="bold" fill="white" text-anchor="middle">snn_pkt_filter_asic</text>
+<text x="142" y="270" font-size="11.5" fill="white" text-anchor="middle">ASIC in-line top</text>
+<text x="142" y="285" font-size="11.5" fill="white" text-anchor="middle">T1-T10 (xrun+Questa)</text>
+<rect x="265" y="230" width="205" height="70" rx="8" fill="#2E86AB" stroke="#0F2A33" stroke-width="2"/>
+<text x="367" y="252" font-size="15" font-weight="bold" fill="white" text-anchor="middle">eth_mac_1g_snn_fifo</text>
+<text x="367" y="270" font-size="11.5" fill="white" text-anchor="middle">MAC fusion</text>
+<text x="367" y="285" font-size="11.5" fill="white" text-anchor="middle">GMII-level TB</text>
+<rect x="490" y="230" width="205" height="70" rx="8" fill="#7A5C99" stroke="#0F2A33" stroke-width="2"/>
+<text x="592" y="252" font-size="15" font-weight="bold" fill="white" text-anchor="middle">snn_lookaside_avmm</text>
+<text x="592" y="270" font-size="11.5" fill="white" text-anchor="middle">Chameleon96</text>
+<text x="592" y="285" font-size="11.5" fill="white" text-anchor="middle">Avalon register TB</text>
+<rect x="715" y="230" width="205" height="70" rx="8" fill="#2E86AB" stroke="#0F2A33" stroke-width="2"/>
+<text x="817" y="252" font-size="15" font-weight="bold" fill="white" text-anchor="middle">snn_fw_avmm</text>
+<text x="817" y="270" font-size="11.5" fill="white" text-anchor="middle">Avalon in-line</text>
+<text x="817" y="285" font-size="11.5" fill="white" text-anchor="middle">HPS bring-up TB</text>
+<rect x="940" y="230" width="205" height="70" rx="8" fill="#F2A541" stroke="#0F2A33" stroke-width="2"/>
+<text x="1042" y="252" font-size="15" font-weight="bold" fill="#0F2A33" text-anchor="middle">tang9k_snn_top</text>
+<text x="1042" y="270" font-size="11.5" fill="#0F2A33" text-anchor="middle">Tang Nano 9K</text>
+<text x="1042" y="285" font-size="11.5" fill="#0F2A33" text-anchor="middle">UART/SLIP (+netlist)</text>
+<text x="24" y="332" font-size="16" font-weight="bold" fill="#0F2A33">Each testbench vs the Python golden model (model/): all bit-exact</text>
+<rect x="30" y="331" width="10" height="40" fill="#1B998B" rx="3"/>
+<text x="52" y="345" font-size="13.5" font-weight="bold" fill="#0F2A33" font-family="monospace">sim/asic/tb_snn_asic.sv</text>
+<text x="430" y="345" font-size="13" fill="#1B998B">snn_pkt_filter_asic (top)</text>
+<text x="52" y="362" font-size="12" fill="#5F6F78">T1-T10: reset, config, 600 golden frames, monitor/bypass, bad FCS, sizes, line rate, overload, reset</text>
+<rect x="30" y="380" width="10" height="40" fill="#F2A541" rx="3"/>
+<text x="52" y="394" font-size="13.5" font-weight="bold" fill="#0F2A33" font-family="monospace">sim/asic/tb_snn_pkt_filter.sv</text>
+<text x="430" y="394" font-size="13" fill="#B5761A">filter + encoder + core</text>
+<text x="52" y="411" font-size="12" fill="#5F6F78">every 64-bit SPIKE VECTOR and every VERDICT incl. both neuron spike counts; stress</text>
+<rect x="30" y="429" width="10" height="40" fill="#2E86AB" rx="3"/>
+<text x="52" y="443" font-size="13.5" font-weight="bold" fill="#0F2A33" font-family="monospace">sim/asic/tb_eth_mac_snn.sv</text>
+<text x="430" y="443" font-size="13" fill="#2E86AB">eth_mac_1g_snn_fifo</text>
+<text x="52" y="460" font-size="12" fill="#5F6F78">real GMII pins: preamble + CRC-32 FCS, frames delivered to host</text>
+<rect x="30" y="478" width="10" height="40" fill="#7A5C99" rx="3"/>
+<text x="52" y="492" font-size="13.5" font-weight="bold" fill="#0F2A33" font-family="monospace">sim/cv96/tb_snn_lookaside.sv</text>
+<text x="430" y="492" font-size="13" fill="#7A5C99">snn_lookaside_avmm</text>
+<text x="52" y="509" font-size="12" fill="#5F6F78">kernel driver register sequence: header window, SUBMIT, VERDICT, IRQ, counters</text>
+<rect x="30" y="527" width="10" height="40" fill="#2E86AB" rx="3"/>
+<text x="52" y="541" font-size="13.5" font-weight="bold" fill="#0F2A33" font-family="monospace">sim/cv96/tb_snn_fw_avmm.sv</text>
+<text x="430" y="541" font-size="13" fill="#2E86AB">snn_fw_avmm</text>
+<text x="52" y="558" font-size="12" fill="#5F6F78">Avalon: load weights, inject frames, drain forwarded bytes</text>
+<rect x="30" y="576" width="10" height="40" fill="#F2A541" rx="3"/>
+<text x="52" y="590" font-size="13.5" font-weight="bold" fill="#0F2A33" font-family="monospace">sim/tang9k/tb_tang9k.sv</text>
+<text x="430" y="590" font-size="13" fill="#B5761A">tang9k_snn_top</text>
+<text x="52" y="607" font-size="12" fill="#5F6F78">UART/SLIP from a PC (RTL + Yosys/Gowin netlist)</text>
+<rect x="30" y="625" width="10" height="40" fill="#5F6F78" rx="3"/>
+<text x="52" y="639" font-size="13.5" font-weight="bold" fill="#0F2A33" font-family="monospace">snn_stdp/tb/tb_snn_stdp.v</text>
+<text x="430" y="639" font-size="13" fill="#5F6F78">snn_stdp (base cell)</text>
+<text x="52" y="656" font-size="12" fill="#5F6F78">weight saturates at 255 (unit test of the fixed STDP cell)</text>
+<text x="24" y="692" font-size="12.5" fill="#5F6F78">All run in sim/run_all.sh (15 regressions). The ASIC top also passes on the gate-level netlist, and under xrun on the Genus/Innovus netlists on the uni server.</text>
+</svg>

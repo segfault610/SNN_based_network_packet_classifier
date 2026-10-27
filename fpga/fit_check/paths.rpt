@@ -1,0 +1,14 @@
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Report Timing                                                                                                                                                                  ;
++--------+--------------------------------------------------+----------------------------------------------+--------------+-------------+--------------+------------+------------+
+; Slack  ; From Node                                        ; To Node                                      ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++--------+--------------------------------------------------+----------------------------------------------+--------------+-------------+--------------+------------+------------+
+; -0.961 ; snn_pkt_filter:u_fw|snn_core:u_core|p_q[0][1][0] ; snn_pkt_filter:u_fw|snn_core:u_core|v2[0][8] ; clk          ; clk         ; 8.000        ; -0.132     ; 8.659      ;
+; -0.961 ; snn_pkt_filter:u_fw|snn_core:u_core|p_q[0][1][0] ; snn_pkt_filter:u_fw|snn_core:u_core|v2[0][7] ; clk          ; clk         ; 8.000        ; -0.132     ; 8.659      ;
+; -0.961 ; snn_pkt_filter:u_fw|snn_core:u_core|p_q[0][1][0] ; snn_pkt_filter:u_fw|snn_core:u_core|v2[0][1] ; clk          ; clk         ; 8.000        ; -0.132     ; 8.659      ;
+; -0.961 ; snn_pkt_filter:u_fw|snn_core:u_core|p_q[0][1][0] ; snn_pkt_filter:u_fw|snn_core:u_core|v2[0][0] ; clk          ; clk         ; 8.000        ; -0.132     ; 8.659      ;
+; -0.955 ; snn_pkt_filter:u_fw|snn_core:u_core|p_q[0][1][0] ; snn_pkt_filter:u_fw|snn_core:u_core|v2[0][6] ; clk          ; clk         ; 8.000        ; -0.126     ; 8.659      ;
+; -0.955 ; snn_pkt_filter:u_fw|snn_core:u_core|p_q[0][1][0] ; snn_pkt_filter:u_fw|snn_core:u_core|v2[0][5] ; clk          ; clk         ; 8.000        ; -0.126     ; 8.659      ;
+; -0.955 ; snn_pkt_filter:u_fw|snn_core:u_core|p_q[0][1][0] ; snn_pkt_filter:u_fw|snn_core:u_core|v2[0][4] ; clk          ; clk         ; 8.000        ; -0.126     ; 8.659      ;
+; -0.955 ; snn_pkt_filter:u_fw|snn_core:u_core|p_q[0][1][0] ; snn_pkt_filter:u_fw|snn_core:u_core|v2[0][3] ; clk          ; clk         ; 8.000        ; -0.126     ; 8.659      ;
++--------+--------------------------------------------------+----------------------------------------------+--------------+-------------+--------------+------------+------------+

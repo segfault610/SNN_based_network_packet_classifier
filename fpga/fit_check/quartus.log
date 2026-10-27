@@ -1,0 +1,512 @@
+Info: *******************************************************************
+Info: Running Quartus Prime Shell
+    Info: Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
+    Info: Copyright (C) 2020  Intel Corporation. All rights reserved.
+    Info: Your use of Intel Corporation's design tools, logic functions 
+    Info: and other software and tools, and any partner logic 
+    Info: functions, and any output files from any of the foregoing 
+    Info: (including device programming or simulation files), and any 
+    Info: associated documentation or information are expressly subject 
+    Info: to the terms and conditions of the Intel Program License 
+    Info: Subscription Agreement, the Intel Quartus Prime License Agreement,
+    Info: the Intel FPGA IP License Agreement, or other applicable license
+    Info: agreement, including, without limitation, that your use is for
+    Info: the sole purpose of programming logic devices manufactured by
+    Info: Intel and sold by Intel or its authorized distributors.  Please
+    Info: refer to the applicable agreement for further details, at
+    Info: https://fpgasoftware.intel.com/eula.
+    Info: Processing started: Tue Oct 13 12:52:42 2026
+Info: Command: quartus_sh -t snn_fw_fit.tcl
+Info (125061): Changed top-level design entity name to "snn_fw_avmm"
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
+    Info: Processing started: Tue Oct 13 12:52:43 2026
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off snn_fw_fit -c snn_fw_fit
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
+Info (12021): Found 1 design units, including 1 entities, in source file /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/sync_fifo.v
+    Info (12023): Found entity 1: sync_fifo File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/sync_fifo.v Line: 2
+Info (12021): Found 1 design units, including 1 entities, in source file /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/pkt_parser.v
+    Info (12023): Found entity 1: pkt_parser File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/pkt_parser.v Line: 11
+Info (12021): Found 1 design units, including 1 entities, in source file /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/spike_encoder.v
+    Info (12023): Found entity 1: spike_encoder File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/spike_encoder.v Line: 7
+Info (12021): Found 1 design units, including 1 entities, in source file /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_core.v
+    Info (12023): Found entity 1: snn_core File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_core.v Line: 18
+Info (12021): Found 1 design units, including 1 entities, in source file /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_pkt_filter.v
+    Info (12023): Found entity 1: snn_pkt_filter File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_pkt_filter.v Line: 27
+Info (12021): Found 1 design units, including 1 entities, in source file /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v
+    Info (12023): Found entity 1: snn_fw_avmm File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 14
+Info (12127): Elaborating entity "snn_fw_avmm" for the top level hierarchy
+Warning (10036): Verilog HDL or VHDL warning at snn_fw_avmm.v(115): object "rd_q" assigned a value but never read File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 115
+Info (12128): Elaborating entity "snn_pkt_filter" for hierarchy "snn_pkt_filter:u_fw" File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 85
+Warning (10230): Verilog HDL assignment warning at snn_pkt_filter.v(91): truncated value with size 32 to match size of target (16) File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_pkt_filter.v Line: 91
+Warning (10230): Verilog HDL assignment warning at snn_pkt_filter.v(92): truncated value with size 32 to match size of target (16) File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_pkt_filter.v Line: 92
+Warning (10230): Verilog HDL assignment warning at snn_pkt_filter.v(93): truncated value with size 32 to match size of target (4) File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_pkt_filter.v Line: 93
+Warning (10230): Verilog HDL assignment warning at snn_pkt_filter.v(94): truncated value with size 32 to match size of target (2) File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_pkt_filter.v Line: 94
+Info (12128): Elaborating entity "pkt_parser" for hierarchy "snn_pkt_filter:u_fw|pkt_parser:u_parser" File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_pkt_filter.v Line: 212
+Info (12128): Elaborating entity "spike_encoder" for hierarchy "snn_pkt_filter:u_fw|spike_encoder:u_enc" File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_pkt_filter.v Line: 225
+Info (12128): Elaborating entity "sync_fifo" for hierarchy "snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo" File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_pkt_filter.v Line: 236
+Info (12128): Elaborating entity "snn_core" for hierarchy "snn_pkt_filter:u_fw|snn_core:u_core" File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_pkt_filter.v Line: 252
+Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "m" into its bus
+Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "l1" into its bus
+Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "l2" into its bus
+Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "l3" into its bus
+Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "p_q" into its bus
+Info (12128): Elaborating entity "sync_fifo" for hierarchy "snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo" File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_pkt_filter.v Line: 264
+Warning (276020): Inferred RAM node "snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|mem_rtl_0" from synchronous design logic.  Pass-through logic has been added to match the read-during-write behavior of the original design.
+Warning (276020): Inferred RAM node "snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0" from synchronous design logic.  Pass-through logic has been added to match the read-during-write behavior of the original design.
+Info (276014): Found 1 instances of uninferred RAM logic
+    Info (276007): RAM logic "snn_pkt_filter:u_fw|snn_core:u_core|w1_mem" is uninferred due to asynchronous read logic File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_core.v Line: 62
+Info (19000): Inferred 5 megafunctions from design logic
+    Info (276029): Inferred altsyncram megafunction from the following design logic: "rxf_rtl_0" 
+        Info (286033): Parameter OPERATION_MODE set to DUAL_PORT
+        Info (286033): Parameter WIDTH_A set to 9
+        Info (286033): Parameter WIDTHAD_A set to 11
+        Info (286033): Parameter NUMWORDS_A set to 2048
+        Info (286033): Parameter WIDTH_B set to 9
+        Info (286033): Parameter WIDTHAD_B set to 11
+        Info (286033): Parameter NUMWORDS_B set to 2048
+        Info (286033): Parameter ADDRESS_ACLR_A set to NONE
+        Info (286033): Parameter OUTDATA_REG_B set to UNREGISTERED
+        Info (286033): Parameter ADDRESS_ACLR_B set to NONE
+        Info (286033): Parameter OUTDATA_ACLR_B set to NONE
+        Info (286033): Parameter ADDRESS_REG_B set to CLOCK0
+        Info (286033): Parameter INDATA_ACLR_A set to NONE
+        Info (286033): Parameter WRCONTROL_ACLR_A set to NONE
+        Info (286033): Parameter READ_DURING_WRITE_MODE_MIXED_PORTS set to OLD_DATA
+    Info (276029): Inferred altsyncram megafunction from the following design logic: "snn_pkt_filter:u_fw|buf_mem_rtl_0" 
+        Info (286033): Parameter OPERATION_MODE set to DUAL_PORT
+        Info (286033): Parameter WIDTH_A set to 9
+        Info (286033): Parameter WIDTHAD_A set to 12
+        Info (286033): Parameter NUMWORDS_A set to 4096
+        Info (286033): Parameter WIDTH_B set to 9
+        Info (286033): Parameter WIDTHAD_B set to 12
+        Info (286033): Parameter NUMWORDS_B set to 4096
+        Info (286033): Parameter ADDRESS_ACLR_A set to NONE
+        Info (286033): Parameter OUTDATA_REG_B set to UNREGISTERED
+        Info (286033): Parameter ADDRESS_ACLR_B set to NONE
+        Info (286033): Parameter OUTDATA_ACLR_B set to NONE
+        Info (286033): Parameter ADDRESS_REG_B set to CLOCK0
+        Info (286033): Parameter INDATA_ACLR_A set to NONE
+        Info (286033): Parameter WRCONTROL_ACLR_A set to NONE
+        Info (286033): Parameter READ_DURING_WRITE_MODE_MIXED_PORTS set to OLD_DATA
+        Info (286033): Parameter RDCONTROL_REG_B set to CLOCK0
+    Info (276029): Inferred altsyncram megafunction from the following design logic: "snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|mem_rtl_0" 
+        Info (286033): Parameter OPERATION_MODE set to DUAL_PORT
+        Info (286033): Parameter WIDTH_A set to 14
+        Info (286033): Parameter WIDTHAD_A set to 4
+        Info (286033): Parameter NUMWORDS_A set to 16
+        Info (286033): Parameter WIDTH_B set to 14
+        Info (286033): Parameter WIDTHAD_B set to 4
+        Info (286033): Parameter NUMWORDS_B set to 16
+        Info (286033): Parameter ADDRESS_ACLR_A set to NONE
+        Info (286033): Parameter OUTDATA_REG_B set to UNREGISTERED
+        Info (286033): Parameter ADDRESS_ACLR_B set to NONE
+        Info (286033): Parameter OUTDATA_ACLR_B set to NONE
+        Info (286033): Parameter ADDRESS_REG_B set to CLOCK0
+        Info (286033): Parameter INDATA_ACLR_A set to NONE
+        Info (286033): Parameter WRCONTROL_ACLR_A set to NONE
+    Info (276029): Inferred altsyncram megafunction from the following design logic: "snn_pkt_filter:u_fw|snn_core:u_core|w1_mem_rtl_0" 
+        Info (286033): Parameter OPERATION_MODE set to DUAL_PORT
+        Info (286033): Parameter WIDTH_A set to 128
+        Info (286033): Parameter WIDTHAD_A set to 6
+        Info (286033): Parameter NUMWORDS_A set to 64
+        Info (286033): Parameter WIDTH_B set to 128
+        Info (286033): Parameter WIDTHAD_B set to 6
+        Info (286033): Parameter NUMWORDS_B set to 64
+        Info (286033): Parameter ADDRESS_ACLR_A set to NONE
+        Info (286033): Parameter OUTDATA_REG_B set to UNREGISTERED
+        Info (286033): Parameter ADDRESS_ACLR_B set to NONE
+        Info (286033): Parameter OUTDATA_ACLR_B set to NONE
+        Info (286033): Parameter ADDRESS_REG_B set to CLOCK0
+        Info (286033): Parameter INDATA_ACLR_A set to NONE
+        Info (286033): Parameter WRCONTROL_ACLR_A set to NONE
+        Info (286033): Parameter READ_DURING_WRITE_MODE_MIXED_PORTS set to OLD_DATA
+        Info (286033): Parameter RDCONTROL_REG_B set to CLOCK0
+    Info (276029): Inferred altsyncram megafunction from the following design logic: "snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0" 
+        Info (286033): Parameter OPERATION_MODE set to DUAL_PORT
+        Info (286033): Parameter WIDTH_A set to 77
+        Info (286033): Parameter WIDTHAD_A set to 2
+        Info (286033): Parameter NUMWORDS_A set to 4
+        Info (286033): Parameter WIDTH_B set to 77
+        Info (286033): Parameter WIDTHAD_B set to 2
+        Info (286033): Parameter NUMWORDS_B set to 4
+        Info (286033): Parameter ADDRESS_ACLR_A set to NONE
+        Info (286033): Parameter OUTDATA_REG_B set to UNREGISTERED
+        Info (286033): Parameter ADDRESS_ACLR_B set to NONE
+        Info (286033): Parameter OUTDATA_ACLR_B set to NONE
+        Info (286033): Parameter ADDRESS_REG_B set to CLOCK0
+        Info (286033): Parameter INDATA_ACLR_A set to NONE
+        Info (286033): Parameter WRCONTROL_ACLR_A set to NONE
+Info (12130): Elaborated megafunction instantiation "altsyncram:rxf_rtl_0"
+Info (12133): Instantiated megafunction "altsyncram:rxf_rtl_0" with the following parameter:
+    Info (12134): Parameter "OPERATION_MODE" = "DUAL_PORT"
+    Info (12134): Parameter "WIDTH_A" = "9"
+    Info (12134): Parameter "WIDTHAD_A" = "11"
+    Info (12134): Parameter "NUMWORDS_A" = "2048"
+    Info (12134): Parameter "WIDTH_B" = "9"
+    Info (12134): Parameter "WIDTHAD_B" = "11"
+    Info (12134): Parameter "NUMWORDS_B" = "2048"
+    Info (12134): Parameter "ADDRESS_ACLR_A" = "NONE"
+    Info (12134): Parameter "OUTDATA_REG_B" = "UNREGISTERED"
+    Info (12134): Parameter "ADDRESS_ACLR_B" = "NONE"
+    Info (12134): Parameter "OUTDATA_ACLR_B" = "NONE"
+    Info (12134): Parameter "ADDRESS_REG_B" = "CLOCK0"
+    Info (12134): Parameter "INDATA_ACLR_A" = "NONE"
+    Info (12134): Parameter "WRCONTROL_ACLR_A" = "NONE"
+    Info (12134): Parameter "READ_DURING_WRITE_MODE_MIXED_PORTS" = "OLD_DATA"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_i9n1.tdf
+    Info (12023): Found entity 1: altsyncram_i9n1 File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/fpga/fit_check/db/altsyncram_i9n1.tdf Line: 28
+Info (12130): Elaborated megafunction instantiation "snn_pkt_filter:u_fw|altsyncram:buf_mem_rtl_0"
+Info (12133): Instantiated megafunction "snn_pkt_filter:u_fw|altsyncram:buf_mem_rtl_0" with the following parameter:
+    Info (12134): Parameter "OPERATION_MODE" = "DUAL_PORT"
+    Info (12134): Parameter "WIDTH_A" = "9"
+    Info (12134): Parameter "WIDTHAD_A" = "12"
+    Info (12134): Parameter "NUMWORDS_A" = "4096"
+    Info (12134): Parameter "WIDTH_B" = "9"
+    Info (12134): Parameter "WIDTHAD_B" = "12"
+    Info (12134): Parameter "NUMWORDS_B" = "4096"
+    Info (12134): Parameter "ADDRESS_ACLR_A" = "NONE"
+    Info (12134): Parameter "OUTDATA_REG_B" = "UNREGISTERED"
+    Info (12134): Parameter "ADDRESS_ACLR_B" = "NONE"
+    Info (12134): Parameter "OUTDATA_ACLR_B" = "NONE"
+    Info (12134): Parameter "ADDRESS_REG_B" = "CLOCK0"
+    Info (12134): Parameter "INDATA_ACLR_A" = "NONE"
+    Info (12134): Parameter "WRCONTROL_ACLR_A" = "NONE"
+    Info (12134): Parameter "READ_DURING_WRITE_MODE_MIXED_PORTS" = "OLD_DATA"
+    Info (12134): Parameter "RDCONTROL_REG_B" = "CLOCK0"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_q6q1.tdf
+    Info (12023): Found entity 1: altsyncram_q6q1 File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/fpga/fit_check/db/altsyncram_q6q1.tdf Line: 28
+Info (12130): Elaborated megafunction instantiation "snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|altsyncram:mem_rtl_0"
+Info (12133): Instantiated megafunction "snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|altsyncram:mem_rtl_0" with the following parameter:
+    Info (12134): Parameter "OPERATION_MODE" = "DUAL_PORT"
+    Info (12134): Parameter "WIDTH_A" = "14"
+    Info (12134): Parameter "WIDTHAD_A" = "4"
+    Info (12134): Parameter "NUMWORDS_A" = "16"
+    Info (12134): Parameter "WIDTH_B" = "14"
+    Info (12134): Parameter "WIDTHAD_B" = "4"
+    Info (12134): Parameter "NUMWORDS_B" = "16"
+    Info (12134): Parameter "ADDRESS_ACLR_A" = "NONE"
+    Info (12134): Parameter "OUTDATA_REG_B" = "UNREGISTERED"
+    Info (12134): Parameter "ADDRESS_ACLR_B" = "NONE"
+    Info (12134): Parameter "OUTDATA_ACLR_B" = "NONE"
+    Info (12134): Parameter "ADDRESS_REG_B" = "CLOCK0"
+    Info (12134): Parameter "INDATA_ACLR_A" = "NONE"
+    Info (12134): Parameter "WRCONTROL_ACLR_A" = "NONE"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_8ji1.tdf
+    Info (12023): Found entity 1: altsyncram_8ji1 File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/fpga/fit_check/db/altsyncram_8ji1.tdf Line: 28
+Info (12130): Elaborated megafunction instantiation "snn_pkt_filter:u_fw|snn_core:u_core|altsyncram:w1_mem_rtl_0"
+Info (12133): Instantiated megafunction "snn_pkt_filter:u_fw|snn_core:u_core|altsyncram:w1_mem_rtl_0" with the following parameter:
+    Info (12134): Parameter "OPERATION_MODE" = "DUAL_PORT"
+    Info (12134): Parameter "WIDTH_A" = "128"
+    Info (12134): Parameter "WIDTHAD_A" = "6"
+    Info (12134): Parameter "NUMWORDS_A" = "64"
+    Info (12134): Parameter "WIDTH_B" = "128"
+    Info (12134): Parameter "WIDTHAD_B" = "6"
+    Info (12134): Parameter "NUMWORDS_B" = "64"
+    Info (12134): Parameter "ADDRESS_ACLR_A" = "NONE"
+    Info (12134): Parameter "OUTDATA_REG_B" = "UNREGISTERED"
+    Info (12134): Parameter "ADDRESS_ACLR_B" = "NONE"
+    Info (12134): Parameter "OUTDATA_ACLR_B" = "NONE"
+    Info (12134): Parameter "ADDRESS_REG_B" = "CLOCK0"
+    Info (12134): Parameter "INDATA_ACLR_A" = "NONE"
+    Info (12134): Parameter "WRCONTROL_ACLR_A" = "NONE"
+    Info (12134): Parameter "READ_DURING_WRITE_MODE_MIXED_PORTS" = "OLD_DATA"
+    Info (12134): Parameter "RDCONTROL_REG_B" = "CLOCK0"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_i3q1.tdf
+    Info (12023): Found entity 1: altsyncram_i3q1 File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/fpga/fit_check/db/altsyncram_i3q1.tdf Line: 28
+Info (12130): Elaborated megafunction instantiation "snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|altsyncram:mem_rtl_0"
+Info (12133): Instantiated megafunction "snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|altsyncram:mem_rtl_0" with the following parameter:
+    Info (12134): Parameter "OPERATION_MODE" = "DUAL_PORT"
+    Info (12134): Parameter "WIDTH_A" = "77"
+    Info (12134): Parameter "WIDTHAD_A" = "2"
+    Info (12134): Parameter "NUMWORDS_A" = "4"
+    Info (12134): Parameter "WIDTH_B" = "77"
+    Info (12134): Parameter "WIDTHAD_B" = "2"
+    Info (12134): Parameter "NUMWORDS_B" = "4"
+    Info (12134): Parameter "ADDRESS_ACLR_A" = "NONE"
+    Info (12134): Parameter "OUTDATA_REG_B" = "UNREGISTERED"
+    Info (12134): Parameter "ADDRESS_ACLR_B" = "NONE"
+    Info (12134): Parameter "OUTDATA_ACLR_B" = "NONE"
+    Info (12134): Parameter "ADDRESS_REG_B" = "CLOCK0"
+    Info (12134): Parameter "INDATA_ACLR_A" = "NONE"
+    Info (12134): Parameter "WRCONTROL_ACLR_A" = "NONE"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_ggi1.tdf
+    Info (12023): Found entity 1: altsyncram_ggi1 File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/fpga/fit_check/db/altsyncram_ggi1.tdf Line: 28
+Info (286030): Timing-Driven Synthesis is running
+Info (17049): 2 registers lost all their fanouts during netlist optimizations.
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Info (15717): Design contains 79 virtual pins; timing numbers associated with paths containing virtual pins are estimates
+    Info (15719): Pin "avs_readdata[0]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[1]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[2]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[3]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[4]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[5]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[6]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[7]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[8]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[9]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[10]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[11]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[12]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[13]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[14]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[15]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[16]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[17]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[18]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[19]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[20]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[21]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[22]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[23]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[24]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[25]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[26]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[27]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[28]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[29]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[30]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[31]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_waitrequest" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 27
+    Info (15718): Pin "avs_write" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 23
+    Info (15718): Pin "avs_address[10]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 22
+    Info (15718): Pin "avs_address[0]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 22
+    Info (15718): Pin "avs_address[1]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 22
+    Info (15718): Pin "avs_address[2]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 22
+    Info (15718): Pin "avs_address[9]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 22
+    Info (15718): Pin "avs_address[3]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 22
+    Info (15718): Pin "avs_address[4]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 22
+    Info (15718): Pin "avs_address[5]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 22
+    Info (15718): Pin "avs_address[6]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 22
+    Info (15718): Pin "avs_address[7]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 22
+    Info (15718): Pin "avs_address[8]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 22
+    Info (15718): Pin "avs_read" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 25
+    Info (15718): Pin "reset" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 20
+    Info (15718): Pin "avs_writedata[0]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[1]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[2]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[3]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[4]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[5]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[6]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[7]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[8]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[9]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[10]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[11]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[12]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[13]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[14]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[15]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[16]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[17]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[18]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[19]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[20]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[21]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[22]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[23]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[24]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[25]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[26]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[27]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[28]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[29]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[30]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[31]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+Warning (15752): Ignored 11 Virtual Pin logic option assignments
+    Warning (15720): Ignored Virtual Pin assignment to node "avs_readdata~0"
+    Warning (15720): Ignored Virtual Pin assignment to node "avs_readdata~1"
+    Warning (15720): Ignored Virtual Pin assignment to node "avs_readdata~2"
+    Warning (15720): Ignored Virtual Pin assignment to node "avs_readdata~3"
+    Warning (15720): Ignored Virtual Pin assignment to node "avs_readdata~4"
+    Warning (15720): Ignored Virtual Pin assignment to node "avs_readdata~5"
+    Warning (15720): Ignored Virtual Pin assignment to node "avs_readdata~6"
+    Warning (15720): Ignored Virtual Pin assignment to node "avs_readdata~7"
+    Warning (15720): Ignored Virtual Pin assignment to node "avs_readdata~8"
+    Warning (15720): Ignored Virtual Pin assignment to node "avs_readdata~9"
+    Warning (15720): Ignored Virtual Pin assignment to node "avs_readdata~10"
+Info (21057): Implemented 15958 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 1 input pins
+    Info (21059): Implemented 2 output pins
+    Info (21061): Implemented 15718 logic cells
+    Info (21064): Implemented 237 RAM segments
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 20 warnings
+    Info: Peak virtual memory: 645 megabytes
+    Info: Processing ended: Tue Oct 13 12:52:54 2026
+    Info: Elapsed time: 00:00:11
+    Info: Total CPU time (on all processors): 00:00:20
+Info: *******************************************************************
+Info: Running Quartus Prime Fitter
+    Info: Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
+    Info: Processing started: Tue Oct 13 12:52:55 2026
+Info: Command: quartus_fit --read_settings_files=off --write_settings_files=off snn_fw_fit -c snn_fw_fit
+Info: qfit2_default_script.tcl version: #1
+Info: Project  = snn_fw_fit
+Info: Revision = snn_fw_fit
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
+Info (119006): Selected device 5CSEBA6U19I7 for design "snn_fw_fit"
+Info (21076): High junction temperature operating condition is not set. Assuming a default value of '100'.
+Info (21076): Low junction temperature operating condition is not set. Assuming a default value of '-40'.
+Info (171003): Fitter is performing an Auto Fit compilation, which may decrease Fitter effort to reduce compilation time
+Warning (292013): Feature LogicLock is only available with a valid subscription license. You can purchase a software subscription to gain full access to this feature.
+Warning (15714): Some pins have incomplete I/O assignments. Refer to the I/O Assignment Warnings report for details
+Info (176045): Design uses memory blocks. Violating setup or hold times of memory block address registers for either read or write operations could cause memory contents to be corrupted. Make sure that all memory block address registers meet the setup and hold time requirements.
+Critical Warning (169085): No exact pin location assignment(s) for 1 pins of 3 total pins. For the list of pins please refer to the I/O Assignment Warnings table in the fitter report.
+Info (184020): Starting Fitter periphery placement operations
+Info (11191): Automatically promoted 1 clock (1 global)
+    Info (11162): clk~inputCLKENA0 with 10573 fanout uses global clock CLKCTRL_G12
+Info (184021): Fitter periphery placement operations ending: elapsed time is 00:00:00
+Info (176233): Starting register packing
+Info (332104): Reading SDC File: 'snn_fw_fit.sdc'
+Info (332151): Clock uncertainty is not calculated until you update the timing netlist.
+Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
+Info (332129): Detected timing requirements -- optimizing circuit to achieve only the specified requirements
+Info (332111): Found 1 clocks
+    Info (332111):   Period   Clock Name
+    Info (332111): ======== ============
+    Info (332111):    8.000          clk
+Info (176235): Finished register packing
+    Extra Info (176219): No registers were packed into other blocks
+Info (11798): Fitter preparation operations ending: elapsed time is 00:00:07
+Info (170189): Fitter placement preparation operations beginning
+Info (14951): The Fitter is using Advanced Physical Optimization.
+Info (170190): Fitter placement preparation operations ending: elapsed time is 00:00:14
+Info (170191): Fitter placement operations beginning
+Info (170137): Fitter placement was successful
+Info (170192): Fitter placement operations ending: elapsed time is 00:00:07
+Info (170193): Fitter routing operations beginning
+Info (170195): Router estimated average interconnect usage is 5% of the available device resources
+    Info (170196): Router estimated peak interconnect usage is 23% of the available device resources in the region that extends from location X22_Y23 to location X32_Y34
+Info (170199): The Fitter performed an Auto Fit compilation.  Optimizations were skipped to reduce compilation time.
+    Info (170201): Optimizations that may affect the design's routability were skipped
+Info (170194): Fitter routing operations ending: elapsed time is 00:00:13
+Info (11888): Total time spent on timing analysis during the Fitter is 8.51 seconds.
+Info (334003): Started post-fitting delay annotation
+Info (334004): Delay annotation completed successfully
+Info (334003): Started post-fitting delay annotation
+Info (334004): Delay annotation completed successfully
+Info (11801): Fitter post-fit operations ending: elapsed time is 00:00:11
+Info (144001): Generated suppressed messages file /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/fpga/fit_check/output_files/snn_fw_fit.fit.smsg
+Info: Quartus Prime Fitter was successful. 0 errors, 4 warnings
+    Info: Peak virtual memory: 3021 megabytes
+    Info: Processing ended: Tue Oct 13 12:54:17 2026
+    Info: Elapsed time: 00:01:22
+    Info: Total CPU time (on all processors): 00:04:44
+Info: *******************************************************************
+Info: Running Quartus Prime Assembler
+    Info: Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
+    Info: Processing started: Tue Oct 13 12:54:18 2026
+Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off snn_fw_fit -c snn_fw_fit
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (115030): Assembler is generating device programming files
+Info: Quartus Prime Assembler was successful. 0 errors, 1 warning
+    Info: Peak virtual memory: 608 megabytes
+    Info: Processing ended: Tue Oct 13 12:54:23 2026
+    Info: Elapsed time: 00:00:05
+    Info: Total CPU time (on all processors): 00:00:05
+Info (293026): Skipped module Power Analyzer due to the assignment FLOW_ENABLE_POWER_ANALYZER
+Info: *******************************************************************
+Info: Running Quartus Prime Timing Analyzer
+    Info: Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
+    Info: Processing started: Tue Oct 13 12:54:23 2026
+Info: Command: quartus_sta snn_fw_fit -c snn_fw_fit
+Info: qsta_default_script.tcl version: #1
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
+Info (21076): High junction temperature operating condition is not set. Assuming a default value of '100'.
+Info (21076): Low junction temperature operating condition is not set. Assuming a default value of '-40'.
+Info (332104): Reading SDC File: 'snn_fw_fit.sdc'
+Info (332151): Clock uncertainty is not calculated until you update the timing netlist.
+Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
+Info: Found TIMING_ANALYZER_REPORT_SCRIPT_INCLUDE_DEFAULT_ANALYSIS = ON
+Info: Analyzing Slow 1100mV 100C Model
+Critical Warning (332148): Timing requirements not met
+    Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the Timing Analyzer.
+Info (332146): Worst-case setup slack is -0.961
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):    -0.961             -68.270 clk 
+Info (332146): Worst-case hold slack is 0.247
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):     0.247               0.000 clk 
+Info (332140): No Recovery paths to report
+Info (332140): No Removal paths to report
+Info (332146): Worst-case minimum pulse width slack is 2.650
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):     2.650               0.000 clk 
+Info: Analyzing Slow 1100mV -40C Model
+Info (334003): Started post-fitting delay annotation
+Info (334004): Delay annotation completed successfully
+Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
+Critical Warning (332148): Timing requirements not met
+    Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the Timing Analyzer.
+Info (332146): Worst-case setup slack is -1.050
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):    -1.050            -107.379 clk 
+Info (332146): Worst-case hold slack is 0.240
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):     0.240               0.000 clk 
+Info (332140): No Recovery paths to report
+Info (332140): No Removal paths to report
+Info (332146): Worst-case minimum pulse width slack is 2.597
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):     2.597               0.000 clk 
+Info: Analyzing Fast 1100mV 100C Model
+Info (334003): Started post-fitting delay annotation
+Info (334004): Delay annotation completed successfully
+Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
+Info (332146): Worst-case setup slack is 3.246
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):     3.246               0.000 clk 
+Info (332146): Worst-case hold slack is 0.132
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):     0.132               0.000 clk 
+Info (332140): No Recovery paths to report
+Info (332140): No Removal paths to report
+Info (332146): Worst-case minimum pulse width slack is 2.788
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):     2.788               0.000 clk 
+Info: Analyzing Fast 1100mV -40C Model
+Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
+Info (332146): Worst-case setup slack is 3.927
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):     3.927               0.000 clk 
+Info (332146): Worst-case hold slack is 0.116
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):     0.116               0.000 clk 
+Info (332140): No Recovery paths to report
+Info (332140): No Removal paths to report
+Info (332146): Worst-case minimum pulse width slack is 2.775
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):     2.775               0.000 clk 
+Info (332102): Design is not fully constrained for setup requirements
+Info (332102): Design is not fully constrained for hold requirements
+Info: Quartus Prime Timing Analyzer was successful. 0 errors, 3 warnings
+    Info: Peak virtual memory: 1256 megabytes
+    Info: Processing ended: Tue Oct 13 12:54:34 2026
+    Info: Elapsed time: 00:00:11
+    Info: Total CPU time (on all processors): 00:00:41
+Info (293000): Quartus Prime Full Compilation was successful. 0 errors, 28 warnings
+Info (23030): Evaluation of Tcl script snn_fw_fit.tcl was successful
+Info: Quartus Prime Shell was successful. 0 errors, 28 warnings
+    Info: Peak virtual memory: 563 megabytes
+    Info: Processing ended: Tue Oct 13 12:54:34 2026
+    Info: Elapsed time: 00:01:52
+    Info: Total CPU time (on all processors): 00:05:53

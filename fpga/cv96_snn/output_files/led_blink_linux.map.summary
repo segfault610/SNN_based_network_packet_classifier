@@ -1,0 +1,17 @@
+Analysis & Synthesis Status : Successful - Fri Oct 16 16:57:55 2026
+Quartus Prime Version : 20.1.0 Build 711 06/05/2020 SJ Lite Edition
+Revision Name : led_blink_linux
+Top-level Entity Name : led_blink_linux
+Family : Cyclone V
+Logic utilization (in ALMs) : N/A
+Total registers : 2733
+Total pins : 51
+Total virtual pins : 0
+Total block memory bits : 9,776
+Total DSP Blocks : 0
+Total HSSI RX PCSs : 0
+Total HSSI PMA RX Deserializers : 0
+Total HSSI TX PCSs : 0
+Total HSSI PMA TX Serializers : 0
+Total PLLs : 0
+Total DLLs : 1

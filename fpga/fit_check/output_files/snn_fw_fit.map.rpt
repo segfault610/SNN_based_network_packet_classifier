@@ -1,0 +1,1498 @@
+Analysis & Synthesis report for snn_fw_fit
+Tue Oct 13 12:52:54 2026
+Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Analysis & Synthesis RAM Summary
+  9. State Machine - |snn_fw_avmm|snn_pkt_filter:u_fw|snn_core:u_core|state
+ 10. Registers Removed During Synthesis
+ 11. General Register Statistics
+ 12. Registers Packed Into Inferred Megafunctions
+ 13. Registers Added for RAM Pass-Through Logic
+ 14. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 15. Source assignments for altsyncram:rxf_rtl_0|altsyncram_i9n1:auto_generated
+ 16. Source assignments for snn_pkt_filter:u_fw|altsyncram:buf_mem_rtl_0|altsyncram_q6q1:auto_generated
+ 17. Source assignments for snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|altsyncram:mem_rtl_0|altsyncram_8ji1:auto_generated
+ 18. Source assignments for snn_pkt_filter:u_fw|snn_core:u_core|altsyncram:w1_mem_rtl_0|altsyncram_i3q1:auto_generated
+ 19. Source assignments for snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|altsyncram:mem_rtl_0|altsyncram_ggi1:auto_generated
+ 20. Parameter Settings for User Entity Instance: Top-level Entity: |snn_fw_avmm
+ 21. Parameter Settings for User Entity Instance: snn_pkt_filter:u_fw
+ 22. Parameter Settings for User Entity Instance: snn_pkt_filter:u_fw|spike_encoder:u_enc
+ 23. Parameter Settings for User Entity Instance: snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo
+ 24. Parameter Settings for User Entity Instance: snn_pkt_filter:u_fw|snn_core:u_core
+ 25. Parameter Settings for User Entity Instance: snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo
+ 26. Parameter Settings for Inferred Entity Instance: altsyncram:rxf_rtl_0
+ 27. Parameter Settings for Inferred Entity Instance: snn_pkt_filter:u_fw|altsyncram:buf_mem_rtl_0
+ 28. Parameter Settings for Inferred Entity Instance: snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|altsyncram:mem_rtl_0
+ 29. Parameter Settings for Inferred Entity Instance: snn_pkt_filter:u_fw|snn_core:u_core|altsyncram:w1_mem_rtl_0
+ 30. Parameter Settings for Inferred Entity Instance: snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|altsyncram:mem_rtl_0
+ 31. altsyncram Parameter Settings by Entity Instance
+ 32. Port Connectivity Checks: "snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo"
+ 33. Port Connectivity Checks: "snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo"
+ 34. Port Connectivity Checks: "snn_pkt_filter:u_fw"
+ 35. Post-Synthesis Netlist Statistics for Top Partition
+ 36. Elapsed Time Per Partition
+ 37. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2020  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details, at
+https://fpgasoftware.intel.com/eula.
+
+
+
++-------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                  ;
++---------------------------------+---------------------------------------------+
+; Analysis & Synthesis Status     ; Successful - Tue Oct 13 12:52:54 2026       ;
+; Quartus Prime Version           ; 20.1.0 Build 711 06/05/2020 SJ Lite Edition ;
+; Revision Name                   ; snn_fw_fit                                  ;
+; Top-level Entity Name           ; snn_fw_avmm                                 ;
+; Family                          ; Cyclone V                                   ;
+; Logic utilization (in ALMs)     ; N/A                                         ;
+; Total registers                 ; 10336                                       ;
+; Total pins                      ; 3                                           ;
+; Total virtual pins              ; 79                                          ;
+; Total block memory bits         ; 64,020                                      ;
+; Total DSP Blocks                ; 0                                           ;
+; Total HSSI RX PCSs              ; 0                                           ;
+; Total HSSI PMA RX Deserializers ; 0                                           ;
+; Total HSSI TX PCSs              ; 0                                           ;
+; Total HSSI PMA TX Serializers   ; 0                                           ;
+; Total PLLs                      ; 0                                           ;
+; Total DLLs                      ; 0                                           ;
++---------------------------------+---------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                             ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                          ; Setting            ; Default Value      ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                          ; 5CSEBA6U19I7       ;                    ;
+; Top-level entity name                                                           ; snn_fw_avmm        ; snn_fw_fit         ;
+; Family name                                                                     ; Cyclone V          ; Cyclone V          ;
+; Use smart compilation                                                           ; Off                ; Off                ;
+; Enable parallel Assembler and Timing Analyzer during compilation                ; On                 ; On                 ;
+; Enable compact report table                                                     ; Off                ; Off                ;
+; Restructure Multiplexers                                                        ; Auto               ; Auto               ;
+; MLAB Add Timing Constraints For Mixed-Port Feed-Through Mode Setting Don't Care ; Off                ; Off                ;
+; Create Debugging Nodes for IP Cores                                             ; Off                ; Off                ;
+; Preserve fewer node names                                                       ; On                 ; On                 ;
+; Intel FPGA IP Evaluation Mode                                                   ; Enable             ; Enable             ;
+; Verilog Version                                                                 ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                                    ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                        ; Auto               ; Auto               ;
+; Safe State Machine                                                              ; Off                ; Off                ;
+; Extract Verilog State Machines                                                  ; On                 ; On                 ;
+; Extract VHDL State Machines                                                     ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                               ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                      ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                                  ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                         ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                       ; On                 ; On                 ;
+; Parallel Synthesis                                                              ; On                 ; On                 ;
+; DSP Block Balancing                                                             ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                              ; On                 ; On                 ;
+; Power-Up Don't Care                                                             ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                                    ; Off                ; Off                ;
+; Remove Duplicate Registers                                                      ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                            ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                          ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                           ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                       ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                            ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                             ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                                  ; Off                ; Off                ;
+; Optimization Technique                                                          ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                              ; 70                 ; 70                 ;
+; Auto Carry Chains                                                               ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                            ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                           ; Off                ; Off                ;
+; Auto ROM Replacement                                                            ; On                 ; On                 ;
+; Auto RAM Replacement                                                            ; On                 ; On                 ;
+; Auto DSP Block Replacement                                                      ; On                 ; On                 ;
+; Auto Shift Register Replacement                                                 ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                                 ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                                   ; On                 ; On                 ;
+; Strict RAM Replacement                                                          ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                               ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                           ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                                   ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                             ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                               ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                         ; On                 ; On                 ;
+; Report Parameter Settings                                                       ; On                 ; On                 ;
+; Report Source Assignments                                                       ; On                 ; On                 ;
+; Report Connectivity Checks                                                      ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                              ; Off                ; Off                ;
+; Synchronization Register Chain Length                                           ; 3                  ; 3                  ;
+; Power Optimization During Synthesis                                             ; Normal compilation ; Normal compilation ;
+; HDL message level                                                               ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                                 ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                        ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                              ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                       ; 100                ; 100                ;
+; Clock MUX Protection                                                            ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                     ; Off                ; Off                ;
+; Block Design Naming                                                             ; Auto               ; Auto               ;
+; SDC constraint protection                                                       ; Off                ; Off                ;
+; Synthesis Effort                                                                ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal                    ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                            ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                              ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                     ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                          ; On                 ; On                 ;
+; Automatic Parallel Synthesis                                                    ; On                 ; On                 ;
+; Partial Reconfiguration Bitstream ID                                            ; Off                ; Off                ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 16          ;
+; Maximum allowed            ; 16          ;
+;                            ;             ;
+; Average used               ; 1.01        ;
+; Maximum used               ; 16          ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processor 2            ;   0.1%      ;
+;     Processor 3            ;   0.1%      ;
+;     Processor 4            ;   0.1%      ;
+;     Processor 5            ;   0.1%      ;
+;     Processor 6            ;   0.1%      ;
+;     Processor 7            ;   0.1%      ;
+;     Processor 8            ;   0.1%      ;
+;     Processor 9            ;   0.1%      ;
+;     Processor 10           ;   0.1%      ;
+;     Processor 11           ;   0.1%      ;
+;     Processor 12           ;   0.1%      ;
+;     Processor 13           ;   0.1%      ;
+;     Processor 14           ;   0.1%      ;
+;     Processor 15           ;   0.1%      ;
+;     Processor 16           ;   0.1%      ;
++----------------------------+-------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                                      ;
++----------------------------------+-----------------+------------------------------+---------------------------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                                                  ; Library ;
++----------------------------------+-----------------+------------------------------+---------------------------------------------------------------------------------------------------------------+---------+
+; ../../rtl/sync_fifo.v            ; yes             ; User Verilog HDL File        ; /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/sync_fifo.v                       ;         ;
+; ../../rtl/pkt_parser.v           ; yes             ; User Verilog HDL File        ; /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/pkt_parser.v                      ;         ;
+; ../../rtl/spike_encoder.v        ; yes             ; User Verilog HDL File        ; /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/spike_encoder.v                   ;         ;
+; ../../rtl/snn_core.v             ; yes             ; User Verilog HDL File        ; /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_core.v                        ;         ;
+; ../../rtl/snn_pkt_filter.v       ; yes             ; User Verilog HDL File        ; /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_pkt_filter.v                  ;         ;
+; ../../rtl/snn_fw_avmm.v          ; yes             ; User Verilog HDL File        ; /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v                     ;         ;
+; altsyncram.tdf                   ; yes             ; Megafunction                 ; /home/jonny/intelFPGA_lite/20.1/quartus/libraries/megafunctions/altsyncram.tdf                                ;         ;
+; stratix_ram_block.inc            ; yes             ; Megafunction                 ; /home/jonny/intelFPGA_lite/20.1/quartus/libraries/megafunctions/stratix_ram_block.inc                         ;         ;
+; lpm_mux.inc                      ; yes             ; Megafunction                 ; /home/jonny/intelFPGA_lite/20.1/quartus/libraries/megafunctions/lpm_mux.inc                                   ;         ;
+; lpm_decode.inc                   ; yes             ; Megafunction                 ; /home/jonny/intelFPGA_lite/20.1/quartus/libraries/megafunctions/lpm_decode.inc                                ;         ;
+; aglobal201.inc                   ; yes             ; Megafunction                 ; /home/jonny/intelFPGA_lite/20.1/quartus/libraries/megafunctions/aglobal201.inc                                ;         ;
+; a_rdenreg.inc                    ; yes             ; Megafunction                 ; /home/jonny/intelFPGA_lite/20.1/quartus/libraries/megafunctions/a_rdenreg.inc                                 ;         ;
+; altrom.inc                       ; yes             ; Megafunction                 ; /home/jonny/intelFPGA_lite/20.1/quartus/libraries/megafunctions/altrom.inc                                    ;         ;
+; altram.inc                       ; yes             ; Megafunction                 ; /home/jonny/intelFPGA_lite/20.1/quartus/libraries/megafunctions/altram.inc                                    ;         ;
+; altdpram.inc                     ; yes             ; Megafunction                 ; /home/jonny/intelFPGA_lite/20.1/quartus/libraries/megafunctions/altdpram.inc                                  ;         ;
+; db/altsyncram_i9n1.tdf           ; yes             ; Auto-Generated Megafunction  ; /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/fpga/fit_check/db/altsyncram_i9n1.tdf ;         ;
+; db/altsyncram_q6q1.tdf           ; yes             ; Auto-Generated Megafunction  ; /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/fpga/fit_check/db/altsyncram_q6q1.tdf ;         ;
+; db/altsyncram_8ji1.tdf           ; yes             ; Auto-Generated Megafunction  ; /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/fpga/fit_check/db/altsyncram_8ji1.tdf ;         ;
+; db/altsyncram_i3q1.tdf           ; yes             ; Auto-Generated Megafunction  ; /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/fpga/fit_check/db/altsyncram_i3q1.tdf ;         ;
+; db/altsyncram_ggi1.tdf           ; yes             ; Auto-Generated Megafunction  ; /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/fpga/fit_check/db/altsyncram_ggi1.tdf ;         ;
++----------------------------------+-----------------+------------------------------+---------------------------------------------------------------------------------------------------------------+---------+
+
+
++---------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary             ;
++---------------------------------------------+-----------+
+; Resource                                    ; Usage     ;
++---------------------------------------------+-----------+
+; Estimate of Logic utilization (ALMs needed) ; 7250      ;
+;                                             ;           ;
+; Combinational ALUT usage for logic          ; 6195      ;
+;     -- 7 input functions                    ; 2         ;
+;     -- 6 input functions                    ; 3699      ;
+;     -- 5 input functions                    ; 279       ;
+;     -- 4 input functions                    ; 432       ;
+;     -- <=3 input functions                  ; 1783      ;
+;                                             ;           ;
+; Dedicated logic registers                   ; 10336     ;
+;                                             ;           ;
+; Virtual pins                                ; 79        ;
+; I/O pins                                    ; 3         ;
+; Total MLAB memory bits                      ; 0         ;
+; Total block memory bits                     ; 64020     ;
+;                                             ;           ;
+; Total DSP Blocks                            ; 0         ;
+;                                             ;           ;
+; Maximum fan-out node                        ; clk~input ;
+; Maximum fan-out                             ; 10573     ;
+; Total fan-out                               ; 66424     ;
+; Average fan-out                             ; 3.94      ;
++---------------------------------------------+-----------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                 ;
++----------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------------------------------------------------------------------------+-----------------+--------------+
+; Compilation Hierarchy Node                   ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                        ; Entity Name     ; Library Name ;
++----------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------------------------------------------------------------------------+-----------------+--------------+
+; |snn_fw_avmm                                 ; 6195 (187)          ; 10336 (123)               ; 64020             ; 0          ; 3    ; 79           ; |snn_fw_avmm                                                                                               ; snn_fw_avmm     ; work         ;
+;    |altsyncram:rxf_rtl_0|                    ; 0 (0)               ; 0 (0)                     ; 18432             ; 0          ; 0    ; 0            ; |snn_fw_avmm|altsyncram:rxf_rtl_0                                                                          ; altsyncram      ; work         ;
+;       |altsyncram_i9n1:auto_generated|       ; 0 (0)               ; 0 (0)                     ; 18432             ; 0          ; 0    ; 0            ; |snn_fw_avmm|altsyncram:rxf_rtl_0|altsyncram_i9n1:auto_generated                                           ; altsyncram_i9n1 ; work         ;
+;    |snn_pkt_filter:u_fw|                     ; 6008 (543)          ; 10213 (615)               ; 45588             ; 0          ; 0    ; 0            ; |snn_fw_avmm|snn_pkt_filter:u_fw                                                                           ; snn_pkt_filter  ; work         ;
+;       |altsyncram:buf_mem_rtl_0|             ; 0 (0)               ; 0 (0)                     ; 36864             ; 0          ; 0    ; 0            ; |snn_fw_avmm|snn_pkt_filter:u_fw|altsyncram:buf_mem_rtl_0                                                  ; altsyncram      ; work         ;
+;          |altsyncram_q6q1:auto_generated|    ; 0 (0)               ; 0 (0)                     ; 36864             ; 0          ; 0    ; 0            ; |snn_fw_avmm|snn_pkt_filter:u_fw|altsyncram:buf_mem_rtl_0|altsyncram_q6q1:auto_generated                   ; altsyncram_q6q1 ; work         ;
+;       |pkt_parser:u_parser|                  ; 196 (196)           ; 238 (238)                 ; 0                 ; 0          ; 0    ; 0            ; |snn_fw_avmm|snn_pkt_filter:u_fw|pkt_parser:u_parser                                                       ; pkt_parser      ; work         ;
+;       |snn_core:u_core|                      ; 5003 (5003)         ; 9094 (9094)               ; 8192              ; 0          ; 0    ; 0            ; |snn_fw_avmm|snn_pkt_filter:u_fw|snn_core:u_core                                                           ; snn_core        ; work         ;
+;          |altsyncram:w1_mem_rtl_0|           ; 0 (0)               ; 0 (0)                     ; 8192              ; 0          ; 0    ; 0            ; |snn_fw_avmm|snn_pkt_filter:u_fw|snn_core:u_core|altsyncram:w1_mem_rtl_0                                   ; altsyncram      ; work         ;
+;             |altsyncram_i3q1:auto_generated| ; 0 (0)               ; 0 (0)                     ; 8192              ; 0          ; 0    ; 0            ; |snn_fw_avmm|snn_pkt_filter:u_fw|snn_core:u_core|altsyncram:w1_mem_rtl_0|altsyncram_i3q1:auto_generated    ; altsyncram_i3q1 ; work         ;
+;       |spike_encoder:u_enc|                  ; 232 (232)           ; 141 (141)                 ; 0                 ; 0          ; 0    ; 0            ; |snn_fw_avmm|snn_pkt_filter:u_fw|spike_encoder:u_enc                                                       ; spike_encoder   ; work         ;
+;       |sync_fifo:u_feat_fifo|                ; 12 (12)             ; 89 (89)                   ; 308               ; 0          ; 0    ; 0            ; |snn_fw_avmm|snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo                                                     ; sync_fifo       ; work         ;
+;          |altsyncram:mem_rtl_0|              ; 0 (0)               ; 0 (0)                     ; 308               ; 0          ; 0    ; 0            ; |snn_fw_avmm|snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|altsyncram:mem_rtl_0                                ; altsyncram      ; work         ;
+;             |altsyncram_ggi1:auto_generated| ; 0 (0)               ; 0 (0)                     ; 308               ; 0          ; 0    ; 0            ; |snn_fw_avmm|snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|altsyncram:mem_rtl_0|altsyncram_ggi1:auto_generated ; altsyncram_ggi1 ; work         ;
+;       |sync_fifo:u_verd_fifo|                ; 22 (22)             ; 36 (36)                   ; 224               ; 0          ; 0    ; 0            ; |snn_fw_avmm|snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo                                                     ; sync_fifo       ; work         ;
+;          |altsyncram:mem_rtl_0|              ; 0 (0)               ; 0 (0)                     ; 224               ; 0          ; 0    ; 0            ; |snn_fw_avmm|snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|altsyncram:mem_rtl_0                                ; altsyncram      ; work         ;
+;             |altsyncram_8ji1:auto_generated| ; 0 (0)               ; 0 (0)                     ; 224               ; 0          ; 0    ; 0            ; |snn_fw_avmm|snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|altsyncram:mem_rtl_0|altsyncram_8ji1:auto_generated ; altsyncram_8ji1 ; work         ;
++----------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------------------------------------------------------------------------+-----------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis RAM Summary                                                                                                                                                                              ;
++----------------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+-------+------+
+; Name                                                                                                     ; Type ; Mode             ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size  ; MIF  ;
++----------------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+-------+------+
+; altsyncram:rxf_rtl_0|altsyncram_i9n1:auto_generated|ALTSYNCRAM                                           ; AUTO ; Simple Dual Port ; 2048         ; 9            ; 2048         ; 9            ; 18432 ; None ;
+; snn_pkt_filter:u_fw|altsyncram:buf_mem_rtl_0|altsyncram_q6q1:auto_generated|ALTSYNCRAM                   ; AUTO ; Simple Dual Port ; 4096         ; 9            ; 4096         ; 9            ; 36864 ; None ;
+; snn_pkt_filter:u_fw|snn_core:u_core|altsyncram:w1_mem_rtl_0|altsyncram_i3q1:auto_generated|ALTSYNCRAM    ; AUTO ; Simple Dual Port ; 64           ; 128          ; 64           ; 128          ; 8192  ; None ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|altsyncram:mem_rtl_0|altsyncram_ggi1:auto_generated|ALTSYNCRAM ; AUTO ; Simple Dual Port ; 4            ; 77           ; 4            ; 77           ; 308   ; None ;
+; snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|altsyncram:mem_rtl_0|altsyncram_8ji1:auto_generated|ALTSYNCRAM ; AUTO ; Simple Dual Port ; 16           ; 14           ; 16           ; 14           ; 224   ; None ;
++----------------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+-------+------+
+
+
+Encoding Type:  One-Hot
++------------------------------------------------------------------------+
+; State Machine - |snn_fw_avmm|snn_pkt_filter:u_fw|snn_core:u_core|state ;
++--------------+-------------+-------------+-------------+---------------+
+; Name         ; state.S_OUT ; state.S_LIF ; state.S_ACC ; state.S_IDLE  ;
++--------------+-------------+-------------+-------------+---------------+
+; state.S_IDLE ; 0           ; 0           ; 0           ; 0             ;
+; state.S_ACC  ; 0           ; 0           ; 1           ; 1             ;
+; state.S_LIF  ; 0           ; 1           ; 0           ; 1             ;
+; state.S_OUT  ; 1           ; 0           ; 0           ; 1             ;
++--------------+-------------+-------------+-------------+---------------+
+
+
++------------------------------------------------------------------+
+; Registers Removed During Synthesis                               ;
++---------------------------------------------+--------------------+
+; Register name                               ; Reason for Removal ;
++---------------------------------------------+--------------------+
+; snn_pkt_filter:u_fw|snn_core:u_core|state~5 ; Lost fanout        ;
+; snn_pkt_filter:u_fw|snn_core:u_core|state~6 ; Lost fanout        ;
+; Total Number of Removed Registers = 2       ;                    ;
++---------------------------------------------+--------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 10336 ;
+; Number of registers using Synchronous Clear  ; 1843  ;
+; Number of registers using Synchronous Load   ; 53    ;
+; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 10074 ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++------------------------------------------------------------------------------------------------------------+
+; Registers Packed Into Inferred Megafunctions                                                               ;
++--------------------------------------------------+--------------------------------------------------+------+
+; Register Name                                    ; Megafunction                                     ; Type ;
++--------------------------------------------------+--------------------------------------------------+------+
+; rxf_q[0..8]                                      ; rxf_rtl_0                                        ; RAM  ;
+; snn_pkt_filter:u_fw|q[0..8]                      ; snn_pkt_filter:u_fw|buf_mem_rtl_0                ; RAM  ;
+; snn_pkt_filter:u_fw|snn_core:u_core|w1_q[0..127] ; snn_pkt_filter:u_fw|snn_core:u_core|w1_mem_rtl_0 ; RAM  ;
++--------------------------------------------------+--------------------------------------------------+------+
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Registers Added for RAM Pass-Through Logic                                                                           ;
++----------------------------------------------------------------+-----------------------------------------------------+
+; Register Name                                                  ; RAM Name                                            ;
++----------------------------------------------------------------+-----------------------------------------------------+
+; snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|mem_rtl_0_bypass[0]  ; snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|mem_rtl_0_bypass[1]  ; snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|mem_rtl_0_bypass[2]  ; snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|mem_rtl_0_bypass[3]  ; snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|mem_rtl_0_bypass[4]  ; snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|mem_rtl_0_bypass[5]  ; snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|mem_rtl_0_bypass[6]  ; snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|mem_rtl_0_bypass[7]  ; snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|mem_rtl_0_bypass[8]  ; snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|mem_rtl_0_bypass[9]  ; snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|mem_rtl_0_bypass[10] ; snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|mem_rtl_0_bypass[11] ; snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|mem_rtl_0_bypass[12] ; snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|mem_rtl_0_bypass[13] ; snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|mem_rtl_0_bypass[14] ; snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|mem_rtl_0_bypass[15] ; snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|mem_rtl_0_bypass[16] ; snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|mem_rtl_0_bypass[17] ; snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|mem_rtl_0_bypass[18] ; snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|mem_rtl_0_bypass[19] ; snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|mem_rtl_0_bypass[20] ; snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|mem_rtl_0_bypass[21] ; snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|mem_rtl_0_bypass[22] ; snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[0]  ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[1]  ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[2]  ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[3]  ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[4]  ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[5]  ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[6]  ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[7]  ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[8]  ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[9]  ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[10] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[11] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[12] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[13] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[14] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[15] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[16] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[17] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[18] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[19] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[20] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[21] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[22] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[23] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[24] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[25] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[26] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[27] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[28] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[29] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[30] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[31] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[32] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[33] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[34] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[35] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[36] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[37] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[38] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[39] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[40] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[41] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[42] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[43] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[44] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[45] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[46] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[47] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[48] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[49] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[50] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[51] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[52] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[53] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[54] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[55] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[56] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[57] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[58] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[59] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[60] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[61] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[62] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[63] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[64] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[65] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[66] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[67] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[68] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[69] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[70] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[71] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[72] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[73] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[74] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[75] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[76] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[77] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[78] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[79] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[80] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
+; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0_bypass[81] ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0 ;
++----------------------------------------------------------------+-----------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                 ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                       ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------+
+; 3:1                ; 12 bits   ; 24 LEs        ; 0 LEs                ; 24 LEs                 ; Yes        ; |snn_fw_avmm|rxf_wp[0]                                           ;
+; 3:1                ; 13 bits   ; 26 LEs        ; 0 LEs                ; 26 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|rd_ptr[8]                       ;
+; 3:1                ; 41 bits   ; 82 LEs        ; 0 LEs                ; 82 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|st_last[4]                      ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|wp[3]     ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|wp[1]     ;
+; 3:1                ; 12 bits   ; 24 LEs        ; 0 LEs                ; 24 LEs                 ; Yes        ; |snn_fw_avmm|rxf_rp[7]                                           ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|leak[1]                         ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|leak[0]                         ;
+; 3:1                ; 13 bits   ; 26 LEs        ; 0 LEs                ; 26 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|wr_commit[10]                   ;
+; 3:1                ; 22 bits   ; 44 LEs        ; 0 LEs                ; 44 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|snn_core:u_core|out_cnt0[2]     ;
+; 3:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|snn_core:u_core|rd_row[0]       ;
+; 3:1                ; 84 bits   ; 168 LEs       ; 0 LEs                ; 168 LEs                ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|spike_encoder:u_enc|spikes[4]   ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|w2[9]                           ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|w2[28]                          ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|w2[35]                          ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|w2[51]                          ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|w2[69]                          ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|w2[92]                          ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|w2[110]                         ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|w2[116]                         ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|w2[140]                         ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|w2[154]                         ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|w2[170]                         ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|w2[184]                         ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|w2[201]                         ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|w2[214]                         ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|w2[235]                         ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|w2[249]                         ;
+; 3:1                ; 15 bits   ; 30 LEs        ; 0 LEs                ; 30 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|th1[5]                          ;
+; 3:1                ; 15 bits   ; 30 LEs        ; 0 LEs                ; 30 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|th2[6]                          ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|b2[2]                           ;
+; 3:1                ; 45 bits   ; 90 LEs        ; 0 LEs                ; 90 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|st_in[11]                       ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 0 LEs                ; 64 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|st_drop_in[9]                   ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 0 LEs                ; 64 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|st_pass[7]                      ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 0 LEs                ; 64 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|st_block[10]                    ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|snn_core:u_core|s1_q[15]        ;
+; 4:1                ; 13 bits   ; 26 LEs        ; 0 LEs                ; 26 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|in_len[11]                      ;
+; 4:1                ; 13 bits   ; 26 LEs        ; 0 LEs                ; 26 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|snn_core:u_core|tag[6]          ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |snn_fw_avmm|in_data[4]                                          ;
+; 4:1                ; 26 bits   ; 52 LEs        ; 0 LEs                ; 52 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|spike_encoder:u_enc|spikes[56]  ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|pkt_parser:u_parser|flen[7]     ;
+; 4:1                ; 24 bits   ; 48 LEs        ; 24 LEs               ; 24 LEs                 ; Yes        ; |snn_fw_avmm|flash[2]                                            ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |snn_fw_avmm|word_left[1]                                        ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |snn_fw_avmm|word_rest[22]                                       ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |snn_fw_avmm|word_rest[7]                                        ;
+; 5:1                ; 13 bits   ; 39 LEs        ; 0 LEs                ; 39 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|wr_ptr[9]                       ;
+; 5:1                ; 13 bits   ; 39 LEs        ; 26 LEs               ; 13 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|e_rem[6]                        ;
+; 5:1                ; 13 bits   ; 39 LEs        ; 0 LEs                ; 39 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|spike_encoder:u_enc|spikes[27]  ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 0 LEs                ; 24 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|spike_encoder:u_enc|spikes[38]  ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 8 LEs                ; 4 LEs                  ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|spike_encoder:u_enc|spikes[48]  ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 0 LEs                ; 24 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|pkt_parser:u_parser|et0[10]     ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 0 LEs                ; 24 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|pkt_parser:u_parser|et1[8]      ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 0 LEs                ; 24 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|pkt_parser:u_parser|et0[5]      ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 0 LEs                ; 24 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|pkt_parser:u_parser|et1[0]      ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 0 LEs                ; 24 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|pkt_parser:u_parser|proto[2]    ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 8 LEs                ; 4 LEs                  ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|pkt_parser:u_parser|ihl[0]      ;
+; 5:1                ; 7 bits    ; 21 LEs        ; 14 LEs               ; 7 LEs                  ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|pkt_parser:u_parser|foff[8]     ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 0 LEs                ; 24 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|pkt_parser:u_parser|foff[1]     ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 0 LEs                ; 24 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|pkt_parser:u_parser|ttl[5]      ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 0 LEs                ; 24 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|pkt_parser:u_parser|tot_len[12] ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 0 LEs                ; 24 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|pkt_parser:u_parser|tot_len[2]  ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 0 LEs                ; 24 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|pkt_parser:u_parser|src_ip[24]  ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 0 LEs                ; 24 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|pkt_parser:u_parser|src_ip[17]  ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 0 LEs                ; 24 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|pkt_parser:u_parser|src_ip[14]  ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 0 LEs                ; 24 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|pkt_parser:u_parser|src_ip[4]   ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 0 LEs                ; 24 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|pkt_parser:u_parser|dst_ip[31]  ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 0 LEs                ; 24 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|pkt_parser:u_parser|dst_ip[22]  ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 0 LEs                ; 24 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|pkt_parser:u_parser|dst_ip[11]  ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 0 LEs                ; 24 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|pkt_parser:u_parser|dst_ip[2]   ;
+; 5:1                ; 6 bits    ; 18 LEs        ; 12 LEs               ; 6 LEs                  ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|pkt_parser:u_parser|tflags[0]   ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 0 LEs                ; 24 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|pkt_parser:u_parser|dport[4]    ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 0 LEs                ; 24 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|pkt_parser:u_parser|dport[15]   ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 0 LEs                ; 24 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|pkt_parser:u_parser|sport[0]    ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 0 LEs                ; 24 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|pkt_parser:u_parser|sport[12]   ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 8 LEs                ; 4 LEs                  ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|pkt_parser:u_parser|doff[3]     ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 0 LEs                ; 24 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|pkt_parser:u_parser|win[8]      ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 0 LEs                ; 24 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|pkt_parser:u_parser|win[0]      ;
+; 5:1                ; 16 bits   ; 48 LEs        ; 0 LEs                ; 48 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|pkt_parser:u_parser|cnt[0]      ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 4 LEs                ; 2 LEs                  ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|snn_core:u_core|p_vld           ;
+; 6:1                ; 320 bits  ; 1280 LEs      ; 0 LEs                ; 1280 LEs               ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|snn_core:u_core|acc[4][17]      ;
+; 6:1                ; 4 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|snn_core:u_core|t[0]            ;
+; 6:1                ; 16 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|cfg_rdata[30]                   ;
+; 6:1                ; 4 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|snn_core:u_core|cnt[0][0]       ;
+; 6:1                ; 4 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|snn_core:u_core|cnt[1][3]       ;
+; 7:1                ; 20 bits   ; 80 LEs        ; 0 LEs                ; 80 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|snn_core:u_core|v2[0][17]       ;
+; 7:1                ; 20 bits   ; 80 LEs        ; 0 LEs                ; 80 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|snn_core:u_core|v2[1][1]        ;
+; 7:1                ; 20 bits   ; 80 LEs        ; 0 LEs                ; 80 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|snn_core:u_core|v1[15][8]       ;
+; 7:1                ; 20 bits   ; 80 LEs        ; 0 LEs                ; 80 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|snn_core:u_core|v1[14][13]      ;
+; 7:1                ; 20 bits   ; 80 LEs        ; 0 LEs                ; 80 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|snn_core:u_core|v1[7][5]        ;
+; 7:1                ; 20 bits   ; 80 LEs        ; 0 LEs                ; 80 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|snn_core:u_core|v1[6][17]       ;
+; 7:1                ; 20 bits   ; 80 LEs        ; 0 LEs                ; 80 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|snn_core:u_core|v1[11][7]       ;
+; 7:1                ; 20 bits   ; 80 LEs        ; 0 LEs                ; 80 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|snn_core:u_core|v1[10][11]      ;
+; 7:1                ; 20 bits   ; 80 LEs        ; 0 LEs                ; 80 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|snn_core:u_core|v1[13][19]      ;
+; 7:1                ; 20 bits   ; 80 LEs        ; 0 LEs                ; 80 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|snn_core:u_core|v1[12][7]       ;
+; 7:1                ; 20 bits   ; 80 LEs        ; 0 LEs                ; 80 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|snn_core:u_core|v1[9][14]       ;
+; 7:1                ; 20 bits   ; 80 LEs        ; 0 LEs                ; 80 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|snn_core:u_core|v1[8][4]        ;
+; 7:1                ; 20 bits   ; 80 LEs        ; 0 LEs                ; 80 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|snn_core:u_core|v1[3][7]        ;
+; 7:1                ; 20 bits   ; 80 LEs        ; 0 LEs                ; 80 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|snn_core:u_core|v1[2][4]        ;
+; 7:1                ; 20 bits   ; 80 LEs        ; 0 LEs                ; 80 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|snn_core:u_core|v1[5][3]        ;
+; 7:1                ; 20 bits   ; 80 LEs        ; 0 LEs                ; 80 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|snn_core:u_core|v1[4][6]        ;
+; 7:1                ; 20 bits   ; 80 LEs        ; 0 LEs                ; 80 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|snn_core:u_core|v1[1][7]        ;
+; 7:1                ; 20 bits   ; 80 LEs        ; 0 LEs                ; 80 LEs                 ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|snn_core:u_core|v1[0][6]        ;
+; 26:1               ; 7 bits    ; 119 LEs       ; 119 LEs              ; 0 LEs                  ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|cfg_rdata[14]                   ;
+; 27:1               ; 3 bits    ; 54 LEs        ; 54 LEs               ; 0 LEs                  ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|cfg_rdata[6]                    ;
+; 28:1               ; 4 bits    ; 72 LEs        ; 72 LEs               ; 0 LEs                  ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|cfg_rdata[5]                    ;
+; 28:1               ; 2 bits    ; 36 LEs        ; 36 LEs               ; 0 LEs                  ; Yes        ; |snn_fw_avmm|snn_pkt_filter:u_fw|cfg_rdata[1]                    ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 22 LEs               ; 0 LEs                  ; No         ; |snn_fw_avmm|avs_readdata                                        ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |snn_fw_avmm|snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|rp        ;
+; 4:1                ; 18 bits   ; 36 LEs        ; 36 LEs               ; 0 LEs                  ; No         ; |snn_fw_avmm|snn_pkt_filter:u_fw|snn_core:u_core|ShiftRight4     ;
+; 4:1                ; 306 bits  ; 612 LEs       ; 612 LEs              ; 0 LEs                  ; No         ; |snn_fw_avmm|snn_pkt_filter:u_fw|snn_core:u_core|ShiftRight8     ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |snn_fw_avmm|snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|rp        ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |snn_fw_avmm|Selector9                                           ;
+; 6:1                ; 9 bits    ; 36 LEs        ; 36 LEs               ; 0 LEs                  ; No         ; |snn_fw_avmm|Selector20                                          ;
+; 9:1                ; 4 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; No         ; |snn_fw_avmm|snn_pkt_filter:u_fw|snn_core:u_core|state           ;
+; 33:1               ; 2 bits    ; 44 LEs        ; 44 LEs               ; 0 LEs                  ; No         ; |snn_fw_avmm|snn_pkt_filter:u_fw|snn_core:u_core|pany            ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------+
+; Source assignments for altsyncram:rxf_rtl_0|altsyncram_i9n1:auto_generated ;
++---------------------------------+--------------------+------+--------------+
+; Assignment                      ; Value              ; From ; To           ;
++---------------------------------+--------------------+------+--------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -            ;
++---------------------------------+--------------------+------+--------------+
+
+
++----------------------------------------------------------------------------------------------------+
+; Source assignments for snn_pkt_filter:u_fw|altsyncram:buf_mem_rtl_0|altsyncram_q6q1:auto_generated ;
++---------------------------------+--------------------+------+--------------------------------------+
+; Assignment                      ; Value              ; From ; To                                   ;
++---------------------------------+--------------------+------+--------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                    ;
++---------------------------------+--------------------+------+--------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Source assignments for snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|altsyncram:mem_rtl_0|altsyncram_8ji1:auto_generated ;
++---------------------------------+--------------------+------+--------------------------------------------------------+
+; Assignment                      ; Value              ; From ; To                                                     ;
++---------------------------------+--------------------+------+--------------------------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                                      ;
++---------------------------------+--------------------+------+--------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------+
+; Source assignments for snn_pkt_filter:u_fw|snn_core:u_core|altsyncram:w1_mem_rtl_0|altsyncram_i3q1:auto_generated ;
++---------------------------------+--------------------+------+-----------------------------------------------------+
+; Assignment                      ; Value              ; From ; To                                                  ;
++---------------------------------+--------------------+------+-----------------------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                                   ;
++---------------------------------+--------------------+------+-----------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Source assignments for snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|altsyncram:mem_rtl_0|altsyncram_ggi1:auto_generated ;
++---------------------------------+--------------------+------+--------------------------------------------------------+
+; Assignment                      ; Value              ; From ; To                                                     ;
++---------------------------------+--------------------+------+--------------------------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                                      ;
++---------------------------------+--------------------+------+--------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Top-level Entity: |snn_fw_avmm ;
++----------------+-------+----------------------------------------------------+
+; Parameter Name ; Value ; Type                                               ;
++----------------+-------+----------------------------------------------------+
+; BUF_AW         ; 12    ; Signed Integer                                     ;
+; RXF_AW         ; 11    ; Signed Integer                                     ;
+; W1_INIT        ;       ; String                                             ;
++----------------+-------+----------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: snn_pkt_filter:u_fw ;
++----------------+-------+-----------------------------------------+
+; Parameter Name ; Value ; Type                                    ;
++----------------+-------+-----------------------------------------+
+; BUF_AW         ; 12    ; Signed Integer                          ;
+; FEAT_DEPTH     ; 4     ; Signed Integer                          ;
+; VERD_DEPTH     ; 16    ; Signed Integer                          ;
+; N_HID          ; 16    ; Signed Integer                          ;
+; DROP_BAD_FRAME ; 1     ; Signed Integer                          ;
+; TH1_INIT       ; 256   ; Signed Integer                          ;
+; TH2_INIT       ; 128   ; Signed Integer                          ;
+; T_INIT         ; 8     ; Signed Integer                          ;
+; LEAK_INIT      ; 2     ; Signed Integer                          ;
+; W1_INIT        ;       ; String                                  ;
++----------------+-------+-----------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: snn_pkt_filter:u_fw|spike_encoder:u_enc ;
++----------------+-------+-------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                        ;
++----------------+-------+-------------------------------------------------------------+
+; RATE_WIN       ; 32    ; Signed Integer                                              ;
+; RATE_T1        ; 8     ; Signed Integer                                              ;
+; RATE_T2        ; 16    ; Signed Integer                                              ;
++----------------+-------+-------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo ;
++----------------+-------+---------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                          ;
++----------------+-------+---------------------------------------------------------------+
+; W              ; 77    ; Signed Integer                                                ;
+; DEPTH          ; 4     ; Signed Integer                                                ;
+; AW             ; 2     ; Signed Integer                                                ;
++----------------+-------+---------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: snn_pkt_filter:u_fw|snn_core:u_core ;
++----------------+-------+---------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                    ;
++----------------+-------+---------------------------------------------------------+
+; N_IN           ; 64    ; Signed Integer                                          ;
+; N_HID          ; 16    ; Signed Integer                                          ;
+; V_W            ; 20    ; Signed Integer                                          ;
+; TAG_W          ; 13    ; Signed Integer                                          ;
+; W1_INIT        ;       ; String                                                  ;
++----------------+-------+---------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo ;
++----------------+-------+---------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                          ;
++----------------+-------+---------------------------------------------------------------+
+; W              ; 22    ; Signed Integer                                                ;
+; DEPTH          ; 16    ; Signed Integer                                                ;
+; AW             ; 4     ; Signed Integer                                                ;
++----------------+-------+---------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: altsyncram:rxf_rtl_0      ;
++------------------------------------+----------------------+----------------+
+; Parameter Name                     ; Value                ; Type           ;
++------------------------------------+----------------------+----------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped        ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY     ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY   ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE   ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped        ;
+; OPERATION_MODE                     ; DUAL_PORT            ; Untyped        ;
+; WIDTH_A                            ; 9                    ; Untyped        ;
+; WIDTHAD_A                          ; 11                   ; Untyped        ;
+; NUMWORDS_A                         ; 2048                 ; Untyped        ;
+; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped        ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped        ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped        ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped        ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped        ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped        ;
+; WIDTH_B                            ; 9                    ; Untyped        ;
+; WIDTHAD_B                          ; 11                   ; Untyped        ;
+; NUMWORDS_B                         ; 2048                 ; Untyped        ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped        ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped        ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped        ;
+; ADDRESS_REG_B                      ; CLOCK0               ; Untyped        ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped        ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped        ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped        ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped        ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped        ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped        ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped        ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped        ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Untyped        ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped        ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped        ;
+; BYTE_SIZE                          ; 8                    ; Untyped        ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; OLD_DATA             ; Untyped        ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped        ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped        ;
+; INIT_FILE                          ; UNUSED               ; Untyped        ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped        ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped        ;
+; CLOCK_ENABLE_INPUT_A               ; NORMAL               ; Untyped        ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped        ;
+; CLOCK_ENABLE_OUTPUT_A              ; NORMAL               ; Untyped        ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped        ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped        ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped        ;
+; ENABLE_ECC                         ; FALSE                ; Untyped        ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped        ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Untyped        ;
+; DEVICE_FAMILY                      ; Cyclone V            ; Untyped        ;
+; CBXI_PARAMETER                     ; altsyncram_i9n1      ; Untyped        ;
++------------------------------------+----------------------+----------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: snn_pkt_filter:u_fw|altsyncram:buf_mem_rtl_0 ;
++------------------------------------+----------------------+-----------------------------------+
+; Parameter Name                     ; Value                ; Type                              ;
++------------------------------------+----------------------+-----------------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                           ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                        ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY                      ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE                      ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE                    ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                           ;
+; OPERATION_MODE                     ; DUAL_PORT            ; Untyped                           ;
+; WIDTH_A                            ; 9                    ; Untyped                           ;
+; WIDTHAD_A                          ; 12                   ; Untyped                           ;
+; NUMWORDS_A                         ; 4096                 ; Untyped                           ;
+; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped                           ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                           ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                           ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                           ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                           ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                           ;
+; WIDTH_B                            ; 9                    ; Untyped                           ;
+; WIDTHAD_B                          ; 12                   ; Untyped                           ;
+; NUMWORDS_B                         ; 4096                 ; Untyped                           ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped                           ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                           ;
+; RDCONTROL_REG_B                    ; CLOCK0               ; Untyped                           ;
+; ADDRESS_REG_B                      ; CLOCK0               ; Untyped                           ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                           ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                           ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                           ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                           ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                           ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                           ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                           ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                           ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Untyped                           ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                           ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                           ;
+; BYTE_SIZE                          ; 8                    ; Untyped                           ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; OLD_DATA             ; Untyped                           ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                           ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                           ;
+; INIT_FILE                          ; UNUSED               ; Untyped                           ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                           ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped                           ;
+; CLOCK_ENABLE_INPUT_A               ; NORMAL               ; Untyped                           ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                           ;
+; CLOCK_ENABLE_OUTPUT_A              ; NORMAL               ; Untyped                           ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                           ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                           ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                           ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                           ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                           ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                           ;
+; DEVICE_FAMILY                      ; Cyclone V            ; Untyped                           ;
+; CBXI_PARAMETER                     ; altsyncram_q6q1      ; Untyped                           ;
++------------------------------------+----------------------+-----------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|altsyncram:mem_rtl_0 ;
++------------------------------------+----------------------+-----------------------------------------------------+
+; Parameter Name                     ; Value                ; Type                                                ;
++------------------------------------+----------------------+-----------------------------------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                                             ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                                          ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY                                        ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE                                        ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE                                      ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                                             ;
+; OPERATION_MODE                     ; DUAL_PORT            ; Untyped                                             ;
+; WIDTH_A                            ; 14                   ; Untyped                                             ;
+; WIDTHAD_A                          ; 4                    ; Untyped                                             ;
+; NUMWORDS_A                         ; 16                   ; Untyped                                             ;
+; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped                                             ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                                             ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                                             ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                                             ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                                             ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                                             ;
+; WIDTH_B                            ; 14                   ; Untyped                                             ;
+; WIDTHAD_B                          ; 4                    ; Untyped                                             ;
+; NUMWORDS_B                         ; 16                   ; Untyped                                             ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped                                             ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                                             ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                                             ;
+; ADDRESS_REG_B                      ; CLOCK0               ; Untyped                                             ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                                             ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                                             ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                                             ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                                             ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                                             ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                                             ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                                             ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                                             ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Untyped                                             ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                                             ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                                             ;
+; BYTE_SIZE                          ; 8                    ; Untyped                                             ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped                                             ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                                             ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                                             ;
+; INIT_FILE                          ; UNUSED               ; Untyped                                             ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                                             ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped                                             ;
+; CLOCK_ENABLE_INPUT_A               ; NORMAL               ; Untyped                                             ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                                             ;
+; CLOCK_ENABLE_OUTPUT_A              ; NORMAL               ; Untyped                                             ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                                             ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                                             ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                                             ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                                             ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                                             ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                                             ;
+; DEVICE_FAMILY                      ; Cyclone V            ; Untyped                                             ;
+; CBXI_PARAMETER                     ; altsyncram_8ji1      ; Untyped                                             ;
++------------------------------------+----------------------+-----------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: snn_pkt_filter:u_fw|snn_core:u_core|altsyncram:w1_mem_rtl_0 ;
++------------------------------------+----------------------+--------------------------------------------------+
+; Parameter Name                     ; Value                ; Type                                             ;
++------------------------------------+----------------------+--------------------------------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                                          ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                                       ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY                                     ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE                                     ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE                                   ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                                          ;
+; OPERATION_MODE                     ; DUAL_PORT            ; Untyped                                          ;
+; WIDTH_A                            ; 128                  ; Untyped                                          ;
+; WIDTHAD_A                          ; 6                    ; Untyped                                          ;
+; NUMWORDS_A                         ; 64                   ; Untyped                                          ;
+; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped                                          ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                                          ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                                          ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                                          ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                                          ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                                          ;
+; WIDTH_B                            ; 128                  ; Untyped                                          ;
+; WIDTHAD_B                          ; 6                    ; Untyped                                          ;
+; NUMWORDS_B                         ; 64                   ; Untyped                                          ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped                                          ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                                          ;
+; RDCONTROL_REG_B                    ; CLOCK0               ; Untyped                                          ;
+; ADDRESS_REG_B                      ; CLOCK0               ; Untyped                                          ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                                          ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                                          ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                                          ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                                          ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                                          ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                                          ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                                          ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                                          ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Untyped                                          ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                                          ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                                          ;
+; BYTE_SIZE                          ; 8                    ; Untyped                                          ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; OLD_DATA             ; Untyped                                          ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                                          ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                                          ;
+; INIT_FILE                          ; UNUSED               ; Untyped                                          ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                                          ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped                                          ;
+; CLOCK_ENABLE_INPUT_A               ; NORMAL               ; Untyped                                          ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                                          ;
+; CLOCK_ENABLE_OUTPUT_A              ; NORMAL               ; Untyped                                          ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                                          ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                                          ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                                          ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                                          ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                                          ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                                          ;
+; DEVICE_FAMILY                      ; Cyclone V            ; Untyped                                          ;
+; CBXI_PARAMETER                     ; altsyncram_i3q1      ; Untyped                                          ;
++------------------------------------+----------------------+--------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|altsyncram:mem_rtl_0 ;
++------------------------------------+----------------------+-----------------------------------------------------+
+; Parameter Name                     ; Value                ; Type                                                ;
++------------------------------------+----------------------+-----------------------------------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                                             ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                                          ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY                                        ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE                                        ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE                                      ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                                             ;
+; OPERATION_MODE                     ; DUAL_PORT            ; Untyped                                             ;
+; WIDTH_A                            ; 77                   ; Untyped                                             ;
+; WIDTHAD_A                          ; 2                    ; Untyped                                             ;
+; NUMWORDS_A                         ; 4                    ; Untyped                                             ;
+; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped                                             ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                                             ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                                             ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                                             ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                                             ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                                             ;
+; WIDTH_B                            ; 77                   ; Untyped                                             ;
+; WIDTHAD_B                          ; 2                    ; Untyped                                             ;
+; NUMWORDS_B                         ; 4                    ; Untyped                                             ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped                                             ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                                             ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                                             ;
+; ADDRESS_REG_B                      ; CLOCK0               ; Untyped                                             ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                                             ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                                             ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                                             ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                                             ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                                             ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                                             ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                                             ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                                             ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Untyped                                             ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                                             ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                                             ;
+; BYTE_SIZE                          ; 8                    ; Untyped                                             ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped                                             ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                                             ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                                             ;
+; INIT_FILE                          ; UNUSED               ; Untyped                                             ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                                             ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped                                             ;
+; CLOCK_ENABLE_INPUT_A               ; NORMAL               ; Untyped                                             ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                                             ;
+; CLOCK_ENABLE_OUTPUT_A              ; NORMAL               ; Untyped                                             ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                                             ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                                             ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                                             ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                                             ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                                             ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                                             ;
+; DEVICE_FAMILY                      ; Cyclone V            ; Untyped                                             ;
+; CBXI_PARAMETER                     ; altsyncram_ggi1      ; Untyped                                             ;
++------------------------------------+----------------------+-----------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------------------------+
+; altsyncram Parameter Settings by Entity Instance                                                           ;
++-------------------------------------------+----------------------------------------------------------------+
+; Name                                      ; Value                                                          ;
++-------------------------------------------+----------------------------------------------------------------+
+; Number of entity instances                ; 5                                                              ;
+; Entity Instance                           ; altsyncram:rxf_rtl_0                                           ;
+;     -- OPERATION_MODE                     ; DUAL_PORT                                                      ;
+;     -- WIDTH_A                            ; 9                                                              ;
+;     -- NUMWORDS_A                         ; 2048                                                           ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                                                   ;
+;     -- WIDTH_B                            ; 9                                                              ;
+;     -- NUMWORDS_B                         ; 2048                                                           ;
+;     -- ADDRESS_REG_B                      ; CLOCK0                                                         ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                                                   ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                                           ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; OLD_DATA                                                       ;
+; Entity Instance                           ; snn_pkt_filter:u_fw|altsyncram:buf_mem_rtl_0                   ;
+;     -- OPERATION_MODE                     ; DUAL_PORT                                                      ;
+;     -- WIDTH_A                            ; 9                                                              ;
+;     -- NUMWORDS_A                         ; 4096                                                           ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                                                   ;
+;     -- WIDTH_B                            ; 9                                                              ;
+;     -- NUMWORDS_B                         ; 4096                                                           ;
+;     -- ADDRESS_REG_B                      ; CLOCK0                                                         ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                                                   ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                                           ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; OLD_DATA                                                       ;
+; Entity Instance                           ; snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|altsyncram:mem_rtl_0 ;
+;     -- OPERATION_MODE                     ; DUAL_PORT                                                      ;
+;     -- WIDTH_A                            ; 14                                                             ;
+;     -- NUMWORDS_A                         ; 16                                                             ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                                                   ;
+;     -- WIDTH_B                            ; 14                                                             ;
+;     -- NUMWORDS_B                         ; 16                                                             ;
+;     -- ADDRESS_REG_B                      ; CLOCK0                                                         ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                                                   ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                                           ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                                      ;
+; Entity Instance                           ; snn_pkt_filter:u_fw|snn_core:u_core|altsyncram:w1_mem_rtl_0    ;
+;     -- OPERATION_MODE                     ; DUAL_PORT                                                      ;
+;     -- WIDTH_A                            ; 128                                                            ;
+;     -- NUMWORDS_A                         ; 64                                                             ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                                                   ;
+;     -- WIDTH_B                            ; 128                                                            ;
+;     -- NUMWORDS_B                         ; 64                                                             ;
+;     -- ADDRESS_REG_B                      ; CLOCK0                                                         ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                                                   ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                                           ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; OLD_DATA                                                       ;
+; Entity Instance                           ; snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|altsyncram:mem_rtl_0 ;
+;     -- OPERATION_MODE                     ; DUAL_PORT                                                      ;
+;     -- WIDTH_A                            ; 77                                                             ;
+;     -- NUMWORDS_A                         ; 4                                                              ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                                                   ;
+;     -- WIDTH_B                            ; 77                                                             ;
+;     -- NUMWORDS_B                         ; 4                                                              ;
+;     -- ADDRESS_REG_B                      ; CLOCK0                                                         ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                                                   ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                                           ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                                      ;
++-------------------------------------------+----------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo"                                                     ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port            ; Type   ; Severity ; Details                                                                             ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
+; rd_data[20..13] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; count           ; Output ; Info     ; Explicitly unconnected                                                              ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------+
+; Port Connectivity Checks: "snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo" ;
++-------+--------+----------+-------------------------------------------+
+; Port  ; Type   ; Severity ; Details                                   ;
++-------+--------+----------+-------------------------------------------+
+; full  ; Output ; Info     ; Explicitly unconnected                    ;
+; count ; Output ; Info     ; Explicitly unconnected                    ;
++-------+--------+----------+-------------------------------------------+
+
+
++------------------------------------------------------------+
+; Port Connectivity Checks: "snn_pkt_filter:u_fw"            ;
++---------------+--------+----------+------------------------+
+; Port          ; Type   ; Severity ; Details                ;
++---------------+--------+----------+------------------------+
+; s_axis_tready ; Output ; Info     ; Explicitly unconnected ;
+; s_axis_tuser  ; Input  ; Info     ; Stuck at GND           ;
+; m_axis_tuser  ; Output ; Info     ; Explicitly unconnected ;
++---------------+--------+----------+------------------------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; arriav_ff             ; 10336                       ;
+;     ENA               ; 8361                        ;
+;     ENA SCLR          ; 1663                        ;
+;     ENA SCLR SLD      ; 50                          ;
+;     SCLR              ; 129                         ;
+;     SCLR SLD          ; 1                           ;
+;     SLD               ; 2                           ;
+;     plain             ; 130                         ;
+; arriav_lcell_comb     ; 6196                        ;
+;     arith             ; 889                         ;
+;         0 data inputs ; 5                           ;
+;         1 data inputs ; 342                         ;
+;         2 data inputs ; 387                         ;
+;         3 data inputs ; 9                           ;
+;         4 data inputs ; 145                         ;
+;         5 data inputs ; 1                           ;
+;     extend            ; 2                           ;
+;         7 data inputs ; 2                           ;
+;     normal            ; 4800                        ;
+;         0 data inputs ; 1                           ;
+;         1 data inputs ; 3                           ;
+;         2 data inputs ; 273                         ;
+;         3 data inputs ; 259                         ;
+;         4 data inputs ; 287                         ;
+;         5 data inputs ; 278                         ;
+;         6 data inputs ; 3699                        ;
+;     shared            ; 505                         ;
+;         0 data inputs ; 20                          ;
+;         1 data inputs ; 30                          ;
+;         2 data inputs ; 29                          ;
+;         3 data inputs ; 426                         ;
+; boundary_port         ; 82                          ;
+; stratixv_ram_block    ; 237                         ;
+;                       ;                             ;
+; Max LUT depth         ; 8.30                        ;
+; Average LUT depth     ; 4.11                        ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:06     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
+    Info: Processing started: Tue Oct 13 12:52:43 2026
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off snn_fw_fit -c snn_fw_fit
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
+Info (12021): Found 1 design units, including 1 entities, in source file /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/sync_fifo.v
+    Info (12023): Found entity 1: sync_fifo File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/sync_fifo.v Line: 2
+Info (12021): Found 1 design units, including 1 entities, in source file /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/pkt_parser.v
+    Info (12023): Found entity 1: pkt_parser File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/pkt_parser.v Line: 11
+Info (12021): Found 1 design units, including 1 entities, in source file /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/spike_encoder.v
+    Info (12023): Found entity 1: spike_encoder File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/spike_encoder.v Line: 7
+Info (12021): Found 1 design units, including 1 entities, in source file /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_core.v
+    Info (12023): Found entity 1: snn_core File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_core.v Line: 18
+Info (12021): Found 1 design units, including 1 entities, in source file /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_pkt_filter.v
+    Info (12023): Found entity 1: snn_pkt_filter File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_pkt_filter.v Line: 27
+Info (12021): Found 1 design units, including 1 entities, in source file /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v
+    Info (12023): Found entity 1: snn_fw_avmm File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 14
+Info (12127): Elaborating entity "snn_fw_avmm" for the top level hierarchy
+Warning (10036): Verilog HDL or VHDL warning at snn_fw_avmm.v(115): object "rd_q" assigned a value but never read File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 115
+Info (12128): Elaborating entity "snn_pkt_filter" for hierarchy "snn_pkt_filter:u_fw" File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 85
+Warning (10230): Verilog HDL assignment warning at snn_pkt_filter.v(91): truncated value with size 32 to match size of target (16) File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_pkt_filter.v Line: 91
+Warning (10230): Verilog HDL assignment warning at snn_pkt_filter.v(92): truncated value with size 32 to match size of target (16) File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_pkt_filter.v Line: 92
+Warning (10230): Verilog HDL assignment warning at snn_pkt_filter.v(93): truncated value with size 32 to match size of target (4) File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_pkt_filter.v Line: 93
+Warning (10230): Verilog HDL assignment warning at snn_pkt_filter.v(94): truncated value with size 32 to match size of target (2) File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_pkt_filter.v Line: 94
+Info (12128): Elaborating entity "pkt_parser" for hierarchy "snn_pkt_filter:u_fw|pkt_parser:u_parser" File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_pkt_filter.v Line: 212
+Info (12128): Elaborating entity "spike_encoder" for hierarchy "snn_pkt_filter:u_fw|spike_encoder:u_enc" File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_pkt_filter.v Line: 225
+Info (12128): Elaborating entity "sync_fifo" for hierarchy "snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo" File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_pkt_filter.v Line: 236
+Info (12128): Elaborating entity "snn_core" for hierarchy "snn_pkt_filter:u_fw|snn_core:u_core" File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_pkt_filter.v Line: 252
+Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "m" into its bus
+Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "l1" into its bus
+Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "l2" into its bus
+Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "l3" into its bus
+Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "p_q" into its bus
+Info (12128): Elaborating entity "sync_fifo" for hierarchy "snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo" File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_pkt_filter.v Line: 264
+Warning (276020): Inferred RAM node "snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|mem_rtl_0" from synchronous design logic.  Pass-through logic has been added to match the read-during-write behavior of the original design.
+Warning (276020): Inferred RAM node "snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0" from synchronous design logic.  Pass-through logic has been added to match the read-during-write behavior of the original design.
+Info (276014): Found 1 instances of uninferred RAM logic
+    Info (276007): RAM logic "snn_pkt_filter:u_fw|snn_core:u_core|w1_mem" is uninferred due to asynchronous read logic File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_core.v Line: 62
+Info (19000): Inferred 5 megafunctions from design logic
+    Info (276029): Inferred altsyncram megafunction from the following design logic: "rxf_rtl_0" 
+        Info (286033): Parameter OPERATION_MODE set to DUAL_PORT
+        Info (286033): Parameter WIDTH_A set to 9
+        Info (286033): Parameter WIDTHAD_A set to 11
+        Info (286033): Parameter NUMWORDS_A set to 2048
+        Info (286033): Parameter WIDTH_B set to 9
+        Info (286033): Parameter WIDTHAD_B set to 11
+        Info (286033): Parameter NUMWORDS_B set to 2048
+        Info (286033): Parameter ADDRESS_ACLR_A set to NONE
+        Info (286033): Parameter OUTDATA_REG_B set to UNREGISTERED
+        Info (286033): Parameter ADDRESS_ACLR_B set to NONE
+        Info (286033): Parameter OUTDATA_ACLR_B set to NONE
+        Info (286033): Parameter ADDRESS_REG_B set to CLOCK0
+        Info (286033): Parameter INDATA_ACLR_A set to NONE
+        Info (286033): Parameter WRCONTROL_ACLR_A set to NONE
+        Info (286033): Parameter READ_DURING_WRITE_MODE_MIXED_PORTS set to OLD_DATA
+    Info (276029): Inferred altsyncram megafunction from the following design logic: "snn_pkt_filter:u_fw|buf_mem_rtl_0" 
+        Info (286033): Parameter OPERATION_MODE set to DUAL_PORT
+        Info (286033): Parameter WIDTH_A set to 9
+        Info (286033): Parameter WIDTHAD_A set to 12
+        Info (286033): Parameter NUMWORDS_A set to 4096
+        Info (286033): Parameter WIDTH_B set to 9
+        Info (286033): Parameter WIDTHAD_B set to 12
+        Info (286033): Parameter NUMWORDS_B set to 4096
+        Info (286033): Parameter ADDRESS_ACLR_A set to NONE
+        Info (286033): Parameter OUTDATA_REG_B set to UNREGISTERED
+        Info (286033): Parameter ADDRESS_ACLR_B set to NONE
+        Info (286033): Parameter OUTDATA_ACLR_B set to NONE
+        Info (286033): Parameter ADDRESS_REG_B set to CLOCK0
+        Info (286033): Parameter INDATA_ACLR_A set to NONE
+        Info (286033): Parameter WRCONTROL_ACLR_A set to NONE
+        Info (286033): Parameter READ_DURING_WRITE_MODE_MIXED_PORTS set to OLD_DATA
+        Info (286033): Parameter RDCONTROL_REG_B set to CLOCK0
+    Info (276029): Inferred altsyncram megafunction from the following design logic: "snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|mem_rtl_0" 
+        Info (286033): Parameter OPERATION_MODE set to DUAL_PORT
+        Info (286033): Parameter WIDTH_A set to 14
+        Info (286033): Parameter WIDTHAD_A set to 4
+        Info (286033): Parameter NUMWORDS_A set to 16
+        Info (286033): Parameter WIDTH_B set to 14
+        Info (286033): Parameter WIDTHAD_B set to 4
+        Info (286033): Parameter NUMWORDS_B set to 16
+        Info (286033): Parameter ADDRESS_ACLR_A set to NONE
+        Info (286033): Parameter OUTDATA_REG_B set to UNREGISTERED
+        Info (286033): Parameter ADDRESS_ACLR_B set to NONE
+        Info (286033): Parameter OUTDATA_ACLR_B set to NONE
+        Info (286033): Parameter ADDRESS_REG_B set to CLOCK0
+        Info (286033): Parameter INDATA_ACLR_A set to NONE
+        Info (286033): Parameter WRCONTROL_ACLR_A set to NONE
+    Info (276029): Inferred altsyncram megafunction from the following design logic: "snn_pkt_filter:u_fw|snn_core:u_core|w1_mem_rtl_0" 
+        Info (286033): Parameter OPERATION_MODE set to DUAL_PORT
+        Info (286033): Parameter WIDTH_A set to 128
+        Info (286033): Parameter WIDTHAD_A set to 6
+        Info (286033): Parameter NUMWORDS_A set to 64
+        Info (286033): Parameter WIDTH_B set to 128
+        Info (286033): Parameter WIDTHAD_B set to 6
+        Info (286033): Parameter NUMWORDS_B set to 64
+        Info (286033): Parameter ADDRESS_ACLR_A set to NONE
+        Info (286033): Parameter OUTDATA_REG_B set to UNREGISTERED
+        Info (286033): Parameter ADDRESS_ACLR_B set to NONE
+        Info (286033): Parameter OUTDATA_ACLR_B set to NONE
+        Info (286033): Parameter ADDRESS_REG_B set to CLOCK0
+        Info (286033): Parameter INDATA_ACLR_A set to NONE
+        Info (286033): Parameter WRCONTROL_ACLR_A set to NONE
+        Info (286033): Parameter READ_DURING_WRITE_MODE_MIXED_PORTS set to OLD_DATA
+        Info (286033): Parameter RDCONTROL_REG_B set to CLOCK0
+    Info (276029): Inferred altsyncram megafunction from the following design logic: "snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|mem_rtl_0" 
+        Info (286033): Parameter OPERATION_MODE set to DUAL_PORT
+        Info (286033): Parameter WIDTH_A set to 77
+        Info (286033): Parameter WIDTHAD_A set to 2
+        Info (286033): Parameter NUMWORDS_A set to 4
+        Info (286033): Parameter WIDTH_B set to 77
+        Info (286033): Parameter WIDTHAD_B set to 2
+        Info (286033): Parameter NUMWORDS_B set to 4
+        Info (286033): Parameter ADDRESS_ACLR_A set to NONE
+        Info (286033): Parameter OUTDATA_REG_B set to UNREGISTERED
+        Info (286033): Parameter ADDRESS_ACLR_B set to NONE
+        Info (286033): Parameter OUTDATA_ACLR_B set to NONE
+        Info (286033): Parameter ADDRESS_REG_B set to CLOCK0
+        Info (286033): Parameter INDATA_ACLR_A set to NONE
+        Info (286033): Parameter WRCONTROL_ACLR_A set to NONE
+Info (12130): Elaborated megafunction instantiation "altsyncram:rxf_rtl_0"
+Info (12133): Instantiated megafunction "altsyncram:rxf_rtl_0" with the following parameter:
+    Info (12134): Parameter "OPERATION_MODE" = "DUAL_PORT"
+    Info (12134): Parameter "WIDTH_A" = "9"
+    Info (12134): Parameter "WIDTHAD_A" = "11"
+    Info (12134): Parameter "NUMWORDS_A" = "2048"
+    Info (12134): Parameter "WIDTH_B" = "9"
+    Info (12134): Parameter "WIDTHAD_B" = "11"
+    Info (12134): Parameter "NUMWORDS_B" = "2048"
+    Info (12134): Parameter "ADDRESS_ACLR_A" = "NONE"
+    Info (12134): Parameter "OUTDATA_REG_B" = "UNREGISTERED"
+    Info (12134): Parameter "ADDRESS_ACLR_B" = "NONE"
+    Info (12134): Parameter "OUTDATA_ACLR_B" = "NONE"
+    Info (12134): Parameter "ADDRESS_REG_B" = "CLOCK0"
+    Info (12134): Parameter "INDATA_ACLR_A" = "NONE"
+    Info (12134): Parameter "WRCONTROL_ACLR_A" = "NONE"
+    Info (12134): Parameter "READ_DURING_WRITE_MODE_MIXED_PORTS" = "OLD_DATA"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_i9n1.tdf
+    Info (12023): Found entity 1: altsyncram_i9n1 File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/fpga/fit_check/db/altsyncram_i9n1.tdf Line: 28
+Info (12130): Elaborated megafunction instantiation "snn_pkt_filter:u_fw|altsyncram:buf_mem_rtl_0"
+Info (12133): Instantiated megafunction "snn_pkt_filter:u_fw|altsyncram:buf_mem_rtl_0" with the following parameter:
+    Info (12134): Parameter "OPERATION_MODE" = "DUAL_PORT"
+    Info (12134): Parameter "WIDTH_A" = "9"
+    Info (12134): Parameter "WIDTHAD_A" = "12"
+    Info (12134): Parameter "NUMWORDS_A" = "4096"
+    Info (12134): Parameter "WIDTH_B" = "9"
+    Info (12134): Parameter "WIDTHAD_B" = "12"
+    Info (12134): Parameter "NUMWORDS_B" = "4096"
+    Info (12134): Parameter "ADDRESS_ACLR_A" = "NONE"
+    Info (12134): Parameter "OUTDATA_REG_B" = "UNREGISTERED"
+    Info (12134): Parameter "ADDRESS_ACLR_B" = "NONE"
+    Info (12134): Parameter "OUTDATA_ACLR_B" = "NONE"
+    Info (12134): Parameter "ADDRESS_REG_B" = "CLOCK0"
+    Info (12134): Parameter "INDATA_ACLR_A" = "NONE"
+    Info (12134): Parameter "WRCONTROL_ACLR_A" = "NONE"
+    Info (12134): Parameter "READ_DURING_WRITE_MODE_MIXED_PORTS" = "OLD_DATA"
+    Info (12134): Parameter "RDCONTROL_REG_B" = "CLOCK0"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_q6q1.tdf
+    Info (12023): Found entity 1: altsyncram_q6q1 File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/fpga/fit_check/db/altsyncram_q6q1.tdf Line: 28
+Info (12130): Elaborated megafunction instantiation "snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|altsyncram:mem_rtl_0"
+Info (12133): Instantiated megafunction "snn_pkt_filter:u_fw|sync_fifo:u_verd_fifo|altsyncram:mem_rtl_0" with the following parameter:
+    Info (12134): Parameter "OPERATION_MODE" = "DUAL_PORT"
+    Info (12134): Parameter "WIDTH_A" = "14"
+    Info (12134): Parameter "WIDTHAD_A" = "4"
+    Info (12134): Parameter "NUMWORDS_A" = "16"
+    Info (12134): Parameter "WIDTH_B" = "14"
+    Info (12134): Parameter "WIDTHAD_B" = "4"
+    Info (12134): Parameter "NUMWORDS_B" = "16"
+    Info (12134): Parameter "ADDRESS_ACLR_A" = "NONE"
+    Info (12134): Parameter "OUTDATA_REG_B" = "UNREGISTERED"
+    Info (12134): Parameter "ADDRESS_ACLR_B" = "NONE"
+    Info (12134): Parameter "OUTDATA_ACLR_B" = "NONE"
+    Info (12134): Parameter "ADDRESS_REG_B" = "CLOCK0"
+    Info (12134): Parameter "INDATA_ACLR_A" = "NONE"
+    Info (12134): Parameter "WRCONTROL_ACLR_A" = "NONE"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_8ji1.tdf
+    Info (12023): Found entity 1: altsyncram_8ji1 File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/fpga/fit_check/db/altsyncram_8ji1.tdf Line: 28
+Info (12130): Elaborated megafunction instantiation "snn_pkt_filter:u_fw|snn_core:u_core|altsyncram:w1_mem_rtl_0"
+Info (12133): Instantiated megafunction "snn_pkt_filter:u_fw|snn_core:u_core|altsyncram:w1_mem_rtl_0" with the following parameter:
+    Info (12134): Parameter "OPERATION_MODE" = "DUAL_PORT"
+    Info (12134): Parameter "WIDTH_A" = "128"
+    Info (12134): Parameter "WIDTHAD_A" = "6"
+    Info (12134): Parameter "NUMWORDS_A" = "64"
+    Info (12134): Parameter "WIDTH_B" = "128"
+    Info (12134): Parameter "WIDTHAD_B" = "6"
+    Info (12134): Parameter "NUMWORDS_B" = "64"
+    Info (12134): Parameter "ADDRESS_ACLR_A" = "NONE"
+    Info (12134): Parameter "OUTDATA_REG_B" = "UNREGISTERED"
+    Info (12134): Parameter "ADDRESS_ACLR_B" = "NONE"
+    Info (12134): Parameter "OUTDATA_ACLR_B" = "NONE"
+    Info (12134): Parameter "ADDRESS_REG_B" = "CLOCK0"
+    Info (12134): Parameter "INDATA_ACLR_A" = "NONE"
+    Info (12134): Parameter "WRCONTROL_ACLR_A" = "NONE"
+    Info (12134): Parameter "READ_DURING_WRITE_MODE_MIXED_PORTS" = "OLD_DATA"
+    Info (12134): Parameter "RDCONTROL_REG_B" = "CLOCK0"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_i3q1.tdf
+    Info (12023): Found entity 1: altsyncram_i3q1 File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/fpga/fit_check/db/altsyncram_i3q1.tdf Line: 28
+Info (12130): Elaborated megafunction instantiation "snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|altsyncram:mem_rtl_0"
+Info (12133): Instantiated megafunction "snn_pkt_filter:u_fw|sync_fifo:u_feat_fifo|altsyncram:mem_rtl_0" with the following parameter:
+    Info (12134): Parameter "OPERATION_MODE" = "DUAL_PORT"
+    Info (12134): Parameter "WIDTH_A" = "77"
+    Info (12134): Parameter "WIDTHAD_A" = "2"
+    Info (12134): Parameter "NUMWORDS_A" = "4"
+    Info (12134): Parameter "WIDTH_B" = "77"
+    Info (12134): Parameter "WIDTHAD_B" = "2"
+    Info (12134): Parameter "NUMWORDS_B" = "4"
+    Info (12134): Parameter "ADDRESS_ACLR_A" = "NONE"
+    Info (12134): Parameter "OUTDATA_REG_B" = "UNREGISTERED"
+    Info (12134): Parameter "ADDRESS_ACLR_B" = "NONE"
+    Info (12134): Parameter "OUTDATA_ACLR_B" = "NONE"
+    Info (12134): Parameter "ADDRESS_REG_B" = "CLOCK0"
+    Info (12134): Parameter "INDATA_ACLR_A" = "NONE"
+    Info (12134): Parameter "WRCONTROL_ACLR_A" = "NONE"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_ggi1.tdf
+    Info (12023): Found entity 1: altsyncram_ggi1 File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/fpga/fit_check/db/altsyncram_ggi1.tdf Line: 28
+Info (286030): Timing-Driven Synthesis is running
+Info (17049): 2 registers lost all their fanouts during netlist optimizations.
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Info (15717): Design contains 79 virtual pins; timing numbers associated with paths containing virtual pins are estimates
+    Info (15719): Pin "avs_readdata[0]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[1]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[2]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[3]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[4]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[5]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[6]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[7]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[8]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[9]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[10]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[11]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[12]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[13]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[14]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[15]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[16]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[17]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[18]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[19]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[20]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[21]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[22]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[23]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[24]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[25]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[26]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[27]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[28]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[29]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[30]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_readdata[31]" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 26
+    Info (15719): Pin "avs_waitrequest" is virtual output pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 27
+    Info (15718): Pin "avs_write" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 23
+    Info (15718): Pin "avs_address[10]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 22
+    Info (15718): Pin "avs_address[0]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 22
+    Info (15718): Pin "avs_address[1]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 22
+    Info (15718): Pin "avs_address[2]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 22
+    Info (15718): Pin "avs_address[9]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 22
+    Info (15718): Pin "avs_address[3]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 22
+    Info (15718): Pin "avs_address[4]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 22
+    Info (15718): Pin "avs_address[5]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 22
+    Info (15718): Pin "avs_address[6]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 22
+    Info (15718): Pin "avs_address[7]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 22
+    Info (15718): Pin "avs_address[8]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 22
+    Info (15718): Pin "avs_read" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 25
+    Info (15718): Pin "reset" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 20
+    Info (15718): Pin "avs_writedata[0]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[1]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[2]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[3]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[4]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[5]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[6]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[7]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[8]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[9]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[10]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[11]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[12]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[13]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[14]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[15]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[16]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[17]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[18]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[19]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[20]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[21]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[22]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[23]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[24]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[25]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[26]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[27]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[28]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[29]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[30]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+    Info (15718): Pin "avs_writedata[31]" is virtual input pin File: /media/additional_space/ASIC_Design/SNN_based_network_packet_classifier/rtl/snn_fw_avmm.v Line: 24
+Warning (15752): Ignored 11 Virtual Pin logic option assignments
+    Warning (15720): Ignored Virtual Pin assignment to node "avs_readdata~0"
+    Warning (15720): Ignored Virtual Pin assignment to node "avs_readdata~1"
+    Warning (15720): Ignored Virtual Pin assignment to node "avs_readdata~2"
+    Warning (15720): Ignored Virtual Pin assignment to node "avs_readdata~3"
+    Warning (15720): Ignored Virtual Pin assignment to node "avs_readdata~4"
+    Warning (15720): Ignored Virtual Pin assignment to node "avs_readdata~5"
+    Warning (15720): Ignored Virtual Pin assignment to node "avs_readdata~6"
+    Warning (15720): Ignored Virtual Pin assignment to node "avs_readdata~7"
+    Warning (15720): Ignored Virtual Pin assignment to node "avs_readdata~8"
+    Warning (15720): Ignored Virtual Pin assignment to node "avs_readdata~9"
+    Warning (15720): Ignored Virtual Pin assignment to node "avs_readdata~10"
+Info (21057): Implemented 15958 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 1 input pins
+    Info (21059): Implemented 2 output pins
+    Info (21061): Implemented 15718 logic cells
+    Info (21064): Implemented 237 RAM segments
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 20 warnings
+    Info: Peak virtual memory: 645 megabytes
+    Info: Processing ended: Tue Oct 13 12:52:54 2026
+    Info: Elapsed time: 00:00:11
+    Info: Total CPU time (on all processors): 00:00:20
+
+

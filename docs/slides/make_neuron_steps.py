@@ -21,7 +21,7 @@ def F(sz, b=False):
 
 
 def pic(n, title, v, inputs_on, fired, sent, caption, vmax=380):
-    W, H = 960, 430
+    W, H = 980, 470   # taller: more room for the caption band
     im = Image.new("RGB", (W, H), "white")
     d = ImageDraw.Draw(im)
     d.rounded_rectangle([14, 14, W - 14, 70], 10, fill=INK)
@@ -61,8 +61,9 @@ def pic(n, title, v, inputs_on, fired, sent, caption, vmax=380):
         d.ellipse([640 - 11, oy - 11, 640 + 11, oy + 11], fill=AMBER, outline=INK, width=2)
         d.text(((bx + bw + ox) / 2, oy - 24), "FIRED spike travels on", (27, 95, 70), font=F(16, True), anchor="mm")
     # caption
-    d.rounded_rectangle([14, 388, W - 14, 420], 8, fill=PALE)
-    d.text((W / 2, 404), caption, INK, font=F(15), anchor="mm")
+    d.rounded_rectangle([14, 416, W - 14, 458], 8, fill=PALE)
+    d.text((W / 2, 437), caption, INK, font=F(14), anchor="mm")
+    im = im.resize((W * 2, H * 2), Image.LANCZOS)
     im.save(os.path.join(IMG, "neuron_step%d.png" % n))
     print("wrote neuron_step%d.png" % n)
 

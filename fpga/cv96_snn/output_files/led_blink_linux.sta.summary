@@ -1,0 +1,184 @@
+------------------------------------------------------------
+Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1100mV 100C Model Setup 'u_cv96_qsys|hps_0|fpga_interfaces|clocks_resets|h2f_user0_clk'
+Slack : 0.975
+TNS   : 0.000
+
+Type  : Slow 1100mV 100C Model Setup 'CV96_QSYS:u_cv96_qsys|CV96_QSYS_hps_0:hps_0|CV96_QSYS_hps_0_hps_io:hps_io|CV96_QSYS_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|afi_clk_write_clk'
+Slack : 2.407
+TNS   : 0.000
+
+Type  : Slow 1100mV 100C Model Hold 'CV96_QSYS:u_cv96_qsys|CV96_QSYS_hps_0:hps_0|CV96_QSYS_hps_0_hps_io:hps_io|CV96_QSYS_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|afi_clk_write_clk'
+Slack : 0.164
+TNS   : 0.000
+
+Type  : Slow 1100mV 100C Model Hold 'u_cv96_qsys|hps_0|fpga_interfaces|clocks_resets|h2f_user0_clk'
+Slack : 0.243
+TNS   : 0.000
+
+Type  : Slow 1100mV 100C Model Recovery 'u_cv96_qsys|hps_0|fpga_interfaces|clocks_resets|h2f_user0_clk'
+Slack : 4.478
+TNS   : 0.000
+
+Type  : Slow 1100mV 100C Model Recovery 'CV96_QSYS:u_cv96_qsys|CV96_QSYS_hps_0:hps_0|CV96_QSYS_hps_0_hps_io:hps_io|CV96_QSYS_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|afi_clk_write_clk'
+Slack : 4.706
+TNS   : 0.000
+
+Type  : Slow 1100mV 100C Model Removal 'CV96_QSYS:u_cv96_qsys|CV96_QSYS_hps_0:hps_0|CV96_QSYS_hps_0_hps_io:hps_io|CV96_QSYS_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|afi_clk_write_clk'
+Slack : 1.045
+TNS   : 0.000
+
+Type  : Slow 1100mV 100C Model Removal 'u_cv96_qsys|hps_0|fpga_interfaces|clocks_resets|h2f_user0_clk'
+Slack : 1.330
+TNS   : 0.000
+
+Type  : Slow 1100mV 100C Model Minimum Pulse Width 'CV96_QSYS:u_cv96_qsys|CV96_QSYS_hps_0:hps_0|CV96_QSYS_hps_0_hps_io:hps_io|CV96_QSYS_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|pll_write_clk_dq_write_clk'
+Slack : 0.940
+TNS   : 0.000
+
+Type  : Slow 1100mV 100C Model Minimum Pulse Width 'CV96_QSYS:u_cv96_qsys|CV96_QSYS_hps_0:hps_0|CV96_QSYS_hps_0_hps_io:hps_io|CV96_QSYS_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|afi_clk_write_clk'
+Slack : 0.956
+TNS   : 0.000
+
+Type  : Slow 1100mV 100C Model Minimum Pulse Width 'u_cv96_qsys|hps_0|fpga_interfaces|clocks_resets|h2f_user0_clk'
+Slack : 3.591
+TNS   : 0.000
+
+Type  : Slow 1100mV -40C Model Setup 'u_cv96_qsys|hps_0|fpga_interfaces|clocks_resets|h2f_user0_clk'
+Slack : 0.556
+TNS   : 0.000
+
+Type  : Slow 1100mV -40C Model Setup 'CV96_QSYS:u_cv96_qsys|CV96_QSYS_hps_0:hps_0|CV96_QSYS_hps_0_hps_io:hps_io|CV96_QSYS_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|afi_clk_write_clk'
+Slack : 2.406
+TNS   : 0.000
+
+Type  : Slow 1100mV -40C Model Hold 'CV96_QSYS:u_cv96_qsys|CV96_QSYS_hps_0:hps_0|CV96_QSYS_hps_0_hps_io:hps_io|CV96_QSYS_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|afi_clk_write_clk'
+Slack : 0.216
+TNS   : 0.000
+
+Type  : Slow 1100mV -40C Model Hold 'u_cv96_qsys|hps_0|fpga_interfaces|clocks_resets|h2f_user0_clk'
+Slack : 0.233
+TNS   : 0.000
+
+Type  : Slow 1100mV -40C Model Recovery 'CV96_QSYS:u_cv96_qsys|CV96_QSYS_hps_0:hps_0|CV96_QSYS_hps_0_hps_io:hps_io|CV96_QSYS_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|afi_clk_write_clk'
+Slack : 4.796
+TNS   : 0.000
+
+Type  : Slow 1100mV -40C Model Recovery 'u_cv96_qsys|hps_0|fpga_interfaces|clocks_resets|h2f_user0_clk'
+Slack : 4.856
+TNS   : 0.000
+
+Type  : Slow 1100mV -40C Model Removal 'CV96_QSYS:u_cv96_qsys|CV96_QSYS_hps_0:hps_0|CV96_QSYS_hps_0_hps_io:hps_io|CV96_QSYS_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|afi_clk_write_clk'
+Slack : 1.050
+TNS   : 0.000
+
+Type  : Slow 1100mV -40C Model Removal 'u_cv96_qsys|hps_0|fpga_interfaces|clocks_resets|h2f_user0_clk'
+Slack : 1.278
+TNS   : 0.000
+
+Type  : Slow 1100mV -40C Model Minimum Pulse Width 'CV96_QSYS:u_cv96_qsys|CV96_QSYS_hps_0:hps_0|CV96_QSYS_hps_0_hps_io:hps_io|CV96_QSYS_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|pll_write_clk_dq_write_clk'
+Slack : 0.942
+TNS   : 0.000
+
+Type  : Slow 1100mV -40C Model Minimum Pulse Width 'CV96_QSYS:u_cv96_qsys|CV96_QSYS_hps_0:hps_0|CV96_QSYS_hps_0_hps_io:hps_io|CV96_QSYS_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|afi_clk_write_clk'
+Slack : 0.962
+TNS   : 0.000
+
+Type  : Slow 1100mV -40C Model Minimum Pulse Width 'u_cv96_qsys|hps_0|fpga_interfaces|clocks_resets|h2f_user0_clk'
+Slack : 3.571
+TNS   : 0.000
+
+Type  : Fast 1100mV 100C Model Setup 'CV96_QSYS:u_cv96_qsys|CV96_QSYS_hps_0:hps_0|CV96_QSYS_hps_0_hps_io:hps_io|CV96_QSYS_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|afi_clk_write_clk'
+Slack : 2.946
+TNS   : 0.000
+
+Type  : Fast 1100mV 100C Model Setup 'u_cv96_qsys|hps_0|fpga_interfaces|clocks_resets|h2f_user0_clk'
+Slack : 5.299
+TNS   : 0.000
+
+Type  : Fast 1100mV 100C Model Hold 'CV96_QSYS:u_cv96_qsys|CV96_QSYS_hps_0:hps_0|CV96_QSYS_hps_0_hps_io:hps_io|CV96_QSYS_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|afi_clk_write_clk'
+Slack : 0.083
+TNS   : 0.000
+
+Type  : Fast 1100mV 100C Model Hold 'u_cv96_qsys|hps_0|fpga_interfaces|clocks_resets|h2f_user0_clk'
+Slack : 0.133
+TNS   : 0.000
+
+Type  : Fast 1100mV 100C Model Recovery 'CV96_QSYS:u_cv96_qsys|CV96_QSYS_hps_0:hps_0|CV96_QSYS_hps_0_hps_io:hps_io|CV96_QSYS_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|afi_clk_write_clk'
+Slack : 5.397
+TNS   : 0.000
+
+Type  : Fast 1100mV 100C Model Recovery 'u_cv96_qsys|hps_0|fpga_interfaces|clocks_resets|h2f_user0_clk'
+Slack : 6.333
+TNS   : 0.000
+
+Type  : Fast 1100mV 100C Model Removal 'u_cv96_qsys|hps_0|fpga_interfaces|clocks_resets|h2f_user0_clk'
+Slack : 0.629
+TNS   : 0.000
+
+Type  : Fast 1100mV 100C Model Removal 'CV96_QSYS:u_cv96_qsys|CV96_QSYS_hps_0:hps_0|CV96_QSYS_hps_0_hps_io:hps_io|CV96_QSYS_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|afi_clk_write_clk'
+Slack : 0.848
+TNS   : 0.000
+
+Type  : Fast 1100mV 100C Model Minimum Pulse Width 'CV96_QSYS:u_cv96_qsys|CV96_QSYS_hps_0:hps_0|CV96_QSYS_hps_0_hps_io:hps_io|CV96_QSYS_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|pll_write_clk_dq_write_clk'
+Slack : 1.300
+TNS   : 0.000
+
+Type  : Fast 1100mV 100C Model Minimum Pulse Width 'CV96_QSYS:u_cv96_qsys|CV96_QSYS_hps_0:hps_0|CV96_QSYS_hps_0_hps_io:hps_io|CV96_QSYS_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|afi_clk_write_clk'
+Slack : 1.307
+TNS   : 0.000
+
+Type  : Fast 1100mV 100C Model Minimum Pulse Width 'u_cv96_qsys|hps_0|fpga_interfaces|clocks_resets|h2f_user0_clk'
+Slack : 3.896
+TNS   : 0.000
+
+Type  : Fast 1100mV -40C Model Setup 'CV96_QSYS:u_cv96_qsys|CV96_QSYS_hps_0:hps_0|CV96_QSYS_hps_0_hps_io:hps_io|CV96_QSYS_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|afi_clk_write_clk'
+Slack : 2.946
+TNS   : 0.000
+
+Type  : Fast 1100mV -40C Model Setup 'u_cv96_qsys|hps_0|fpga_interfaces|clocks_resets|h2f_user0_clk'
+Slack : 5.984
+TNS   : 0.000
+
+Type  : Fast 1100mV -40C Model Hold 'CV96_QSYS:u_cv96_qsys|CV96_QSYS_hps_0:hps_0|CV96_QSYS_hps_0_hps_io:hps_io|CV96_QSYS_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|afi_clk_write_clk'
+Slack : 0.076
+TNS   : 0.000
+
+Type  : Fast 1100mV -40C Model Hold 'u_cv96_qsys|hps_0|fpga_interfaces|clocks_resets|h2f_user0_clk'
+Slack : 0.117
+TNS   : 0.000
+
+Type  : Fast 1100mV -40C Model Recovery 'CV96_QSYS:u_cv96_qsys|CV96_QSYS_hps_0:hps_0|CV96_QSYS_hps_0_hps_io:hps_io|CV96_QSYS_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|afi_clk_write_clk'
+Slack : 5.509
+TNS   : 0.000
+
+Type  : Fast 1100mV -40C Model Recovery 'u_cv96_qsys|hps_0|fpga_interfaces|clocks_resets|h2f_user0_clk'
+Slack : 7.122
+TNS   : 0.000
+
+Type  : Fast 1100mV -40C Model Removal 'u_cv96_qsys|hps_0|fpga_interfaces|clocks_resets|h2f_user0_clk'
+Slack : 0.547
+TNS   : 0.000
+
+Type  : Fast 1100mV -40C Model Removal 'CV96_QSYS:u_cv96_qsys|CV96_QSYS_hps_0:hps_0|CV96_QSYS_hps_0_hps_io:hps_io|CV96_QSYS_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|afi_clk_write_clk'
+Slack : 0.753
+TNS   : 0.000
+
+Type  : Fast 1100mV -40C Model Minimum Pulse Width 'CV96_QSYS:u_cv96_qsys|CV96_QSYS_hps_0:hps_0|CV96_QSYS_hps_0_hps_io:hps_io|CV96_QSYS_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|pll_write_clk_dq_write_clk'
+Slack : 1.304
+TNS   : 0.000
+
+Type  : Fast 1100mV -40C Model Minimum Pulse Width 'CV96_QSYS:u_cv96_qsys|CV96_QSYS_hps_0:hps_0|CV96_QSYS_hps_0_hps_io:hps_io|CV96_QSYS_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|afi_clk_write_clk'
+Slack : 1.312
+TNS   : 0.000
+
+Type  : Fast 1100mV -40C Model Minimum Pulse Width 'u_cv96_qsys|hps_0|fpga_interfaces|clocks_resets|h2f_user0_clk'
+Slack : 3.900
+TNS   : 0.000
+
+------------------------------------------------------------
+Info: see the "DDR report" for DDR timing results
+------------------------------------------------------------
+------------------------------------------------------------

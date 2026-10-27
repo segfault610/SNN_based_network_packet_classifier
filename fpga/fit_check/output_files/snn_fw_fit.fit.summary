@@ -1,0 +1,20 @@
+Fitter Status : Successful - Tue Oct 13 12:54:15 2026
+Quartus Prime Version : 20.1.0 Build 711 06/05/2020 SJ Lite Edition
+Revision Name : snn_fw_fit
+Top-level Entity Name : snn_fw_avmm
+Family : Cyclone V
+Device : 5CSEBA6U19I7
+Timing Models : Final
+Logic utilization (in ALMs) : 5,871 / 41,910 ( 14 % )
+Total registers : 10336
+Total pins : 3 / 205 ( 1 % )
+Total virtual pins : 79
+Total block memory bits : 64,020 / 5,662,720 ( 1 % )
+Total RAM Blocks : 14 / 553 ( 3 % )
+Total DSP Blocks : 0 / 112 ( 0 % )
+Total HSSI RX PCSs : 0
+Total HSSI PMA RX Deserializers : 0
+Total HSSI TX PCSs : 0
+Total HSSI PMA TX Serializers : 0
+Total PLLs : 0 / 6 ( 0 % )
+Total DLLs : 0 / 4 ( 0 % )
