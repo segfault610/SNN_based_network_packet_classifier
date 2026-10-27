@@ -1,0 +1,1 @@
+variant optimal  period_ns 8.0  effort medium/high/high
