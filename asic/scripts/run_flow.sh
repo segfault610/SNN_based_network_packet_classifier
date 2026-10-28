@@ -8,6 +8,7 @@
 #   scripts/run_flow.sh syn-optimal   Genus one variant (syn-fast / syn-slow likewise)
 #   scripts/run_flow.sh timing        Genus re-report timing (max_paths 100) all 3 + summary
 #   scripts/run_flow.sh timing-summary  distil existing reports -> timing_summary.txt (no tools)
+#   scripts/run_flow.sh schematic     open the full design in the Genus GUI schematic viewer (needs X)
 #   scripts/run_flow.sh lec           Conformal RTL vs tm_netlist_{fast,optimal,slow}
 #   scripts/run_flow.sh lec-genus     Conformal with the Genus-written dofile (recommended first)
 #   scripts/run_flow.sh sim-gls       xrun: tm_netlist_optimal, zero delay
@@ -54,6 +55,7 @@ step() {
                    genus -no_gui -log $OUT/syn_$v/genus_timing_$v -files scripts/genus_timing.tcl ;;
     timing)      step timing-fast; step timing-optimal; step timing-slow; scripts/timing_summary.sh ;;
     timing-summary) scripts/timing_summary.sh ;;      # distil existing reports, no tools needed
+    schematic)   genus -files scripts/genus_schematic.tcl ;;  # GUI schematic (needs X; SYNTH=1 for gate-level)
     lec-fast|lec-optimal|lec-slow)
                  mkdir -p $OUT/lec
                  lec -xl -nogui -tclmode -dofile scripts/${1/-/_}.tcl
