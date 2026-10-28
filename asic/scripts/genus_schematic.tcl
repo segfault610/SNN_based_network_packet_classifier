@@ -8,14 +8,27 @@
 #
 # Default = RTL / elaborated schematic (fast, readable: adders, muxes, regs,
 # comparators). For the technology-MAPPED gate schematic instead:
-#       SYNTH=1 genus -files scripts/genus_schematic.tcl       (slower, ~gate soup)
+#       SCHEM_GATE=1 genus -files scripts/genus_schematic.tcl    (slower, ~gate soup)
 # Pick a sub-block to open instead of the whole chip:
 #       SCHEM_TOP=snn_core genus -files scripts/genus_schematic.tcl
+#
+# NB: the toggle env var is SCHEM_GATE, NOT "SYNTH" - some Cadence site setups
+# export SYNTH as the Genus install path, which would break a boolean test.
 # ---------------------------------------------------------------------------
 source scripts/setup.tcl
 
-set TOPMOD [env_or SCHEM_TOP $DESIGN]
-set DOSYN  [env_or SYNTH 0]
+# which module's schematic to view (default: the whole chip)
+set TOPMOD $DESIGN
+if {[info exists ::env(SCHEM_TOP)] && $::env(SCHEM_TOP) ne ""} {
+    set TOPMOD $::env(SCHEM_TOP)
+}
+# gate-level (mapped) schematic? only when SCHEM_GATE is exactly 1/true/yes/on
+set DOSYN 0
+if {[info exists ::env(SCHEM_GATE)]} {
+    switch -nocase -- [string trim $::env(SCHEM_GATE)] {
+        1 - true - yes - on { set DOSYN 1 }
+    }
+}
 
 # ---- libraries + RTL (same sources as the synthesis flow) ----
 set_db init_lib_search_path $LIB_DIR
@@ -25,8 +38,7 @@ read_hdl -v2001 $RTL_FILES
 elaborate $DESIGN
 puts "== elaborated $DESIGN"
 
-if {$DOSYN} {
-    # constraints so synthesis is meaningful, then map to gsclib090 cells
+if {$DOSYN == 1} {
     set fi [open constraints/snn.sdc r]; set sdc [read $fi]; close $fi
     regsub {set CLK_PERIOD [0-9.]+} $sdc "set CLK_PERIOD $PERIOD(optimal)" sdc
     set tmp out/$DESIGN/schem_in.sdc
@@ -44,10 +56,9 @@ gui_show
 puts "============================================================"
 puts "  Genus GUI is open. To see the schematic of '$TOPMOD':"
 puts "   1. In the left hierarchy/browser, select module '$TOPMOD'."
-puts "   2. Right-click it -> 'Show Schematic'  (or Windows -> New -> Schematic)."
+puts "   2. Right-click it -> 'Show Schematic' (or Windows -> New -> Schematic)."
 puts "   3. Double-click any block to descend into it."
-puts "   4. Screenshot it: in the schematic window  File -> Save Image..."
-puts "      (or use the OS screenshot tool)."
+puts "   4. Screenshot: in the schematic window  File -> Save Image..."
 puts "  Leave Genus running while you capture; type 'exit' here when done."
 puts "============================================================"
-# NB: no 'exit' - keep the session (and the GUI) alive.
+# no 'exit' - keep the session (and the GUI) alive.

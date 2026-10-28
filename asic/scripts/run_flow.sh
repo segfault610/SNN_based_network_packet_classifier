@@ -55,7 +55,7 @@ step() {
                    genus -no_gui -log $OUT/syn_$v/genus_timing_$v -files scripts/genus_timing.tcl ;;
     timing)      step timing-fast; step timing-optimal; step timing-slow; scripts/timing_summary.sh ;;
     timing-summary) scripts/timing_summary.sh ;;      # distil existing reports, no tools needed
-    schematic)   genus -files scripts/genus_schematic.tcl ;;  # GUI schematic (needs X; SYNTH=1 for gate-level)
+    schematic)   genus -files scripts/genus_schematic.tcl ;;  # GUI schematic (needs X; SCHEM_GATE=1 for gate-level)
     lec-fast|lec-optimal|lec-slow)
                  mkdir -p $OUT/lec
                  lec -xl -nogui -tclmode -dofile scripts/${1/-/_}.tcl
