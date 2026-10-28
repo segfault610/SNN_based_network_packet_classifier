@@ -1,0 +1,195 @@
+#Version: 21.10-s300 (22-Aug-2021) (64 bit executable)
+ guiWinConfig .a.pane.f3.command.text.text.promt2 92 19 1 20 
+callback Gui_hlist_leave .a.pane.f1.middle.nb.nbframe.hier.golden.fm.tree.f1.hlist
+     tk::ButtonEnter .icon.mode.frame.arrow
+_tixRecordFlags <1> % 31949 ?? 1 ?? ?? ?? ?? ?? ?? ?? ?? 16 3115836 ?? 13 14 ?? ?? 0 ?? ?? 0x000760 00000000 4 .icon.mode.frame.arrow 1355 138; 
+	tixComboBox:ArrowDown [tixGetMegaWidget .icon.mode.frame.arrow TixComboBox]
+    ; _tixDeleteFlags;
+_tixRecordFlags <FocusIn> % 31965 ?? ?? ?? NotifyVirtual ?? ?? ?? NotifyNormal ?? ?? ?? ?? ?? ?? ?? ?? ?? 0 ?? ?? ?? ?? 9 .icon.mode ?? ??; 
+	if {"NotifyVirtual" eq "NotifyNonlinear" || "NotifyVirtual" eq "NotifyNonlinearVirtual"} {
+	    focus [.icon.mode subwidget entry]
+ 	    # CYGNUS: Setting the selection if there is no data
+	    # causes backspace to misbehave.
+	    if {[[set .icon.mode(w:entry)] get] ne ""} {
+  		[set .icon.mode(w:entry)] selection from 0
+  		[set .icon.mode(w:entry)] selection to end
+  	    }
+ 	}
+    ; _tixDeleteFlags;
+     tk::ButtonDown .icon.mode.frame.arrow
+_tixRecordFlags <ButtonRelease-1> % 32198 ?? 1 ?? ?? ?? ?? ?? ?? ?? ?? 272 3115908 ?? 13 14 ?? ?? 0 ?? ?? 0x000760 00000000 5 .icon.mode.frame.arrow 1355 138; 
+	tixComboBox:ArrowUp   [tixGetMegaWidget .icon.mode.frame.arrow TixComboBox]
+    ; _tixDeleteFlags;
+     tk::ButtonUp .icon.mode.frame.arrow
+     tk::ButtonLeave .icon.mode.frame.arrow
+     set tk::Priv(window) .icon.mode.shell
+    if {[.icon.mode.shell cget -type] eq "tearoff"} {
+	if {"NotifyNormal" ne "NotifyUngrab"} {
+	    if {[tk windowingsystem] eq "x11"} {
+		tk_menuSetFocus .icon.mode.shell
+	    }
+	}
+    }
+    tk::MenuMotion .icon.mode.shell 77 0 16
+_tixRecordFlags <1> % 32347 ?? 1 ?? ?? ?? ?? ?? ?? ?? ?? 16 3117028 ?? 29 24 ?? ?? 0 ?? ?? 0x000760 00000000 4 .icon.mode.shell.slistbox.listbox 1285 176; 
+	if {[set [tixGetMegaWidget .icon.mode.shell.slistbox.listbox](-state)] eq "disabled"} {
+	    break
+	}
+    ; _tixDeleteFlags;
+set x [guiGetListBoxEntryX .icon.mode.shell.slistbox.listbox 1];set y [guiGetListBoxEntryY .icon.mode.shell.slistbox.listbox 1] 
+     if {[winfo exists .icon.mode.shell.slistbox.listbox]} {
+	tk::ListboxBeginSelect .icon.mode.shell.slistbox.listbox [.icon.mode.shell.slistbox.listbox index  @$x,$y] 1
+    }
+#Gui Step(6)===>(Listbox).icon.mode.shell.slistbox.listbox <Button-1> LEC
+global guiReplayPause
+if {[info exists guiReplayPause] && $guiReplayPause == 1} { guiReplayBreakMsg {Step 6:  (Listbox) <Button-1>\
+ LEC} .icon.mode.shell.slistbox.listbox } 
+_tixRecordFlags <1> % 32347 ?? 1 ?? ?? ?? ?? ?? ?? ?? ?? 16 3117028 ?? 29 24 ?? ?? 0 ?? ?? 0x000760 00000000 4 .icon.mode.shell.slistbox.listbox 1285 176; 
+	if {[string is true -strict [.icon.mode.shell.slistbox.listbox cget -takefocus]]} {
+	    focus .icon.mode.shell.slistbox.listbox
+	}
+	tixScrolledListBox:Browse [tixGetMegaWidget .icon.mode.shell.slistbox.listbox]
+    ; _tixDeleteFlags;
+_tixRecordFlags <FocusOut> % 32347 ?? ?? ?? NotifyNonlinearVirtual ?? ?? ?? NotifyNormal ?? ?? ?? ?? ?? ?? ?? ?? ?? 0 ?? ?? ?? ?? 10 .icon.mode ?? ??; 
+	if {[string equal NotifyNonlinearVirtual NotifyNonlinear] ||
+	    [string equal NotifyNonlinearVirtual NotifyNonlinearVirtual]} {
+ 	    if {[info exists .icon.mode(cancelTab)]} {
+		unset .icon.mode(cancelTab)
+	    } else {
+		if {[set .icon.mode(-state)] ne "disabled"} {
+		    if {[set .icon.mode(-selection)] ne [set .icon.mode(-value)]} {
+			tixComboBox:Invoke .icon.mode
+		    }
+		}
+	    }
+	}
+    ; _tixDeleteFlags;
+focus .icon.mode.shell.slistbox.listbox
+ guiWinConfig .b.frame.lab 140 21 1 1 
+ guiWinConfig .b.met 203 23 901 4 
+ guiWinConfig .b.frame 889 23 4 4 
+ guiWinConfig .b.met.canvas 201 21 1 1 
+ guiWinConfig .b.frame.lab 130 21 1 1 
+ guiWinConfig .b.frame.lab 146 21 1 1 
+ guiWinConfig .b.frame.lab 136 21 1 1 
+ guiWinConfig .b.frame.lab 148 21 1 1 
+ guiWinConfig .b.frame.lab 219 21 1 1 
+ guiWinConfig .a.pane.f3.command.text.text.promt3 76 19 1 39 
+#Gui Step(7)===>(TixComboBox).icon.mode <Button-1> {"w"}
+global guiReplayPause
+if {[info exists guiReplayPause] && $guiReplayPause == 1} { guiReplayBreakMsg {Step 7:  (TixComboBox) <Button-1>\
+ "w"} .icon.mode } 
+tixComboBox:RootDown .icon.mode
+#Gui Step(8)===>(TixComboBox).icon.mode <ButtonRelease-1> {"w"}
+global guiReplayPause
+if {[info exists guiReplayPause] && $guiReplayPause == 1} { guiReplayBreakMsg {Step 8:  (TixComboBox) <ButtonRelease-1>\
+ "w"} .icon.mode } 
+tixComboBox:RootUp .icon.mode
+ guiWinConfig . 1920 948 0 64 
+ guiWinConfig .v_menu 1920 34 0 0 
+ guiWinConfig .cdnBranding 1920 4 0 34 
+ guiWinConfig .icon 1920 34 0 38 
+ guiWinConfig .b 1920 31 0 917 
+ guiWinConfig .a 1920 845 0 72 
+ guiWinConfig .v_menu.logo 97 34 1823 0 
+_tixRecordFlags <Configure> % 45856 00000000 ?? ?? ?? ?? 23 ?? ?? 0 ?? ?? ?? 221 1697 5 ?? 0 0 ?? ?? ?? ?? 22 .icon.mode ?? ??; 
+	tixWidgetDoWhenIdle tixComboBox:align .icon.mode
+    ; _tixDeleteFlags;
+ guiWinConfig .icon.mode 221 23 1697 5 
+ guiWinConfig .b.met 203 23 1713 4 
+ guiWinConfig .b.frame 1701 23 4 4 
+ guiWinConfig .a.pane 1920 845 0 0 
+ guiWinConfig .a.pane.sep2 1920 2 0 743 
+ guiWinConfig .a.pane.sep1 1920 2 0 464 
+ guiWinConfig .a.pane.f1 1920 465 0 0 
+ guiWinConfig .a.pane.f2 1920 279 0 465 
+ guiWinConfig .a.pane.f3 1920 101 0 744 
+ guiWinConfig .a.pane.f1.middle 1920 465 0 0 
+ guiWinConfig .a.pane.f2.mesg 1920 279 0 0 
+ guiWinConfig .a.pane.f3.command 1918 99 1 1 
+ guiWinConfig .a.pane.btn2 9 9 1907 740 
+ guiWinConfig .a.pane.btn1 9 9 1907 461 
+ guiWinConfig .a.pane.f1.middle.nb 1918 463 1 1 
+ guiWinConfig .a.pane.f2.mesg.text 1920 279 0 0 
+ guiWinConfig .a.pane.f3.command.text 1918 99 0 0 
+ guiWinConfig .a.pane.f1.middle.nb.nbframe 1918 463 0 0 
+tixVStack:ClientGeomProc .a.pane.f1.middle.nb -configure .a.pane.f1.middle.nb.nbframe.hier
+ guiWinConfig .a.pane.f1.middle.nb.nbframe.hier 1902 408 8 47 
+ guiWinConfig .a.pane.f2.mesg.text.text 1907 279 0 0 
+ guiWinConfig .a.pane.f2.mesg.text.vsb 13 279 1907 0 
+ guiWinConfig .a.pane.f3.command.text.text 1905 99 0 0 
+ guiWinConfig .a.pane.f3.command.text.vsb 13 99 1905 0 
+ guiWinConfig .a.pane.f1.middle.nb.nbframe.hier.golden 951 408 0 0 
+ guiWinConfig .a.pane.f1.middle.nb.nbframe.hier.revised 951 408 951 0 
+ guiWinConfig .a.pane.f1.middle.nb.nbframe.hier.golden.fm1 951 29 0 0 
+ guiWinConfig .a.pane.f1.middle.nb.nbframe.hier.golden.fm 947 375 2 31 
+ guiWinConfig .a.pane.f1.middle.nb.nbframe.hier.revised.fm1 951 29 0 0 
+ guiWinConfig .a.pane.f1.middle.nb.nbframe.hier.revised.fm 947 375 2 31 
+ guiWinConfig .a.pane.f1.middle.nb.nbframe.hier.golden.fm1.label 55 21 448 4 
+ guiWinConfig .a.pane.f1.middle.nb.nbframe.hier.golden.fm.tree 945 373 1 1 
+ guiWinConfig .a.pane.f1.middle.nb.nbframe.hier.revised.fm1.label 60 21 445 4 
+ guiWinConfig .a.pane.f1.middle.nb.nbframe.hier.revised.fm.tree 945 373 1 1 
+ guiWinConfig .a.pane.f1.middle.nb.nbframe.hier.golden.fm.tree.f1 945 373 0 0 
+ guiWinConfig .a.pane.f1.middle.nb.nbframe.hier.revised.fm.tree.f1 945 373 0 0 
+ guiWinConfig .a.pane.f1.middle.nb.nbframe.hier.golden.fm.tree.f1.hlist 943 371 1 1 
+ guiWinConfig .a.pane.f1.middle.nb.nbframe.hier.revised.fm.tree.f1.hlist 943 371 1 1 
+callback Gui_hlist_leave .a.pane.f1.middle.nb.nbframe.hier.golden.fm.tree.f1.hlist
+         if { [ .icon.hierCmp cget -state ] == "normal" } {
+            .icon.hierCmp configure -relief groove
+        }
+    
+     tk::ButtonEnter .icon.hierCmp
+ .icon.hierCmp configure -relief flat 
+     tk::ButtonLeave .icon.hierCmp
+     tk::MbEnter .v_menu.compare
+     tk::MbMotion .v_menu.compare up 117 93
+     tk::MbMotion .v_menu.compare up 117 92
+     tk::MbMotion .v_menu.compare up 117 90
+     tk::MbMotion .v_menu.compare up 116 89
+     tk::MbMotion .v_menu.compare up 116 87
+     tk::MbMotion .v_menu.compare up 116 86
+     tk::MbMotion .v_menu.compare up 116 85
+     tk::MbMotion .v_menu.compare up 116 84
+     tk::MbMotion .v_menu.compare up 115 83
+     tk::MbMotion .v_menu.compare up 115 82
+     tk::MbMotion .v_menu.compare up 115 82
+     tk::MbMotion .v_menu.compare up 114 82
+     tk::MbMotion .v_menu.compare up 114 81
+     tk::MbMotion .v_menu.compare up 114 80
+     tk::MbMotion .v_menu.compare up 114 79
+     tk::MbMotion .v_menu.compare up 113 79
+     if {$tk::Priv(inMenubutton) ne ""} {
+	tk::MbPost $tk::Priv(inMenubutton) 113 79
+    }
+     tk::MbButtonUp .v_menu.compare
+     tk::MbMotion .v_menu.compare up 113 79
+     tk::MbMotion .v_menu.compare up 114 81
+     tk::MbMotion .v_menu.compare up 115 85
+     tk::MbMotion .v_menu.compare up 116 88
+     tk::MbMotion .v_menu.compare up 117 91
+     tk::MbMotion .v_menu.compare up 117 94
+     tk::MbLeave .v_menu.compare
+     set tk::Priv(window) .v_menu.compare.menu
+    if {[.v_menu.compare.menu cget -type] eq "tearoff"} {
+	if {"NotifyNormal" ne "NotifyUngrab"} {
+	    if {[tk windowingsystem] eq "x11"} {
+		tk_menuSetFocus .v_menu.compare.menu
+	    }
+	}
+    }
+    tk::MenuMotion .v_menu.compare.menu 71 1 16
+#Gui Step(11)===>(Menu).v_menu.compare.menu <Button> {(menu-item) "Compare"}
+global guiReplayPause
+if {[info exists guiReplayPause] && $guiReplayPause == 1} { guiReplayBreakMsg {Step 11:  (Menu) <Button>\
+ (menu-item) "Compare"} .v_menu.compare.menu } 
+set x [guiGetMenuX .v_menu.compare.menu 0];set y [guiGetMenuY .v_menu.compare.menu 0 ] 
+     tk::MenuMotion .v_menu.compare.menu $x $y 0
+     tk::MenuButtonDown .v_menu.compare.menu
+    tk::MenuInvoke .v_menu.compare.menu 1
+ .compare.bt.ok instate !disabled {.compare.bt.ok state active} 
+ .compare.bt.ok state !active 
+ .compare.bt.ok instate !disabled {.compare.bt.ok state active} 
+ .compare.bt.ok instate !disabled { ttk::clickToFocus .compare.bt.ok; .compare.bt.ok state pressed } 
+ .compare.bt.ok instate pressed { .compare.bt.ok state !pressed; .compare.bt.ok instate !disabled { .compare.bt.ok invoke } } 
+ guiWinConfig .a.pane.f3.command.text.text.promt4 76 19 1 58 
+ guiWinConfig .b.frame.lab 91 21 1 1 

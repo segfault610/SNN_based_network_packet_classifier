@@ -1,0 +1,1 @@
+variant slow  period_ns 12.0  effort low/low/low

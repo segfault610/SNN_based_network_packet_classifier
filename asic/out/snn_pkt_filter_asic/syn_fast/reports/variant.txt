@@ -1,0 +1,1 @@
+variant fast  period_ns 5.0  effort high/high/high

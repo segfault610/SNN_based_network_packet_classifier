@@ -1,0 +1,14 @@
+  =================
+   Message Summary
+  =================
+--------------------------------------------------------------------------------------
+|    Id    |  Sev   |Count |                      Message Text                       |
+--------------------------------------------------------------------------------------
+| CFM-2    |Info    |    1 |Wrote composite dofile.                                  |
+| CFM-5    |Info    |    1 |Wrote formal verification information.                   |
+| MESG-11  |Warning |    2 |Maximum message print count reached.                     |
+| RPT-16   |Info    |    1 |Joules engine is used.                                   |
+| SYNTH-8  |Info    |    1 |Done incrementally optimizing.                           |
+| WSDF-104 |Warning |    1 |Default value for an option has changed in this release. |
+|          |        |      |Specify the option explicitly.                           |
+--------------------------------------------------------------------------------------

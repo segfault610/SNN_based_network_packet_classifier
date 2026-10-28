@@ -47,10 +47,10 @@ in a license agreement controlling such use and disclosure.
 // Error: Auto analysis requires a Conformal_Ultra license.
 To use this feature, start the tool with the -xl option.
 1
-CPU time     : 5.23    seconds
-Elapse time  : 14      seconds
-Memory usage : 249.09  M bytes
-// 'dofile /home/userdata/24bvd0198/ASIC_Design_Lab/SNN_based_network_packet_classifier/asic/./scripts/lec.tcl' is aborted at line 4
+CPU time     : 3.31    seconds
+Elapse time  : 8       seconds
+Memory usage : 249.20  M bytes
+// 'dofile /home/userdata/24bvd0198/ASIC_Design_Lab/SNN_based_network_packet_classifier/asic/./scripts/lec_optimal.tcl' is aborted at line 4
 // Command: vpx set system mode lec
 // Processing Golden ...
 // Modeling Golden ...
@@ -59,9 +59,9 @@ Memory usage : 249.09  M bytes
 // Balanced modeling (auto) mapped 58318 out of 58517 DFF/DLATs
 // (F18) Converted 33 DFF/DLAT(s) in (G) to ZERO/ONE
 // (F28) Converted 18 internal output port(s) to inout port(s)
-CPU time     : 12.11   seconds
-Elapse time  : 43      seconds
-Memory usage : 408.86  M bytes
+CPU time     : 7.38    seconds
+Elapse time  : 16      seconds
+Memory usage : 408.61  M bytes
 // Warning: Golden and Revised have different numbers of key points:
 // Golden  key points = 29462
 // Revised key points = 29263
@@ -90,10 +90,3 @@ Not-mapped        36        36
 // Warning: Golden has 36 unmapped key points which will not be compared
 // 29205 compared points added to compare list
 // Command: vpx compare
-================================================================================
-Compared points      PO     DFF       Total   
---------------------------------------------------------------------------------
-Equivalent           46     29111     29157   
---------------------------------------------------------------------------------
-Non-equivalent       0      48        48      
-================================================================================
