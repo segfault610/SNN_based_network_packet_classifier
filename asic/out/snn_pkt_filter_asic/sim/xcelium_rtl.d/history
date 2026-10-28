@@ -1,0 +1,5 @@
+//
+// File created by:  xrun
+// Do not modify this file
+
+s1::(28Oct2026:10:08:39):( xrun -F scripts/xrun_rtl.f -input scripts/xrun_batch.tcl +VEC_DIR=/home/userdata/24bvd0198/ASIC_Design_Lab/SNN_based_network_packet_classifier/sim/vectors -xmlibdirname out/snn_pkt_filter_asic/sim/xcelium_rtl.d -l out/snn_pkt_filter_asic/sim/xrun_rtl.log )&&(out/snn_pkt_filter_asic/sim/xcelium_rtl.d/env.d/env.history.28Oct2026_10_08_39)

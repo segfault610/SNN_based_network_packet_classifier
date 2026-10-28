@@ -1,0 +1,176 @@
+Cadence Genus(TM) Synthesis Solution.
+Copyright 2022 Cadence Design Systems, Inc. All rights reserved worldwide.
+Cadence and the Cadence logo are registered trademarks and Genus is a trademark
+of Cadence Design Systems, Inc. in the United States and other countries.
+
+[09:00:07.427906] Configured Lic search path (21.01-s002): 5280@14.139.1.126:1717@14.139.1.126
+
+Version: 21.14-s082_1, built Thu Jun 23 02:02:08 PDT 2022
+Options: -no_gui -log out/snn_pkt_filter_asic/syn_slow/genus_timing_slow -files scripts/genus_timing.tcl 
+Date:    Wed Oct 28 09:00:07 2026
+Host:    cadence-server.vit.ac.in (x86_64 w/Linux 4.18.0-477.21.1.el8_8.x86_64) (16cores*32cpus*1physical cpu*Intel(R) Xeon(R) Gold 6346 CPU @ 3.10GHz 36864KB) (1055760632KB)
+PID:     2645917
+OS:      Red Hat Enterprise Linux release 8.8 (Ootpa)
+
+WARNING:Hostname to IPv4 and IPv6 address lookup failed for the host cadence-c2s
+WARNING:Hostname to IPv4 and IPv6 address lookup failed for the host cadence-c2s
+Checkout succeeded: Genus_Synthesis/3FFB3787901511A9760E
+	License file: 5280@14.139.1.126
+	License Server: 5280@14.139.1.126
+
+[09:00:11.307409] Periodic Lic check successful
+[09:00:11.307424] Feature usage summary:
+[09:00:11.307425] Genus_Synthesis
+Checking out license: Genus_Synthesis (4 seconds elapsed).
+
+
+***********************************************************************************************************
+***********************************************************************************************************
+
+
+
+Loading tool scripts...WARNING:Hostname to IPv4 and IPv6 address lookup failed for the host cadence-c2s
+
+Finished loading tool scripts (7 seconds elapsed).
+
+#@ Processing -files option
+@genus 1> source scripts/genus_timing.tcl
+#@ Begin verbose source ./scripts/genus_timing.tcl
+@file(genus_timing.tcl) 23: source scripts/setup.tcl
+Sourcing './scripts/setup.tcl' (Wed Oct 28 09:00:18 IST 2026)...
+#@ Begin verbose source ./scripts/setup.tcl
+@file(setup.tcl) 6: if {![file exists ../rtl/snn_core.v]} {
+    error "start the Cadence tools from the asic/ directory (../rtl must exist)"
+}
+@file(setup.tcl) 9: proc env_or ...
+@file(setup.tcl) 17: set DESIGN    [env_or DESIGN snn_pkt_filter_asic]
+@file(setup.tcl) 18: set RTL_DIR   ../rtl
+@file(setup.tcl) 19: set RTL_FILES {sync_fifo.v pkt_parser.v spike_encoder.v snn_core.v snn_classifier.v
+               snn_pkt_filter.v snn_pkt_filter_asic.v}
+@file(setup.tcl) 21: set RTL_PATHS {}
+@file(setup.tcl) 22: foreach f $RTL_FILES { lappend RTL_PATHS $RTL_DIR/$f }
+@file(setup.tcl) 25: set PDK       [env_or GPDK090 /home/cadence/install/FOUNDRY/digital/90nm/dig]
+@file(setup.tcl) 26: set LIB_DIR   $PDK/lib
+@file(setup.tcl) 27: set SLOW_LIB  $LIB_DIR/slow.lib            ;# worst case: synthesis + setup
+@file(setup.tcl) 28: set FAST_LIB  $LIB_DIR/fast.lib            ;# best case: hold
+@file(setup.tcl) 29: if {![file exists $FAST_LIB]} { set FAST_LIB $SLOW_LIB }
+@file(setup.tcl) 30: set TECH_LEF  $PDK/lef/gsclib090_translated.lef
+@file(setup.tcl) 31: set CAP_TABLE [env_or CAP_TABLE ""]        ;# optional .capTbl for Innovus extraction
+@file(setup.tcl) 37: array set PERIOD [list \
+    fast    [env_or CLK_FAST    5.0] \
+    optimal [env_or CLK_OPTIMAL 8.0] \
+    slow    [env_or CLK_SLOW   12.0]]
+@file(setup.tcl) 41: array set EFFORT {
+    fast    {high   high   high}
+    optimal {medium high   high}
+    slow    {low    low    low}
+}
+@file(setup.tcl) 48: set OUT out/$DESIGN
+@file(setup.tcl) 49: proc syn_dir ...
+@file(setup.tcl) 50: proc tm_netlist ...
+@file(setup.tcl) 51: proc tm_sdc ...
+@file(setup.tcl) 52: set PNR_VARIANT  [env_or PNR_VARIANT optimal]
+@file(setup.tcl) 53: set PNR_DIR      $OUT/pnr
+@file(setup.tcl) 54: set PNR_NETLIST  $PNR_DIR/${DESIGN}_pnr_netlist.v
+@file(setup.tcl) 55: set PNR_SDF      $PNR_DIR/${DESIGN}_pnr.sdf
+@file(setup.tcl) 58: set BATCH [env_or BATCH 0]
+#@ End verbose source ./scripts/setup.tcl
+@file(genus_timing.tcl) 25: set VARIANT  [env_or TVARIANT optimal]
+@file(genus_timing.tcl) 26: set MAXPATHS [env_or MAXPATHS 100]
+@file(genus_timing.tcl) 28: if {![info exists PERIOD($VARIANT)]} { error "unknown TVARIANT '$VARIANT' (use fast|optimal|slow)" }
+@file(genus_timing.tcl) 29: set NL  [tm_netlist $VARIANT]
+@file(genus_timing.tcl) 30: set RPT [syn_dir $VARIANT]/reports
+@file(genus_timing.tcl) 31: file mkdir $RPT
+@file(genus_timing.tcl) 32: if {![file exists $NL]} {
+    error "no netlist $NL - synthesise first:  genus -files scripts/genus_$VARIANT.tcl"
+}
+@file(genus_timing.tcl) 35: puts "==== Genus re-timing: $DESIGN, variant $VARIANT, period $PERIOD($VARIANT) ns, max_paths $MAXPATHS"
+==== Genus re-timing: snn_pkt_filter_asic, variant slow, period 12.0 ns, max_paths 100
+@file(genus_timing.tcl) 38: set_db init_lib_search_path $LIB_DIR
+  Setting attribute of root '/': 'init_lib_search_path' = /home/cadence/install/FOUNDRY/digital/90nm/dig/lib
+@file(genus_timing.tcl) 39: read_libs [file tail $SLOW_LIB]
+
+Threads Configured:3
+
+  Message Summary for Library slow.lib:
+  *************************************
+  Missing a function attribute in the output pin definition. [LBR-518]: 1
+  Missing library level attribute. [LBR-516]: 1
+  *************************************
+ 
+Info    : Created nominal operating condition. [LBR-412]
+        : Operating condition '_nominal_' was created for the PVT values (1.000000, 0.900000, 125.000000) in library 'slow.lib'.
+        : The nominal operating condition is represented, either by the nominal PVT values specified in the library source (via nom_process,nom_voltage and nom_temperature respectively), or by the default PVT values (1.0,1.0,1.0).
+@file(genus_timing.tcl) 40: read_hdl -v2001 $NL
+@file(genus_timing.tcl) 41: elaborate $DESIGN
+  Library has 324 usable logic and 128 usable sequential lib-cells.
+Info    : Elaborating Design. [ELAB-1]
+        : Elaborating top-level block 'snn_pkt_filter_asic' from file 'out/snn_pkt_filter_asic/syn_slow/snn_pkt_filter_asic_tm_netlist_slow.v'.
+Warning : Undriven module output port. [ELABUTL-123]
+        : Undriven bits of output port 'cfg_rdata' in module 'snn_classifier_N_HID16_FEAT_DEPTH4_TAG_W12_TH1_INIT256_TH2_INIT128_T_INIT8_LEAK_INIT2' in file 'out/snn_pkt_filter_asic/syn_slow/snn_pkt_filter_asic_tm_netlist_slow.v' on line 22, column 26, hid = 0.
+Warning : Undriven module input port. [ELABUTL-127]
+        : Undriven bits of port 'frm_len_ovr' of instance 'u_cls' of module 'snn_classifier_N_HID16_FEAT_DEPTH4_TAG_W12_TH1_INIT256_TH2_INIT128_T_INIT8_LEAK_INIT2' in file 'out/snn_pkt_filter_asic/syn_slow/snn_pkt_filter_asic_tm_netlist_slow.v' on line 79629, column 13, hid = 0.
+        : Run check_design to check 'Undriven Port(s)/Pin(s)' section for all undriven module input ports. It is better to double confirm with designer if these undriven ports are expected. During syn_gen the undriven ports are controlled by attribute 'hdl_unconnected_value', the default value is 0.
+Warning : Undriven module input port. [ELABUTL-127]
+        : Undriven bits of port 'frm_len' of instance 'u_cls' of module 'snn_classifier_N_HID16_FEAT_DEPTH4_TAG_W12_TH1_INIT256_TH2_INIT128_T_INIT8_LEAK_INIT2' in file 'out/snn_pkt_filter_asic/syn_slow/snn_pkt_filter_asic_tm_netlist_slow.v' on line 79629, column 13, hid = 0.
+Warning : Undriven module output port. [ELABUTL-123]
+        : Undriven bits of output port 's_axis_tready' in module 'snn_pkt_filter_BUF_AW11' in file 'out/snn_pkt_filter_asic/syn_slow/snn_pkt_filter_asic_tm_netlist_slow.v' on line 67219, column 23, hid = 0.
+Warning : Undriven module output port. [ELABUTL-123]
+        : Undriven bits of output port 'm_axis_tuser' in module 'snn_pkt_filter_BUF_AW11' in file 'out/snn_pkt_filter_asic/syn_slow/snn_pkt_filter_asic_tm_netlist_slow.v' on line 67219, column 66, hid = 0.
+Info    : Done Elaborating Design. [ELAB-3]
+        : Done elaborating 'snn_pkt_filter_asic'.
+Checking for analog nets...
+Check completed for analog nets.
+Checking for source RTL...
+Check completed for source RTL.
+Running Unified Mux Engine Tricks...
+Completed Unified Mux Engine Tricks
+
+Stage: post_elab
+--------------------------------------------------------
+| Trick             | Accepts | Rejects | Runtime (ms) | 
+--------------------------------------------------------
+| ume_constant_bmux |       0 |       0 |         2.00 | 
+--------------------------------------------------------
+Starting clip mux common data inputs [v1.0] (stage: post_elab, startdef: snn_pkt_filter_asic, recur: true)
+Completed clip mux common data inputs (accepts: 0, rejects: 0, runtime: 0.002s)
+Starting clip the non-user hierarchies [v2.0] (stage: post_elab, startdef: snn_pkt_filter_asic, recur: true)
+Completed clip the non-user hierarchies (accepts: 0, rejects: 0, runtime: 0.003s)
+
+Stage: post_elab
+---------------------------------------------------------
+| Transform          | Accepts | Rejects | Runtime (ms) | 
+---------------------------------------------------------
+| hlo_clip_mux_input |       0 |       0 |         2.00 | 
+| hlo_clip           |       0 |       0 |         3.00 | 
+---------------------------------------------------------
+UM:   flow.cputime  flow.realtime  timing.setup.tns  timing.setup.wns  snapshot
+UM:*                                                                   elaborate
+@file(genus_timing.tcl) 44: read_sdc [tm_sdc $VARIANT]
+Statistics for commands executed by read_sdc:
+ "create_clock"             - successful      1 , failed      0 (runtime  0.01)
+ "current_design"           - successful      1 , failed      0 (runtime  0.00)
+ "get_clocks"               - successful    106 , failed      0 (runtime  0.00)
+ "get_ports"                - successful    150 , failed      0 (runtime  0.01)
+ "set_clock_gating_check"   - successful      1 , failed      0 (runtime  0.00)
+ "set_clock_transition"     - successful      1 , failed      0 (runtime  0.00)
+ "set_clock_uncertainty"    - successful      2 , failed      0 (runtime  0.00)
+ "set_input_delay"          - successful     57 , failed      0 (runtime  0.00)
+ "set_load"                 - successful     46 , failed      0 (runtime  0.00)
+ "set_output_delay"         - successful     46 , failed      0 (runtime  0.00)
+ "set_units"                - successful      2 , failed      0 (runtime  0.00)
+ "set_wire_load_mode"       - successful      1 , failed      0 (runtime  0.00)
+read_sdc completed in 00:00:00 (hh:mm:ss)
+@file(genus_timing.tcl) 47: report_timing -max_paths $MAXPATHS > $RPT/timing_setup_max${MAXPATHS}.rpt
+@file(genus_timing.tcl) 48: report_qor                         > $RPT/qor_timing.rpt
+@file(genus_timing.tcl) 50: puts "==== $VARIANT: wrote $RPT/timing_setup_max${MAXPATHS}.rpt and qor_timing.rpt"
+==== slow: wrote out/snn_pkt_filter_asic/syn_slow/reports/timing_setup_max100.rpt and qor_timing.rpt
+@file(genus_timing.tcl) 51: puts "     (run  scripts/timing_summary.sh  to distil WNS/TNS/worst-path)"
+     (run  scripts/timing_summary.sh  to distil WNS/TNS/worst-path)
+@file(genus_timing.tcl) 52: if {$BATCH} { exit }
+
+Lic Summary:
+[09:00:55.199051] Cdslmd servers: cadence-c2s
+[09:00:55.199067] Feature usage summary:
+[09:00:55.199072] Genus_Synthesis
+

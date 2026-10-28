@@ -5,7 +5,7 @@
  WNS (worst slack)   : 3159.1 ps     [>=0 => timing MET; this is report_qor's critical-path slack]
  TNS (total neg slack): 0.0 ps
  Violating paths     : 0        [whole design, report_qor - NOT capped at 10]
- Worst path source   : out/snn_pkt_filter_asic/syn_slow/reports/timing.rpt
+ Worst path source   : out/snn_pkt_filter_asic/syn_slow/reports/timing_setup_max100.rpt
  Worst path:
    startpoint        : u_filter/u_cls/leak_reg[0]/CK
    endpoint          : u_filter/u_cls/u_core_v2_reg[1][18]/D

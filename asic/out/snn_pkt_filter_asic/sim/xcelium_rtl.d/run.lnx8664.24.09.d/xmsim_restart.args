@@ -1,0 +1,28 @@
+//
+// File created by:  xrun
+// Do not modify this file
+//
++VEC_DIR=/home/userdata/24bvd0198/ASIC_Design_Lab/SNN_based_network_packet_classifier/sim/vectors
+-amsdlibdir
+out/snn_pkt_filter_asic/sim/xcelium_rtl.d/AMSD
+-INPUT
+scripts/xrun_batch.tcl
+-MESSAGES
++EMGRLOG
+out/snn_pkt_filter_asic/sim/xrun_rtl.log
+-XLSTIME
+1793162318
+-XLKEEP
+-XLMODE
+out/snn_pkt_filter_asic/sim/xcelium_rtl.d/run.lnx8664.24.09.d
+-RUNMODE
+-CDSLIB
+out/snn_pkt_filter_asic/sim/xcelium_rtl.d/run.lnx8664.24.09.d/cds.lib
+-HDLVAR
+out/snn_pkt_filter_asic/sim/xcelium_rtl.d/run.lnx8664.24.09.d/hdl.var
+-XLNAME
+xrun
+-XLVERSION
+"TOOL:	xrun(64)	24.09-s005"
+-XLNAME
+./out/snn_pkt_filter_asic/sim/xcelium_rtl.d/run.lnx8664.24.09.d/cadence-server.vit.ac.in_3828105

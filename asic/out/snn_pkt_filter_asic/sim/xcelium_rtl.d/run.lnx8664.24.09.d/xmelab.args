@@ -1,0 +1,28 @@
+//
+// File created by:  xrun
+// Do not modify this file
+//
++VEC_DIR=/home/userdata/24bvd0198/ASIC_Design_Lab/SNN_based_network_packet_classifier/sim/vectors
+-amsdlibdir
+out/snn_pkt_filter_asic/sim/xcelium_rtl.d/AMSD
+-timescale
+1ns/1ps
+-ACCESS
++r
+-XMLIBDIRNAME
+out/snn_pkt_filter_asic/sim/xcelium_rtl.d
+-no_analogsolver
+-MESSAGES
+tb_snn_asic
+-dms_perf
+-XLMODE
+out/snn_pkt_filter_asic/sim/xcelium_rtl.d/run.lnx8664.24.09.d
+-RUNMODE
+-CDSLIB
+out/snn_pkt_filter_asic/sim/xcelium_rtl.d/run.lnx8664.24.09.d/cds.lib
+-HDLVAR
+out/snn_pkt_filter_asic/sim/xcelium_rtl.d/run.lnx8664.24.09.d/hdl.var
+-WORK
+worklib
+-IRUNHASTOP
+-HASXLMODE

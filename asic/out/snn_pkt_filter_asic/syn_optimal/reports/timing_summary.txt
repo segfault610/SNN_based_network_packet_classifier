@@ -5,7 +5,10 @@
  WNS (worst slack)   : 21.1 ps     [>=0 => timing MET; this is report_qor's critical-path slack]
  TNS (total neg slack): 0.0 ps
  Violating paths     : 0        [whole design, report_qor - NOT capped at 10]
- Worst path source   : out/snn_pkt_filter_asic/syn_optimal/reports/timing.rpt
- Worst path          : no constrained path list in out/snn_pkt_filter_asic/syn_optimal/reports/timing.rpt
-                       (re-run:  TVARIANT=optimal genus -no_gui -files scripts/genus_timing.tcl)
+ Worst path source   : out/snn_pkt_filter_asic/syn_optimal/reports/timing_setup_max100.rpt
+ Worst path:
+   startpoint        : u_filter/u_cls/leak_reg[0]/CK
+   endpoint          : u_filter/u_cls/u_core/v1_reg[2][2]/D
+   data-path delay   : 7718 ps
+   path slack        : 21 ps
 

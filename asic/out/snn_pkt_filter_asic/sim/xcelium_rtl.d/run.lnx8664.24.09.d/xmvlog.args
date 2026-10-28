@@ -1,0 +1,31 @@
+//
+// File created by:  xrun
+// Do not modify this file
+//
+-XLMODE
+out/snn_pkt_filter_asic/sim/xcelium_rtl.d/run.lnx8664.24.09.d
+-RUNMODE
+-amsdlibdir
+out/snn_pkt_filter_asic/sim/xcelium_rtl.d/AMSD
+-sv
+scripts/../../rtl/sync_fifo.v
+scripts/../../rtl/pkt_parser.v
+scripts/../../rtl/spike_encoder.v
+scripts/../../rtl/snn_core.v
+scripts/../../rtl/snn_classifier.v
+scripts/../../rtl/snn_pkt_filter.v
+scripts/../../rtl/snn_pkt_filter_asic.v
+scripts/../../sim/asic/tb_snn_asic.sv
+-XMLIBDIRNAME
+out/snn_pkt_filter_asic/sim/xcelium_rtl.d
+-CDSLIB
+out/snn_pkt_filter_asic/sim/xcelium_rtl.d/run.lnx8664.24.09.d/cdsrun.lib
+-HDLVAR
+out/snn_pkt_filter_asic/sim/xcelium_rtl.d/run.lnx8664.24.09.d/hdlrun.var
+-no_analogsolver
+-MESSAGES
+-UPDATE
+-XLLIBSTORE
+out/snn_pkt_filter_asic/sim/xcelium_rtl.d/run.lnx8664.24.09.d/xllibs
+-ALLOWUNBOUND
+-hastop
