@@ -6,6 +6,8 @@
 #   scripts/run_flow.sh sim-rtl       xrun: RTL functional verification (T1..T10)
 #   scripts/run_flow.sh syn           Genus fast + optimal + slow, then genus_summary
 #   scripts/run_flow.sh syn-optimal   Genus one variant (syn-fast / syn-slow likewise)
+#   scripts/run_flow.sh timing        Genus re-report timing (max_paths 100) all 3 + summary
+#   scripts/run_flow.sh timing-summary  distil existing reports -> timing_summary.txt (no tools)
 #   scripts/run_flow.sh lec           Conformal RTL vs tm_netlist_{fast,optimal,slow}
 #   scripts/run_flow.sh lec-genus     Conformal with the Genus-written dofile (recommended first)
 #   scripts/run_flow.sh sim-gls       xrun: tm_netlist_optimal, zero delay
@@ -46,6 +48,12 @@ step() {
                  v=${1#syn-}; mkdir -p $OUT/syn_$v
                  genus -no_gui -log $OUT/syn_$v/genus_$v -files scripts/genus_$v.tcl ;;
     syn)         step syn-fast; step syn-optimal; step syn-slow; tclsh scripts/genus_summary.tcl ;;
+    timing-fast|timing-optimal|timing-slow)
+                 v=${1#timing-}
+                 TVARIANT=$v MAXPATHS=${MAXPATHS:-100} \
+                   genus -no_gui -log $OUT/syn_$v/genus_timing_$v -files scripts/genus_timing.tcl ;;
+    timing)      step timing-fast; step timing-optimal; step timing-slow; scripts/timing_summary.sh ;;
+    timing-summary) scripts/timing_summary.sh ;;      # distil existing reports, no tools needed
     lec-fast|lec-optimal|lec-slow)
                  mkdir -p $OUT/lec
                  lec -xl -nogui -tclmode -dofile scripts/${1/-/_}.tcl

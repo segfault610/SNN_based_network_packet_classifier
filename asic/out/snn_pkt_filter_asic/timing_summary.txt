@@ -1,0 +1,39 @@
+==================================================================
+ snn_pkt_filter_asic  -  variant: fast
+==================================================================
+ Clock period        : 5000.0 ps  (200.0 MHz target)
+ WNS (worst slack)   : 1.1 ps     [>=0 => timing MET; this is report_qor's critical-path slack]
+ TNS (total neg slack): 0.0 ps
+ Violating paths     : 0        [whole design, report_qor - NOT capped at 10]
+ Worst path source   : out/snn_pkt_filter_asic/syn_fast/reports/timing.rpt
+ Worst path:
+   startpoint        : u_filter/u_cls/leak_reg[1]/CK
+   endpoint          : u_filter/u_cls/u_core_v1_reg[0][6]/D
+   data-path delay   : 4737 ps
+   path slack        : 1 ps
+
+==================================================================
+ snn_pkt_filter_asic  -  variant: optimal
+==================================================================
+ Clock period        : 8000.0 ps  (125.0 MHz target)
+ WNS (worst slack)   : 21.1 ps     [>=0 => timing MET; this is report_qor's critical-path slack]
+ TNS (total neg slack): 0.0 ps
+ Violating paths     : 0        [whole design, report_qor - NOT capped at 10]
+ Worst path source   : out/snn_pkt_filter_asic/syn_optimal/reports/timing.rpt
+ Worst path          : no constrained path list in out/snn_pkt_filter_asic/syn_optimal/reports/timing.rpt
+                       (re-run:  TVARIANT=optimal genus -no_gui -files scripts/genus_timing.tcl)
+
+==================================================================
+ snn_pkt_filter_asic  -  variant: slow
+==================================================================
+ Clock period        : 12000.0 ps  (83.3 MHz target)
+ WNS (worst slack)   : 3159.1 ps     [>=0 => timing MET; this is report_qor's critical-path slack]
+ TNS (total neg slack): 0.0 ps
+ Violating paths     : 0        [whole design, report_qor - NOT capped at 10]
+ Worst path source   : out/snn_pkt_filter_asic/syn_slow/reports/timing.rpt
+ Worst path:
+   startpoint        : u_filter/u_cls/leak_reg[0]/CK
+   endpoint          : u_filter/u_cls/u_core_v2_reg[1][18]/D
+   data-path delay   : 8565 ps
+   path slack        : 3159 ps
+
